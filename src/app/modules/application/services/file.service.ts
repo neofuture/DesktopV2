@@ -66,6 +66,7 @@ export class FileService {
       this.windowService.setWindowList(object.windows);
       this.panelService.setPanelList(object.panels);
       event.target.value = '';
+      this.windowService.setMode();
     };
   }
 

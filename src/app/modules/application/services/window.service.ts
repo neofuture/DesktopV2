@@ -33,6 +33,13 @@ export class WindowService {
     });
   }
 
+  setMode(): void {
+    this.checkModeState(0);
+    setTimeout(() => {
+      this.checkModeState(this.runState.mode);
+    }, 200);
+  }
+
   checkModeState(mode): void {
     if (mode !== this.mode) {
       this.mode = mode;
