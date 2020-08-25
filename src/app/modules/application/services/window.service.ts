@@ -133,11 +133,6 @@ export class WindowService {
       title: windowConfig.title || ' - ',
       extendedTitle: windowConfig.extendedTitle || '',
       status: this.helperService.createRandomWord(this.randomIntFromInterval(3, 10)),
-      ribbon: [{
-        label: 'test',
-        icon: 'icons-clock',
-        command: 'demo'
-      }],
       entities: {},
       memory: {},
       state: {
@@ -267,12 +262,12 @@ export class WindowService {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
-  addRibbon(windowItem): void {
-    windowItem.hasRibbon = true;
+  addLocalRibbon(windowItem): void {
+    windowItem.hasLocalRibbon = true;
   }
 
-  removeRibbon(windowItem): void {
-    windowItem.hasRibbon = false;
+  removeLocalRibbon(windowItem): void {
+    windowItem.hasLocalRibbon = false;
   }
 
   addLocalFooter(windowItem): void {

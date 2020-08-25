@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output, NgModule, OnInit, OnDestroy, HostListener} from '@angular/core';
+import {Component, EventEmitter, Input, Output, NgModule, OnInit, OnDestroy, HostListener, DoCheck} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {LanguageService} from '../../../services/language.service';
@@ -14,7 +14,7 @@ import {ApplicationModule} from '../../../application.module';
   styleUrls: ['./example.component.css']
 })
 
-export class ExampleComponent implements OnInit, OnDestroy {
+export class ExampleComponent implements OnInit, OnDestroy, DoCheck {
   @Input() windowItem;
   @Output() update = new EventEmitter();
 
@@ -25,6 +25,8 @@ export class ExampleComponent implements OnInit, OnDestroy {
   private langSub$: Subscription;
   apiResponse: any;
   key: string;
+  ratio: boolean;
+  area: { width: any; height: any };
 
   @HostListener('document:keydown', ['$event'])
   handleKeyboardEventDown(event): void {
@@ -32,6 +34,7 @@ export class ExampleComponent implements OnInit, OnDestroy {
       this.key = event.code;
     }
   }
+
   @HostListener('document:keyup', ['$event'])
   handleKeyboardEventUp(event): void {
     if (this.windowItem.active) {
@@ -65,6 +68,23 @@ export class ExampleComponent implements OnInit, OnDestroy {
     this.callApi();
   }
 
+  ngDoCheck(): void {
+    this.ratio = ((this.windowItem.componentWidth / this.windowItem.componentHeight) > 1);
+
+    if (this.windowItem.hasLocalRibbon) {
+      this.area = {
+        width: (this.ratio) ? this.windowItem.componentWidth : this.windowItem.componentWidth - 52,
+        height: ((this.ratio) ? this.windowItem.componentHeight - 52 : this.windowItem.componentHeight) - (this.windowItem.hasLocalFooter ? 50 : 0),
+      };
+    } else {
+      this.area = {
+        width: this.windowItem.componentWidth,
+        height: this.windowItem.componentHeight - (this.windowItem.hasLocalFooter ? 50 : 0)
+      };
+    }
+
+  }
+
   ngOnDestroy(): void {
     this.langSub$.unsubscribe();
   }
@@ -83,22 +103,22 @@ export class ExampleComponent implements OnInit, OnDestroy {
     this.windowService.closeWindow(this.windowItem.uuid);
   }
 
-  addRibbon(): void {
-    this.windowService.addRibbon(this.windowItem);
+  addLocalRibbon(): void {
+    this.windowService.addLocalRibbon(this.windowItem);
     this.update.emit(true);
   }
 
-  removeRibbon(): void {
-    this.windowService.removeRibbon(this.windowItem);
+  removeLocalRibbon(): void {
+    this.windowService.removeLocalRibbon(this.windowItem);
     this.update.emit(true);
   }
 
-  addFooter(): void {
+  addLocalFooter(): void {
     this.windowService.addLocalFooter(this.windowItem);
     this.update.emit(true);
   }
 
-  removeFooter(): void {
+  removeLocalFooter(): void {
     this.windowService.removeLocalFooter(this.windowItem);
     this.update.emit(true);
   }

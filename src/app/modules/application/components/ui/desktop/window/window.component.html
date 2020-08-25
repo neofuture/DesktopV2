@@ -37,9 +37,7 @@
        [ngClass]="{
       'type1': !windowItem.hasTitleBar && !windowItem.hasRibbon && !windowItem.hasStatusBar,
       'type2':  windowItem.hasTitleBar,
-      'type3':  windowItem.hasTitleBar &&  windowItem.hasRibbon && !windowItem.hasStatusBar,
-      'type4':  windowItem.hasTitleBar && !windowItem.hasRibbon &&  windowItem.hasStatusBar,
-      'type5':  windowItem.hasTitleBar &&  windowItem.hasRibbon &&  windowItem.hasStatusBar
+      'type3':  windowItem.hasTitleBar && !windowItem.hasRibbon &&  windowItem.hasStatusBar
     }">
 
     <div class="titleBar icons{{ iconCount }} titleBarMove" *ngIf="windowItem.hasTitleBar">
@@ -113,9 +111,6 @@
       ></i>
     </div>
 
-    <div class="ribbon" *ngIf="windowItem.hasRibbon">
-      {{ windowItem.ribbon | json }}
-    </div>
     <div [ngClass]="{'componentArea': windowItem.hasTitleBar, 'componentAreaRounded': !windowItem.hasTitleBar}" #componentContainer>
       <ng-container #viewContainer></ng-container>
     </div>

@@ -1,13 +1,26 @@
 <div class="container"
      [ngClass]="{
-        'ribbonTop': (windowItem.componentWidth / windowItem.componentHeight) > 1,
-        'ribbonLeft': (windowItem.componentWidth / windowItem.componentHeight) <= 1,
+        'ribbonTop': ratio,
+        'ribbonLeft': !ratio,
         'hasFooter': windowItem.hasLocalFooter
      }">
   <div class="ribbon" *ngIf="windowItem.hasLocalRibbon">
-    <app-ribbon [ident]="'63b63e8f-2005-4324-957b-7bb37e3da5d2'" [size]="'small'" [direction]="(windowItem.componentWidth / windowItem.componentHeight) <= 1"></app-ribbon>
+    <app-ribbon [ident]="'63b63e8f-2005-4324-957b-7bb37e3da5d2'" [size]="'small'" [direction]="!ratio"></app-ribbon>
   </div>
   <div class="content" [ngClass]="{'noRibbon': !windowItem.hasLocalRibbon}">
+
+    <div style="background-color:rgba(0,0,255,0.5); position:absolute;border:3px solid orange"
+    [ngStyle]="{
+    width: area.width + 'px',
+    height: area.height + 'px',
+    top: 0,
+    left: 0
+    }"
+
+    >
+    {{ area.width }} x {{ area.height }}
+    </div>
+
     <button (click)="setUnSaved(true)">Set Unsaved</button>
     <button (click)="setUnSaved(false)">Set Saved</button> Unsaved : {{ windowItem.unsaved }} | key {{ key }}
     <hr>
@@ -17,12 +30,13 @@
     <hr>
     <span>{{ apiResponse | json }}</span>
     <div>exp: {{ exp }}</div>
-    <button (click)="addRibbon()">Add Ribbon (Global)</button>
-    <button (click)="removeRibbon()">Remove Ribbon (Global)</button>
-
-    <button (click)="addFooter()">Add Footer</button>
-    <button (click)="removeFooter()">Remove Footer</button>
-
+    <br>
+    <button (click)="addLocalRibbon()">Add Ribbon</button>
+    <button (click)="removeLocalRibbon()">Remove Ribbon</button>
+    <br>
+    <button (click)="addLocalFooter()">Add Footer</button>
+    <button (click)="removeLocalFooter()">Remove Footer</button>
+    <br>
     <button (click)="addStatusBar()">Add Status Bar</button>
     <button (click)="removeStatusBar()">Remove Status Bar</button>
     <h2>Example</h2>

@@ -40,17 +40,10 @@
   grid-template-rows: 30px auto;
 }
 
-.type3 { /* normal window with ribbon */
-  grid-template-rows: 30px 60px auto;
-}
-
-.type4 { /* normal window with a status bar */
+.type3 { /* normal window with a status bar */
   grid-template-rows: 30px auto 18px;
 }
 
-.type5 { /* normal window with ribbon and status bar */
-  grid-template-rows: 30px 60px auto 18px;
-}
 
 
 .windowItem.active .container {
