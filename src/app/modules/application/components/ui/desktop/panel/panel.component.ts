@@ -44,7 +44,6 @@ export class PanelComponent implements OnInit, OnDestroy, AfterViewInit {
   private desktopSub$: Subscription;
   dimensions;
   windowLocale;
-  private scrolltimer: number;
   hovered: boolean;
 
   constructor(

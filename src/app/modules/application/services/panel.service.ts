@@ -63,6 +63,7 @@ export class PanelService {
       hasDockMenu: typeof panelConfig.hasDockMenu === 'undefined' ? true : panelConfig.hasDockMenu,
       dock: typeof panelConfig.dock === 'undefined' ? null : panelConfig.dock,
       dockPosition: typeof panelConfig.dockPosition === 'undefined' ? null : panelConfig.dockPosition,
+      closable: typeof panelConfig.closable === 'undefined' ? true : panelConfig.closable,
       scrollTop: 0
     };
 
