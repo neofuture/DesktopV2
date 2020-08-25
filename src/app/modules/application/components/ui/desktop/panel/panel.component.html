@@ -1,0 +1,177 @@
+<div class="panelItem"
+     (mousemove)="resizeCursorSet($event)"
+     (mouseout)="resizeCursorRestore()"
+     (mousedown)="resizeStart($event)"
+     (touchstart)="resizeTouchStart($event)"
+     [ngClass]="{
+        'noTransition': panelItem.noTransition,
+        'open': panelItem.open,
+        'dockTop': panelItem.dock == 'top',
+        'dockRight': panelItem.dock == 'right',
+        'dockBottom': panelItem.dock == 'bottom',
+        'dockLeft': panelItem.dock == 'left',
+        'dockTopLeft': panelItem.dock == 'topLeft',
+        'dockTopRight': panelItem.dock == 'topRight',
+        'dockBottomLeft': panelItem.dock == 'bottomLeft',
+        'dockBottomRight': panelItem.dock == 'bottomRight',
+        'dockCustom': panelItem.dock == 'custom'
+     }"
+     [ngStyle]="{
+        transform: 'translate(' + (panelItem.left - 7) + 'px' + ', ' + (panelItem.top - 9) + 'px'+')',
+        width: panelItem.dock == 'custom' ? panelItem.dockPosition.width + '%' : (panelItem.width + 18) + 'px',
+        height: panelItem.dock == 'custom' ? panelItem.dockPosition.height + '%' :(panelItem.height + 18) + 'px',
+        left: panelItem.dock == 'custom' ? panelItem.dockPosition.left + '%' : '0',
+        top: panelItem.dock == 'custom' ? panelItem.dockPosition.top + '%' : '0'
+     }"
+     (mouseenter)="mouseOver($event)"
+     (mouseleave)="mouseOut($event)">
+  <div class="container">
+    <div class="titleBar titleBarMove"
+         (mousedown)="moveStart($event)"
+         (touchstart)="moveStart($event)">
+      <i class="icon-menu actionIcon"></i>
+      <div class="titleBarText"
+           (mousedown)="moveStart($event)"
+           (touchstart)="moveStart($event)" [innerHTML]="panelItem.title"></div>
+      <i class="icon-close actionIcon" (click)="closePanel($event)"
+         [tooltip]="locale.close" position="bottom"
+         *ngIf="panelItem.closable"
+      ></i>
+    </div>
+    <div class="content" [ngClass]="{'hasRibbon': panelItem.hasRibbon}">
+      <div class="ribbon" *ngIf="panelItem.hasRibbon">
+        <ng-container *ngFor="let windowItem of sort(windowList)">
+          <div *ngIf="windowItem.panel && windowItem.panel == panelItem.uuid" class="ribbonItem"
+               (click)="setActive($event, windowItem)" [ngClass]="{
+                  'active': windowItem.active,
+                  'on': windowItem.open,
+                  'hidden': windowItem.hidden,
+                  'invisible': !windowItem.visible
+                  }">
+            <i class="icon"
+               [ngClass]="windowItem.icon"
+               [tooltip]="windowLocale[windowItem.title] || windowItem.title"
+               position="left"></i>
+          </div>
+        </ng-container>
+      </div>
+
+      <div class="componentArea" (scroll)="setScroll($event)" #componentArea id="{{ panelItem.uuid }}">
+        <ng-container *ngFor="let windowItem of sort(windowList)">
+          <app-window *ngIf="windowItem.panel && windowItem.panel == panelItem.uuid" [windowItem]="windowItem"
+                      [desktopDimensions]="dimensions"></app-window>
+        </ng-container>
+        <div *ngIf="hovered && windowService.dragWindow" class="hoverPosition"
+             [ngStyle]="{'height': windowService.dragWindow.height +'px'}"></div>
+      </div>
+    </div>
+
+    <div *ngIf="hovered && windowService.dragWindow" class="hover"
+    ></div>
+
+  </div>
+
+
+  <div class="subMenu" *ngIf="panelItem.hasDockMenu" [ngClass]="{'on': showMenu == true}" (mouseover)="showMenu = true"
+       (mouseout)="showMenu = false">
+
+
+    <table>
+      <tr>
+        <td>
+          <div (click)="dockWindow('top')"><i class="icon-dockTop"></i>
+            <span [innerHTML]="locale.dockTop"></span>
+            <i class="icon-fat_tick" *ngIf="panelItem.dock == 'top'"></i>
+          </div>
+          <div (click)="dockWindow('right')"><i class="icon-dockRight"></i>
+            <span [innerHTML]="locale.dockRight"></span>
+            <i class="icon-fat_tick" *ngIf="panelItem.dock == 'right'"></i>
+
+          </div>
+          <div (click)="dockWindow('bottom')"><i class="icon-dockBottom"></i>
+            <span [innerHTML]="locale.dockBottom"></span>
+            <i class="icon-fat_tick" *ngIf="panelItem.dock == 'bottom'"></i>
+
+          </div>
+          <div (click)="dockWindow('left')"><i class="icon-dockLeft"></i>
+            <span [innerHTML]="locale.dockLeft"></span>
+            <i class="icon-fat_tick" *ngIf="panelItem.dock == 'left'"></i>
+          </div>
+        </td>
+        <td>
+          <div (click)="dockWindow('topLeft')"><i class="icon-dockTopLeft"></i>
+            <span [innerHTML]="locale.dockTopLeft"></span>
+            <i class="icon-fat_tick" *ngIf="panelItem.dock == 'topLeft'"></i>
+          </div>
+
+          <div (click)="dockWindow('topRight')"><i class="icon-dockTopRight"></i>
+            <span [innerHTML]="locale.dockTopRight"></span>
+            <i class="icon-fat_tick" *ngIf="panelItem.dock == 'topRight'"></i>
+          </div>
+
+          <div (click)="dockWindow('bottomLeft')"><i class="icon-dockBottomLeft"></i>
+            <span [innerHTML]="locale.dockBottomLeft"></span>
+            <i class="icon-fat_tick" *ngIf="panelItem.dock == 'bottomLeft'"></i>
+          </div>
+
+          <div (click)="dockWindow('bottomRight')"><i class="icon-dockBottomRight"></i>
+            <span [innerHTML]="locale.dockBottomRight"></span>
+            <i class="icon-fat_tick" *ngIf="panelItem.dock == 'bottomRight'"></i>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <hr>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div>
+            <label for="dockLeft" [innerHTML]="locale.left"></label>
+            <input type="number" id='dockLeft' [(ngModel)]="dockLeft" (ngModelChange)="setLeft()" min="0"
+                   max="{{ maxLeft }}">%
+          </div>
+          <div>
+            <label for="dockTop" [innerHTML]="locale.top"></label>
+            <input type="number" id='dockTop' [(ngModel)]="dockTop" (ngModelChange)="setTop()" min="0"
+                   max="{{ maxTop }}">%
+          </div>
+        </td>
+        <td>
+          <div>
+            <label for="dockWidth" [innerHTML]="locale.width"></label>
+            <input type="number" id='dockWidth' [(ngModel)]="dockWidth" (ngModelChange)="setWidth()" min="10"
+                   max="{{ maxWidth }}">%
+          </div>
+          <div>
+            <label for="dockHeight" [innerHTML]="locale.height"></label>
+            <input type="number" id='dockHeight' [(ngModel)]="dockHeight" (ngModelChange)="setHeight()" min="0"
+                   max="{{ maxHeight }}">%
+          </div>
+
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <button [innerHTML]="locale.setDockPosition" (click)="setDockPosition()"></button>
+        </td>
+      </tr>
+    </table>
+
+    <hr *ngIf="panelItem.dock">
+    <div *ngIf="panelItem.dock" (click)="unDockPanel()"><i class="icon-unDock"></i><span
+      [innerHTML]="locale.unDockPanel"></span>
+    </div>
+
+    <hr>
+    <div (click)="closePanel($event)" *ngIf="panelItem.closable">
+      <i class="icon-close"></i>
+      <span [innerHTML]="locale.close"></span>
+    </div>
+
+
+  </div>
+
+</div>

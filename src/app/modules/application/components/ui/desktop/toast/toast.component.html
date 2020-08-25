@@ -1,0 +1,35 @@
+<div class="toast {{ toastItem.type }}"
+     [ngClass]="{
+     'on': toastItem.open
+     }"
+     (mouseover)="pauseTimer = true" (mouseout)="pauseTimer = false">
+  <div class="container">
+    <div class="toastIcon">
+      <i class="icon-success" *ngIf="toastItem.type == 'success'"></i>
+      <i class="icon-info" *ngIf="toastItem.type == 'info'"></i>
+      <i class="icon-warning" *ngIf="toastItem.type == 'warn'"></i>
+      <i class="icon-error" *ngIf="toastItem.type == 'error'"></i>
+    </div>
+    <div>
+      <div class="title" [innerHTML]="locale[toastItem.title] || toastItem.title"></div>
+      <div class="body" [innerHTML]="locale[toastItem.body] || toastItem.body"></div>
+    </div>
+    <div>
+      <i class="icon-close" (click)="closeToast()" [tooltip]="locale.dismiss" position="bottom"></i>
+    </div>
+  </div>
+  <span class='timer' *ngIf="toastItem.autoClose">{{ round(remaining / 1000) }}</span>
+
+  <div class="timeBar"
+       *ngIf="toastItem.autoClose"
+       [ngStyle]="{
+       'width' : ((remaining * 100) / toastItem.autoClose) + '%',
+       'opacity' : (((remaining * 100) / toastItem.autoClose)) / 100
+       }"
+       [ngClass]="{
+       'success': toastItem.type == 'success',
+       'info': toastItem.type == 'info',
+       'warn': toastItem.type == 'warn',
+       'error': toastItem.type == 'error'
+        }"></div>
+</div>

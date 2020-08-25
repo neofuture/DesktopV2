@@ -1,0 +1,17 @@
+<div class="ribbonButton"
+     [ngClass]="{
+        'active': button.active
+     }"
+     (click)="ribbonAction($event)">
+  <div class="iconContainer">
+    <div class="icon">
+      <i class="{{ button.iconOver }}"
+         [ngClass]="{'iconActive': button.active}"></i>
+      <i class="{{ button.icon }}"></i>
+      <div *ngIf="button.itemCount" class="label" [innerHTML]="button.itemCount"></div>
+    </div>
+  </div>
+
+  <div class="text" [innerHTML]="locale[button.label]">
+  </div>
+</div>

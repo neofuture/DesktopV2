@@ -1,0 +1,58 @@
+<div class="container">
+  <button (click)="demo1()" [innerHTML]="'Demo One'"></button>
+  <button (click)="demo2()" [innerHTML]="'Demo Two'"></button>
+  <button (click)="demo3()" [innerHTML]="'Demo Three'"></button>
+  <button (click)="demo4()" [innerHTML]="'Demo Four'"></button>
+  <hr>
+  <button (click)="demo1Hide()" [innerHTML]="'Demo One (hide on mode change)'"></button>
+  <button (click)="demo1Delete()" [innerHTML]="'Demo One (delete on mode change)'"></button>
+
+  <hr>
+  <button (click)="newWindow(false, false)" [innerHTML]="'New Window'"></button>
+  <button (click)="newWindowNoControls(false, false)" [innerHTML]="'New Window' + ' - No Controls'"></button>
+  <button (click)="newWindowNoBar(false, false)" [innerHTML]="'New Window' + ' - No Title Bar'"></button>
+  <button (click)="newWindow(true, false)" [innerHTML]="'New Window' + ' - Always on top'"></button>
+  <button (click)="newWindow(false, true)" [innerHTML]="'New Window' + ' - Always on bottom'"></button>
+  <button (click)="newWindow3d()" [innerHTML]="'New Window' + ' - 3D'"></button>
+  <button (click)="noTab()" [innerHTML]="'New Window' + ' - No Tab'"></button>
+  <button (click)="noFeatures()" [innerHTML]="'New Window' + ' - No Features'"></button>
+  <button (click)="autoClose(9000)" [innerHTML]="'New Window' + ' - Auto Close'"></button>
+  <button (click)="newWindowDockLeft()" [innerHTML]="'New Window' + ' - Dock Left (40%, 100%)'"></button>
+  <hr>
+  <button (click)="newToast('success')">New Toast Success</button>
+  <button (click)="newToast('info')">New Toast Info</button>
+  <button (click)="newToast('warn')">New Toast Warn</button>
+  <button (click)="newToast('error')">New Toast Error</button>
+  <hr>
+  <button (click)="newToastSticky('success')">New Toast Success Sticky</button>
+  <button (click)="newToastSticky('info')">New Toast Info Sticky</button>
+  <button (click)="newToastSticky('warn')">New Toast Warn Sticky</button>
+  <button (click)="newToastSticky('error')">New Toast Error Sticky</button>
+  <hr>
+  <button (click)="newDialog()">New Dialog</button>
+  <button (click)="newDialogForm()">New Dialog (Form)</button>
+  <hr>
+  <button (click)="splash()">New Splash</button>
+  <button (click)="about()">About</button>
+  <hr>
+  <button (click)="newPanelLeft()">New Panel Left</button>
+  <button (click)="newPanelRight()">New Panel (right dock 75%, 100%)</button>
+
+  <button (click)="newPanel()">New Panel (with ribbon)</button>
+  <button (click)="newPanelNoClose()">New Panel (with ribbon - No Close)</button>
+  <hr>
+  <h1>Run State</h1>
+  <button (click)="setItem({thing: {demo: 'demo', test: 'testing'}})">Set Item</button>
+  <button (click)="setItem({thing: {sortBy: 4,thingy: 'item 4', ddd: {sortBy: 3,thingy: 'item 3'}}})">Set Item (different)</button>
+  <button (click)="setItem({thing2: {demo: 'demo', test: 'testing'}})">Set second Item</button>
+  <button (click)="deleteItem('thing')">Delete Item</button>
+  <button (click)="deleteItem('thing2')">Delete Second Item</button>
+
+  <h1>App State</h1>
+  <button (click)="setItemApp({thing: {demo: 'demo', test: 'testing'}})">Set Item</button>
+  <button (click)="setItemApp({thing: {sortBy: 4,thingy: 'item 4', ddd: {sortBy: 3,thingy: 'item 3'}}})">Set Item (different)</button>
+  <button (click)="setItemApp({thing2: {demo: 'demo', test: 'testing'}})">Set second Item</button>
+  <button (click)="deleteItemApp('thing')">Delete Item</button>
+  <button (click)="deleteItemApp('thing2')">Delete Second Item</button>
+
+</div>

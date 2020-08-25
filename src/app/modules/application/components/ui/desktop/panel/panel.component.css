@@ -1,0 +1,385 @@
+.panelItem {
+  position: absolute;
+
+  border-radius: 0;
+  padding: 6px;
+  background-color: transparent;
+
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
+  transition: all 300ms;
+  opacity: 0;
+  top: 0;
+  left: 0;
+}
+
+.noTransition {
+  transition: all 0ms !important;
+}
+
+.panelItem.open {
+  opacity: 1;
+}
+
+.panelItem .container {
+  border: 1px solid var(--mid-grey);
+  border-radius: 8px;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: 24px auto;
+  padding: 0;
+  background-color: var(--light-grey);
+}
+
+.panelItem .titleBar {
+  background-color: var(--dark-grey);
+  color: var(--white);
+  font-size: 13px;
+  border-radius: 4px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  display: grid;
+  grid-template-columns: 24px auto 24px;
+}
+
+.panelItem .titleBar .titleBarText {
+  padding: 2px;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.actionIcon:first-child {
+  padding: 6px 4px 4px 8px;
+}
+
+.actionIcon {
+  padding: 6px;
+}
+
+.content {
+  width: 100%;
+  height: calc(100% - 24px);
+  position: absolute;
+  top: 24px;
+}
+
+.content .ribbon {
+  width: 42px;
+  height: 100%;
+  float: left;
+  background-color: var(--very-light-grey);
+  color: var(--white);
+}
+
+.panelItem .componentArea {
+  width: 100%;
+  height: 100%;
+  background-color: var(--light-grey);
+  overflow: auto;
+  /*scroll-behavior: smooth;*/
+
+}
+
+.panelItem .hasRibbon .componentArea {
+  width: calc(100% - 42px) !important;
+
+}
+
+
+.subMenu {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  opacity: 0;
+  height: 0;
+  width: 12px;
+  background-color: var(--primary);
+  padding: 8px;
+  overflow: hidden;
+  transition: all 300ms;
+  border-radius: 6px;
+}
+
+.subMenu.on {
+  opacity: 1;
+  height: initial;
+  width: initial;
+  transition: all 300ms;
+  box-shadow: 0px 10px 11px -5px rgba(0, 0, 0, 0.27);
+}
+
+.subMenu div {
+  padding: 2px;
+  border-radius: 4px;
+  transition: all 300ms;
+  cursor: pointer;
+  color: var(--white);
+  min-width: 180px;
+}
+
+.subMenu div:hover {
+  background-color: var(--primary-dark);
+  transition: all 300ms;
+}
+
+.subMenu div span {
+  font-size: 14px;
+  font-weight: 600;
+  position: relative;
+  top: -1px;
+  padding-left: 5px;
+  padding-right: 5px;
+
+}
+
+.subMenu div i {
+  font-size: 16px;
+  position: relative;
+  top: 1px;
+  padding-left: 3px;
+}
+
+.dockTop {
+  padding: 0 !important;
+  width: 100% !important;
+  left: 0 !important;
+  top: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  height: 50% !important;
+  transform: translate(0, 0) !important;
+}
+
+.dockRight {
+  padding: 0 !important;
+  width: 50% !important;
+  left: 50% !important;
+  top: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  height: 100% !important;
+  transform: translate(0, 0) !important;
+}
+
+.dockBottom {
+  padding: 0 !important;
+  width: 100% !important;
+  left: 0 !important;
+  top: 50% !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  height: 50% !important;
+  transform: translate(0, 0) !important;
+}
+
+.dockLeft {
+  padding: 0 !important;
+  width: 50% !important;
+  left: 0 !important;
+  top: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  height: 100% !important;
+  transform: translate(0, 0) !important;
+}
+
+.dockTopLeft {
+  padding: 0 !important;
+  width: 50% !important;
+  left: 0 !important;
+  top: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  height: 50% !important;
+  transform: translate(0, 0) !important;
+}
+
+.dockTopRight {
+  padding: 0 !important;
+  width: 50% !important;
+  left: 50% !important;
+  top: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  height: 50% !important;
+  transform: translate(0, 0) !important;
+}
+
+.dockBottomLeft {
+  padding: 0 !important;
+  width: 50% !important;
+  left: 0 !important;
+  top: 50% !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  height: 50% !important;
+  transform: translate(0, 0) !important;
+}
+
+.dockBottomRight {
+  padding: 0 !important;
+  width: 50% !important;
+  left: 50% !important;
+  top: 50% !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  height: 50% !important;
+  transform: translate(0, 0) !important;
+}
+
+.dockCustom {
+  padding: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  transform: translate(0, 0) !important;
+}
+
+.dockTop .container,
+.dockRight .container,
+.dockBottom .container,
+.dockLeft .container,
+.dockTopLeft .container,
+.dockTopRight .container,
+.dockBottomLeft .container,
+.dockBottomRight .container,
+.dockTop .titleBar,
+.dockRight .titleBar,
+.dockBottom .titleBar,
+.dockLeft .titleBar,
+.dockTopLeft .titleBar,
+.dockTopRight .titleBar,
+.dockBottomLeft .titleBar,
+.dockBottomRight .titleBar,
+.dockTop .componentAreaRounded,
+.dockRight .componentAreaRounded,
+.dockBottom .componentAreaRounded,
+.dockLeft .componentAreaRounded,
+.dockTopLeft .componentAreaRounded,
+.dockTopRight .componentAreaRounded,
+.dockBottomLeft .componentAreaRounded,
+.dockBottomRight .componentAreaRounded,
+.dockCustom .container,
+.dockCustom .titleBar,
+.dockCustom .componentAreaRounded {
+  border-radius: 0 !important;
+}
+
+.dockTop .subMenu,
+.dockRight .subMenu,
+.dockBottom .subMenu,
+.dockLeft .subMenu,
+.dockTopLeft .subMenu,
+.dockTopRight .subMenu,
+.dockBottomLeft .subMenu,
+.dockBottomRight .subMenu,
+.dockCustom .subMenu {
+  top: 2px;
+  left: 2px;
+}
+
+.subMenu div i:last-child {
+  float: right;
+  margin-top: 3px;
+  margin-right: 3px;
+}
+
+hr {
+  border: 0;
+  border-bottom: 1px solid var(--primary-light);
+}
+
+.subMenu table tr td {
+  vertical-align: top;
+}
+
+.subMenu input {
+  width: 60px;
+  margin-right: 10px;
+  padding: 2px;
+}
+
+.subMenu label {
+  width: 90px;
+  color: var(--white);
+  display: inline-block;
+}
+
+.subMenu button {
+  width: 100%;
+  background-color: var(--white);
+  color: var(--primary);
+}
+
+.subMenu button:hover {
+  background-color: var(--primary-light);
+}
+
+.ribbonItem {
+  background-color: var(--light-grey);
+  padding: 4px;
+  transition: all 300ms;
+  margin: 2px;
+  border-radius: 6px;
+  color: var(--black);
+  opacity: 0;
+}
+
+.ribbonItem.on {
+  opacity: 1;
+  transition: all 300ms;
+}
+
+.ribbonItem.active {
+  background-color: var(--primary-mid);
+  color: var(--white);
+}
+
+.ribbonItem:hover {
+  background-color: var(--primary);
+  transition: all 300ms;
+  color: var(--white);
+}
+
+.icon {
+  font-size: 30px;
+}
+
+.hover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: var(--primary);
+  opacity: 0.1
+}
+
+.hoverPosition {
+  width: 100%;
+  background-color: var(--primary);
+  opacity: 0.5;
+}
+
+.invisible {
+  opacity:0 !important;
+  transition: all 200ms;
+}
+.hidden {
+  display:none !important;
+  opacity:0;
+  transition: all 200ms;
+
+}

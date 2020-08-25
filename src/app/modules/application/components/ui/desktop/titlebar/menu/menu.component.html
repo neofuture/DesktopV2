@@ -1,0 +1,16 @@
+<div class="menuBar">
+  <div class="logoItem">
+    <i class="icon-oceanworks logo"></i>
+  </div>
+  <div class="menuItem"
+       *ngFor="let item of menuItems"
+       [innerHTML]="locale[item.label]"
+       [ngClass]="{'active': item.value==selectedMenu}"
+       (click)="selectMenu(item.value)"></div>
+  <div class="language">
+    <app-language-selector [type]="'full'"></app-language-selector>
+  </div>
+  <div class="language">
+    <app-user-menu [type]="'full'"></app-user-menu>
+  </div>
+</div>

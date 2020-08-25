@@ -1,0 +1,116 @@
+.languageSelector {
+  display: inline-block;
+  position: relative;
+  z-index: 99999999999;
+  text-align: left;
+}
+
+.flagIcon {
+  width: 16px;
+  height: 16px;
+  position: relative;
+  top: 1px;
+}
+
+.flagText {
+  font-size: 12px;
+  position: relative;
+  top: -2px;
+  padding-left: 4px;
+  font-weight: 400;
+}
+
+.currentLanguage {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.currentLanguage i {
+  font-size: 15px;
+  padding-left: 5px;
+}
+
+.languageSelection i {
+  top: 5px;
+  right: 5px;
+  position: absolute;
+}
+
+.languageContainer {
+  position: absolute;
+  top:22px;
+  right: 0;
+  width: 0px;
+  height: 0px;
+  overflow: auto;
+  border: 1px solid var(--mid-grey);
+  border-radius: 6px;
+  padding: 4px;
+  background-color: var(--white);
+  box-shadow: 0 13px 15px -6px rgba(0, 0, 0, 0.17);
+  opacity: 0;
+  transition: all 300ms;
+  z-index: 9999999999;
+  color: var(--black);
+}
+
+.languageContainer.full {
+  top:34px;
+}
+
+.languageContainer.on {
+  width: 140px;
+  height: 200px;
+  opacity: 1;
+  transition: all 300ms;
+}
+
+.languageSelection {
+  border-radius: 4px;
+  padding: 3px 3px 3px 8px;
+  cursor: pointer;
+}
+
+.languageSelection:hover {
+  background-color: var(--primary-mid);
+  transition: all 300ms;
+  color: var(--white);
+}
+
+.hidden {
+  /*position: absolute;*/
+  /*width: 0;*/
+  /*height: 0;*/
+  /*opacity: 0.5;*/
+  /*overflow: hidden;*/
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  cursor:pointer;
+}
+.hidden input {
+  width:100%;
+  cursor:pointer;
+}
+
+.currentLanguage.full {
+  padding:4px;
+}
+
+.currentLanguage.full .flagText{
+  font-size: 15px;
+  font-weight: 600;
+  position: relative;
+  top:-1px;
+}
+
+
+.languageContainer.square {
+  border-radius: 0;
+}
+.languageContainer.square .languageSelection {
+  border-radius: 0;
+}

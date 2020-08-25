@@ -1,0 +1,21 @@
+<div class="settings">
+  <div class="title">
+    <span [innerHTML]="locale.settings"></span>
+    <i class="icon-cog"></i>
+  </div>
+  <div class="container">
+    <div>
+      <label [innerHTML]="locale.ribbonSize" for="ribbonSize"></label>
+      <select id="ribbonSize" [(ngModel)]="ribbonSize" (ngModelChange)="updateRibbonSize($event)">
+        <option value="small" [innerHTML]="locale.small"></option>
+        <option value="large" [innerHTML]="locale.large"></option>
+      </select>
+    </div>
+    <div>
+      <label [innerHTML]="locale.tabBarAutoHide" for="autoHide"></label>
+      <input type="checkbox" name="autoHide" [(ngModel)]="autoHide" id="autoHide"
+             (ngModelChange)="updateAutoHide($event)">
+    </div>
+  </div>
+</div>
+

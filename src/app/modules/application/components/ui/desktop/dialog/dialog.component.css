@@ -1,0 +1,84 @@
+.dialog {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: all 300ms;
+  background-color: rgba(255, 255, 255, 0.8);
+  width: 100%;
+  height: 100%;
+  display: table;
+  text-align: center;
+  z-index: 60000;
+}
+
+.dialog.on {
+  opacity: 1;
+  transition: all 300ms;
+}
+
+.dialog .container {
+  display: table-cell;
+  vertical-align: middle;
+
+}
+
+.dialog.on .container {
+  opacity: 1;
+  transition: all 300ms;
+}
+
+.dialogBox {
+  min-width: 200px;
+  display: inline-block;
+  background-color: var(--white);
+  color: var(--black);
+  border-radius: 8px;
+  box-shadow: 0 6px 9px -6px rgba(0, 0, 0, 0.8);
+  text-align: left;
+  overflow: hidden;
+  border:2px solid var(--primary-mid);
+}
+
+.dialogBox button {
+  margin: 4px;
+}
+
+/*.dialogBox button:hover {*/
+/*  background-color: var(--primary-light);*/
+/*}*/
+
+.title {
+  font-size: 16px;
+  padding: 6px 12px 8px 12px;
+  background-color: var(--primary-mid);
+  color: white;
+  font-weight: 600;
+}
+
+.body {
+  padding: 32px 32px 32px 32px;
+}
+
+.fields {
+  padding: 3px 32px 32px 32px;
+}
+.field {
+  display:inline-block;
+  padding:2px 2px 2px 8px;
+}
+.footer {
+  text-align: right;
+  padding: 8px;
+  background-color: var(--light-grey)
+}
+.label {
+  width: 90px;
+  display: inline-block;
+}
+.field input {
+  width:100%;
+}
+.field input[type=number] {
+  width: 80px;
+}

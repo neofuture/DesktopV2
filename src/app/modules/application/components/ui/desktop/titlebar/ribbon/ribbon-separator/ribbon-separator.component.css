@@ -1,0 +1,16 @@
+.ribbonButtonSeparator{
+  height: var(--ribbon-height);
+  width: 1px;
+  display: inline-block;
+  float:left;
+  text-align: center;
+  cursor:pointer;
+  top:0;
+  padding:8px 0 8px 0;
+}
+.ribbonButtonSeparatorLine {
+  display:block;
+  width:100%;
+  height:100%;
+  background-color:var(--dark-grey);
+}

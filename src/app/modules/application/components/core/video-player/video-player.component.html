@@ -1,0 +1,148 @@
+<div class="container" #container (mouseover)="setShowControls($event)" (mousemove)="setShowControls($event)"
+     (mouseleave)="setHideControls($event)">
+
+  <div class="player" (mouseover)="setShowControls($event)" (mousemove)="setShowControls($event)">
+    <video *ngIf="loaded !== -1" class="playerVideo" #video src="{{ videoHost }}{{ videoSrc }}/video/1080p.mp4"
+           (click)="togglePlay($event)"
+           (play)="updateButton($event)"
+           (timeupdate)="handleProgress($event)"
+           (error)="error($event)"
+           (loadeddata)="loadSuccess($event)"
+           (loadedmetadata)="loadedMetaData($event)"
+           (seeking)="seeking($event)"
+           (seeked)="seeked($event)"
+           (playing)="playing($event)"
+           (waiting)="waiting($event)"
+           (stalled)="stalled($event)"
+           (loadstart)="loadStart($event)"
+           (canplaythrough)="canPlayThrough($event)"
+    ></video>
+    <canvas #canvas width=0 height=0></canvas>
+
+    <div class="playButtonLarge" [ngClass]="{'off': !seekingFlag}" *ngIf="loaded == 1">
+      <div class="cell">
+        <i class="icon-oceanworks"></i>
+
+      </div>
+    </div>
+
+    <div class="playButtonLarge" [ngClass]="{'off': !paused}" (click)="togglePlay($event)"
+         *ngIf="loaded == 1 && !seekingFlag">
+      <div class="cell">
+        <span [ngClass]="{'pauseButton': !paused}">
+                <i class="icon-{{ playButton }}"></i>
+
+      </span>
+      </div>
+    </div>
+
+    <div class="playButtonLargePause" [ngClass]="{'off': !playerControls}" (click)="togglePlay($event)"
+         *ngIf="loaded == 1 && loading != 1 && !seekingFlag">
+      <div class="cell">
+        <span [ngClass]="{'pauseButton': !paused}">
+                <i class="icon-{{ playButton}}"></i>
+
+      </span>
+      </div>
+    </div>
+
+    <div class="error" *ngIf="loaded == -1">
+      <div class="errorText">
+        <i class="icon-error"></i>
+
+        <div>{{ locale.errorLoadingVideo }}</div>
+      </div>
+    </div>
+  </div>
+  <div class="playerControls" [ngClass]="{'show': playerControls || paused}" *ngIf="loaded == 1" #playerControlsElement>
+    <div class="progress"
+         #progress
+         (click)="scrub($event)"
+         (mousedown)="mouseDown($event)"
+         (mouseup)="mouseUp($event)"
+         (mousemove)="mouseMove($event)" [ngClass]="{'show': playerControls || paused}"
+         (mouseover)="showToolTip($event, true, null);"
+         (mouseout)="hideToolTip($event)"
+    >
+      <div class="progressFilled" [ngStyle]="{'flexBasis': flexBasis + '%'}"></div>
+    </div>
+
+    <button class="playerButton" (click)="restartVideo($event)"
+            (mouseenter)="showToolTip($event, false, locale.restart);"
+            (mouseleave)="hideToolTip($event)">
+      <i class="icon-restart"></i>
+
+    </button>
+
+    <button class="playerButton toggle" (click)="togglePlay($event)"
+            #play
+            (mouseenter)="showToolTip($event, false, playPause);"
+            (mouseleave)="hideToolTip($event)">
+      <i class="icon-play" *ngIf="playButton==='play'"></i>
+      <i class="icon-pause" *ngIf="playButton==='pause'"></i>
+
+    </button>
+
+    <button class="playerButton" (click)="toggleMute($event)"
+            (mouseenter)="showToolTip($event, false, muteUnmute);"
+            (mouseleave)="hideToolTip($event)">
+      <i class="icon-mute" *ngIf="muted"></i>
+      <i class="icon-unMute" *ngIf="!muted"></i>
+
+    </button>
+    <input type="range" name="volume" class="playerSlider volume" min="0" max="1" step="0.01" [ngModel]="volume"
+           (change)="handleRangeUpdate($event)" (mousemove)="handleRangeUpdate($event)"
+           (mouseover)="showToolTip($event, false, null);"
+           (mouseout)="hideToolTip($event)">
+
+
+    <!--        <input type="range" name="playbackRate" class="playerSlider" min="0.5" max="2" step="0.1" value="{{ speed }}">-->
+    <span class="positionText">{{ minutesSeconds(position) }} / {{ minutesSeconds(duration) }}</span>
+
+    <button class="playerButton fullScreen" (click)="openSettings($event)" title="{{ locale.settings }}"
+            (mouseenter)="showToolTip($event, false, locale.settings);"
+            (mouseleave)="hideToolTip($event)">
+      <i class="icon-cog"></i>
+
+    </button>
+
+    <!--    <button class="playerButton fullScreen" (click)="setSpeed(0.25)" [ngClass]="{'active': speed == 0.25}">0.25</button>-->
+    <!--    <button class="playerButton fullScreen" (click)="setSpeed(0.5)" [ngClass]="{'active': speed == 0.5}">0.5</button>-->
+    <!--    <button class="playerButton fullScreen" (click)="setSpeed(1)" [ngClass]="{'active': speed == 1}">1</button>-->
+    <!--    <button class="playerButton fullScreen" (click)="setSpeed(1.5)" [ngClass]="{'active': speed == 1.5}">1.5</button>-->
+    <!--    <button class="playerButton fullScreen" (click)="setSpeed(1.75)" [ngClass]="{'active': speed == 1.75}">1.75</button>-->
+    <!--    <button class="playerButton fullScreen" (click)="setSpeed(2)" [ngClass]="{'active': speed == 2}">2</button>-->
+
+    <!--    <button data-skip="-10" class="playerButton" (click)="skip($event)" title="{{ locale.skipBack }} 10s">«10s</button>-->
+    <!--    <button data-skip="25" class="playerButton" (click)="skip($event)" title="{{ locale.skipForward }} 25s">25s»-->
+    <!--    </button>-->
+    <button class="playerButton fullScreen" (click)="pictureInPicture($event)"
+            *ngIf="pip"
+            (mouseenter)="showToolTip($event, false, locale.pictureInPicture);"
+            (mouseleave)="hideToolTip($event)">
+      <i class="icon-openExternal"></i>
+
+    </button>
+    <button class="playerButton fullScreen" (click)="fullScreen($event)"
+            *ngIf="!isFullScreen"
+            (mouseenter)="showToolTip($event, false, locale.fullScreen);"
+            (mouseleave)="hideToolTip($event)">
+      <i class="icon-maximise"></i>
+
+    </button>
+    <button class="playerButton fullScreen" (click)="cancelFullScreen($event)"
+            *ngIf="isFullScreen"
+            (mouseenter)="showToolTip($event, false, locale.exitFullScreen);"
+            (mouseleave)="hideToolTip($event)">
+      <i class="icon-unDock"></i>
+
+    </button>
+  </div>
+  <div class="toolTip" #toolTip [ngClass]="{'on': displayToolTip}" [ngStyle]="{'left': toolTipLeft, 'top': toolTipTop}"
+       [innerHTML]="toolTipContent"></div>
+  <div class="toolTipImage" #toolTipImage [ngStyle]="{'left': toolTipImageLeft, 'top': toolTipImageTop}"
+       [ngClass]="{'on': thumbImage}">
+    <img src="{{ toolTipImageContent }}">
+  </div>
+</div>
+

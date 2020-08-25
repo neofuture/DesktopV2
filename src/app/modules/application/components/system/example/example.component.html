@@ -1,0 +1,41 @@
+<div class="container"
+     [ngClass]="{
+        'ribbonLeft': (windowItem.componentWidth / windowItem.componentHeight) > 1,
+        'ribbonTop': (windowItem.componentWidth / windowItem.componentHeight) <= 1,
+        'hasFooter': windowItem.hasLocalFooter
+     }">
+  <div class="ribbon" *ngIf="windowItem.hasLocalRibbon">
+    <div class="button">
+      <i class="icon-cog"></i>
+    </div>
+  </div>
+  <div class="content" [ngClass]="{'noRibbon': !windowItem.hasLocalRibbon}">
+    <button (click)="setUnSaved(true)">Set Unsaved</button>
+    <button (click)="setUnSaved(false)">Set Saved</button> Unsaved : {{ windowItem.unsaved }} | key {{ key }}
+    <hr>
+    <button (click)="setAlwaysActive(true)">Set Always Active</button>
+    <button (click)="setAlwaysActive(false)">Unset Always Active</button>
+    <button (click)="logout()">Logout</button>
+    <hr>
+    <pre>{{ apiResponse | json }}</pre>
+    <hr>
+    <pre>{{ user | json }}</pre>
+    <div>exp: {{ exp }}</div>
+    <button (click)="addRibbon()">Add Ribbon (Global)</button>
+    <button (click)="removeRibbon()">Remove Ribbon (Global)</button>
+    <button (click)="addStatusBar()">Add Status Bar</button>
+    <button (click)="removeStatusBar()">Remove Status Bar</button>
+    <h2>Example</h2>
+    {{ locale.test }}
+    <hr>
+    -{{ demo }}-
+    <br>
+    <input [(ngModel)]="demo">
+    <pre>{{ windowItem | json }}</pre>
+  </div>
+</div>
+<div class="footer" *ngIf="windowItem.hasLocalFooter">
+  <button>Click</button>
+  <button (click)="closeWindow()">Close</button>
+</div>
+

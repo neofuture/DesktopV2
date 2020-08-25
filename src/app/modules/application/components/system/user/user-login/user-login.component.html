@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="loginLogo">
+      <img src="/assets/images/logo_main.png" alt="">
+    <div [innerHTML]="product" class="productText">
+    </div>
+
+  </div>
+  <div class="loginContainer">
+    <form (submit)="login()">
+      <div class="loginOption">
+        <label [innerHTML]="locale.username" for="username"></label>
+        <input type="text" name='username' [(ngModel)]="username" id="username">
+      </div>
+      <div class="loginOption">
+        <label [innerHTML]="locale.password" for="password"></label>
+        <input type="password" name="password" [(ngModel)]="password" id="password">
+      </div>
+      <div class="loginButton">
+        <button [innerHTML]="locale.login" *ngIf="!loggingIn"></button>
+        <div *ngIf="loggingIn" class="loggingIn" [innerHTML]="locale.pleaseWaitLoggingIn"></div>
+      </div>
+    </form>
+  </div>
+  <div class="loginFooter">
+    &copy;2020 {{ company }} - <app-version></app-version>
+  </div>
+</div>

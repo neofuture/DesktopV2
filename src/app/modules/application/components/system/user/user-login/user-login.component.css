@@ -1,0 +1,73 @@
+.container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background-color: var(--primary-mid);
+  color: var(--white);
+  padding: 15px 26px 26px 26px;
+}
+
+.container:after {
+  content: "";
+  background-image: url('/assets/images/logo_main.png');
+  background-size: 630px;
+  opacity: 0.2;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+.loginLogo {
+  height: 50px;
+}
+
+.loginLogo img {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+}
+
+.loginLogo .productText {
+  font-size: 30px;
+  padding-left: 6px;
+  position: relative;
+  top: -5px;
+  display: inline-block;
+}
+
+.loginContainer {
+  height: 170px;
+}
+
+.loginFooter {
+  height: 20px;
+  font-size: 12px;
+  text-align: center;
+}
+
+button {
+  background-color: var(--white);
+  color: var(--primary-dark);
+}
+
+.loginOption {
+  width: 100%;
+  padding: 4px;
+}
+
+.loginOption input {
+  width: 100%;
+}
+
+.loginButton {
+  width: 100%;
+  text-align: right;
+  padding: 4px;
+}
+.loggingIn {
+  text-align: center;
+  padding:6px 0 0 0;
+}

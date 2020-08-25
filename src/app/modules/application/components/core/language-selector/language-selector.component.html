@@ -1,0 +1,21 @@
+<div class="languageSelector">
+  <div class="currentLanguage" [ngClass]="{'full': type=='full'}" (click)="focusSelector()">
+
+    <img class="flagIcon" src="assets/images/flags/{{ locale.flags[locale.language] }}"
+         alt="{{ locale.languages[locale.language] }}">
+    <span class="flagText" [innerHTML]="locale.languages[locale.language]" *ngIf="type == 'full'"></span>
+    <i class="icon-downArrow" *ngIf="type == 'full'"></i>
+    <label class="hidden">
+      <input type="text" readonly #input (blur)="blurCloseSelector()" (focus)="openSelector()" [(ngModel)]="locale.language">
+    </label>
+
+    <div class="languageContainer" [ngClass]="{'on': selector, 'full': type == 'full'}">
+      <div *ngFor="let item of objectKeys(locale.languages)" class="languageSelection"
+           (click)="selectLanguage($event, item)">
+        <img class="flagIcon" src="assets/images/flags/{{ locale.flags[item] }}" alt="{{ locale.languages[item] }}">
+        <span class="flagText" [innerHTML]="locale.languages[item]"></span>
+        <i class="icon-fat_tick" *ngIf="item == locale.language"></i>
+      </div>
+    </div>
+  </div>
+</div>

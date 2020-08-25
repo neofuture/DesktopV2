@@ -1,0 +1,4 @@
+<ng-container *ngFor="let ribbonItem of objectValues(ribbonButtonList)">
+  <app-ribbon-button [button]="ribbonItem" *ngIf="ribbonItem.label != 'sep'"></app-ribbon-button>
+  <app-ribbon-separator *ngIf="ribbonItem.label == 'sep'"></app-ribbon-separator>
+</ng-container>

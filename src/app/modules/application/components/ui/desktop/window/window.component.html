@@ -1,0 +1,258 @@
+<div class="windowItem"
+     [ngClass]="{
+        'active': windowItem.active || windowItem.alwaysActive,
+        'noTransition': windowItem.noTransition,
+        'maximised': windowItem.state.isMaximised && !windowItem.state.isMinimised,
+        'minimised': windowItem.state.isMinimised,
+        'open': windowItem.open,
+        'dockTop': windowItem.dock == 'top',
+        'dockRight': windowItem.dock == 'right',
+        'dockBottom': windowItem.dock == 'bottom',
+        'dockLeft': windowItem.dock == 'left',
+        'dockTopLeft': windowItem.dock == 'topLeft',
+        'dockTopRight': windowItem.dock == 'topRight',
+        'dockBottomLeft': windowItem.dock == 'bottomLeft',
+        'dockBottomRight': windowItem.dock == 'bottomRight',
+        'dockCustom': windowItem.dock == 'custom',
+        'panel': windowItem.panel,
+        'hidden': windowItem.hidden,
+        'invisible': !windowItem.visible
+     }"
+     [ngStyle]="{
+        transform: 'translate(' + (windowItem.left - 7) + 'px' + ', ' + (windowItem.top - 9) + 'px'+')',
+        width: windowItem.dock == 'custom' ? windowItem.dockPosition.width + '%' : (windowItem.width + 18) + 'px',
+        height: windowItem.dock == 'custom' ? windowItem.dockPosition.height + '%' :(windowItem.height + 18) + 'px',
+        left: windowItem.dock == 'custom' ? windowItem.dockPosition.left + '%' : '0',
+        top: windowItem.dock == 'custom' ? windowItem.dockPosition.top + '%' : '0',
+        zIndex: (windowItem.alwaysOnTop ? 5000000 : (windowItem.alwaysOnBottom ? 0 : windowItem.zIndex))
+     }"
+     (mousemove)="resizeCursorSet($event)"
+     (mouseout)="resizeCursorRestore()"
+     (mousedown)="resizeStart($event)"
+     (click)="setActive($event)"
+     (touchstart)="resizeTouchStart($event)"
+     (transitionend)="countIcons()"
+     [id]="windowItem.uuid">
+  <div class="container"
+       [ngClass]="{
+      'type1': !windowItem.hasTitleBar && !windowItem.hasRibbon && !windowItem.hasStatusBar,
+      'type2':  windowItem.hasTitleBar,
+      'type3':  windowItem.hasTitleBar &&  windowItem.hasRibbon && !windowItem.hasStatusBar,
+      'type4':  windowItem.hasTitleBar && !windowItem.hasRibbon &&  windowItem.hasStatusBar,
+      'type5':  windowItem.hasTitleBar &&  windowItem.hasRibbon &&  windowItem.hasStatusBar
+    }">
+
+    <div class="titleBar icons{{ iconCount }} titleBarMove" *ngIf="windowItem.hasTitleBar">
+      <i class="icon"
+         [ngClass]="windowItem.icon"
+         (mousedown)="moveStart($event)"
+         (touchstart)="moveStart($event)" (mouseover)="showMenu = true" (mouseout)="showMenu = false"
+      ></i>
+      <div class="titleBarText"
+           (mousedown)="moveStart($event)"
+           (touchstart)="moveStart($event)"
+           (dblclick)="maximiseWindow()">
+        <span [innerHTML]="locale[windowItem.title] || windowItem.title"></span>
+        <span *ngIf="windowItem.extendedTitle" class="extendedTitle"
+              [innerHTML]="' - ' + windowItem.extendedTitle"></span>
+        <span *ngIf="windowItem.unsaved" [innerHTML]="' [' + locale.unsaved + ']'"></span>
+      </div>
+      <i class="icon-centered actionIcon" (click)="centreWindow()"
+         *ngIf="!windowItem.centered && !windowItem.state.isMaximised && !windowItem.dock && windowItem.hasControls && !windowItem.panel"
+         [tooltip]="locale.centre" position="bottom"
+      ></i>
+      <i class="icon-unDock actionIcon" (click)="removeFromPanel()"
+         *ngIf="windowItem.panel"
+         [tooltip]="locale.removeFromPanel" position="bottom"
+      ></i>
+      <i class="icon-minimise actionIcon" (click)="minimiseWindow($event)" *ngIf="windowItem.hasControls && !windowItem.panel"
+         [tooltip]="locale.minimise" position="bottom"
+      ></i>
+      <i class="icon-restore actionIcon" (click)="maximiseWindow()"
+         *ngIf="windowItem.state.isMaximised && windowItem.resizable && windowItem.hasControls"
+         [tooltip]="locale.restore" position="bottom"
+      ></i>
+      <i class="icon-maximise actionIcon" (click)="maximiseWindow()"
+         *ngIf="!windowItem.state.isMaximised && windowItem.resizable && windowItem.hasControls"
+         [tooltip]="locale.maximise" position="bottom"
+      ></i>
+      <i class="icon-close actionIcon" (click)="closeWindow($event)" *ngIf="windowItem.closable && windowItem.hasControls"
+         [tooltip]="locale.close" position="bottom"
+      ></i>
+    </div>
+
+    <div class="microTitleBar titleBarMove" [ngClass]="{'contained': windowItem.dock || windowItem.state.isMaximised || windowItem.top < 12 || windowItem.panel, 'on': dragWindowItem != null}" *ngIf="!windowItem.hasTitleBar && windowItem.hasControls">
+      <i class="icon-reposition actionIcon"
+         (mousedown)="moveStart($event)"
+         (touchstart)="moveStart($event)"
+         (dblclick)="maximiseWindow()"
+         [tooltip]="locale.moveWindow" position="bottom" *ngIf="!windowItem.dock && !windowItem.state.isMaximised && !windowItem.panel"></i>
+
+      <i class="icon-centered actionIcon" (click)="centreWindow()"
+         *ngIf="!windowItem.centered && !windowItem.state.isMaximised && !windowItem.dock && !windowItem.panel"
+         [tooltip]="locale.centre" position="bottom"
+      ></i>
+      <i class="icon-unDock actionIcon" (click)="removeFromPanel()"
+         *ngIf="windowItem.panel"
+         [tooltip]="locale.removeFromPanel" position="bottom"
+      ></i>
+      <i class="icon-minimise actionIcon" (click)="minimiseWindow($event)"
+         *ngIf="!windowItem.panel"
+         [tooltip]="locale.minimise" position="bottom"
+      ></i>
+      <i class="icon-restore actionIcon" (click)="maximiseWindow()"
+         *ngIf="windowItem.state.isMaximised && windowItem.resizable"
+         [tooltip]="locale.restore" position="bottom"
+      ></i>
+      <i class="icon-maximise actionIcon" (click)="maximiseWindow()"
+         *ngIf="!windowItem.state.isMaximised && windowItem.resizable"
+         [tooltip]="locale.maximise" position="bottom"
+      ></i>
+      <i class="icon-close actionIcon" (click)="closeWindow($event)" *ngIf="windowItem.closable"
+         [tooltip]="locale.close" position="bottom"
+      ></i>
+    </div>
+
+    <div class="ribbon" *ngIf="windowItem.hasRibbon">
+      {{ windowItem.ribbon | json }}
+    </div>
+    <div [ngClass]="{'componentArea': windowItem.hasTitleBar, 'componentAreaRounded': !windowItem.hasTitleBar}" #componentContainer>
+      <ng-container #viewContainer></ng-container>
+    </div>
+    <div class="status" *ngIf="windowItem.hasStatusBar" [innerHTML]="windowItem.status">
+    </div>
+  </div>
+  <div *ngIf="!windowItem.loaded" class="loading"
+       [ngClass]="{'hasTitleBar': windowItem.hasTitleBar, 'noTitleBar': !windowItem.hasTitleBar, 'hideLoader': windowItem.hideLoader}"
+       [ngStyle]="{'width': windowItem.componentWidth + 'px'}">
+    <div>
+      <span [innerHTML]="locale.loading"></span>
+      <app-loader></app-loader>
+    </div>
+  </div>
+  <div class="subMenu" *ngIf="windowItem.hasDockMenu && !windowItem.panel" [ngClass]="{'on': showMenu == true}" (mouseover)="showMenu = true" (mouseout)="showMenu = false">
+
+
+    <table>
+      <tr>
+        <td>
+          <div (click)="dockWindow('top')"><i class="icon-dockTop"></i>
+            <span [innerHTML]="locale.dockTop"></span>
+            <i class="icon-fat_tick" *ngIf="windowItem.dock == 'top'"></i>
+          </div>
+          <div (click)="dockWindow('right')"><i class="icon-dockRight"></i>
+            <span [innerHTML]="locale.dockRight"></span>
+            <i class="icon-fat_tick" *ngIf="windowItem.dock == 'right'"></i>
+
+          </div>
+          <div (click)="dockWindow('bottom')"><i class="icon-dockBottom"></i>
+            <span [innerHTML]="locale.dockBottom"></span>
+            <i class="icon-fat_tick" *ngIf="windowItem.dock == 'bottom'"></i>
+
+          </div>
+          <div (click)="dockWindow('left')"><i class="icon-dockLeft"></i>
+            <span [innerHTML]="locale.dockLeft"></span>
+            <i class="icon-fat_tick" *ngIf="windowItem.dock == 'left'"></i>
+          </div>
+        </td>
+        <td>
+          <div (click)="dockWindow('topLeft')"><i class="icon-dockTopLeft"></i>
+            <span [innerHTML]="locale.dockTopLeft"></span>
+            <i class="icon-fat_tick" *ngIf="windowItem.dock == 'topLeft'"></i>
+          </div>
+
+          <div (click)="dockWindow('topRight')"><i class="icon-dockTopRight"></i>
+            <span [innerHTML]="locale.dockTopRight"></span>
+            <i class="icon-fat_tick" *ngIf="windowItem.dock == 'topRight'"></i>
+          </div>
+
+          <div (click)="dockWindow('bottomLeft')"><i class="icon-dockBottomLeft"></i>
+            <span [innerHTML]="locale.dockBottomLeft"></span>
+            <i class="icon-fat_tick" *ngIf="windowItem.dock == 'bottomLeft'"></i>
+          </div>
+
+          <div (click)="dockWindow('bottomRight')"><i class="icon-dockBottomRight"></i>
+            <span [innerHTML]="locale.dockBottomRight"></span>
+            <i class="icon-fat_tick" *ngIf="windowItem.dock == 'bottomRight'"></i>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2"><hr></td>
+      </tr>
+      <tr>
+        <td>
+          <div>
+            <label for="dockLeft" [innerHTML]="locale.left"></label>
+            <input type="number" id='dockLeft' [(ngModel)]="dockLeft" (ngModelChange)="setLeft()" min="0" max="{{ maxLeft }}">%
+          </div>
+          <div>
+            <label for="dockTop" [innerHTML]="locale.top"></label>
+            <input type="number" id='dockTop' [(ngModel)]="dockTop"  (ngModelChange)="setTop()" min="0" max="{{ maxTop }}">%
+          </div>
+        </td>
+        <td>
+          <div>
+            <label for="dockWidth" [innerHTML]="locale.width"></label>
+            <input type="number" id='dockWidth' [(ngModel)]="dockWidth" (ngModelChange)="setWidth()" min="10" max="{{ maxWidth }}">%
+          </div>
+          <div>
+            <label for="dockHeight" [innerHTML]="locale.height"></label>
+            <input type="number" id='dockHeight' [(ngModel)]="dockHeight" (ngModelChange)="setHeight()" min="0" max="{{ maxHeight }}">%
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><button [innerHTML]="locale.setDockPosition" (click)="setDockPosition()"></button></td>
+      </tr>
+    </table>
+
+    <hr *ngIf="windowItem.dock">
+    <div *ngIf="windowItem.dock" (click)="unDockWindow()"><i class="icon-unDock"></i><span
+      [innerHTML]="locale.unDockWindow"></span>
+    </div>
+    <ng-container  *ngIf="objectValues(panelList).length > 0">
+      <hr>
+      <div [innerHTML]="locale.placeInPanel"></div>
+      <div *ngFor="let item of objectValues(panelList)" [innerHTML]="item.title" (click)="dockInPanel(item.uuid)" class="panelDock">
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="windowItem.hasControls">
+      <hr>
+      <div *ngIf="!windowItem.centered && !windowItem.state.isMaximised && !windowItem.dock" (click)="centreWindow()">
+        <i class="icon-centered"></i>
+        <span [innerHTML]="locale.centre"></span>
+      </div>
+
+      <div (click)="minimiseWindow($event)">
+        <i class="icon-minimise"></i>
+        <span [innerHTML]="locale.minimise"></span>
+      </div>
+
+      <div (click)="maximiseWindow()"
+           *ngIf="windowItem.state.isMaximised && windowItem.resizable">
+        <i class="icon-restore"></i>
+        <span [innerHTML]="locale.restore"></span>
+      </div>
+
+      <div (click)="maximiseWindow()"
+           *ngIf="!windowItem.state.isMaximised && windowItem.resizable">
+        <i class="icon-maximise"></i>
+        <span [innerHTML]="locale.maximise"></span>
+      </div>
+
+      <div (click)="closeWindow($event)" *ngIf="windowItem.closable">
+        <i class="icon-close"></i>
+        <span [innerHTML]="locale.close"></span>
+      </div>
+    </ng-container>
+
+
+  </div>
+  <div class="languageSelector" *ngIf="windowItem.hasLanguageSelector">
+    <app-language-selector></app-language-selector>
+  </div>
+
+</div>

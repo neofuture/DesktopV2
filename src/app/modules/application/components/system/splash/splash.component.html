@@ -1,0 +1,16 @@
+<div class="container">
+  <i class="icon-close closeButton" (click)="closeWindow()" [tooltip]="locale.close" position="bottom"></i>
+
+  <div class="splashLogo">
+    <img src="/assets/images/logo_main.png" alt="">
+  </div>
+
+
+  <div [innerHTML]="product" class="productText"></div>
+
+  <div [innerHTML]="locale.autoCloseIn + ': '+showRemaining + 's'" class="statusText"></div>
+  <div class="copyrightText" [innerHTML]="'&copy;2020 ' + company"></div>
+  <div class="versionText">
+    <app-version></app-version>
+  </div>
+</div>

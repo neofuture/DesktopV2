@@ -1,0 +1,32 @@
+<div class="windowItem"
+     [ngClass]="{
+        'active': windowItem.active,
+        'minimised': windowItem.state.isMinimised,
+        'open': windowItem.open,
+        'panel': windowItem.panel,
+        'invisible': !windowItem.visible
+     }"
+     (mousedown)="setActive($event)"
+     [ngStyle]="{
+     'width': calculateTabWidth() + 'px'
+     }"
+     (dblclick)="maximiseWindow()"
+>
+  <div class="titleBar icons{{ iconCount }}"
+       [tooltip]="locale[windowItem.title] || windowItem.title + (windowItem.extendedTitle ? ' - ' + windowItem.extendedTitle : '')">
+    <i class="icon"
+       [ngClass]="windowItem.icon"></i>
+    <div class="titleBarText">
+      <span [innerHTML]="locale[windowItem.title] || windowItem.title"></span>
+      <span *ngIf="windowItem.extendedTitle" class="extendedTitle"
+            [innerHTML]="' - ' + windowItem.extendedTitle"></span>
+    </div>
+    <i class="icon-restore actionIcon" (click)="maximiseWindow()"
+       *ngIf="windowItem.state.isMaximised && windowItem.resizable"
+       [tooltip]="locale.restore"
+    ></i>
+    <i class="icon-maximise actionIcon" (click)="maximiseWindow()"
+       *ngIf="!windowItem.state.isMaximised && windowItem.resizable"
+       [tooltip]="locale.maximise"
+    ></i></div>
+</div>

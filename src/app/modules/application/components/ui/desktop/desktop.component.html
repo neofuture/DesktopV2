@@ -1,0 +1,28 @@
+<div class="desktop" #desktop [ngClass]="{'on' : user !== null}">
+  <pre>{{ runState | json }}</pre>
+  <pre>{{ appState | json }}</pre>
+  <div class="settings" [ngClass]="{'on' : user !== null}">
+    <app-settings></app-settings>
+  </div>
+
+  <ng-container *ngFor="let windowItem of objectValues(windowList)">
+    <app-window *ngIf="!windowItem.systemWindow && !windowItem.panel" [windowItem]="windowItem" [desktopDimensions]="dimensions"></app-window>
+  </ng-container>
+  <ng-container *ngFor="let panelItem of objectValues(panelList)">
+    <app-panel [panelItem]="panelItem" [desktopDimensions]="dimensions"></app-panel>
+  </ng-container>
+</div>
+<div class="tabBar" [ngClass]="{'on' : user !== null}">
+  <app-tabbar [desktopDimensions]="dimensions"></app-tabbar>
+</div>
+<div class="titleBar" [ngClass]="{'on' : user !== null}">
+  <app-titlebar></app-titlebar>
+</div>
+<div class="toasts">
+  <app-toast *ngFor="let toastItem of objectValues(toastList)" [toastItem]="toastItem"></app-toast>
+</div>
+<app-dialog *ngFor="let dialogItem of objectValues(dialogList)" [dialogItem]="dialogItem"></app-dialog>
+
+<ng-container *ngFor="let windowItem of objectValues(windowList)">
+  <app-window *ngIf="windowItem.systemWindow && !windowItem.panel" [windowItem]="windowItem" [desktopDimensions]="dimensions"></app-window>
+</ng-container>

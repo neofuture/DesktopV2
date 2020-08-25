@@ -1,0 +1,24 @@
+<div class="ribbon">
+  <app-ribbon></app-ribbon>
+  <button (click)="toggleRibbon()" class="toggleButton">
+    <i class="icon-downArrow" *ngIf="ribbonSize ==='small'"></i>
+    <i class="icon-upArrow" *ngIf="ribbonSize ==='large'"></i>
+  </button>
+  <div class="version">
+    <app-version></app-version>
+  </div>
+  <button (click)="openDemo()" class="openDemo">open demo</button>
+
+
+  <button (click)="saveDesktop()" class="openDemo">Save Desktop</button>
+
+  <input
+    style="display: none"
+    type="file" (change)="loadDesktop($event)"
+    #fileInput>
+  <button (click)="fileInput.click()" class="openDemo">Load Desktop</button>
+</div>
+<div class="menu">
+  <app-menu></app-menu>
+</div>
+<!--<div class="electronTitleBar" [innerHTML]="company + ' - ' + product"></div>  if electron -->

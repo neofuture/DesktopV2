@@ -1,0 +1,132 @@
+/* window */
+
+.windowItem {
+  float: left;
+  border-radius: 4px;
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
+  transition: all 300ms;
+  max-width: 180px;
+  margin: 4px;
+  height: 28px;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.windowItem.open {
+  opacity: 1;
+  transition: all 300ms;
+
+}
+
+.panel {
+  width: 32px;
+  max-width: 32px;
+}
+
+.titleBar {
+  background-color: var(--mid-grey);
+  color: var(--black);
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  width: 100%;
+  padding: 3px;
+  display: grid;
+  grid-template-rows: 24px;
+  transition: all 300ms;
+  font-size: 15px;
+}
+
+.icons0 {
+  grid-template-columns: 26px auto;
+}
+
+.icons1 {
+  grid-template-columns: 26px auto 26px;
+}
+
+.icons2 {
+  grid-template-columns: 26px auto 26px 26px;
+}
+
+.icons3 {
+  grid-template-columns: 26px auto 26px 26px 26px;
+}
+
+.icons4 {
+  grid-template-columns: 26px auto 26px 26px 26px 26px;
+}
+
+.titleBar .icon {
+  text-align: center;
+  font-size: 19px;
+  margin: 0;
+  cursor: pointer;
+  top: 1px;
+  position: relative;
+}
+
+.titleBar .titleBarText {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  font-weight: 700;
+  padding-left: 4px;
+  cursor: pointer;
+  width: calc(100% - 32px);
+}
+
+.titleBar .titleBarText .extendedTitle {
+  font-weight: 400;
+}
+
+.titleBar .actionIcon {
+  text-align: center;
+  margin: 0px;
+  padding: 3px;
+  cursor: pointer;
+  line-height: 18px;
+  height: 24px;
+  border-radius: 6px;
+  width: 24px;
+  position: absolute;
+  top: 2px;
+  right: 4px;
+}
+
+.windowItem .titleBar .actionIcon:hover {
+  transition: all 300ms;
+  background-color: var(--dark-grey);
+}
+
+.windowItem.active .titleBar .actionIcon:hover {
+  transition: all 300ms;
+  background-color: var(--primary-dark);
+}
+
+/* window active */
+.windowItem.active {
+  box-shadow: 0px 4px 7px -3px rgba(0, 0, 0, 0.21);
+  transition: all 300ms;
+}
+
+.windowItem.active .titleBar {
+  background-color: var(--primary-mid);
+  color: var(--white);
+}
+
+.minimised .titleBar:after {
+  content: '';
+  border-bottom: 6px solid orange !important;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+}
+
+.invisible {
+  display: none;
+}

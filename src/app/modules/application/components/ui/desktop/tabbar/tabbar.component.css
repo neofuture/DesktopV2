@@ -1,0 +1,17 @@
+.tabBar {
+  background-color:var(--primary-dark);
+  height:var(--tab-bar-over-height);
+  padding:3px;
+  padding-right:0;
+  position:relative;
+}
+.autoHide {
+  background-color: var(--primary-dark);
+  position: absolute;
+  top: -15px;
+  display: inline-block;
+  right: 12px;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  padding: 3px 11px 0px 8px;
+}

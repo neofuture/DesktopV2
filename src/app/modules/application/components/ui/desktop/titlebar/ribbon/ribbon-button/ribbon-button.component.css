@@ -1,0 +1,101 @@
+.ribbonButton {
+  height: calc(var(--ribbon-height) - var(--ribbon-text-offset));
+  width: var(--ribbon-width);
+  display: inline-block;
+  float: left;
+  text-align: center;
+  cursor: pointer;
+  top: 0;
+  color: var(--black);
+  margin: 4px 2px 4px 2px;
+  border-radius: 5px;
+  position: relative;
+  transition: all 300ms;
+}
+
+.ribbonButton:hover {
+  background-color: var(--primary-light);
+  transition: all 300ms;
+  color: var(--black);
+}
+
+.ribbonButton .iconContainer {
+  display: table-cell;
+  width: var(--ribbon-width);
+  height: calc(var(--ribbon-height) - var(--ribbon-text-height) - var(--ribbon-icon-offset));
+  vertical-align: middle;
+  text-align: center;
+  transition: all 300ms;
+}
+
+.ribbonButton .icon {
+  display: inline-block;
+  height: var(--ribbon-font-size);
+  width: var(--ribbon-font-size);
+  position: relative;
+  transition: all 300ms;
+  color: var(--black);
+  margin-top: var(--ribbon-icon-margin);
+}
+
+.ribbonButton .icon i {
+  font-size: var(--ribbon-font-size);
+  position: absolute;
+  left: 0;
+}
+
+.ribbonButton .text {
+  height: var(--ribbon-text-height);
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ribbonButton .icon i:first-child {
+  opacity: 0;
+  transition: all 300ms;
+  color: var(--analogous-primary-op) !important;
+}
+
+.ribbonButton:hover  .icon i:first-child {
+  opacity: 1;
+  transition: all 300ms;
+}
+
+.ribbonButton .icon i.iconActive {
+  opacity: 1 !important;
+  transition: all 300ms;
+  color: var(--analogous-primary) !important;
+}
+
+.ribbonButton .icon i.iconOff {
+  /*opacity: 0;*/
+  /*transition: all 300ms;*/
+  /*color: var(--analogous-primary);*/
+}
+
+.label {
+  background-color: red;
+  border-radius: 9px;
+  min-width: 18px;
+  min-height: 18px;
+  color: white;
+  position: absolute;
+  top: -4px;
+  right: -12px;
+  text-align: center;
+  font-size: 11px;
+  padding: 2px 4px 2px 4px;
+  font-weight:700;
+}
+
+.active {
+  background-color: var(--primary-mid);
+  color: var(--light-grey) !important;
+}
+
+
+/* square */
+.ribbonButton.square {
+  border-radius: 0;
+}

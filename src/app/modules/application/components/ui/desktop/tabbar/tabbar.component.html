@@ -1,0 +1,11 @@
+<div class="tabBar">
+  <div class="autoHide" *ngIf="autoHide">
+    <label>
+      <input type="checkbox" [(ngModel)]="autoHide" (ngModelChange)="updateAutoHide($event);">
+      <span [innerHTML]="locale.autoHide"></span>
+    </label>
+  </div>
+  <ng-container *ngFor="let windowItem of objectValues(windowList)">
+    <app-tab *ngIf="windowItem.hasTab" [windowItem]="windowItem" [desktopDimensions]="desktopDimensions"></app-tab>
+  </ng-container>
+</div>

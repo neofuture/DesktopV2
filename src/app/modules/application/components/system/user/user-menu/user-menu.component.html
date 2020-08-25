@@ -1,0 +1,24 @@
+<div class="userSelector" *ngIf="user !== null">
+  <div class="currentUser" [ngClass]="{'full': type=='full'}">
+
+    <i class="icon-user"></i>
+    <span class="userText" [innerHTML]="user.forename" *ngIf="type == 'full'"></span>
+    <i class="icon-downArrow" *ngIf="type == 'full'"></i>
+    <label class="hidden">
+      <input type="text" readonly #input (blur)="blurCloseSelector()" (focus)="openSelector()">
+    </label>
+
+    <div class="userContainer" [ngClass]="{'on': selector, 'full': type == 'full', 'square': square}">
+      <div class="userSelection"
+           (click)="profile($event)">
+        <i class="icon-user"></i>
+        <span class="userText" [innerHTML]="locale.profile"></span>
+      </div>
+      <div class="userSelection"
+           (click)="logout($event)">
+        <i class="icon-logout"></i>
+        <span class="userText" [innerHTML]="locale.logout"></span>
+      </div>
+    </div>
+  </div>
+</div>

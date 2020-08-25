@@ -1,0 +1,105 @@
+.toast {
+  width: 310px;
+  padding: 0;
+  margin: 0 10px 0 10px;
+  opacity: 0.5;
+  transition: all 300ms;
+  border-radius: 6px;
+  box-shadow: none;
+  overflow: hidden;
+  height: 0;
+  position: relative;
+  top: 130px;
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
+  display: block;
+}
+
+.toast.on {
+  height: initial;
+  opacity: 1;
+  padding: 30px 0 30px 0;
+  margin: 10px 10px 10px 10px;
+  transition: all 300ms;
+  box-shadow: 0 6px 9px -6px rgba(0, 0, 0, 0.8);
+  position: relative;
+  top: 0;
+  display: block;
+}
+
+.toast .container {
+  display: grid;
+  grid-template-columns: 50px auto 20px;
+  padding: 0 20px 0 20px;
+}
+
+.toast i {
+  font-size: 18px;
+}
+
+.toast .toastIcon i {
+  font-size: 38px;
+}
+
+.success {
+  background-color: #c5e4c2;
+  color: #2d5228;
+}
+
+.info {
+  background-color: #b0e3fc;
+  color: #1e557d;
+}
+
+.warn {
+  background-color: #feeaab;
+  color: #806010;
+}
+
+.error {
+  background-color: #fcc6ce;
+  color: #8b0f19;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.icon-close {
+  cursor: pointer;
+}
+
+.timeBar {
+  height: 6px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: inline-block;
+  transition: all 500ms;
+}
+
+.timeBar.success {
+  background-color: #509046
+}
+
+.timeBar.info {
+  background-color: #318bcb;
+}
+
+.timeBar.warn {
+  background-color: #d29b18;
+}
+
+.timeBar.error {
+  background-color: #dc1929;
+}
+
+.timer {
+  position: absolute;
+  bottom: 0;
+  right: 6px;
+}
