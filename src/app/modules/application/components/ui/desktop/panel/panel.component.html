@@ -165,7 +165,7 @@
       [innerHTML]="locale.unDockPanel"></span>
     </div>
 
-    <hr>
+    <hr *ngIf="panelItem.closable">
     <div (click)="closePanel($event)" *ngIf="panelItem.closable">
       <i class="icon-close"></i>
       <span [innerHTML]="locale.close"></span>
