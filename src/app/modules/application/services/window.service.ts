@@ -275,6 +275,14 @@ export class WindowService {
     windowItem.hasRibbon = false;
   }
 
+  addLocalFooter(windowItem): void {
+    windowItem.hasLocalFooter = true;
+  }
+
+  removeLocalFooter(windowItem): void {
+    windowItem.hasLocalFooter = false;
+  }
+
   addStatusBar(windowItem): void {
     windowItem.hasStatusBar = true;
   }

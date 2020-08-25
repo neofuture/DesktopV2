@@ -35,9 +35,9 @@ export class TitlebarComponent implements OnInit, OnDestroy {
       this.product = locale.product;
     });
 
-    this.ribbonSub$ = this.ribbonService.ribbonSize.subscribe(size => {
-      this.ribbonSize = size;
-    });
+    // this.ribbonSub$ = this.ribbonService.ribbonSize.subscribe(size => {
+    //   this.ribbonSize = size;
+    // });
   }
 
   ngOnDestroy(): void {
@@ -45,12 +45,12 @@ export class TitlebarComponent implements OnInit, OnDestroy {
     this.ribbonSub$.unsubscribe();
   }
 
-  toggleRibbon(): void {
-    this.ribbonService.setRibbonToggle();
-    setTimeout(() => {
-      this.desktopService.setSize();
-    }, 310);
-  }
+  // toggleRibbon(): void {
+  //   this.ribbonService.setRibbonToggle();
+  //   setTimeout(() => {
+  //     this.desktopService.setSize();
+  //   }, 310);
+  // }
 
   openDemo(): void {
     const windowConfig = {

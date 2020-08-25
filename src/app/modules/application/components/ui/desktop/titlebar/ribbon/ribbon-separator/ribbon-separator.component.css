@@ -1,13 +1,59 @@
+.large {
+  --ribbon-height: 100px;
+  --ribbon-width: 90px;
+  --ribbon-text-height: 48px;
+  --ribbon-text-offset: 8px;
+  --ribbon-icon-offset: 0px;
+  --ribbon-icon-margin: 8px;
+  --ribbon-font-size: 32px;
+}
+
+.small {
+  --ribbon-height: 50px;
+  --ribbon-width: 44px;
+  --ribbon-text-height: -2px;
+  --ribbon-text-offset: 8px;
+  --ribbon-icon-offset: 8px;
+  --ribbon-icon-margin: 2px;
+  --ribbon-font-size: 28px;
+}
+
+
 .ribbonButtonSeparator{
+  display: inline-block;
+}
+
+.top {
   height: var(--ribbon-height);
   width: 1px;
-  display: inline-block;
-  float:left;
-  text-align: center;
-  cursor:pointer;
-  top:0;
-  padding:8px 0 8px 0;
+  top: 0;
+  float: left;
+  margin-left: 4px;
+  margin-right: 4px;
 }
+
+.left {
+  width: var(--ribbon-width);
+  height: 1px;
+  float: left;
+}
+
+.large.left {
+  padding: 0 8px 0 8px;
+}
+
+.small.left {
+  padding: 0 0px 0 6px;
+}
+
+.large.top {
+  padding: 8px 0 8px 0;
+}
+
+.small.top {
+  padding: 5px 0 5px 0;
+}
+
 .ribbonButtonSeparatorLine {
   display:block;
   width:100%;

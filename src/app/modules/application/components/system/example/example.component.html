@@ -1,13 +1,11 @@
 <div class="container"
      [ngClass]="{
-        'ribbonLeft': (windowItem.componentWidth / windowItem.componentHeight) > 1,
-        'ribbonTop': (windowItem.componentWidth / windowItem.componentHeight) <= 1,
+        'ribbonTop': (windowItem.componentWidth / windowItem.componentHeight) > 1,
+        'ribbonLeft': (windowItem.componentWidth / windowItem.componentHeight) <= 1,
         'hasFooter': windowItem.hasLocalFooter
      }">
   <div class="ribbon" *ngIf="windowItem.hasLocalRibbon">
-    <div class="button">
-      <i class="icon-cog"></i>
-    </div>
+    <app-ribbon [ident]="'63b63e8f-2005-4324-957b-7bb37e3da5d2'" [size]="'small'" [direction]="(windowItem.componentWidth / windowItem.componentHeight) <= 1"></app-ribbon>
   </div>
   <div class="content" [ngClass]="{'noRibbon': !windowItem.hasLocalRibbon}">
     <button (click)="setUnSaved(true)">Set Unsaved</button>
@@ -17,12 +15,14 @@
     <button (click)="setAlwaysActive(false)">Unset Always Active</button>
     <button (click)="logout()">Logout</button>
     <hr>
-    <pre>{{ apiResponse | json }}</pre>
-    <hr>
-    <pre>{{ user | json }}</pre>
+    <span>{{ apiResponse | json }}</span>
     <div>exp: {{ exp }}</div>
     <button (click)="addRibbon()">Add Ribbon (Global)</button>
     <button (click)="removeRibbon()">Remove Ribbon (Global)</button>
+
+    <button (click)="addFooter()">Add Footer</button>
+    <button (click)="removeFooter()">Remove Footer</button>
+
     <button (click)="addStatusBar()">Add Status Bar</button>
     <button (click)="removeStatusBar()">Remove Status Bar</button>
     <h2>Example</h2>

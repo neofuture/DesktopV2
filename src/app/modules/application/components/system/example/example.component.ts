@@ -6,6 +6,7 @@ import {WindowService} from '../../../services/window.service';
 import {UserService} from '../../../services/user.service';
 import {Subscription} from 'rxjs';
 import {ApiService} from '../../../services/api.service';
+import {ApplicationModule} from '../../../application.module';
 
 @Component({
   selector: 'app-example',
@@ -92,6 +93,16 @@ export class ExampleComponent implements OnInit, OnDestroy {
     this.update.emit(true);
   }
 
+  addFooter(): void {
+    this.windowService.addLocalFooter(this.windowItem);
+    this.update.emit(true);
+  }
+
+  removeFooter(): void {
+    this.windowService.removeLocalFooter(this.windowItem);
+    this.update.emit(true);
+  }
+
   addStatusBar(): void {
     this.windowService.addStatusBar(this.windowItem);
     this.update.emit(true);
@@ -118,7 +129,8 @@ export class ExampleComponent implements OnInit, OnDestroy {
 @NgModule({
   imports: [
     FormsModule,
-    CommonModule
+    CommonModule,
+    ApplicationModule
   ],
   declarations: [ExampleComponent]
 })

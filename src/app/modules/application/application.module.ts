@@ -58,7 +58,8 @@ import {ScrollToModule} from '@nicky-lenaers/ngx-scroll-to';
     LoaderComponent,
     VersionComponent,
     LanguageSelectorComponent,
-    TooltipDirective
+    TooltipDirective,
+    RibbonComponent
   ],
   imports: [
     CommonModule,

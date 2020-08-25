@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-ribbon-separator',
@@ -6,10 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./ribbon-separator.component.css']
 })
 export class RibbonSeparatorComponent implements OnInit {
+  @Input() ribbonSize;
+  @Input() direction;
 
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
 }

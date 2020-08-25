@@ -1,3 +1,8 @@
-<div class="ribbonButtonSeparator">
+<div class="ribbonButtonSeparator" [ngClass]="{
+        'small': ribbonSize == 'small',
+        'large': ribbonSize == 'large',
+        'left': direction,
+        'top': !direction
+     }">
   <div class="ribbonButtonSeparatorLine"></div>
 </div>

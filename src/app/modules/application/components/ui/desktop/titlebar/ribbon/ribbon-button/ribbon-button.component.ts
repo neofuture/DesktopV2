@@ -9,8 +9,9 @@ import {RibbonService} from '../../../../../../services/ribbon.service';
 })
 export class RibbonButtonComponent implements OnInit {
   @Input() button;
+  @Input() ribbonSize;
+  @Input() direction;
   locale;
-  square: boolean;
 
   constructor(
     private languageService: LanguageService,

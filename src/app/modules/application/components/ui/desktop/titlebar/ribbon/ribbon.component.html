@@ -1,4 +1,10 @@
-<ng-container *ngFor="let ribbonItem of objectValues(ribbonButtonList)">
-  <app-ribbon-button [button]="ribbonItem" *ngIf="ribbonItem.label != 'sep'"></app-ribbon-button>
-  <app-ribbon-separator *ngIf="ribbonItem.label == 'sep'"></app-ribbon-separator>
-</ng-container>
+<div *ngIf="ribbonButtonList[ident]">
+  <ng-container *ngFor="let ribbonItem of objectValues(ribbonButtonList[ident])">
+    <app-ribbon-button [button]="ribbonItem" *ngIf="ribbonItem.label != 'sep'" [ribbonSize]="ribbonSize"></app-ribbon-button>
+    <app-ribbon-separator *ngIf="ribbonItem.label == 'sep'" [ribbonSize]="ribbonSize" [direction]="direction"></app-ribbon-separator>
+  </ng-container>
+</div>
+<button (click)="toggleRibbon()" class="toggleButton" *ngIf="hasToggle">
+  <i class="icon-downArrow" *ngIf="ribbonSize ==='small'"></i>
+  <i class="icon-upArrow" *ngIf="ribbonSize ==='large'"></i>
+</button>

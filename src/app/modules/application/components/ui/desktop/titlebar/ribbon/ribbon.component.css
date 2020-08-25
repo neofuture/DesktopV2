@@ -1,19 +1,4 @@
-:root {
-  --ribbon-height: 100px;
-  --ribbon-width: 90px;
-  --ribbon-text-height: 48px;
-  --ribbon-text-offset: 8px;
-  --ribbon-icon-offset: 0px;
-  --ribbon-icon-margin: 8px;
-  --ribbon-font-size: 32px;
-}
-
-.smallRibbon {
-  --ribbon-height: 50px;
-  --ribbon-width: 46px;
-  --ribbon-text-height: -2px;
-  --ribbon-text-offset: 8px;
-  --ribbon-icon-offset: 8px;
-  --ribbon-icon-margin: 2px;
-  --ribbon-font-size: 28px;
+.toggleButton {
+  float: right;
+  margin: 12px;
 }

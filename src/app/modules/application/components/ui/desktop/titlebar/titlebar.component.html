@@ -1,9 +1,5 @@
 <div class="ribbon">
-  <app-ribbon></app-ribbon>
-  <button (click)="toggleRibbon()" class="toggleButton">
-    <i class="icon-downArrow" *ngIf="ribbonSize ==='small'"></i>
-    <i class="icon-upArrow" *ngIf="ribbonSize ==='large'"></i>
-  </button>
+  <app-ribbon [ident]="'63b63e8f-2005-4324-957b-7bb37e3da5d2'" [size]="'large'" [hasToggle]="true"></app-ribbon>
   <div class="version">
     <app-version></app-version>
   </div>

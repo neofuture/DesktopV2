@@ -1,6 +1,8 @@
 <div class="ribbonButton"
      [ngClass]="{
-        'active': button.active
+        'active': button.active,
+        'small': ribbonSize == 'small',
+        'large': ribbonSize == 'large'
      }"
      (click)="ribbonAction($event)">
   <div class="iconContainer">
@@ -12,6 +14,6 @@
     </div>
   </div>
 
-  <div class="text" [innerHTML]="locale[button.label]">
+  <div class="text" [innerHTML]="locale[button.label]" *ngIf="ribbonSize == 'large'">
   </div>
 </div>

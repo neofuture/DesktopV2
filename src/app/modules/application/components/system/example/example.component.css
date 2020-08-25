@@ -10,40 +10,41 @@
   background-color: var(--white);
 }
 
-.container.ribbonLeft .ribbon {
-  height: 40px;
+.container.ribbonTop .ribbon {
+  height: 52px;
   width: 100%;
 }
 
-.container.ribbonTop .ribbon {
-  width: 40px;
+.container.ribbonLeft .ribbon {
+  width: 52px;
   height: 100%;
 }
 
-.container.ribbonTop.hasFooter .ribbon {
-  height: calc(100% - 50px);
-}
-
-.container.ribbonLeft.hasFooter .content {
-  height: calc(100% - 40px);
-  width: 100%;
-  overflow: auto;
-}
-
-.container.ribbonLeft.hasFooter .content {
-  height: calc(100% - 90px);
-  width: 100%;
-  overflow: auto;
-}
-
 .container.ribbonTop .content {
-  width: calc(100% - 40px);
-  height: calc(100% - 50px);
+  width: 100%;
+  height: calc(100% - 52px);
+  overflow: auto;
+  position: absolute;
+  top: 52px;
+  left: 0px;
+}
+.container.ribbonLeft .content {
+  width: calc(100% - 52px);
+  height: 100%;
   overflow: auto;
   position: absolute;
   top: 0;
-  left: 40px;
+  left: 52px;
 }
+
+.container.ribbonTop.hasFooter .content {
+  height: calc(100% - 52px - 50px);
+}
+
+.container.ribbonLeft.hasFooter .content {
+  height: calc(100% - 50px);
+}
+
 
 .content.noRibbon {
   width: 100% !important;
@@ -54,7 +55,6 @@
 
 .ribbon {
   background-color: var(--light-grey);
-  padding: 4px;
 }
 
 .content {

@@ -13,7 +13,7 @@ export class RibbonService {
 
   ribbonUuid = 'c5dfc232-e275-4872-af69-7c5f132e1a1b';
 
-  private ribbonSizeObject = new BehaviorSubject(localStorage.getItem(this.ribbonUuid) || 'large');
+  private ribbonSizeObject = new BehaviorSubject(localStorage.getItem(this.ribbonUuid) || null);
   ribbonSize = this.ribbonSizeObject.asObservable();
   private runState: {mode: number; multiSelect: boolean};
 
@@ -41,54 +41,54 @@ export class RibbonService {
   }
 
   mode1(): void {
-    this.newButton({
+    this.newButton('63b63e8f-2005-4324-957b-7bb37e3da5d2', {
       label: 'settings',
       icon: 'icon-cog',
       iconOver: 'icon-cog_over',
       click: 'settings',
       active: true
     });
-    this.newButton({
+    this.newButton('63b63e8f-2005-4324-957b-7bb37e3da5d2', {
       label: 'contacts',
       icon: 'icon-contacts',
       iconOver: 'icon-contacts_over',
       click: 'settings',
       itemCount: 3
     });
-    this.newButton({
+    this.newButton('63b63e8f-2005-4324-957b-7bb37e3da5d2', {
       label: 'sep'
     });
-    this.newButton({
+    this.newButton('63b63e8f-2005-4324-957b-7bb37e3da5d2', {
       label: 'someLongerText',
       icon: 'icon-cog',
       iconOver: 'icon-cog_over',
       click: 'settings'
     });
-    this.newButton({
+    this.newButton('63b63e8f-2005-4324-957b-7bb37e3da5d2', {
       label: 'someLongerText',
       icon: 'icon-cog',
       iconOver: 'icon-cog_over',
       click: 'settings',
       itemCount: 3
     });
-    this.newButton({
+    this.newButton('63b63e8f-2005-4324-957b-7bb37e3da5d2', {
       label: 'catalogues',
       icon: 'icon-catalogues',
       iconOver: 'icon-catalogues_over',
       click: 'catalogues',
       itemCount: 428
     });
-    this.newButton({
+    this.newButton('63b63e8f-2005-4324-957b-7bb37e3da5d2', {
       label: 'sep'
     });
-    this.newButton({
+    this.newButton('63b63e8f-2005-4324-957b-7bb37e3da5d2', {
       label: 'catalogues',
       icon: 'icon-catalogues',
       iconOver: 'icon-catalogues_over',
       click: 'catalogues'
     });
     // multi select button
-    this.newButton({
+    this.newButton('63b63e8f-2005-4324-957b-7bb37e3da5d2', {
       label: 'multiSelect',
       icon: 'icon-selectAll',
       iconOver: 'icon-selectAll',
@@ -98,17 +98,17 @@ export class RibbonService {
   }
 
   mode2(): void {
-    this.newButton({
+    this.newButton('63b63e8f-2005-4324-957b-7bb37e3da5d2', {
       label: 'contacts',
       icon: 'icon-contacts',
       iconOver: 'icon-contacts_over',
       click: 'settings',
       itemCount: 3
     });
-    this.newButton({
+    this.newButton('63b63e8f-2005-4324-957b-7bb37e3da5d2', {
       label: 'sep'
     });
-    this.newButton({
+    this.newButton('63b63e8f-2005-4324-957b-7bb37e3da5d2', {
       label: 'someLongerText',
       icon: 'icon-cog',
       iconOver: 'icon-cog_over',
@@ -123,10 +123,13 @@ export class RibbonService {
     }
   }
 
-  newButton(config): void {
+  newButton(ribbon, config): void {
     const uuid = this.helperService.uuidV4();
     config.uuid = uuid;
-    this.ribbonItems[uuid] = config;
+    if (typeof this.ribbonItems[ribbon] === 'undefined') {
+      this.ribbonItems[ribbon] = {};
+    }
+    this.ribbonItems[ribbon][uuid] = config;
   }
 
   setRibbonToggle(): void {

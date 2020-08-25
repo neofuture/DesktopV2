@@ -167,6 +167,19 @@ export class DemoComponent implements OnInit {
     this.windowService.newWindow(windowConfig);
   }
 
+  newWindowNoBarRibbon(): void {
+    const windowConfig = {
+      icon: 'icon-user',
+      width: 600,
+      height: 400,
+      component: 'system/example',
+      hasStatusBar: false,
+      hasTitleBar: false,
+      title: 'newWindow'
+    };
+    this.windowService.newWindow(windowConfig);
+  }
+
   newWindow3d(): void {
     const windowConfig = {
       icon: 'icon-alarm',
