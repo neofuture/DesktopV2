@@ -29,7 +29,6 @@ export class DialogComponent implements OnInit {
 
   closeDialog(): void {
     this.dialogService.closeToast(this.dialogItem.uuid);
-
   }
 
   clickAction(buttonItem: any): void {
@@ -40,7 +39,7 @@ export class DialogComponent implements OnInit {
         for (const item in this.objectValues(this.dialogItem.fields)){
           fields[this.dialogItem.fields[item].name] = this.dialogItem.fields[item].value;
         }
-        buttonItem.args = fields;
+        buttonItem.args = {...buttonItem.args, ...fields};
       }
       buttonItem.callBack(buttonItem.service, buttonItem.args);
     }

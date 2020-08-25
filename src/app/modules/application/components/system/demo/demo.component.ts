@@ -519,7 +519,8 @@ export class DemoComponent implements OnInit {
           class: 'success',
           action: 'cancel',
           callBack: this.newPanelAction,
-          service: this.panelService
+          service: this.panelService,
+          args: {closable: false}
         }
       ]
     };
@@ -528,11 +529,13 @@ export class DemoComponent implements OnInit {
 
   newPanelAction(service, args): void {
 
+    console.log(args);
+
     const panelConfig = {
       title: args.panelName,
       hasRibbon: true,
       dock: 'custom',
-      closable: args.closable ? args.closable : true,
+      closable: args.closable,
       dockPosition: {
         top: 0,
         left: args.left,
