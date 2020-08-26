@@ -10,6 +10,7 @@ export const langNo: LanguageModel = {
       someLongerText: 'Noe lengre tekst',
       catalogues: 'kataloger',
       multiSelect: 'Flervalg',
+      ghost: 'Spøkelse',
     },
     menu: {
       menu1: 'Meny 1',

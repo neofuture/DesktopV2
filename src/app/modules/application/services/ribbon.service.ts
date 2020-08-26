@@ -15,7 +15,7 @@ export class RibbonService {
 
   private ribbonSizeObject = new BehaviorSubject(localStorage.getItem(this.ribbonUuid) || null);
   ribbonSize = this.ribbonSizeObject.asObservable();
-  private runState: { mode: number; multiSelect: boolean };
+  private runState: any;
 
   constructor(
     private helperService: HelperService,
@@ -30,7 +30,7 @@ export class RibbonService {
   }
 
   setRibbon(mode): void {
-    this.clearRibbon();
+    this.clearRibbon('63b63e8f-2005-4324-957b-7bb37e3da5d2');
     if (mode === 1) {
       this.mode1();
     }
@@ -97,32 +97,19 @@ export class RibbonService {
       active: this.runState.multiSelect
     });
 
+    if (this.runState.ribbonSubMode === 'edit') {
+      this.newButton('63b63e8f-2005-4324-957b-7bb37e3da5d2', {
+        label: 'sep'
+      });
+      this.newButton('63b63e8f-2005-4324-957b-7bb37e3da5d2', {
+        label: 'ghost',
+        icon: 'icon-ghost',
+        iconOver: 'icon-contacts_over',
+        click: 'settings',
+        itemCount: 3
+      });
+    }
 
-    // Example Component
-    this.newButton('example', {
-      label: 'settings',
-      icon: 'icon-cog',
-      iconOver: 'icon-cog_over',
-      click: 'component.testFunction',
-      args: {
-        test: 'Testing',
-        demo: 'Demoing'
-      }
-    });
-    this.newButton('example', {
-      label: 'contacts',
-      icon: 'icon-contacts',
-      iconOver: 'icon-contacts_over',
-      click: 'settings',
-      itemCount: 3
-    });
-    this.newButton('example', {
-      label: 'multiSelect',
-      icon: 'icon-selectAll',
-      iconOver: 'icon-selectAll',
-      click: 'toggleMultiSelect',
-      active: this.runState.multiSelect
-    });
   }
 
   mode2(): void {
@@ -143,27 +130,12 @@ export class RibbonService {
       click: 'settings'
     });
 
-    // Example Component
-    this.newButton('example', {
-      label: 'contacts',
-      icon: 'icon-contacts',
-      iconOver: 'icon-contacts_over',
-      click: 'settings',
-      itemCount: 3
-    });
-    this.newButton('example', {
-      label: 'multiSelect',
-      icon: 'icon-selectAll',
-      iconOver: 'icon-selectAll',
-      click: 'toggleMultiSelect',
-      active: this.runState.multiSelect
-    });
   }
 
-  clearRibbon(): void {
+  clearRibbon(uuid): void {
     // tslint:disable-next-line:forin
-    for (const item in this.ribbonItems) {
-      delete this.ribbonItems[item];
+    for (const item in this.ribbonItems[uuid]) {
+      delete this.ribbonItems[uuid][item];
     }
   }
 
@@ -200,10 +172,10 @@ export class RibbonService {
     if (button.click === 'toggleMultiSelect') {
       this.systemService.set({multiSelect: !this.runState.multiSelect});
     }
-    if (button.click.includes('.')){
+    if (button.click.includes('.')) {
       const func = button.click.split('.');
       component[func[1]](button);
     }
-
+    this.systemService.tick();
   }
 }

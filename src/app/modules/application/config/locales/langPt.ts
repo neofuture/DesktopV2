@@ -10,6 +10,7 @@ export const langPt: LanguageModel = {
       someLongerText: 'Algum texto mais longo',
       catalogues: 'Catálogos',
       multiSelect: 'Multi Select',
+      ghost: 'Fantasma',
     },
     menu: {
       menu1: 'Menu 1',

@@ -8,7 +8,8 @@ import {Subscription} from 'rxjs';
 import {ApiService} from '../../../services/api.service';
 import {ApplicationModule} from '../../../application.module';
 import {ButtonModule} from 'primeng';
-import {RippleModule} from 'primeng/ripple';
+import {RibbonService} from '../../../services/ribbon.service';
+import {SystemService} from '../../../services/system.service';
 
 @Component({
   selector: 'app-example',
@@ -29,8 +30,10 @@ export class ExampleComponent implements OnInit, OnDestroy, DoCheck {
   key: string;
   ratio: boolean;
   area: { width: any; height: any };
-  component: any;
-  testFunctionValue: any;
+  testFunctionValue = {};
+  private runState: any;
+  private settings: boolean;
+  private settings2: boolean;
 
   @HostListener('document:keydown', ['$event'])
   handleKeyboardEventDown(event): void {
@@ -50,12 +53,13 @@ export class ExampleComponent implements OnInit, OnDestroy, DoCheck {
     private languageService: LanguageService,
     private windowService: WindowService,
     private userService: UserService,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private ribbonService: RibbonService,
+    private systemService: SystemService
   ) {
   }
 
   ngOnInit(): void {
-    this.component = this;
     this.langSub$ = this.languageService.language.subscribe(locale => {
       this.locale = locale.system.example;
     });
@@ -71,6 +75,10 @@ export class ExampleComponent implements OnInit, OnDestroy, DoCheck {
     });
 
     this.callApi();
+    this.systemService.runState.subscribe(data => {
+      this.runState = data;
+      this.setRibbonBar();
+    });
   }
 
   ngDoCheck(): void {
@@ -79,7 +87,8 @@ export class ExampleComponent implements OnInit, OnDestroy, DoCheck {
     if (this.windowItem.hasLocalRibbon) {
       this.area = {
         width: (this.ratio) ? this.windowItem.componentWidth : this.windowItem.componentWidth - 52,
-        height: ((this.ratio) ? this.windowItem.componentHeight - 50 : this.windowItem.componentHeight) - (this.windowItem.hasLocalFooter ? 50 : 0),
+        height: ((this.ratio) ? this.windowItem.componentHeight - 50 : this.windowItem.componentHeight) -
+          (this.windowItem.hasLocalFooter ? 50 : 0),
       };
     } else {
       this.area = {
@@ -87,11 +96,63 @@ export class ExampleComponent implements OnInit, OnDestroy, DoCheck {
         height: this.windowItem.componentHeight - (this.windowItem.hasLocalFooter ? 50 : 0)
       };
     }
-
   }
 
   ngOnDestroy(): void {
     this.langSub$.unsubscribe();
+  }
+
+  setRibbonBar(): void {
+    this.ribbonService.clearRibbon(this.windowItem.uuid);
+    if (this.runState.mode === 1) {
+
+      this.ribbonService.newButton(this.windowItem.uuid, {
+        label: 'settings',
+        icon: 'icon-cog',
+        iconOver: 'icon-cog_over',
+        click: 'component.testFunction1',
+        args: {
+          test: 'Testing',
+          demo: 'Demoing'
+        },
+        active: this.runState.ribbonSubMode === 'edit'
+      });
+
+      this.ribbonService.newButton(this.windowItem.uuid, {
+        label: 'contacts',
+        icon: 'icon-contacts',
+        iconOver: 'icon-contacts_over',
+        click: 'component.testFunction2',
+        itemCount: 3,
+        active: this.settings2
+      });
+    }
+
+    if (this.runState.mode === 2) {
+
+      this.ribbonService.newButton(this.windowItem.uuid, {
+        label: 'contacts',
+        icon: 'icon-contacts',
+        iconOver: 'icon-contacts_over',
+        click: 'settings',
+        itemCount: 3
+      });
+
+    }
+
+
+    this.ribbonService.newButton(this.windowItem.uuid, {
+      label: 'sep'
+    });
+
+    this.ribbonService.newButton(this.windowItem.uuid, {
+      label: 'multiSelect',
+      icon: 'icon-selectAll',
+      iconOver: 'icon-selectAll',
+      click: 'toggleMultiSelect',
+      active: this.runState.multiSelect
+    });
+
   }
 
   callApi(): void {
@@ -150,8 +211,20 @@ export class ExampleComponent implements OnInit, OnDestroy, DoCheck {
     this.windowService.setAlwaysActive(this.windowItem.uuid, alwaysActive);
   }
 
-  testFunction(button): void {
+  testFunction1(button): void {
     this.testFunctionValue = button;
+    this.settings = !this.settings;
+    if (this.settings) {
+      this.systemService.set({ribbonSubMode: 'edit'});
+    } else {
+      this.systemService.delete('ribbonSubMode');
+    }
+  }
+
+  testFunction2(button): void {
+    this.testFunctionValue = {};
+    console.log(button);
+    this.settings2 = !this.settings2;
   }
 }
 

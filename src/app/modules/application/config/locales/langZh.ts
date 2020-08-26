@@ -10,6 +10,7 @@ export const langZh: LanguageModel = {
       someLongerText: '一些较长的文字',
       catalogues: '产品目录',
       multiSelect: '多选',
+      ghost: '鬼',
     },
     menu: {
       menu1: '菜单1',

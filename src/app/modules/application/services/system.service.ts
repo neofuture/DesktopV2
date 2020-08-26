@@ -57,4 +57,7 @@ export class SystemService {
     localStorage.setItem(this.uuid, JSON.stringify(newObject));
   }
 
+  tick(): void {
+    this.systemObject.next(this.systemObject.value);
+  }
 }

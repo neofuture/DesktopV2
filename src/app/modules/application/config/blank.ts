@@ -11,6 +11,7 @@ export const blank: LanguageModel = {
       someLongerText: 'Some Longer Text',
       catalogues: 'Catalogues',
       multiSelect: 'Multi Select',
+      ghost: 'Ghost',
     },
     menu: {
       menu1: 'Menu 1',

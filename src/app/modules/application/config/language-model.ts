@@ -8,6 +8,7 @@ export interface LanguageModel {
       someLongerText: string;
       catalogues: string;
       multiSelect: string;
+      ghost: string;
     };
     menu: {
       menu1: string;

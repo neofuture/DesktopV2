@@ -10,6 +10,7 @@ export const langRu: LanguageModel = {
       someLongerText: 'Немного длиннее текст',
       catalogues: 'Каталоги',
       multiSelect: 'Выбор из нескольких вариантов',
+      ghost: 'Призрак',
     },
     menu: {
       menu1: 'Меню 1',

@@ -10,6 +10,7 @@ export const langDa: LanguageModel = {
       someLongerText: 'Noget længere tekst',
       catalogues: 'Kataloger',
       multiSelect: 'Multi Select',
+      ghost: 'Spøgelse',
     },
     menu: {
       menu1: 'Menu 1',

@@ -9,7 +9,8 @@ export const langEn: LanguageModel = {
       settings: 'Settings',
       someLongerText: 'Some Longer Text',
       catalogues: 'Catalogues',
-      multiSelect: 'Multi Select'
+      multiSelect: 'Multi Select',
+      ghost: 'Ghost'
     },
     menu: {
       menu1: 'Menu 1',

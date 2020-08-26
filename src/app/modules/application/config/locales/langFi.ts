@@ -10,6 +10,7 @@ export const langFi: LanguageModel = {
       someLongerText: 'Jotakin pidempää tekstiä',
       catalogues: 'luettelot',
       multiSelect: 'Monivalinta',
+      ghost: 'Aave',
     },
     menu: {
       menu1: 'Valikko 1',

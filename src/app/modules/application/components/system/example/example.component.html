@@ -1,11 +1,11 @@
 <div class="container"
      [ngClass]="{
-        'ribbonTop': ratio,
-        'ribbonLeft': !ratio,
+        'ribbonTop': ratio && windowItem.hasLocalRibbon,
+        'ribbonLeft': !ratio && windowItem.hasLocalRibbon,
         'hasFooter': windowItem.hasLocalFooter
      }">
   <div class="ribbon" *ngIf="windowItem.hasLocalRibbon">
-    <app-ribbon [ident]="'example'" [size]="'small'" [direction]="!ratio" [component]="component"></app-ribbon>
+    <app-ribbon [ident]="windowItem.uuid" [size]="'small'" [direction]="!ratio" [component]="this"></app-ribbon>
   </div>
   <div class="content" [ngClass]="{'noRibbon': !windowItem.hasLocalRibbon}">
 

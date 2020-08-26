@@ -10,6 +10,7 @@ export const langSv: LanguageModel = {
       someLongerText: 'Lite längre text',
       catalogues: 'kataloger',
       multiSelect: 'Flera val',
+      ghost: 'Spöke',
     },
     menu: {
       menu1: 'Meny 1',

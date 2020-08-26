@@ -61,7 +61,6 @@ export class RibbonComponent implements OnInit {
       });
     } else {
       this.ribbonSize = this.size;
-      console.log('SIZE' + this.ribbonSize);
     }
 
   }
