@@ -9,7 +9,7 @@
 }
 
 .small {
-  --ribbon-height: 50px;
+  --ribbon-height: 46px;
   --ribbon-width: 44px;
   --ribbon-text-height: -2px;
   --ribbon-text-offset: 8px;
@@ -51,7 +51,7 @@
 }
 
 .small.top {
-  padding: 5px 0 5px 0;
+  padding: 5px 0 1px 0;
 }
 
 .ribbonButtonSeparatorLine {

@@ -3,16 +3,6 @@
   <div class="version">
     <app-version></app-version>
   </div>
-  <button (click)="openDemo()" class="openDemo">open demo</button>
-
-
-  <button (click)="saveDesktop()" class="openDemo">Save Desktop</button>
-
-  <input
-    style="display: none"
-    type="file" (change)="loadDesktop($event)"
-    #fileInput>
-  <button (click)="fileInput.click()" class="openDemo">Load Desktop</button>
 </div>
 <div class="menu">
   <app-menu></app-menu>

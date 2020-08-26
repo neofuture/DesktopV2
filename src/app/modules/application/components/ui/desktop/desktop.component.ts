@@ -5,7 +5,6 @@ import {WindowService} from '../../../services/window.service';
 import {UserService} from '../../../services/user.service';
 import {ToastService} from '../../../services/toast.service';
 import {DialogService} from '../../../services/dialog.service';
-import set = Reflect.set;
 import {Subscription} from 'rxjs';
 import {RibbonService} from '../../../services/ribbon.service';
 import {PanelService} from '../../../services/panel.service';

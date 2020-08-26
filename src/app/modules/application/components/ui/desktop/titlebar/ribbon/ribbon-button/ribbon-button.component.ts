@@ -11,6 +11,8 @@ export class RibbonButtonComponent implements OnInit {
   @Input() button;
   @Input() ribbonSize;
   @Input() direction;
+  @Input() component;
+
   locale;
 
   constructor(
@@ -25,6 +27,6 @@ export class RibbonButtonComponent implements OnInit {
   }
 
   ribbonAction(event): void {
-    this.ribbonService.delegateAction(event, this.button);
+    this.ribbonService.delegateAction(event, this.button, this.component);
   }
 }

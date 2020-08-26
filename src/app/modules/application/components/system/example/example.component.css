@@ -4,79 +4,41 @@
 }
 
 .container {
-  width:100%;
+  width: 100%;
   height: 100%;
   position: relative;
   background-color: var(--white);
+  display: grid;
 }
 
-.container.ribbonTop .ribbon {
-  height: 52px;
-  width: 100%;
+.container.ribbonTop {
+  grid-template-rows: 50px auto;
 }
 
-.container.ribbonLeft .ribbon {
-  width: 52px;
-  height: 100%;
-}
-
-.container.ribbonTop .content {
-  width: 100%;
-  height: calc(100% - 52px);
-  overflow: auto;
-  position: absolute;
-  top: 52px;
-  left: 0px;
-}
-.container.ribbonLeft .content {
-  width: calc(100% - 52px);
-  height: 100%;
-  overflow: auto;
-  position: absolute;
-  top: 0;
-  left: 52px;
-}
-
-.container.ribbonTop.hasFooter .content {
-  height: calc(100% - 52px - 50px);
-}
-
-.container.ribbonLeft.hasFooter .content {
-  height: calc(100% - 50px);
-}
-
-
-.content.noRibbon {
-  width: 100% !important;
-  height: 100% !important;
-  top: 0 !important;
-  left: 0 !important;
+.container.ribbonLeft {
+  grid-template-columns: 52px auto;
 }
 
 .ribbon {
+  display: grid;
   background-color: var(--light-grey);
+  width: 100%;
+  height: 100%;
+  overflow: auto;
 }
 
 .content {
-  padding:8px;
-
+  overflow: auto;
+  padding: 8px;
 }
 
-.ribbon .button {
-  width: 31px;
-  height: 31px;
-  font-size: 23px;
-  border-radius: 4px;
-  text-align: center;
-}
-
-.ribbon .button:hover {
-  background-color: var(--primary-light);
+.container.hasFooter {
+  height: calc(100% - 54px);
 }
 
 .footer {
   width: 100%;
-  height: 50px;
+  height: 54px;
   padding: 8px;
   position: absolute;
   bottom: 0;

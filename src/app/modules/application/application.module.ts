@@ -27,6 +27,7 @@ import {ExternalComponent} from './components/core/external/external.component';
 import {PanelComponent} from './components/ui/desktop/panel/panel.component';
 import {SettingsComponent} from './components/core/settings/settings.component';
 import {ScrollToModule} from '@nicky-lenaers/ngx-scroll-to';
+import {ButtonModule} from 'primeng';
 
 @NgModule({
   declarations: [
@@ -61,13 +62,14 @@ import {ScrollToModule} from '@nicky-lenaers/ngx-scroll-to';
     TooltipDirective,
     RibbonComponent
   ],
-  imports: [
-    CommonModule,
-    ApplicationRoutingModule,
-    FormsModule,
-    HttpClientModule,
-    ScrollToModule.forRoot()
-  ],
+    imports: [
+        CommonModule,
+        ApplicationRoutingModule,
+        FormsModule,
+        HttpClientModule,
+        ScrollToModule.forRoot(),
+        ButtonModule
+    ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

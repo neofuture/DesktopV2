@@ -10,6 +10,7 @@ import {LanguageService} from '../../../services/language.service';
 import {Subscription} from 'rxjs';
 import {HelperService} from '../../../services/helper.service';
 import {SystemService} from '../../../services/system.service';
+import {ButtonModule} from 'primeng';
 
 @Component({
   selector: 'app-demo',
@@ -241,6 +242,7 @@ export class DemoComponent implements OnInit {
   demo1(): void {
     const windowConfig = {
       icon: 'icon-alarm',
+      iconLarge: 'icon-alarm_over',
       width: 400,
       height: 200,
       component: 'system/demo1',
@@ -252,6 +254,7 @@ export class DemoComponent implements OnInit {
   demo2(): void {
     const windowConfig = {
       icon: 'icon-catalogues',
+      iconLarge: 'icon-catalogues_over',
       width: 400,
       height: 200,
       component: 'system/demo2',
@@ -263,6 +266,7 @@ export class DemoComponent implements OnInit {
   demo3(): void {
     const windowConfig = {
       icon: 'icon-contacts',
+      iconLarge: 'icon-contacts_over',
       width: 400,
       height: 200,
       component: 'system/demo3',
@@ -274,6 +278,7 @@ export class DemoComponent implements OnInit {
   demo4(): void {
     const windowConfig = {
       icon: 'icon-cog',
+      iconLarge: 'icon-cog_over',
       width: 960,
       height: 570,
       component: 'system/demo4',
@@ -333,27 +338,28 @@ export class DemoComponent implements OnInit {
       buttons: [
         {
           label: 'cancel',
+          class: 'p-button-secondary',
           action: 'cancel',
           callBack: this.alertDialog,
           args: {return: ['demo', 'demo2', 'demo3'], demo: 'testing'}
         },
         {
           label: 'ok',
-          class: 'info',
+          class: 'p-button-info',
           action: 'cancel',
           callBack: this.alertDialog,
           args: 'demo'
         },
         {
           label: 'ok',
-          class: 'warn',
+          class: 'p-button-warning',
           action: 'cancel',
           callBack: this.alertDialog,
           args: 'demo'
         },
         {
           label: 'ok',
-          class: 'error',
+          class: 'p-button-danger',
           action: 'cancel',
           callBack: this.alertDialog,
           args: 'demo focused',
@@ -361,7 +367,7 @@ export class DemoComponent implements OnInit {
         },
         {
           label: 'ok',
-          class: 'success',
+          class: 'p-button-success',
           action: 'cancel',
           callBack: this.alertDialog,
           args: 'demo'
@@ -400,19 +406,20 @@ export class DemoComponent implements OnInit {
         {
           label: 'cancel',
           action: 'cancel',
+          class: 'p-button-secondary',
           callBack: this.alertDialog,
           args: {return: ['demo', 'demo2', 'demo3'], demo: 'testing'}
         },
         {
           label: 'ok',
-          class: 'info',
+          class: 'p-button-info',
           action: 'cancel',
           callBack: this.alertDialog,
           args: 'demo'
         },
         {
           label: 'ok',
-          class: 'warn',
+          class: 'p-button-danger',
           action: 'cancel',
           callBack: this.alertDialog,
           args: 'demo'
@@ -420,14 +427,14 @@ export class DemoComponent implements OnInit {
         {
           label: 'ok',
           class: 'error',
-          action: 'cancel',
+          action: 'p-button-danger',
           callBack: this.alertDialog,
           args: 'demo focused',
           focus: true
         },
         {
           label: 'ok',
-          class: 'success',
+          class: 'p-button-success',
           action: 'cancel',
           callBack: this.alertDialog,
           args: 'demo'
@@ -469,11 +476,12 @@ export class DemoComponent implements OnInit {
       buttons: [
         {
           label: 'cancel',
-          action: 'cancel'
+          action: 'cancel',
+          class: 'p-button-secondary'
         },
         {
           label: 'createPanel',
-          class: 'success',
+          class: 'p-button-success',
           action: 'cancel',
           callBack: this.newPanelAction,
           service: this.panelService
@@ -512,11 +520,12 @@ export class DemoComponent implements OnInit {
       buttons: [
         {
           label: 'cancel',
-          action: 'cancel'
+          action: 'cancel',
+          class: 'p-button-secondary'
         },
         {
           label: 'createPanel',
-          class: 'success',
+          class: 'p-button-success',
           action: 'cancel',
           callBack: this.newPanelAction,
           service: this.panelService,
@@ -546,27 +555,6 @@ export class DemoComponent implements OnInit {
     service.newPanel(panelConfig);
   }
 
-  // saveDesktop(): void {
-  //   const windows = this.windowService.windowList;
-  //   const panels = this.panelService.panelList;
-  //
-  //   this.fileService.downloadJson(JSON.stringify({windows, panels}), 'desktop.dsk');
-  // }
-  //
-  //
-  // loadDesktop(event): void {
-  //   const selectedFile = event.target.files[0];
-  //
-  //   const reader = new FileReader();
-  //   reader.readAsDataURL(selectedFile);
-  //   reader.onload = () => {
-  //     const object = JSON.parse(atob(reader.result.toString().split(',')[1]));
-  //     this.windowService.setWindowList(object.windows);
-  //     this.panelService.setPanelList(object.panels);
-  //     event.target.value = '';
-  //   };
-  // }
-
   setItem(object): void {
     this.systemService.set(object);
   }
@@ -589,7 +577,8 @@ export class DemoComponent implements OnInit {
 @NgModule({
   imports: [
     FormsModule,
-    CommonModule
+    CommonModule,
+    ButtonModule
   ],
   declarations: [DemoComponent]
 })

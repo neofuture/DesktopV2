@@ -28,12 +28,15 @@
               "src/styles.css",
               "src/assets/style.css",
               "src/assets/font.css",
-              "src/assets/tooltip.css"
+              "src/assets/tooltip.css",
+              "node_modules/primeng/resources/primeng.min.css",
+              "node_modules/primeng/resources/themes/nova/theme.css"
             ],
             "scripts": [
               "src/assets/js/external.js"
             ],
             "allowedCommonJsDependencies": [
+              "chart.js"
             ]
           },
           "configurations": {
@@ -100,7 +103,9 @@
               "src/styles.css",
               "src/assets/style.css",
               "src/assets/font.css",
-              "src/assets/tooltip.css"
+              "src/assets/tooltip.css",
+              "node_modules/primeng/resources/primeng.min.css",
+              "node_modules/primeng/resources/themes/nova/theme.css"
             ],
             "scripts": [
               "src/assets/js/external.js"

@@ -5,11 +5,11 @@
         'hasFooter': windowItem.hasLocalFooter
      }">
   <div class="ribbon" *ngIf="windowItem.hasLocalRibbon">
-    <app-ribbon [ident]="'63b63e8f-2005-4324-957b-7bb37e3da5d2'" [size]="'small'" [direction]="!ratio"></app-ribbon>
+    <app-ribbon [ident]="'example'" [size]="'small'" [direction]="!ratio" [component]="component"></app-ribbon>
   </div>
   <div class="content" [ngClass]="{'noRibbon': !windowItem.hasLocalRibbon}">
 
-    <div style="position:absolute;border:3px solid orange"
+    <div style="position:absolute;"
     [ngStyle]="{
     width: area.width + 'px',
     height: area.height + 'px',
@@ -20,6 +20,8 @@
     >
     {{ area.width }} x {{ area.height }}
     </div>
+
+    <pre>{{ testFunctionValue | json }}</pre>
 
     <button (click)="setUnSaved(true)">Set Unsaved</button>
     <button (click)="setUnSaved(false)">Set Saved</button> Unsaved : {{ windowItem.unsaved }} | key {{ key }}
@@ -49,7 +51,7 @@
   </div>
 </div>
 <div class="footer" *ngIf="windowItem.hasLocalFooter">
-  <button>Click</button>
-  <button (click)="closeWindow()">Close</button>
+  <button pButton type="button" class="p-button-secondary p-button-sm" label="Click"></button>
+  <button pButton type="button" class="p-button-success p-button-sm" (click)="closeWindow()" label="Close"></button>
 </div>
 

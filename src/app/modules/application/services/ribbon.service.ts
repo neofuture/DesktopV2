@@ -15,12 +15,11 @@ export class RibbonService {
 
   private ribbonSizeObject = new BehaviorSubject(localStorage.getItem(this.ribbonUuid) || null);
   ribbonSize = this.ribbonSizeObject.asObservable();
-  private runState: {mode: number; multiSelect: boolean};
+  private runState: { mode: number; multiSelect: boolean };
 
   constructor(
     private helperService: HelperService,
     private systemService: SystemService
-
   ) {
     if (this.ribbonSizeObject.value === 'small') {
       document.body.classList.add('smallRibbon');
@@ -55,6 +54,8 @@ export class RibbonService {
       click: 'settings',
       itemCount: 3
     });
+
+
     this.newButton('63b63e8f-2005-4324-957b-7bb37e3da5d2', {
       label: 'sep'
     });
@@ -95,6 +96,33 @@ export class RibbonService {
       click: 'toggleMultiSelect',
       active: this.runState.multiSelect
     });
+
+
+    // Example Component
+    this.newButton('example', {
+      label: 'settings',
+      icon: 'icon-cog',
+      iconOver: 'icon-cog_over',
+      click: 'component.testFunction',
+      args: {
+        test: 'Testing',
+        demo: 'Demoing'
+      }
+    });
+    this.newButton('example', {
+      label: 'contacts',
+      icon: 'icon-contacts',
+      iconOver: 'icon-contacts_over',
+      click: 'settings',
+      itemCount: 3
+    });
+    this.newButton('example', {
+      label: 'multiSelect',
+      icon: 'icon-selectAll',
+      iconOver: 'icon-selectAll',
+      click: 'toggleMultiSelect',
+      active: this.runState.multiSelect
+    });
   }
 
   mode2(): void {
@@ -113,6 +141,22 @@ export class RibbonService {
       icon: 'icon-cog',
       iconOver: 'icon-cog_over',
       click: 'settings'
+    });
+
+    // Example Component
+    this.newButton('example', {
+      label: 'contacts',
+      icon: 'icon-contacts',
+      iconOver: 'icon-contacts_over',
+      click: 'settings',
+      itemCount: 3
+    });
+    this.newButton('example', {
+      label: 'multiSelect',
+      icon: 'icon-selectAll',
+      iconOver: 'icon-selectAll',
+      click: 'toggleMultiSelect',
+      active: this.runState.multiSelect
     });
   }
 
@@ -152,9 +196,14 @@ export class RibbonService {
     document.body.classList.remove('smallRibbon');
   }
 
-  delegateAction(event: any, button: any): void {
+  delegateAction(event: any, button: any, component: any): void {
     if (button.click === 'toggleMultiSelect') {
       this.systemService.set({multiSelect: !this.runState.multiSelect});
     }
+    if (button.click.includes('.')){
+      const func = button.click.split('.');
+      component[func[1]](button);
+    }
+
   }
 }

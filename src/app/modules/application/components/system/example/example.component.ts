@@ -7,6 +7,8 @@ import {UserService} from '../../../services/user.service';
 import {Subscription} from 'rxjs';
 import {ApiService} from '../../../services/api.service';
 import {ApplicationModule} from '../../../application.module';
+import {ButtonModule} from 'primeng';
+import {RippleModule} from 'primeng/ripple';
 
 @Component({
   selector: 'app-example',
@@ -27,6 +29,8 @@ export class ExampleComponent implements OnInit, OnDestroy, DoCheck {
   key: string;
   ratio: boolean;
   area: { width: any; height: any };
+  component: any;
+  testFunctionValue: any;
 
   @HostListener('document:keydown', ['$event'])
   handleKeyboardEventDown(event): void {
@@ -51,6 +55,7 @@ export class ExampleComponent implements OnInit, OnDestroy, DoCheck {
   }
 
   ngOnInit(): void {
+    this.component = this;
     this.langSub$ = this.languageService.language.subscribe(locale => {
       this.locale = locale.system.example;
     });
@@ -69,12 +74,12 @@ export class ExampleComponent implements OnInit, OnDestroy, DoCheck {
   }
 
   ngDoCheck(): void {
-    this.ratio = ((this.windowItem.componentWidth / this.windowItem.componentHeight) > 1);
+    this.ratio = !((this.windowItem.componentWidth / this.windowItem.componentHeight) > 1);
 
     if (this.windowItem.hasLocalRibbon) {
       this.area = {
         width: (this.ratio) ? this.windowItem.componentWidth : this.windowItem.componentWidth - 52,
-        height: ((this.ratio) ? this.windowItem.componentHeight - 52 : this.windowItem.componentHeight) - (this.windowItem.hasLocalFooter ? 50 : 0),
+        height: ((this.ratio) ? this.windowItem.componentHeight - 50 : this.windowItem.componentHeight) - (this.windowItem.hasLocalFooter ? 50 : 0),
       };
     } else {
       this.area = {
@@ -144,13 +149,18 @@ export class ExampleComponent implements OnInit, OnDestroy, DoCheck {
   setAlwaysActive(alwaysActive: boolean): void {
     this.windowService.setAlwaysActive(this.windowItem.uuid, alwaysActive);
   }
+
+  testFunction(button): void {
+    this.testFunctionValue = button;
+  }
 }
 
 @NgModule({
   imports: [
     FormsModule,
     CommonModule,
-    ApplicationModule
+    ApplicationModule,
+    ButtonModule
   ],
   declarations: [ExampleComponent]
 })

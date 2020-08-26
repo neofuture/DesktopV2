@@ -115,6 +115,7 @@ export class WindowService {
       hidden: false,
       visible: true,
       icon: windowConfig.icon || 'icon-oceanworks',
+      iconLarge: windowConfig.iconLarge || (windowConfig.icon || 'icon-oceanworks'),
       height,
       width,
       componentHeight: 0,

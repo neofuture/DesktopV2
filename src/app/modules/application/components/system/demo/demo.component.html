@@ -1,59 +1,59 @@
 <div class="container">
-  <button (click)="demo1()" [innerHTML]="'Demo One'"></button>
-  <button (click)="demo2()" [innerHTML]="'Demo Two'"></button>
-  <button (click)="demo3()" [innerHTML]="'Demo Three'"></button>
-  <button (click)="demo4()" [innerHTML]="'Demo Four'"></button>
+  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="demo1()" [label]="'Demo One'"></button>
+  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="demo2()" [label]="'Demo Two'"></button>
+  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="demo3()" [label]="'Demo Three'"></button>
+  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="demo4()" [label]="'Demo Four'"></button>
   <hr>
-  <button (click)="demo1Hide()" [innerHTML]="'Demo One (hide on mode change)'"></button>
-  <button (click)="demo1Delete()" [innerHTML]="'Demo One (delete on mode change)'"></button>
+  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="demo1Hide()" [label]="'Demo One (hide on mode change)'"></button>
+  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="demo1Delete()" [label]="'Demo One (delete on mode change)'"></button>
 
   <hr>
-  <button (click)="newWindow(false, false)" [innerHTML]="'New Window'"></button>
-  <button (click)="newWindowNoControls(false, false)" [innerHTML]="'New Window' + ' - No Controls'"></button>
-  <button (click)="newWindowNoBar(false, false)" [innerHTML]="'New Window' + ' - No Title Bar'"></button>
-  <button (click)="newWindowNoBarRibbon()" [innerHTML]="'New Window' + ' - No Title Bar + Ribbon'"></button>
-  <button (click)="newWindow(true, false)" [innerHTML]="'New Window' + ' - Always on top'"></button>
-  <button (click)="newWindow(false, true)" [innerHTML]="'New Window' + ' - Always on bottom'"></button>
-  <button (click)="newWindow3d()" [innerHTML]="'New Window' + ' - 3D'"></button>
-  <button (click)="noTab()" [innerHTML]="'New Window' + ' - No Tab'"></button>
-  <button (click)="noFeatures()" [innerHTML]="'New Window' + ' - No Features'"></button>
-  <button (click)="autoClose(9000)" [innerHTML]="'New Window' + ' - Auto Close'"></button>
-  <button (click)="newWindowDockLeft()" [innerHTML]="'New Window' + ' - Dock Left (40%, 100%)'"></button>
+  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="newWindow(false, false)" [label]="'New Window'"></button>
+  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="newWindowNoControls(false, false)" [label]="'New Window' + ' - No Controls'"></button>
+  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="newWindowNoBar(false, false)" [label]="'New Window' + ' - No Title Bar'"></button>
+  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="newWindowNoBarRibbon()" [label]="'New Window' + ' - No Title Bar + Ribbon'"></button>
+  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="newWindow(true, false)" [label]="'New Window' + ' - Always on top'"></button>
+  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="newWindow(false, true)" [label]="'New Window' + ' - Always on bottom'"></button>
+  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="newWindow3d()" [label]="'New Window' + ' - 3D'"></button>
+  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="noTab()" [label]="'New Window' + ' - No Tab'"></button>
+  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="noFeatures()" [label]="'New Window' + ' - No Features'"></button>
+  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="autoClose(9000)" [label]="'New Window' + ' - Auto Close'"></button>
+  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="newWindowDockLeft()" [label]="'New Window' + ' - Dock Left (40%, 100%)'"></button>
   <hr>
-  <button (click)="newToast('success')">New Toast Success</button>
-  <button (click)="newToast('info')">New Toast Info</button>
-  <button (click)="newToast('warn')">New Toast Warn</button>
-  <button (click)="newToast('error')">New Toast Error</button>
+  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="newToast('success')" [label]="'New Toast Success'"></button>
+  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="newToast('info')" [label]="'New Toast Info'"></button>
+  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="newToast('warn')" [label]="'New Toast Warn'"></button>
+  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="newToast('error')" [label]="'New Toast Error'"></button>
   <hr>
-  <button (click)="newToastSticky('success')">New Toast Success Sticky</button>
-  <button (click)="newToastSticky('info')">New Toast Info Sticky</button>
-  <button (click)="newToastSticky('warn')">New Toast Warn Sticky</button>
-  <button (click)="newToastSticky('error')">New Toast Error Sticky</button>
+  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="newToastSticky('success')" [label]="'New Toast Success Sticky'"></button>
+  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="newToastSticky('info')" [label]="'New Toast Info Sticky'"></button>
+  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="newToastSticky('warn')" [label]="'New Toast Warn Sticky'"></button>
+  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="newToastSticky('error')" [label]="'New Toast Error Sticky'"></button>
   <hr>
-  <button (click)="newDialog()">New Dialog</button>
-  <button (click)="newDialogForm()">New Dialog (Form)</button>
+  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="newDialog()" [label]="'New Dialog'"></button>
+  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="newDialogForm()" [label]="'New Dialog (Form)'"></button>
   <hr>
-  <button (click)="splash()">New Splash</button>
-  <button (click)="about()">About</button>
+  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="splash()" [label]="'New Splash'"></button>
+  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="about()" [label]="'About'"></button>
   <hr>
-  <button (click)="newPanelLeft()">New Panel Left</button>
-  <button (click)="newPanelRight()">New Panel (right dock 75%, 100%)</button>
+  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="newPanelLeft()" [label]="'New Panel Left'"></button>
+  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="newPanelRight()" [label]="'New Panel (right dock 75%, 100%)'"></button>
 
-  <button (click)="newPanel()">New Panel (with ribbon)</button>
-  <button (click)="newPanelNoClose()">New Panel (with ribbon - No Close)</button>
+  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="newPanel()" [label]="'New Panel (with ribbon)'"></button>
+  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="newPanelNoClose()" [label]="'New Panel (with ribbon - No Close)'"></button>
   <hr>
   <h1>Run State</h1>
-  <button (click)="setItem({thing: {demo: 'demo', test: 'testing'}})">Set Item</button>
-  <button (click)="setItem({thing: {sortBy: 4,thingy: 'item 4', ddd: {sortBy: 3,thingy: 'item 3'}}})">Set Item (different)</button>
-  <button (click)="setItem({thing2: {demo: 'demo', test: 'testing'}})">Set second Item</button>
-  <button (click)="deleteItem('thing')">Delete Item</button>
-  <button (click)="deleteItem('thing2')">Delete Second Item</button>
+  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="setItem({thing: {demo: 'demo', test: 'testing'}})" [label]="'Set Item'"></button>
+  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="setItem({thing: {sortBy: 4,thingy: 'item 4', ddd: {sortBy: 3,thingy: 'item 3'}}})" [label]="'Set Item (different)'"></button>
+  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="setItem({thing2: {demo: 'demo', test: 'testing'}})" [label]="'Set second Item'"></button>
+  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="deleteItem('thing')" [label]="'Delete Item'"></button>
+  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="deleteItem('thing2')" [label]="'Delete Second Item'"></button>
 
   <h1>App State</h1>
-  <button (click)="setItemApp({thing: {demo: 'demo', test: 'testing'}})">Set Item</button>
-  <button (click)="setItemApp({thing: {sortBy: 4,thingy: 'item 4', ddd: {sortBy: 3,thingy: 'item 3'}}})">Set Item (different)</button>
-  <button (click)="setItemApp({thing2: {demo: 'demo', test: 'testing'}})">Set second Item</button>
-  <button (click)="deleteItemApp('thing')">Delete Item</button>
-  <button (click)="deleteItemApp('thing2')">Delete Second Item</button>
+  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="setItemApp({thing: {demo: 'demo', test: 'testing'}})" [label]="'Set Item'"></button>
+  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="setItemApp({thing: {sortBy: 4,thingy: 'item 4', ddd: {sortBy: 3,thingy: 'item 3'}}})" [label]="'Set Item (different)'"></button>
+  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="setItemApp({thing2: {demo: 'demo', test: 'testing'}})" [label]="'Set second Item'"></button>
+  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="deleteItemApp('thing')" [label]="'Delete Item'"></button>
+  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="deleteItemApp('thing2')" [label]="'Delete Second Item'"></button>
 
 </div>
