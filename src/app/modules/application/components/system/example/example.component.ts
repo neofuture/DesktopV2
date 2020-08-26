@@ -33,7 +33,6 @@ export class ExampleComponent implements OnInit, OnDestroy, DoCheck {
   testFunctionValue = {};
   private runState: any;
   private settings: boolean;
-  private settings2: boolean;
 
   @HostListener('document:keydown', ['$event'])
   handleKeyboardEventDown(event): void {
@@ -124,7 +123,7 @@ export class ExampleComponent implements OnInit, OnDestroy, DoCheck {
         iconOver: 'icon-contacts_over',
         click: 'component.testFunction2',
         itemCount: 3,
-        active: this.settings2
+        active: this.settings
       });
     }
 
@@ -213,8 +212,7 @@ export class ExampleComponent implements OnInit, OnDestroy, DoCheck {
 
   testFunction1(button): void {
     this.testFunctionValue = button;
-    this.settings = !this.settings;
-    if (this.settings) {
+    if (this.runState.ribbonSubMode !== 'edit') {
       this.systemService.set({ribbonSubMode: 'edit'});
     } else {
       this.systemService.delete('ribbonSubMode');
@@ -224,7 +222,7 @@ export class ExampleComponent implements OnInit, OnDestroy, DoCheck {
   testFunction2(button): void {
     this.testFunctionValue = {};
     console.log(button);
-    this.settings2 = !this.settings2;
+    this.settings = !this.settings;
   }
 }
 
