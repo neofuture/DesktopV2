@@ -53,19 +53,17 @@ export class WindowComponent implements OnInit, AfterViewInit, OnDestroy {
   private startY: number;
   private element: any;
   private langSub$: Subscription;
-
-  @HostListener('window:resize')
-  onResize(): void {
-    this.resize();
-  }
+  private view: any;
 
   constructor(
     private languageService: LanguageService,
     private windowService: WindowService,
     private compiler: Compiler,
     private desktopService: DesktopService,
-    private panelService: PanelService
+    private panelService: PanelService,
+    element: ElementRef
   ) {
+    this.view = element.nativeElement;
   }
 
   ngOnInit(): void {
@@ -135,6 +133,36 @@ export class WindowComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
+  @HostListener('document:keydown', ['$event'])
+  handleKeyboardEventDown(event): void {
+    if (this.windowItem.active) {
+
+      const focusable = this.view
+        .querySelector('.container')
+        .querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+
+      if (event.code === 'Tab') {
+        let c = 0;
+        for (const item in focusable) {
+          if (focusable[item] === document.activeElement) {
+            if (event.shiftKey) {
+              c = parseInt(item, 10) - 1;
+            } else {
+              c = parseInt(item, 10) + 1;
+            }
+          }
+        }
+        if (c > focusable.length - 1) {
+          c = 0;
+        }
+        if (c < 0) {
+          c = focusable.length - 1;
+        }
+        focusable[c].focus();
+      }
+    }
+  }
+
   camelCase(myString): string {
     return myString.replace(/-([a-z])/g, (g) => {
       return g[1].toUpperCase();
@@ -195,14 +223,42 @@ export class WindowComponent implements OnInit, AfterViewInit, OnDestroy {
 
   resize(): void {
     const elm = this.componentContainer.nativeElement;
+
     this.windowItem.componentWidth = elm.offsetWidth;
     this.windowItem.componentHeight = elm.offsetHeight;
+
+    let ratio;
+    if (this.windowItem.ribbonHasPriority) {
+      ratio = ((this.windowItem.componentWidth / this.windowItem.componentHeight) > 1);
+    } else {
+      ratio = !((this.windowItem.componentWidth / this.windowItem.componentHeight) > 1);
+    }
+
+    let footerHeight = 0;
+    let ribbonHeight = 0;
+    let ribbonWidth = 0;
+
+    if (elm.querySelector('.footer')) {
+      footerHeight = elm.querySelector('.footer').offsetHeight;
+    }
+
+    if (elm.querySelector('.ribbon')) {
+      const ribbon = elm.querySelector('.ribbon');
+      ribbonHeight = ribbon.offsetHeight;
+      ribbonWidth = ribbon.offsetWidth;
+    }
+
+    this.windowItem.area = {
+      ratio,
+      width: ratio ? this.windowItem.componentWidth : this.windowItem.componentWidth - ribbonWidth,
+      height: ratio ? this.windowItem.componentHeight - ribbonHeight : this.windowItem.componentHeight - footerHeight,
+    };
+
   }
 
   setComponentSize(): void {
     const interval = setInterval(() => {
       this.resize();
-      // console.log('r comp');
     }, 10);
     setTimeout(() => {
       clearInterval(interval);
@@ -487,7 +543,7 @@ export class WindowComponent implements OnInit, AfterViewInit, OnDestroy {
           this.windowItem.left = hostPos.x;
           this.windowItem.top = hostPos.y;
           this.dragWindowItem.entities.xOffset = parseInt(hostPos.x, 10) - 7 - xPos;
-          this.dragWindowItem.entities.yOffset = parseInt(hostPos.y, 10) - 9 - 85 - yPos;
+          this.dragWindowItem.entities.yOffset = parseInt(hostPos.y, 10) - 9 - 135 - yPos;
           this.dragWindowItem.height = parseInt(style.height, 10);
           this.dragWindowItem.width = parseInt(style.width, 10);
           this.dragWindowItem.noTransition = false;

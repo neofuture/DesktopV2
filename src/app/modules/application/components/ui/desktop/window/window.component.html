@@ -35,9 +35,9 @@
      [id]="windowItem.uuid">
   <div class="container"
        [ngClass]="{
-      'type1': !windowItem.hasTitleBar && !windowItem.hasRibbon && !windowItem.hasStatusBar,
+      'type1': !windowItem.hasTitleBar && !windowItem.hasStatusBar,
       'type2':  windowItem.hasTitleBar,
-      'type3':  windowItem.hasTitleBar && !windowItem.hasRibbon &&  windowItem.hasStatusBar
+      'type3':  windowItem.hasTitleBar && windowItem.hasStatusBar
     }">
 
     <div class="titleBar icons{{ iconCount }} titleBarMove" *ngIf="windowItem.hasTitleBar">

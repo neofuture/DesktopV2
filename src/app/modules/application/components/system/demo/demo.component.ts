@@ -133,7 +133,10 @@ export class DemoComponent implements OnInit {
       height: 400,
       component: 'system/example',
       hasStatusBar: true,
-      title: 'newWindow'
+      hasRibbon: true,
+      hasFooter: true,
+      title: 'newWindow',
+      ribbonHasPriority: true
     };
     this.windowService.newWindow(windowConfig);
   }
@@ -176,7 +179,9 @@ export class DemoComponent implements OnInit {
       component: 'system/example',
       hasStatusBar: false,
       hasTitleBar: false,
-      title: 'newWindow'
+      title: 'newWindow',
+      hasRibbon: true,
+      hasFooter: true
     };
     this.windowService.newWindow(windowConfig);
   }
@@ -242,7 +247,7 @@ export class DemoComponent implements OnInit {
   demo1(): void {
     const windowConfig = {
       icon: 'icon-alarm',
-      iconLarge: 'icon-alarm_over',
+      iconLarge: 'icon-alarm',
       width: 400,
       height: 200,
       component: 'system/demo1',

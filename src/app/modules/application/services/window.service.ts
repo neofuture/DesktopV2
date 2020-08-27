@@ -115,7 +115,7 @@ export class WindowService {
       hidden: false,
       visible: true,
       icon: windowConfig.icon || 'icon-oceanworks',
-      iconLarge: windowConfig.iconLarge || (windowConfig.icon || 'icon-oceanworks'),
+      iconLarge: windowConfig.iconLarge ? windowConfig.iconLarge : (windowConfig.icon || 'icon-oceanworks'),
       height,
       width,
       componentHeight: 0,
@@ -140,12 +140,16 @@ export class WindowService {
         isMaximised: false,
         isMinimised: false
       },
+      area: {
+        ratio: false,
+        width: 0,
+        height: 0,
+      },
       unsaved: false,
       hasTab: typeof windowConfig.hasTab === 'undefined' ? true : windowConfig.hasTab,
       hasDockMenu: typeof windowConfig.hasDockMenu === 'undefined' ? true : windowConfig.hasDockMenu,
       hasTitleBar: typeof windowConfig.hasTitleBar === 'undefined' ? true : windowConfig.hasTitleBar,
       hasControls: typeof windowConfig.hasControls === 'undefined' ? true : windowConfig.hasControls,
-      hasRibbon: false,
       hasStatusBar: typeof windowConfig.hasStatusBar === 'undefined' ? false : windowConfig.hasStatusBar,
       hasLanguageSelector: typeof windowConfig.hasLanguageSelector === 'undefined' ? false : windowConfig.hasLanguageSelector,
       component: windowConfig.component,
@@ -158,7 +162,10 @@ export class WindowService {
       systemWindow: windowConfig.systemWindow || null,
       dock: typeof windowConfig.dock === 'undefined' ? null : windowConfig.dock,
       dockPosition: typeof windowConfig.dockPosition === 'undefined' ? null : windowConfig.dockPosition,
-      panel: typeof windowConfig.panel === 'undefined' ? null : windowConfig.panel
+      panel: typeof windowConfig.panel === 'undefined' ? null : windowConfig.panel,
+      hasRibbon: typeof windowConfig.hasRibbon === 'undefined' ? false : windowConfig.hasRibbon,
+      ribbonHasPriority: typeof windowConfig.ribbonHasPriority === 'undefined' ? false : windowConfig.ribbonHasPriority,
+      hasFooter: typeof windowConfig.hasFooter === 'undefined' ? false : windowConfig.hasFooter
     };
 
     if (windowConfig.autoClose) {
@@ -263,20 +270,20 @@ export class WindowService {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
-  addLocalRibbon(windowItem): void {
-    windowItem.hasLocalRibbon = true;
+  addRibbon(windowItem): void {
+    windowItem.hasRibbon = true;
   }
 
-  removeLocalRibbon(windowItem): void {
-    windowItem.hasLocalRibbon = false;
+  removeRibbon(windowItem): void {
+    windowItem.hasRibbon = false;
   }
 
-  addLocalFooter(windowItem): void {
-    windowItem.hasLocalFooter = true;
+  addFooter(windowItem): void {
+    windowItem.hasFooter = true;
   }
 
-  removeLocalFooter(windowItem): void {
-    windowItem.hasLocalFooter = false;
+  removeFooter(windowItem): void {
+    windowItem.hasFooter = false;
   }
 
   addStatusBar(windowItem): void {

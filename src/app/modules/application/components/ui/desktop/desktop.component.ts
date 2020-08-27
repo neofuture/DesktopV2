@@ -42,14 +42,19 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
   autoHide: boolean;
   runState: any;
   appState: any;
+
   @HostListener('window:resize')
   onResize(): void {
     this.resize();
   }
+
   @HostListener('document:keydown', ['$event'])
   handleKeyboardEventDown(event): void {
     if (event.code === 'ShiftLeft' || event.code === 'ShiftRight') {
       this.systemService.set({multiSelect: true});
+    }
+    if (event.code === 'Tab') {
+      event.preventDefault();
     }
   }
 
@@ -59,6 +64,7 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
       this.systemService.set({multiSelect: false});
     }
   }
+
   constructor(
     private desktopService: DesktopService,
     private languageService: LanguageService,

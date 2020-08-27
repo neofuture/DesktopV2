@@ -104,7 +104,7 @@ export class RibbonService {
       this.newButton('63b63e8f-2005-4324-957b-7bb37e3da5d2', {
         label: 'ghost',
         icon: 'icon-ghost',
-        iconOver: 'icon-contacts_over',
+        iconOver: 'icon-ghost_over',
         click: 'settings',
         itemCount: 3
       });

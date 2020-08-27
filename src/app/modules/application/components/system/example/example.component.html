@@ -1,56 +1,33 @@
 <div class="container"
      [ngClass]="{
-        'ribbonTop': ratio && windowItem.hasLocalRibbon,
-        'ribbonLeft': !ratio && windowItem.hasLocalRibbon,
-        'hasFooter': windowItem.hasLocalFooter
+        'ribbonTop': windowItem.area.ratio && windowItem.hasRibbon,
+        'ribbonLeft': !windowItem.area.ratio && windowItem.hasRibbon,
+        'hasFooter': windowItem.hasFooter
      }">
-  <div class="ribbon" *ngIf="windowItem.hasLocalRibbon">
-    <app-ribbon [ident]="windowItem.uuid" [size]="'small'" [direction]="!ratio" [component]="this"></app-ribbon>
+  <div class="ribbon" *ngIf="windowItem.hasRibbon">
+    <app-ribbon [ident]="windowItem.uuid" [size]="'small'" [direction]="!windowItem.area.ratio" [component]="this"></app-ribbon>
   </div>
-  <div class="content" [ngClass]="{'noRibbon': !windowItem.hasLocalRibbon}">
+  <div class="content" [ngClass]="{'noRibbon': !windowItem.hasRibbon}">
 
-    <div style="position:absolute;"
-    [ngStyle]="{
-    width: area.width + 'px',
-    height: area.height + 'px',
+    <div style="position:absolute;background-color: rgba(255,0,0,0.2);"
+         [ngStyle]="{
+    width: windowItem.area.width / 2 + 'px',
+    height: windowItem.area.height /2  + 'px',
     top: 0,
     left: 0
-    }"
-
-    >
-    {{ area.width }} x {{ area.height }}
+    }">
+      {{ windowItem.area.width }} x {{ windowItem.area.height }}
     </div>
+    
+    <label><input [(ngModel)]="memory.form1"></label>
+    <label><input [(ngModel)]="memory.form2"></label>
+    <label><input [(ngModel)]="memory.form3"></label>
+    <label><input [(ngModel)]="memory.form4"></label>
 
     <pre>{{ testFunctionValue | json }}</pre>
-
-    <button (click)="setUnSaved(true)">Set Unsaved</button>
-    <button (click)="setUnSaved(false)">Set Saved</button> Unsaved : {{ windowItem.unsaved }} | key {{ key }}
-    <hr>
-    <button (click)="setAlwaysActive(true)">Set Always Active</button>
-    <button (click)="setAlwaysActive(false)">Unset Always Active</button>
-    <button (click)="logout()">Logout</button>
-    <hr>
-    <span>{{ apiResponse | json }}</span>
-    <div>exp: {{ exp }}</div>
-    <br>
-    <button (click)="addLocalRibbon()">Add Ribbon</button>
-    <button (click)="removeLocalRibbon()">Remove Ribbon</button>
-    <br>
-    <button (click)="addLocalFooter()">Add Footer</button>
-    <button (click)="removeLocalFooter()">Remove Footer</button>
-    <br>
-    <button (click)="addStatusBar()">Add Status Bar</button>
-    <button (click)="removeStatusBar()">Remove Status Bar</button>
-    <h2>Example</h2>
-    {{ locale.test }}
-    <hr>
-    -{{ demo }}-
-    <br>
-    <input [(ngModel)]="demo">
-    <pre>{{ windowItem | json }}</pre>
   </div>
 </div>
-<div class="footer" *ngIf="windowItem.hasLocalFooter">
+<div class="footer" *ngIf="windowItem.hasFooter">
   <button pButton type="button" class="p-button-secondary p-button-sm" label="Click"></button>
   <button pButton type="button" class="p-button-success p-button-sm" (click)="closeWindow()" label="Close"></button>
 </div>
