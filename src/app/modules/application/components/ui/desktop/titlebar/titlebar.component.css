@@ -19,6 +19,7 @@
   position: absolute;
   top: calc(var(--menu-height) + var(--electron-height));
   overflow: hidden;
+  padding-top: 4px;
 }
 
 .electronTitleBar {

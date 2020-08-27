@@ -7,5 +7,8 @@
                           [direction]="direction"></app-ribbon-separator>
   </ng-container>
 </div>
-<button pButton type="button" icon="pi {{ ribbonSize ==='small' ? 'icon-downArrow' : 'icon-upArrow' }}"
-        class="p-button-rounded p-button-secondary p-button-sm toggleButton" (click)="toggleRibbon()" *ngIf="hasToggle"></button>
+
+<button pButton type="button" icon="pi icon-downArrow" *ngIf="ribbonSize == 'small' && hasToggle"
+        class="p-button-rounded p-button-secondary p-button-sm toggleButton" (click)="toggleRibbon()"></button>
+<button pButton type="button" icon="pi icon-upArrow" *ngIf="ribbonSize != 'small' && hasToggle"
+        class="p-button-rounded p-button-secondary p-button-sm toggleButton" (click)="toggleRibbon()"></button>

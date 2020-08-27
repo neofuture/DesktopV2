@@ -1,11 +1,11 @@
 <div class="container"
      [ngClass]="{
-        'ribbonTop': windowItem.area.ratio && windowItem.hasRibbon,
-        'ribbonLeft': !windowItem.area.ratio && windowItem.hasRibbon,
+        'ribbonTop': (!windowItem.ribbonFixedPosition && windowItem.area.ratio && windowItem.hasRibbon) || windowItem.ribbonFixedPosition == 'top',
+        'ribbonLeft': (!windowItem.ribbonFixedPosition && !windowItem.area.ratio && windowItem.hasRibbon) || windowItem.ribbonFixedPosition === 'left',
         'hasFooter': windowItem.hasFooter
      }">
   <div class="ribbon" *ngIf="windowItem.hasRibbon">
-    <app-ribbon [ident]="windowItem.uuid" [size]="'small'" [direction]="!windowItem.area.ratio" [component]="this"></app-ribbon>
+    <app-ribbon [ident]="windowItem.uuid" [size]="'small'" [direction]="!windowItem.ribbonFixedPosition ? !windowItem.area.ratio : windowItem.ribbonFixedPosition == 'left'" [component]="this"></app-ribbon>
   </div>
   <div class="content" [ngClass]="{'noRibbon': !windowItem.hasRibbon}">
 
@@ -18,7 +18,7 @@
     }">
       {{ windowItem.area.width }} x {{ windowItem.area.height }}
     </div>
-    
+
     <label><input [(ngModel)]="memory.form1"></label>
     <label><input [(ngModel)]="memory.form2"></label>
     <label><input [(ngModel)]="memory.form3"></label>

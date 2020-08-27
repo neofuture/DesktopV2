@@ -248,6 +248,9 @@ export class WindowComponent implements OnInit, AfterViewInit, OnDestroy {
       ribbonWidth = ribbon.offsetWidth;
     }
 
+    if (this.windowItem.ribbonFixedPosition) {
+      ratio = this.windowItem.ribbonFixedPosition === 'top';
+    }
     this.windowItem.area = {
       ratio,
       width: ratio ? this.windowItem.componentWidth : this.windowItem.componentWidth - ribbonWidth,

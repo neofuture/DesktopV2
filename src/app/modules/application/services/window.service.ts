@@ -165,6 +165,7 @@ export class WindowService {
       panel: typeof windowConfig.panel === 'undefined' ? null : windowConfig.panel,
       hasRibbon: typeof windowConfig.hasRibbon === 'undefined' ? false : windowConfig.hasRibbon,
       ribbonHasPriority: typeof windowConfig.ribbonHasPriority === 'undefined' ? false : windowConfig.ribbonHasPriority,
+      ribbonFixedPosition: typeof windowConfig.ribbonFixedPosition === 'undefined' ? false : windowConfig.ribbonFixedPosition,
       hasFooter: typeof windowConfig.hasFooter === 'undefined' ? false : windowConfig.hasFooter
     };
 
