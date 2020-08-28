@@ -32,7 +32,7 @@
       <i class="icon-menu actionIcon"></i>
       <div class="titleBarText"
            (mousedown)="moveStart($event)"
-           (touchstart)="moveStart($event)" [innerHTML]="panelItem.title"></div>
+           (touchstart)="moveStart($event)" [innerHTML]="locale[panelItem.title] || panelItem.title"></div>
       <i class="icon-close actionIcon" (click)="closePanel($event)"
          [tooltip]="locale.close" position="bottom"
          *ngIf="panelItem.closable"

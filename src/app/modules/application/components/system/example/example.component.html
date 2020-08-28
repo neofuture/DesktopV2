@@ -1,25 +1,32 @@
 <div class="container"
      [ngClass]="{
-        'ribbonTop': (!windowItem.ribbonFixedPosition && windowItem.area.ratio && windowItem.hasRibbon) || windowItem.ribbonFixedPosition == 'top',
-        'ribbonLeft': (!windowItem.ribbonFixedPosition && !windowItem.area.ratio && windowItem.hasRibbon) || windowItem.ribbonFixedPosition === 'left',
+        'ribbonTop': (!windowItem.ribbonFixedPosition && componentArea.ratio && windowItem.hasRibbon) || windowItem.ribbonFixedPosition == 'top',
+        'ribbonLeft': (!windowItem.ribbonFixedPosition && !componentArea.ratio && windowItem.hasRibbon) || windowItem.ribbonFixedPosition === 'left',
         'ribbonDouble': windowItem.ribbonDouble,
         'hasFooter': windowItem.hasFooter
      }">
   <div class="ribbon" *ngIf="windowItem.hasRibbon">
-    <app-ribbon [ident]="windowItem.uuid" [size]="'small'" [direction]="!windowItem.ribbonFixedPosition ? !windowItem.area.ratio : windowItem.ribbonFixedPosition == 'left'" [component]="this" [double]="windowItem.ribbonDouble"></app-ribbon>
+    <app-ribbon [ident]="windowItem.uuid" [size]="'small'"
+                [direction]="!windowItem.ribbonFixedPosition ? !windowItem.area.ratio : windowItem.ribbonFixedPosition == 'left'"
+                [component]="this" [double]="windowItem.ribbonDouble"></app-ribbon>
   </div>
   <div class="content" [ngClass]="{'noRibbon': !windowItem.hasRibbon}">
 
     <div style="position:absolute;background-color: rgba(255,0,0,0.2);border:1px solid black"
          [ngStyle]="{
-    width: windowItem.area.width + 'px',
-    height: windowItem.area.height + 'px',
+    width: componentArea.width + 'px',
+    height: componentArea.height + 'px',
     top: 0,
     left: 0
     }">
-      {{ windowItem.area.width }} x {{ windowItem.area.height }}
+      {{ componentArea.width }} x {{ componentArea.height }}
     </div>
-
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
     <label><input [(ngModel)]="memory.form1"></label>
     <label><input [(ngModel)]="memory.form2"></label>
     <label><input [(ngModel)]="memory.form3"></label>

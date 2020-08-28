@@ -16,6 +16,9 @@ export class WindowService {
   private desktopDimensions;
   private runState: { mode: number; multiSelect: boolean };
   mode;
+  private oldWidth;
+  private oldHeight;
+  private debounce;
 
   constructor(
     private desktopService: DesktopService,
@@ -390,5 +393,20 @@ export class WindowService {
     for (const uuid in windows) {
       this.windowList[uuid] = windows[uuid];
     }
+  }
+
+  checkResize(callBack, componentArea): any {
+
+    if (componentArea.width !== this.oldWidth || componentArea.height !== this.oldHeight) {
+      this.oldWidth = componentArea.width;
+      this.oldHeight = componentArea.height;
+
+      clearTimeout(this.debounce);
+      this.debounce = setTimeout(() => {
+        callBack();
+      }, 60);
+
+    }
+    return componentArea;
   }
 }

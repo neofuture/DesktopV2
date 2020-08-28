@@ -13,7 +13,7 @@ import {
 import {WindowService} from '../../../../services/window.service';
 import {LanguageService} from '../../../../services/language.service';
 import {DesktopService} from '../../../../services/desktop.service';
-import {Subscription} from 'rxjs';
+import {BehaviorSubject, Subscription} from 'rxjs';
 import {PanelService} from '../../../../services/panel.service';
 
 @Component({
@@ -66,7 +66,13 @@ export class WindowComponent implements OnInit, AfterViewInit, OnDestroy {
     this.view = element.nativeElement;
   }
 
+  private areaSource = new BehaviorSubject({});
+
   ngOnInit(): void {
+
+    this.windowItem.area = this.areaSource.asObservable();
+
+
     this.windowList = this.windowService.windowList;
     this.panelList = this.panelService.panelList;
     this.langSub$ = this.languageService.language.subscribe(locale => {
@@ -251,11 +257,11 @@ export class WindowComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.windowItem.ribbonFixedPosition) {
       ratio = this.windowItem.ribbonFixedPosition === 'top';
     }
-    this.windowItem.area = {
+    this.areaSource.next({
       ratio,
       width: ratio ? this.windowItem.componentWidth : this.windowItem.componentWidth - ribbonWidth,
       height: ratio ? this.windowItem.componentHeight - ribbonHeight - footerHeight : this.windowItem.componentHeight - footerHeight,
-    };
+    });
   }
 
   setComponentSize(): void {

@@ -36,9 +36,12 @@ export class ExampleComponent implements OnInit, OnDestroy {
   memory: any;
 
   private langSub$: Subscription;
+  private windowAreaSub$: Subscription;
   testFunctionValue = {};
   private runState: any;
   private settings: boolean;
+  componentArea: any;
+
 
   constructor(
     private languageService: LanguageService,
@@ -71,10 +74,21 @@ export class ExampleComponent implements OnInit, OnDestroy {
       this.runState = data;
       this.setRibbonBar();
     });
+
+    this.windowAreaSub$ = this.windowItem.area.subscribe(
+      data => {
+        this.componentArea = this.windowService.checkResize(this.resizeEvent, data);
+      });
+
   }
 
   ngOnDestroy(): void {
     this.langSub$.unsubscribe();
+    this.windowAreaSub$.unsubscribe();
+  }
+
+  resizeEvent(): void {
+    console.log('finished resizing');
   }
 
   setRibbonBar(): void {

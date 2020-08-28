@@ -32,7 +32,8 @@
      (click)="setActive($event)"
      (touchstart)="resizeTouchStart($event)"
      (transitionend)="countIcons()"
-     [id]="windowItem.uuid">
+     [id]="windowItem.uuid"
+>
   <div class="container"
        [ngClass]="{
       'type1': !windowItem.hasTitleBar && !windowItem.hasStatusBar,
