@@ -40,14 +40,14 @@ export class RibbonService {
   }
 
   mode1(): void {
-    this.newButton('63b63e8f-2005-4324-957b-7bb37e3da5d2', {
+    this.newButton('63b63e8f-2005-4324-957b-7bb37e3da5d2', 0, {
       label: 'settings',
       icon: 'icon-cog',
       iconOver: 'icon-cog_over',
       click: 'settings',
       active: true
     });
-    this.newButton('63b63e8f-2005-4324-957b-7bb37e3da5d2', {
+    this.newButton('63b63e8f-2005-4324-957b-7bb37e3da5d2', 0, {
       label: 'contacts',
       icon: 'icon-contacts',
       iconOver: 'icon-contacts_over',
@@ -56,40 +56,40 @@ export class RibbonService {
     });
 
 
-    this.newButton('63b63e8f-2005-4324-957b-7bb37e3da5d2', {
+    this.newButton('63b63e8f-2005-4324-957b-7bb37e3da5d2', 0, {
       label: 'sep'
     });
-    this.newButton('63b63e8f-2005-4324-957b-7bb37e3da5d2', {
+    this.newButton('63b63e8f-2005-4324-957b-7bb37e3da5d2', 0, {
       label: 'someLongerText',
       icon: 'icon-cog',
       iconOver: 'icon-cog_over',
       click: 'settings'
     });
-    this.newButton('63b63e8f-2005-4324-957b-7bb37e3da5d2', {
+    this.newButton('63b63e8f-2005-4324-957b-7bb37e3da5d2', 0, {
       label: 'someLongerText',
       icon: 'icon-cog',
       iconOver: 'icon-cog_over',
       click: 'settings',
       itemCount: 3
     });
-    this.newButton('63b63e8f-2005-4324-957b-7bb37e3da5d2', {
+    this.newButton('63b63e8f-2005-4324-957b-7bb37e3da5d2', 0, {
       label: 'catalogues',
       icon: 'icon-catalogues',
       iconOver: 'icon-catalogues_over',
       click: 'catalogues',
       itemCount: 428
     });
-    this.newButton('63b63e8f-2005-4324-957b-7bb37e3da5d2', {
+    this.newButton('63b63e8f-2005-4324-957b-7bb37e3da5d2', 0, {
       label: 'sep'
     });
-    this.newButton('63b63e8f-2005-4324-957b-7bb37e3da5d2', {
+    this.newButton('63b63e8f-2005-4324-957b-7bb37e3da5d2', 0, {
       label: 'catalogues',
       icon: 'icon-catalogues',
       iconOver: 'icon-catalogues_over',
       click: 'catalogues'
     });
     // multi select button
-    this.newButton('63b63e8f-2005-4324-957b-7bb37e3da5d2', {
+    this.newButton('63b63e8f-2005-4324-957b-7bb37e3da5d2', 0, {
       label: 'multiSelect',
       icon: 'icon-selectAll',
       iconOver: 'icon-selectAll',
@@ -98,10 +98,10 @@ export class RibbonService {
     });
 
     if (this.runState.ribbonSubMode === 'edit') {
-      this.newButton('63b63e8f-2005-4324-957b-7bb37e3da5d2', {
+      this.newButton('63b63e8f-2005-4324-957b-7bb37e3da5d2', 0, {
         label: 'sep'
       });
-      this.newButton('63b63e8f-2005-4324-957b-7bb37e3da5d2', {
+      this.newButton('63b63e8f-2005-4324-957b-7bb37e3da5d2', 0, {
         label: 'ghost',
         icon: 'icon-ghost',
         iconOver: 'icon-ghost_over',
@@ -113,17 +113,17 @@ export class RibbonService {
   }
 
   mode2(): void {
-    this.newButton('63b63e8f-2005-4324-957b-7bb37e3da5d2', {
+    this.newButton('63b63e8f-2005-4324-957b-7bb37e3da5d2', 0, {
       label: 'contacts',
       icon: 'icon-contacts',
       iconOver: 'icon-contacts_over',
       click: 'settings',
       itemCount: 3
     });
-    this.newButton('63b63e8f-2005-4324-957b-7bb37e3da5d2', {
+    this.newButton('63b63e8f-2005-4324-957b-7bb37e3da5d2', 0, {
       label: 'sep'
     });
-    this.newButton('63b63e8f-2005-4324-957b-7bb37e3da5d2', {
+    this.newButton('63b63e8f-2005-4324-957b-7bb37e3da5d2', 0, {
       label: 'someLongerText',
       icon: 'icon-cog',
       iconOver: 'icon-cog_over',
@@ -139,13 +139,16 @@ export class RibbonService {
     }
   }
 
-  newButton(ribbon, config): void {
+  newButton(ribbon, row, config): void {
     const uuid = this.helperService.uuidV4();
     config.uuid = uuid;
     if (typeof this.ribbonItems[ribbon] === 'undefined') {
-      this.ribbonItems[ribbon] = {};
+      this.ribbonItems[ribbon] = [];
     }
-    this.ribbonItems[ribbon][uuid] = config;
+    if (typeof this.ribbonItems[ribbon][row] === 'undefined') {
+      this.ribbonItems[ribbon][row] = {};
+    }
+    this.ribbonItems[ribbon][row][uuid] = config;
   }
 
   setRibbonToggle(): void {

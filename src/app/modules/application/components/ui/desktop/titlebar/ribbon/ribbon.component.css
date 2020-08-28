@@ -1,4 +1,30 @@
+.large {
+  --ribbon-height: 100px;
+  --ribbon-width: 90px;
+}
+
+.small {
+  --ribbon-height: 50px;
+  --ribbon-width: 50px;
+}
+
 .toggleButton {
   float: right;
   margin: 6px !important;
+}
+
+.row {
+  display: block !important;
+  width: 100% !important;
+  height: var(--ribbon-height);
+}
+
+.column {
+  display:inline-block;
+  position:absolute;
+  top:0;
+  width: var(--ribbon-width);
+}
+.column:nth-child(2) {
+  left: var(--ribbon-width);
 }

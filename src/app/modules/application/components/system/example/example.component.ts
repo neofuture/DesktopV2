@@ -80,7 +80,7 @@ export class ExampleComponent implements OnInit, OnDestroy {
   setRibbonBar(): void {
     this.ribbonService.clearRibbon(this.windowItem.uuid);
     if (this.runState.mode === 1) {
-      this.ribbonService.newButton(this.windowItem.uuid, {
+      this.ribbonService.newButton(this.windowItem.uuid, 0, {
         label: 'settings',
         icon: 'icon-cog',
         iconOver: 'icon-cog_over',
@@ -92,7 +92,7 @@ export class ExampleComponent implements OnInit, OnDestroy {
         active: this.runState.ribbonSubMode === 'edit'
       });
 
-      this.ribbonService.newButton(this.windowItem.uuid, {
+      this.ribbonService.newButton(this.windowItem.uuid, 0, {
         label: 'contacts',
         icon: 'icon-contacts',
         iconOver: 'icon-contacts_over',
@@ -100,29 +100,48 @@ export class ExampleComponent implements OnInit, OnDestroy {
         itemCount: 3,
         active: this.settings
       });
+
+      this.ribbonService.newButton(this.windowItem.uuid, 1, {
+        label: 'settings',
+        icon: 'icon-ghost',
+        iconOver: 'icon-ghost_over',
+        click: 'component.testFunction1',
+        args: {
+          test: 'Testing',
+          demo: 'Demoing'
+        },
+        active: this.runState.ribbonSubMode === 'edit'
+      });
     }
 
     if (this.runState.mode === 2) {
-      this.ribbonService.newButton(this.windowItem.uuid, {
+      this.ribbonService.newButton(this.windowItem.uuid, 0, {
         label: 'contacts',
         icon: 'icon-contacts',
         iconOver: 'icon-contacts_over',
         click: 'settings',
         itemCount: 3
       });
-
     }
 
-    this.ribbonService.newButton(this.windowItem.uuid, {
+    this.ribbonService.newButton(this.windowItem.uuid, 0, {
       label: 'sep'
     });
 
-    this.ribbonService.newButton(this.windowItem.uuid, {
+    this.ribbonService.newButton(this.windowItem.uuid, 0, {
       label: 'multiSelect',
       icon: 'icon-selectAll',
       iconOver: 'icon-selectAll',
       click: 'toggleMultiSelect',
       active: this.runState.multiSelect
+    });
+
+    this.ribbonService.newButton(this.windowItem.uuid, 1, {
+      label: 'multiSelect',
+      icon: 'icon-ghost',
+      iconOver: 'icon-ghost_over',
+      click: 'toggleMultiSelect',
+      float: 'right'
     });
 
   }

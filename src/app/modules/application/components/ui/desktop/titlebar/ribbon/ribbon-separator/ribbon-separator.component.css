@@ -9,8 +9,8 @@
 }
 
 .small {
-  --ribbon-height: 46px;
-  --ribbon-width: 44px;
+  --ribbon-height: 50px;
+  --ribbon-width: 50px;
   --ribbon-text-height: -2px;
   --ribbon-text-offset: 8px;
   --ribbon-icon-offset: 8px;
@@ -19,7 +19,7 @@
 }
 
 
-.ribbonButtonSeparator{
+.ribbonButtonSeparator {
   display: inline-block;
 }
 
@@ -55,8 +55,8 @@
 }
 
 .ribbonButtonSeparatorLine {
-  display:block;
-  width:100%;
-  height:100%;
-  background-color:var(--dark-grey);
+  display: block;
+  width: 95%;
+  height: 95%;
+  background-color: var(--dark-grey);
 }

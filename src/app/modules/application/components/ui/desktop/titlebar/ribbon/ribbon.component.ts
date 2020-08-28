@@ -15,6 +15,7 @@ export class RibbonComponent implements OnInit {
   @Input() size;
   @Input() hasToggle;
   @Input() direction;
+  @Input() double;
   @Input() component;
 
   objectValues = Object.values;

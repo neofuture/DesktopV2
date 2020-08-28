@@ -254,9 +254,8 @@ export class WindowComponent implements OnInit, AfterViewInit, OnDestroy {
     this.windowItem.area = {
       ratio,
       width: ratio ? this.windowItem.componentWidth : this.windowItem.componentWidth - ribbonWidth,
-      height: ratio ? this.windowItem.componentHeight - ribbonHeight : this.windowItem.componentHeight - footerHeight,
+      height: ratio ? this.windowItem.componentHeight - ribbonHeight - footerHeight : this.windowItem.componentHeight - footerHeight,
     };
-
   }
 
   setComponentSize(): void {

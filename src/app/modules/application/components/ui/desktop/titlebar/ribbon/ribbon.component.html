@@ -1,11 +1,24 @@
-<div *ngIf="ribbonButtonList[ident]">
-  <ng-container *ngFor="let ribbonItem of objectValues(ribbonButtonList[ident])">
-    <app-ribbon-button [button]="ribbonItem" *ngIf="ribbonItem.label != 'sep'"
-                       [ribbonSize]="ribbonSize"
-                       [component]="component"></app-ribbon-button>
-    <app-ribbon-separator *ngIf="ribbonItem.label == 'sep'" [ribbonSize]="ribbonSize"
-                          [direction]="direction"></app-ribbon-separator>
-  </ng-container>
+<div *ngIf="ribbonButtonList[ident]" class="{{ ribbonSize }}">
+  <div *ngIf="ribbonButtonList[ident][0]" [ngClass]="{'row': !direction, 'column': direction}">
+    <ng-container *ngFor="let ribbonItem of objectValues(ribbonButtonList[ident][0])">
+      <app-ribbon-button [button]="ribbonItem" *ngIf="ribbonItem.label != 'sep'"
+                         [ribbonSize]="ribbonSize"
+                         [component]="component"
+                         [direction]="direction"></app-ribbon-button>
+      <app-ribbon-separator *ngIf="ribbonItem.label == 'sep'" [ribbonSize]="ribbonSize"
+                            [direction]="direction"></app-ribbon-separator>
+    </ng-container>
+  </div>
+  <div *ngIf="ribbonButtonList[ident][1] && double" [ngClass]="{'row': !direction, 'column': direction}">
+    <ng-container *ngFor="let ribbonItem of objectValues(ribbonButtonList[ident][1])">
+      <app-ribbon-button [button]="ribbonItem" *ngIf="ribbonItem.label != 'sep'"
+                         [ribbonSize]="ribbonSize"
+                         [component]="component"
+                         [direction]="direction"></app-ribbon-button>
+      <app-ribbon-separator *ngIf="ribbonItem.label == 'sep'" [ribbonSize]="ribbonSize"
+                            [direction]="direction"></app-ribbon-separator>
+    </ng-container>
+  </div>
 </div>
 
 <button pButton type="button" icon="pi icon-downArrow" *ngIf="ribbonSize == 'small' && hasToggle"

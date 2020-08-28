@@ -141,6 +141,23 @@ export class DemoComponent implements OnInit {
     this.windowService.newWindow(windowConfig);
   }
 
+  newWindowDoubleRibbon(alwaysOnTop, alwaysOnBottom, delay = 0): void {
+    const windowConfig = {
+      icon: 'icon-cog',
+      alwaysOnBottom,
+      alwaysOnTop,
+      width: 600,
+      height: 400,
+      component: 'system/example',
+      hasStatusBar: true,
+      hasRibbon: true,
+      hasFooter: true,
+      title: 'newWindow',
+      ribbonDouble: true
+    };
+    this.windowService.newWindow(windowConfig);
+  }
+
   newWindowRibbonTop(alwaysOnTop, alwaysOnBottom, delay = 0): void {
     const windowConfig = {
       icon: 'icon-cog',

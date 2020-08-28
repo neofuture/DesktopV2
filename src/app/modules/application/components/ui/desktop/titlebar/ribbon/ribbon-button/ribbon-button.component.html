@@ -2,7 +2,8 @@
      [ngClass]="{
         'active': button.active,
         'small': ribbonSize == 'small',
-        'large': ribbonSize == 'large'
+        'large': ribbonSize == 'large',
+        'right': button.float == 'right' && !direction
      }"
      (click)="ribbonAction($event)">
   <div class="iconContainer">

@@ -2,17 +2,18 @@
      [ngClass]="{
         'ribbonTop': (!windowItem.ribbonFixedPosition && windowItem.area.ratio && windowItem.hasRibbon) || windowItem.ribbonFixedPosition == 'top',
         'ribbonLeft': (!windowItem.ribbonFixedPosition && !windowItem.area.ratio && windowItem.hasRibbon) || windowItem.ribbonFixedPosition === 'left',
+        'ribbonDouble': windowItem.ribbonDouble,
         'hasFooter': windowItem.hasFooter
      }">
   <div class="ribbon" *ngIf="windowItem.hasRibbon">
-    <app-ribbon [ident]="windowItem.uuid" [size]="'small'" [direction]="!windowItem.ribbonFixedPosition ? !windowItem.area.ratio : windowItem.ribbonFixedPosition == 'left'" [component]="this"></app-ribbon>
+    <app-ribbon [ident]="windowItem.uuid" [size]="'small'" [direction]="!windowItem.ribbonFixedPosition ? !windowItem.area.ratio : windowItem.ribbonFixedPosition == 'left'" [component]="this" [double]="windowItem.ribbonDouble"></app-ribbon>
   </div>
   <div class="content" [ngClass]="{'noRibbon': !windowItem.hasRibbon}">
 
-    <div style="position:absolute;background-color: rgba(255,0,0,0.2);"
+    <div style="position:absolute;background-color: rgba(255,0,0,0.2);border:1px solid black"
          [ngStyle]="{
-    width: windowItem.area.width / 2 + 'px',
-    height: windowItem.area.height /2  + 'px',
+    width: windowItem.area.width + 'px',
+    height: windowItem.area.height + 'px',
     top: 0,
     left: 0
     }">

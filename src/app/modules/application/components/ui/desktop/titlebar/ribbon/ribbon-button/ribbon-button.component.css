@@ -10,7 +10,7 @@
 
 .small {
   --ribbon-height: 50px;
-  --ribbon-width: 44px;
+  --ribbon-width: 50px;
   --ribbon-text-height: -2px;
   --ribbon-text-offset: 8px;
   --ribbon-icon-offset: 8px;
@@ -115,3 +115,6 @@
   color: var(--light-grey) !important;
 }
 
+.right {
+  float:right;
+}

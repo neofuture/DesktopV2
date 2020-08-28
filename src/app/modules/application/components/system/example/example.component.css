@@ -19,6 +19,14 @@
   grid-template-columns: 52px auto;
 }
 
+.container.ribbonTop.ribbonDouble {
+  grid-template-rows: 100px auto;
+}
+
+.container.ribbonLeft.ribbonDouble {
+  grid-template-columns: 106px auto;
+}
+
 .ribbon {
   display: grid;
   background-color: var(--light-grey);
