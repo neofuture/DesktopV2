@@ -1,13 +1,13 @@
 <div class="container"
      [ngClass]="{
-        'ribbonTop': (!windowItem.ribbonFixedPosition && componentArea.ratio && windowItem.hasRibbon) || windowItem.ribbonFixedPosition == 'top',
-        'ribbonLeft': (!windowItem.ribbonFixedPosition && !componentArea.ratio && windowItem.hasRibbon) || windowItem.ribbonFixedPosition === 'left',
+        'ribbonTop': ((!windowItem.ribbonFixedPosition && componentArea.ratio) && windowItem.hasRibbon) || windowItem.ribbonFixedPosition == 'top',
+        'ribbonLeft': ((!windowItem.ribbonFixedPosition && !componentArea.ratio) && windowItem.hasRibbon) || windowItem.ribbonFixedPosition === 'left',
         'ribbonDouble': windowItem.ribbonDouble,
         'hasFooter': windowItem.hasFooter
      }">
   <div class="ribbon" *ngIf="windowItem.hasRibbon">
     <app-ribbon [ident]="windowItem.uuid" [size]="'small'"
-                [direction]="!windowItem.ribbonFixedPosition ? !windowItem.area.ratio : windowItem.ribbonFixedPosition == 'left'"
+                [direction]="!windowItem.ribbonFixedPosition ? !componentArea.ratio : windowItem.ribbonFixedPosition == 'left'"
                 [component]="this" [double]="windowItem.ribbonDouble"></app-ribbon>
   </div>
   <div class="content" [ngClass]="{'noRibbon': !windowItem.hasRibbon}">
@@ -20,6 +20,8 @@
     left: 0
     }">
       {{ componentArea.width }} x {{ componentArea.height }}
+
+      <pre>{{ componentArea.ratio | json }}</pre>
     </div>
     <br>
     <br>
