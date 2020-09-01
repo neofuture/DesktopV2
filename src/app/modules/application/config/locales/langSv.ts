@@ -70,6 +70,7 @@ export const langSv: LanguageModel = {
       left: 'Vänster',
       height: 'Höjd',
       setDockPosition: 'Ställ in dockposition',
+      system: 'Systemet',
     },
     toast: {
       close: 'Stänga',

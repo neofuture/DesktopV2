@@ -3,7 +3,10 @@
         'ribbonTop': ((!windowItem.ribbonFixedPosition && componentArea.ratio) && windowItem.hasRibbon) || windowItem.ribbonFixedPosition == 'top',
         'ribbonLeft': ((!windowItem.ribbonFixedPosition && !componentArea.ratio) && windowItem.hasRibbon) || windowItem.ribbonFixedPosition === 'left',
         'ribbonDouble': windowItem.ribbonDouble,
-        'hasFooter': windowItem.hasFooter
+        'hasFooter': windowItem.hasFooter,
+        'small' : componentArea.width < 500,
+        'medium' : componentArea.width > 500 && componentArea.width < 800,
+        'large' : componentArea.width > 800
      }">
   <div class="ribbon" *ngIf="windowItem.hasRibbon">
     <app-ribbon [ident]="windowItem.uuid" [size]="'small'"
@@ -20,19 +23,25 @@
     left: 0
     }">
       {{ componentArea.width }} x {{ componentArea.height }}
-
-      <pre>{{ componentArea.ratio | json }}</pre>
     </div>
     <br>
     <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <label><input [(ngModel)]="memory.form1"></label>
-    <label><input [(ngModel)]="memory.form2"></label>
-    <label><input [(ngModel)]="memory.form3"></label>
-    <label><input [(ngModel)]="memory.form4"></label>
+    <div class="fieldContainer">
+      <div>Field One</div>
+      <label><input [(ngModel)]="memory.form1"></label>
+    </div>
+    <div class="fieldContainer">
+      <div>Field Two</div>
+      <label><input [(ngModel)]="memory.form2"></label>
+    </div>
+    <div class="fieldContainer">
+      <div>Field Three</div>
+      <label><input [(ngModel)]="memory.form3"></label>
+    </div>
+    <div class="fieldContainer">
+      <div>Field Four</div>
+      <label><input [(ngModel)]="memory.form4"></label>
+    </div>
 
     <pre>{{ testFunctionValue | json }}</pre>
   </div>

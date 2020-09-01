@@ -70,6 +70,7 @@ export const langFr: LanguageModel = {
       left: 'La gauche',
       height: 'la taille',
       setDockPosition: 'Définir la position du quai',
+      system: 'Système',
     },
     toast: {
       close: 'Fermer',

@@ -70,6 +70,7 @@ export const langDa: LanguageModel = {
       left: 'Venstre',
       height: 'Højde',
       setDockPosition: 'Indstil dockposition',
+      system: 'System',
     },
     toast: {
       close: 'Tæt',

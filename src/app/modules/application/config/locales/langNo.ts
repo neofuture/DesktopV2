@@ -70,6 +70,7 @@ export const langNo: LanguageModel = {
       left: 'Venstre',
       height: 'Høyde',
       setDockPosition: 'Still inn dockposisjon',
+      system: 'System',
     },
     toast: {
       close: 'Lukk',

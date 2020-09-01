@@ -71,6 +71,7 @@ export const blank: LanguageModel = {
       left: 'Left',
       height: 'Height',
       setDockPosition: 'Set Dock Position',
+      system: 'System',
     },
     toast: {
       close: 'Close',

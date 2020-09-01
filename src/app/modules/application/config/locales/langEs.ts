@@ -70,6 +70,7 @@ export const langEs: LanguageModel = {
       left: 'Izquierda',
       height: 'Altura',
       setDockPosition: 'Establecer posición de muelle',
+      system: 'Sistema',
     },
     toast: {
       close: 'Cerca',

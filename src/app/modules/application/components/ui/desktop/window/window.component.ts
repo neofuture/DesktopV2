@@ -541,7 +541,7 @@ export class WindowComponent implements OnInit, AfterViewInit, OnDestroy {
         }
       }
 
-      if (this.dragWindowItem.panel) {
+      if (this.dragWindowItem.panel && this.dragWindowItem.dockInPanel) {
         const xPos = event.pageX - 7;
         const yPos = event.pageY - 9;
 
@@ -603,7 +603,7 @@ export class WindowComponent implements OnInit, AfterViewInit, OnDestroy {
       this.dragWindowItem.entities = {};
       this.dragWindowItem = null;
       this.windowService.dragWindow = null;
-      if (this.windowService.dragPanel && !this.windowItem.panel) {
+      if (this.windowService.dragPanel && !this.windowItem.panel && this.windowItem.dockInPanel) {
         this.windowItem.panel = this.windowService.dragPanel;
         this.windowItem.sortBy = Math.round(Date.now() / 1000);
       }

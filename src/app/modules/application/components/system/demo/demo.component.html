@@ -1,62 +1,75 @@
 <div class="container">
-  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="demo1()" [label]="'Demo One'"></button>
-  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="demo2()" [label]="'Demo Two'"></button>
-  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="demo3()" [label]="'Demo Three'"></button>
-  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="demo4()" [label]="'Demo Four'"></button>
-  <hr>
-  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="demo1Hide()" [label]="'Demo One (hide on mode change)'"></button>
-  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="demo1Delete()" [label]="'Demo One (delete on mode change)'"></button>
+  <h1>Demo</h1>
+  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="demo1()" [label]="'Demo One'"></button>
+  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="demo2()" [label]="'Demo Two'"></button>
+  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="demo3()" [label]="'Demo Three'"></button>
+  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="demo4()" [label]="'Demo Four'"></button>
+  <h1>Mode Locked</h1>
+  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="demo1Hide()" [label]="'Demo One (hide on mode change)'"></button>
+  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="demo1Delete()" [label]="'Demo One (delete on mode change)'"></button>
 
-  <hr>
-  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="newWindow(false, false)" [label]="'New Window + Ribbon priority'"></button>
-  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="newWindowDoubleRibbon(false, false)" [label]="'New Window Double Ribbon'"></button>
-  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="newWindowRibbonTop(false, false)" [label]="'New Window - Ribbon Fixed Top'"></button>
-  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="newWindowRibbonLeft(false, false)" [label]="'New Window - Ribbon Fixed Left'"></button>
-  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="newWindowNoControls(false, false)" [label]="'New Window' + ' - No Controls'"></button>
-  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="newWindowNoBar(false, false)" [label]="'New Window' + ' - No Title Bar'"></button>
-  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="newWindowNoBarRibbon()" [label]="'New Window' + ' - No Title Bar + Ribbon + Content Priority'"></button>
-  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="newWindow(true, false)" [label]="'New Window' + ' - Always on top'"></button>
-  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="newWindow(false, true)" [label]="'New Window' + ' - Always on bottom'"></button>
-  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="newWindow3d()" [label]="'New Window' + ' - 3D'"></button>
-  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="noTab()" [label]="'New Window' + ' - No Tab'"></button>
-  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="noFeatures()" [label]="'New Window' + ' - No Features'"></button>
-  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="autoClose(9000)" [label]="'New Window' + ' - Auto Close'"></button>
-  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="newWindowDockLeft()" [label]="'New Window' + ' - Dock Left (40%, 100%)'"></button>
-  <hr>
-  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="newToast('success')" [label]="'New Toast Success'"></button>
-  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="newToast('info')" [label]="'New Toast Info'"></button>
-  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="newToast('warn')" [label]="'New Toast Warn'"></button>
-  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="newToast('error')" [label]="'New Toast Error'"></button>
-  <hr>
-  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="newToastSticky('success')" [label]="'New Toast Success Sticky'"></button>
-  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="newToastSticky('info')" [label]="'New Toast Info Sticky'"></button>
-  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="newToastSticky('warn')" [label]="'New Toast Warn Sticky'"></button>
-  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="newToastSticky('error')" [label]="'New Toast Error Sticky'"></button>
-  <hr>
-  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="newDialog()" [label]="'New Dialog'"></button>
-  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="newDialogForm()" [label]="'New Dialog (Form)'"></button>
-  <hr>
-  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="splash()" [label]="'New Splash'"></button>
-  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="about()" [label]="'About'"></button>
-  <hr>
-  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="newPanelLeft()" [label]="'New Panel Left'"></button>
-  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="newPanelRight()" [label]="'New Panel (right dock 75%, 100%)'"></button>
+  <h1>Ribbons</h1>
+  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="newWindow(false, false)" [label]="'New Window + Ribbon priority'"></button>
+  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="newWindowDoubleRibbon(false, false)" [label]="'New Window Double Ribbon'"></button>
+  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="newWindowRibbonTop(false, false)" [label]="'New Window - Ribbon Fixed Top'"></button>
+  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="newWindowRibbonLeft(false, false)" [label]="'New Window - Ribbon Fixed Left'"></button>
+  <h1>Window Customisations</h1>
+  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="newWindowNoControls(false, false)" [label]="'New Window' + ' - No Controls'"></button>
+  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="newWindowNoBar(false, false)" [label]="'New Window' + ' - No Title Bar + No Panel'"></button>
+  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="newWindowNoBarRibbon()" [label]="'New Window' + ' - No Title Bar + ribbon + content priority'"></button>
+  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="newWindow3d()" [label]="'New Window' + ' - Different Component'"></button>
+  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="noTab()" [label]="'New Window' + ' - No Tab'"></button>
+  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="noFeatures()" [label]="'New Window' + ' - No Features'"></button>
+  <h1>Auto Close</h1>
+  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="autoClose(9000)" [label]="'New Window' + ' - Auto Close'"></button>
+  <h1>Docking</h1>
+  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="newWindowDockLeft()" [label]="'New Window' + ' - Dock Left (40%, 100%)'"></button>
 
-  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="newPanel()" [label]="'New Panel (with ribbon)'"></button>
-  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="newPanelNoClose()" [label]="'New Panel (with ribbon - No Close)'"></button>
+  <h1>On top/bottom</h1>
+  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="newWindow(true, false)" [label]="'New Window' + ' - Always on top'"></button>
+  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="newWindow(false, true)" [label]="'New Window' + ' - Always on bottom'"></button>
+
+  <h1>Toast Notification</h1>
+  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="newToast('success')" [label]="'New Toast Success'"></button>
+  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="newToast('info')" [label]="'New Toast Info'"></button>
+  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="newToast('warn')" [label]="'New Toast Warn'"></button>
+  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="newToast('error')" [label]="'New Toast Error'"></button>
   <hr>
+  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="newToastSticky('success')" [label]="'New Toast Success Sticky'"></button>
+  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="newToastSticky('info')" [label]="'New Toast Info Sticky'"></button>
+  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="newToastSticky('warn')" [label]="'New Toast Warn Sticky'"></button>
+  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="newToastSticky('error')" [label]="'New Toast Error Sticky'"></button>
+  <h1>Dialogs</h1>
+  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="newDialog()" [label]="'New Dialog'"></button>
+  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="newDialogForm()" [label]="'New Dialog (Form)'"></button>
+  <h1>Custom Windows</h1>
+  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="splash()" [label]="'New Splash'"></button>
+  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="about()" [label]="'About'"></button>
+  <h1>Panels</h1>
+  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="newPanelLeft()" [label]="'New Panel Left'"></button>
+  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="newPanelRight()" [label]="'New Panel (right dock 75%, 100%)'"></button>
+
+  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="newPanel()" [label]="'New Panel (with ribbon)'"></button>
+  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="newPanelUuid()" [label]="'New Panel (with ribbon) + uuid 10acbeb6-0bff-41bd-8b49-57e4718c0f95'"></button>
+  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="newPanelNoClose()" [label]="'New Panel (with ribbon - No Close)'"></button>
+  <hr>
+  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="demo1InPanel()" [label]="'Demo One in Panel'"></button>
+  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="demo2InPanel()" [label]="'Demo Two in Panel'"></button>
+  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="demo3InPanel()" [label]="'Demo Three in panel'"></button>
+  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="demo4InPanel()" [label]="'Demo Four in Panel'"></button>
+
   <h1>Run State</h1>
-  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="setItem({thing: {demo: 'demo', test: 'testing'}})" [label]="'Set Item'"></button>
-  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="setItem({thing: {sortBy: 4,thingy: 'item 4', ddd: {sortBy: 3,thingy: 'item 3'}}})" [label]="'Set Item (different)'"></button>
-  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="setItem({thing2: {demo: 'demo', test: 'testing'}})" [label]="'Set second Item'"></button>
-  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="deleteItem('thing')" [label]="'Delete Item'"></button>
-  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="deleteItem('thing2')" [label]="'Delete Second Item'"></button>
-
+  <button (click)="setItem({thing: {demo: 'demo', test: 'testing'}})">Set Item</button>
+  <button (click)="setItem({thing: {sortBy: 4,thingy: 'item 4', ddd: {sortBy: 3,thingy: 'item 3'}}})">Set Item (different)</button>
+  <button (click)="setItem({thing2: {demo: 'demo', test: 'testing'}})">Set second Item</button>
+  <button (click)="deleteItem('thing')">Delete Item</button>
+  <button (click)="deleteItem('thing2')">Delete Second Item</button>
+  <pre>{{ runState | json}}</pre>
   <h1>App State</h1>
-  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="setItemApp({thing: {demo: 'demo', test: 'testing'}})" [label]="'Set Item'"></button>
-  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="setItemApp({thing: {sortBy: 4,thingy: 'item 4', ddd: {sortBy: 3,thingy: 'item 3'}}})" [label]="'Set Item (different)'"></button>
-  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="setItemApp({thing2: {demo: 'demo', test: 'testing'}})" [label]="'Set second Item'"></button>
-  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="deleteItemApp('thing')" [label]="'Delete Item'"></button>
-  <button pButton type="button" class="p-button-secondary p-button-sm" (click)="deleteItemApp('thing2')" [label]="'Delete Second Item'"></button>
-
+  <button (click)="setItemApp({thing: {demo: 'demo', test: 'testing'}})">Set Item</button>
+  <button (click)="setItemApp({thing: {sortBy: 4,thingy: 'item 4', ddd: {sortBy: 3,thingy: 'item 3'}}})">Set Item (different)</button>
+  <button (click)="setItemApp({thing2: {demo: 'demo', test: 'testing'}})">Set second Item</button>
+  <button (click)="deleteItemApp('thing')">Delete Item</button>
+  <button (click)="deleteItemApp('thing2')">Delete Second Item</button>
+  <pre>{{ appState | json}}</pre>
 </div>

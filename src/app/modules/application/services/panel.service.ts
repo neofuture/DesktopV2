@@ -28,7 +28,15 @@ export class PanelService {
     let top = typeof panelConfig.top === 'undefined' ? this.randomIntFromInterval(10, 100) : panelConfig.top;
     let left = typeof panelConfig.left === 'undefined' ? this.randomIntFromInterval(10, 100) : panelConfig.left;
 
-    const uuid = this.helperService.uuidV4();
+    let uuid = this.helperService.uuidV4();
+
+    if (typeof panelConfig.uuid !== 'undefined') {
+      if (this.panelList[panelConfig.uuid]) {
+        console.log('panel with uuid ' + uuid + 'already exists');
+        return;
+      }
+      uuid = panelConfig.uuid;
+    }
 
     let h = this.desktopDimensions.height;
     let w = this.desktopDimensions.width;
@@ -47,6 +55,8 @@ export class PanelService {
         left = 0;
       }
     }
+
+
 
     this.panelList[uuid] = {
       uuid,

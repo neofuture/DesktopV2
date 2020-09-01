@@ -70,6 +70,7 @@ export const langRu: LanguageModel = {
       left: 'Осталось',
       height: 'Рост',
       setDockPosition: 'Установить положение дока',
+      system: 'Система',
     },
     toast: {
       close: 'близко',

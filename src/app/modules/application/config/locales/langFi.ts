@@ -70,6 +70,7 @@ export const langFi: LanguageModel = {
       left: 'Vasen',
       height: 'Korkeus',
       setDockPosition: 'Aseta telakan sijainti',
+      system: 'Järjestelmä',
     },
     toast: {
       close: 'kiinni',

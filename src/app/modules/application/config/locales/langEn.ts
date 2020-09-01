@@ -69,7 +69,8 @@ export const langEn: LanguageModel = {
       width: 'Width',
       left: 'Left',
       height: 'Height',
-      setDockPosition: 'Set Dock Position'
+      setDockPosition: 'Set Dock Position',
+      system: 'System'
     },
     toast: {
       close: 'Close',

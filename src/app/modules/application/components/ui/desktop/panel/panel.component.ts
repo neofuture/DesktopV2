@@ -552,7 +552,12 @@ export class PanelComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   mouseOver(event: MouseEvent): void {
-    this.hovered = true;
+    if (this.windowService.dragWindow) {
+      if (this.windowService.dragWindow.dockInPanel) {
+        this.hovered = true;
+      }
+    }
+
     this.windowService.dragPanel = this.panelItem.uuid;
   }
 

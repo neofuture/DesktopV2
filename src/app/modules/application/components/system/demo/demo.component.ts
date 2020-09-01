@@ -23,6 +23,8 @@ export class DemoComponent implements OnInit {
   private langSub$: Subscription;
   private company: string;
   private product: string;
+  runState: any;
+  appState: any;
 
   constructor(
     private windowService: WindowService,
@@ -37,6 +39,15 @@ export class DemoComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.systemService.runState.subscribe(data => {
+      this.runState = data;
+    });
+
+    this.systemService.appState.subscribe(data => {
+      this.appState = data;
+    });
+
     this.windowService.setLoaded(this.windowItem.uuid);
     this.langSub$ = this.languageService.language.subscribe(locale => {
       // this.locale = locale.desktop;
@@ -217,7 +228,8 @@ export class DemoComponent implements OnInit {
       component: 'system/engine',
       hasStatusBar: false,
       hasTitleBar: false,
-      title: 'newWindow'
+      title: 'newWindow',
+      dockInPanel: false
     };
     this.windowService.newWindow(windowConfig);
   }
@@ -339,6 +351,57 @@ export class DemoComponent implements OnInit {
       height: 570,
       component: 'system/demo4',
       title: 'demo4'
+    };
+    this.windowService.newWindow(windowConfig);
+  }
+  demo1InPanel(): void {
+    const windowConfig = {
+      icon: 'icon-alarm',
+      iconLarge: 'icon-alarm',
+      width: 400,
+      height: 200,
+      component: 'system/demo1',
+      title: 'demo1',
+      panel: '10acbeb6-0bff-41bd-8b49-57e4718c0f95'
+    };
+    this.windowService.newWindow(windowConfig);
+  }
+
+  demo2InPanel(): void {
+    const windowConfig = {
+      icon: 'icon-catalogues',
+      iconLarge: 'icon-catalogues_over',
+      width: 400,
+      height: 200,
+      component: 'system/demo2',
+      title: 'demo2',
+      panel: '10acbeb6-0bff-41bd-8b49-57e4718c0f95'
+    };
+    this.windowService.newWindow(windowConfig);
+  }
+
+  demo3InPanel(): void {
+    const windowConfig = {
+      icon: 'icon-contacts',
+      iconLarge: 'icon-contacts_over',
+      width: 400,
+      height: 200,
+      component: 'system/demo3',
+      title: 'demo3',
+      panel: '10acbeb6-0bff-41bd-8b49-57e4718c0f95'
+    };
+    this.windowService.newWindow(windowConfig);
+  }
+
+  demo4InPanel(): void {
+    const windowConfig = {
+      icon: 'icon-cog',
+      iconLarge: 'icon-cog_over',
+      width: 960,
+      height: 570,
+      component: 'system/demo4',
+      title: 'demo4',
+      panel: '10acbeb6-0bff-41bd-8b49-57e4718c0f95'
     };
     this.windowService.newWindow(windowConfig);
   }
@@ -504,6 +567,23 @@ export class DemoComponent implements OnInit {
     console.log(str);
   }
 
+  newPanelUuid(): void {
+    const panelConfig = {
+      uuid: '10acbeb6-0bff-41bd-8b49-57e4718c0f95',
+      title: 'system',
+      hasRibbon: true,
+      dock: 'custom',
+      closable: false,
+      dockPosition: {
+        top: 0,
+        left: 75,
+        width: 25,
+        height: 100
+      }
+    };
+    this.panelService.newPanel(panelConfig);
+  }
+
   newPanel(): void {
     const dialogConfig = {
       title: 'newPanel',
@@ -593,8 +673,6 @@ export class DemoComponent implements OnInit {
   }
 
   newPanelAction(service, args): void {
-
-    console.log(args);
 
     const panelConfig = {
       title: args.panelName,

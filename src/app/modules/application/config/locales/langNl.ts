@@ -70,6 +70,7 @@ export const langNl: LanguageModel = {
       left: 'Links',
       height: 'Hoogte',
       setDockPosition: 'Dockpositie instellen',
+      system: 'Systeem',
     },
     toast: {
       close: 'Dichtbij',

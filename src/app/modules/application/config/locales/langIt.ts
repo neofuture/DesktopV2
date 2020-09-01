@@ -70,6 +70,7 @@ export const langIt: LanguageModel = {
       left: 'Sinistra',
       height: 'Altezza',
       setDockPosition: 'Imposta posizione dock',
+      system: 'Sistema',
     },
     toast: {
       close: 'Vicino',

@@ -53,3 +53,27 @@
   background-color: var(--light-grey);
   text-align: right;
 }
+
+
+.fieldContainer {
+  padding:8px;
+}
+
+.fieldContainer input {
+  width:100%;
+}
+
+.small .fieldContainer {
+  width: 100%;
+  display: block;
+}
+
+.medium .fieldContainer {
+  width: 50%;
+  display: inline-block;
+}
+
+.large .fieldContainer {
+  width: 25%;
+  display: inline-block;
+}

@@ -68,6 +68,7 @@ export interface LanguageModel {
       left: string;
       height: string;
       setDockPosition: string;
+      system: string;
     };
     toast: {
       close: string;

@@ -70,6 +70,7 @@ export const langPl: LanguageModel = {
       left: 'Lewo',
       height: 'Wysokość',
       setDockPosition: 'Ustaw pozycję dokowania',
+      system: 'System',
     },
     toast: {
       close: 'Blisko',

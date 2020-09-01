@@ -70,6 +70,7 @@ export const langZh: LanguageModel = {
       left: '剩下',
       height: '高度',
       setDockPosition: '设置码头位置',
+      system: '系统',
     },
     toast: {
       close: '关',
