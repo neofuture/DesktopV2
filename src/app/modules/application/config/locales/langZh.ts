@@ -109,6 +109,7 @@ export const langZh: LanguageModel = {
       autoHide: '自动隐藏',
     },
     newWindow: '新窗户',
+    loading: '载入中...',
   },
   components: {
     languageSelector: {

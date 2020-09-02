@@ -107,6 +107,7 @@ export interface LanguageModel {
       autoHide: string;
     };
     newWindow: string;
+    loading: string;
   };
   components: {
     languageSelector: {

@@ -28,3 +28,6 @@
 <div class="settings" [ngClass]="{'on' : user !== null}">
   <app-settings></app-settings>
 </div>
+<div *ngIf="loading.on" class="loading" [ngClass]="{'on': loading.visible}">
+  <div [innerHTML]="locale.loading"></div>
+</div>

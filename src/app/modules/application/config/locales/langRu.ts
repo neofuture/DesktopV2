@@ -109,6 +109,7 @@ export const langRu: LanguageModel = {
       autoHide: 'Авто-скрытие',
     },
     newWindow: 'Новое окно',
+    loading: 'Загружается ...',
   },
   components: {
     languageSelector: {

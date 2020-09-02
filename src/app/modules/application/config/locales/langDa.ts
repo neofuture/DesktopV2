@@ -109,6 +109,7 @@ export const langDa: LanguageModel = {
       autoHide: 'Auto skjul',
     },
     newWindow: 'Nyt vindue',
+    loading: 'Indlæser...',
   },
   components: {
     languageSelector: {

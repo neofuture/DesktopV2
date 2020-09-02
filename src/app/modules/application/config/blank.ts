@@ -110,6 +110,7 @@ export const blank: LanguageModel = {
       autoHide: 'Auto Hide',
     },
     newWindow: 'New Window',
+    loading: 'Loading...',
   },
   components: {
     languageSelector: {

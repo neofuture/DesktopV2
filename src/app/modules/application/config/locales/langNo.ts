@@ -109,6 +109,7 @@ export const langNo: LanguageModel = {
       autoHide: 'Skjul automatisk',
     },
     newWindow: 'Nytt vindu',
+    loading: 'Laster inn ...',
   },
   components: {
     languageSelector: {

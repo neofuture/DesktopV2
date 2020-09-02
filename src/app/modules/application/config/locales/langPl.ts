@@ -109,6 +109,7 @@ export const langPl: LanguageModel = {
       autoHide: 'Automatyczne chowanie',
     },
     newWindow: 'Nowe okno',
+    loading: 'Ładowanie...',
   },
   components: {
     languageSelector: {

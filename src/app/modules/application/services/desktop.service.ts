@@ -17,8 +17,22 @@ export class DesktopService {
   });
   dimensions = this.dimensionsObject.asObservable();
   desktopElement: any;
-
+  loading = {on: false, visible: false};
   constructor() {
+  }
+
+  showLoading(): void {
+    this.loading.on = true;
+    setTimeout(() => {
+      this.loading.visible = true;
+    }, 60);
+  }
+
+  hideLoading(): void {
+    this.loading.visible = false;
+    setTimeout(() => {
+      this.loading.on = false;
+    }, 310);
   }
 
   setSize(): void {

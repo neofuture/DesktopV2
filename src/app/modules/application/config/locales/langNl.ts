@@ -109,6 +109,7 @@ export const langNl: LanguageModel = {
       autoHide: 'Automatisch verbergen',
     },
     newWindow: 'Nieuw raam',
+    loading: 'Bezig met laden...',
   },
   components: {
     languageSelector: {

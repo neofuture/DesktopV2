@@ -110,7 +110,8 @@ export const langEn: LanguageModel = {
     tabBar : {
       autoHide: 'Auto Hide'
     },
-    newWindow: 'New Window'
+    newWindow: 'New Window',
+    loading: 'Loading...'
   },
   components: {
     languageSelector: {

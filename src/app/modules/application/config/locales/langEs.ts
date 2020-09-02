@@ -109,6 +109,7 @@ export const langEs: LanguageModel = {
       autoHide: 'Auto-escondite',
     },
     newWindow: 'Nueva ventana',
+    loading: 'Cargando...',
   },
   components: {
     languageSelector: {

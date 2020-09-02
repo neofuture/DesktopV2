@@ -109,6 +109,7 @@ export const langFr: LanguageModel = {
       autoHide: 'Masquage automatique',
     },
     newWindow: 'Nouvelle fenetre',
+    loading: 'Chargement...',
   },
   components: {
     languageSelector: {

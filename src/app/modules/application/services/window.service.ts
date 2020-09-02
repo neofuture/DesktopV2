@@ -4,6 +4,7 @@ import {DialogService} from './dialog.service';
 import {HelperService} from './helper.service';
 import {ScrollToConfigOptions, ScrollToService} from '@nicky-lenaers/ngx-scroll-to';
 import {SystemService} from './system.service';
+import {PanelService} from './panel.service';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +26,8 @@ export class WindowService {
     private dialogService: DialogService,
     private helperService: HelperService,
     private scrollToService: ScrollToService,
-    private systemService: SystemService
+    private systemService: SystemService,
+    private panelService: PanelService
   ) {
     this.desktopService.dimensions.subscribe(data => {
       this.desktopDimensions = data;
@@ -98,6 +100,10 @@ export class WindowService {
     if (windowConfig.systemWindow) {
       w = window.innerWidth;
       h = window.innerHeight;
+    }
+
+    if (windowConfig.panel && !this.panelService.panelList[windowConfig.panel]) {
+      delete windowConfig.panel;
     }
 
     if (windowConfig.centered) {

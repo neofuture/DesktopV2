@@ -109,6 +109,7 @@ export const langFi: LanguageModel = {
       autoHide: 'Automaattinen piilotus',
     },
     newWindow: 'Uusi ikkuna',
+    loading: 'Ladataan...',
   },
   components: {
     languageSelector: {

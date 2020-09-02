@@ -8,6 +8,18 @@ let app = {
 
   outboundCall: function(str){
     outboundCall(str);
+  },
+
+  showLoading: function() {
+    window.angular.zone.run(() => {
+      result = window.angular.showLoading();
+    });
+  },
+
+  hideLoading: function() {
+    window.angular.zone.run(() => {
+      result = window.angular.hideLoading();
+    });
   }
 }
 
@@ -17,4 +29,12 @@ function test(str){
 
 function outboundCall(str) {
   console.log('calling home', str);
+}
+
+function showLoading() {
+  app.showLoading();
+}
+
+function hideLoading() {
+  app.hideLoading();
 }

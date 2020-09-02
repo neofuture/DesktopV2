@@ -109,6 +109,7 @@ export const langSv: LanguageModel = {
       autoHide: 'Auto Dölj',
     },
     newWindow: 'Nytt fönster',
+    loading: 'Läser in...',
   },
   components: {
     languageSelector: {

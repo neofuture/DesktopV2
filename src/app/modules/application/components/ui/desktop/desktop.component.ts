@@ -42,6 +42,7 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
   autoHide: boolean;
   runState: any;
   appState: any;
+  loading: any;
 
   @HostListener('window:resize')
   onResize(): void {
@@ -80,6 +81,7 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.loading = this.desktopService.loading;
     this.systemService.runState.subscribe(data => {
       this.runState = data;
     });
