@@ -92,8 +92,7 @@ export class WindowService {
     let top = typeof windowConfig.top === 'undefined' ? this.randomIntFromInterval(10, 300) : windowConfig.top;
     let left = typeof windowConfig.left === 'undefined' ? this.randomIntFromInterval(10, 300) : windowConfig.left;
 
-    const uuid = this.helperService.uuidV4();
-    // const icon = this.icons[this.randomIntFromInterval(0, this.icons.length - 1)];
+    let uuid = this.helperService.uuidV4();
 
     let h = this.desktopDimensions.height;
     let w = this.desktopDimensions.width;
@@ -104,6 +103,14 @@ export class WindowService {
 
     if (windowConfig.panel && !this.panelService.panelList[windowConfig.panel]) {
       delete windowConfig.panel;
+    }
+
+    if (typeof windowConfig.uuid !== 'undefined') {
+      if (this.windowList[windowConfig.uuid]) {
+        console.log('window with uuid ' + windowConfig.uuid + 'already exists');
+        return;
+      }
+      uuid = windowConfig.uuid;
     }
 
     if (windowConfig.centered) {

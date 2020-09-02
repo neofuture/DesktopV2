@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {DesktopService} from './desktop.service';
-import {DialogService} from './dialog.service';
 import {HelperService} from './helper.service';
 
 @Injectable({
@@ -32,7 +31,7 @@ export class PanelService {
 
     if (typeof panelConfig.uuid !== 'undefined') {
       if (this.panelList[panelConfig.uuid]) {
-        console.log('panel with uuid ' + uuid + 'already exists');
+        console.log('panel with uuid ' + panelConfig.uuid + 'already exists');
         return;
       }
       uuid = panelConfig.uuid;

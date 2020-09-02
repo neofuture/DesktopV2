@@ -56,6 +56,26 @@ export class DemoComponent implements OnInit {
     });
   }
 
+
+  plannerWindow(): void {
+    const windowConfig = {
+      icon: 'icon-user',
+      iconLarge: 'icon-user',
+      width: 600,
+      height: 400,
+      component: 'system/example',
+      hasStatusBar: false,
+      hasTitleBar: false,
+      title: 'planner',
+      uuid: 'b86dd2f9-1043-4cbf-944b-425b7e5de7a2'
+    };
+    this.windowService.newWindow(windowConfig);
+  }
+
+
+
+
+  // Demo
   newPanelLeft(): void {
     const panelConfig = {
       title: 'Panel'
