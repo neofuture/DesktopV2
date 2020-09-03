@@ -11,6 +11,9 @@
 .toggleButton {
   float: right;
   margin: 6px !important;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .row {

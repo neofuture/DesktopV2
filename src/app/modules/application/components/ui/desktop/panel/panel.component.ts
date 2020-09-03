@@ -557,7 +557,6 @@ export class PanelComponent implements OnInit, OnDestroy, AfterViewInit {
         this.hovered = true;
       }
     }
-
     this.windowService.dragPanel = this.panelItem.uuid;
   }
 

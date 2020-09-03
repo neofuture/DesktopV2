@@ -67,7 +67,8 @@ export class DemoComponent implements OnInit {
       hasStatusBar: false,
       hasTitleBar: false,
       title: 'planner',
-      uuid: 'b86dd2f9-1043-4cbf-944b-425b7e5de7a2'
+      uuid: 'b86dd2f9-1043-4cbf-944b-425b7e5de7a2',
+      dockInPanel: false
     };
     this.windowService.newWindow(windowConfig);
   }

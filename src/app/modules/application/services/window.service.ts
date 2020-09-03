@@ -184,7 +184,7 @@ export class WindowService {
       ribbonFixedPosition: typeof windowConfig.ribbonFixedPosition === 'undefined' ? false : windowConfig.ribbonFixedPosition,
       ribbonDouble: typeof windowConfig.ribbonDouble === 'undefined' ? false : windowConfig.ribbonDouble,
       hasFooter: typeof windowConfig.hasFooter === 'undefined' ? false : windowConfig.hasFooter,
-      dockInPanel: typeof windowConfig.dockInPanel === 'undefined' ? false : windowConfig.dockInPanel
+      dockInPanel: typeof windowConfig.dockInPanel === 'undefined' ? true : windowConfig.dockInPanel
     };
 
     if (windowConfig.autoClose) {

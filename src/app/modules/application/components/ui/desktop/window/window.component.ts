@@ -169,6 +169,11 @@ export class WindowComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
+  @HostListener('window:resize', ['event'])
+  windowResize(event): void {
+    this.resize();
+  }
+
   camelCase(myString): string {
     return myString.replace(/-([a-z])/g, (g) => {
       return g[1].toUpperCase();
