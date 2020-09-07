@@ -11,6 +11,10 @@ export const langNo: LanguageModel = {
       catalogues: 'kataloger',
       multiSelect: 'Flervalg',
       ghost: 'Spøkelse',
+      planMode1: 'Planmodus 1',
+      planMode2: 'Planmodus 2',
+      planMode3: 'Planmodus 3',
+      planMode4: 'Planmodus 4',
     },
     menu: {
       menu1: 'Meny 1',

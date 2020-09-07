@@ -1,6 +1,7 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {LanguageService} from '../../../../services/language.service';
 import {Subscription} from 'rxjs';
+
 
 @Component({
   selector: 'app-titlebar',
@@ -14,6 +15,7 @@ export class TitlebarComponent implements OnInit, OnDestroy {
   private ribbonSub$: any;
   private langSub$: Subscription;
   ribbonSize: string;
+  @Input() component: any;
 
   constructor(
     private languageService: LanguageService

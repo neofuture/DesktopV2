@@ -11,6 +11,10 @@ export const langRu: LanguageModel = {
       catalogues: 'Каталоги',
       multiSelect: 'Выбор из нескольких вариантов',
       ghost: 'Призрак',
+      planMode1: 'Режим планирования 1',
+      planMode2: 'Режим планирования 2',
+      planMode3: 'Режим планирования 3',
+      planMode4: 'Режим планирования 4',
     },
     menu: {
       menu1: 'Меню 1',

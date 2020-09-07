@@ -11,6 +11,10 @@ export const langZh: LanguageModel = {
       catalogues: '产品目录',
       multiSelect: '多选',
       ghost: '鬼',
+      planMode1: '计划模式1',
+      planMode2: '计划模式2',
+      planMode3: '计划模式3',
+      planMode4: '计划模式4',
     },
     menu: {
       menu1: '菜单1',

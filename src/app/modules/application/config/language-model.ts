@@ -9,6 +9,10 @@ export interface LanguageModel {
       catalogues: string;
       multiSelect: string;
       ghost: string;
+      planMode1: string;
+      planMode2: string;
+      planMode3: string;
+      planMode4: string;
     };
     menu: {
       menu1: string;

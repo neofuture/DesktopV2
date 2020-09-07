@@ -11,6 +11,10 @@ export const langPt: LanguageModel = {
       catalogues: 'Catálogos',
       multiSelect: 'Multi Select',
       ghost: 'Fantasma',
+      planMode1: 'Modo de plano 1',
+      planMode2: 'Modo de plano 2',
+      planMode3: 'Modo de Plano 3',
+      planMode4: 'Modo de Plano 4',
     },
     menu: {
       menu1: 'Menu 1',

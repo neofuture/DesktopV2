@@ -1,4 +1,14 @@
-import {AfterViewInit, Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  HostListener, KeyValueChanges,
+  KeyValueDiffer,
+  KeyValueDiffers,
+  OnDestroy,
+  OnInit,
+  ViewChild
+} from '@angular/core';
 import {DesktopService} from '../../../services/desktop.service';
 import {LanguageService} from '../../../services/language.service';
 import {WindowService} from '../../../services/window.service';
@@ -16,6 +26,7 @@ import {SystemService} from '../../../services/system.service';
   templateUrl: './desktop.component.html',
   styleUrls: ['./desktop.component.css']
 })
+
 export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
@@ -40,9 +51,11 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ribbonSize: string;
   autoHide: boolean;
-  runState: any;
-  appState: any;
+  runState = {};
+  appState = {};
   loading: any;
+
+  private runStateDiffer: KeyValueDiffer<string, any>;
 
   @HostListener('window:resize')
   onResize(): void {
@@ -76,14 +89,22 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
     private dialogService: DialogService,
     private ribbonService: RibbonService,
     private tabBarService: TabbarService,
-    private systemService: SystemService
+    private systemService: SystemService,
+    private differs: KeyValueDiffers
   ) {
   }
 
   ngOnInit(): void {
     this.loading = this.desktopService.loading;
+
+    this.runStateDiffer = this.differs.find(this.runState).create();
+
     this.systemService.runState.subscribe(data => {
       this.runState = data;
+      const changes = this.runStateDiffer.diff(this.runState);
+      if (changes) {
+        this.runStateChanged(changes);
+      }
     });
 
     this.systemService.appState.subscribe(data => {
@@ -125,6 +146,9 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
       this.desktopService.desktopElement = this.desktop;
       this.desktopService.setSize();
     }, 310);
+    setTimeout(() => {
+      this.setPlanMode(1);
+    });
 
   }
 
@@ -132,6 +156,12 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
     this.ribbonSub$.unsubscribe();
     this.desktopSub$.unsubscribe();
     this.langSub$.unsubscribe();
+  }
+
+  runStateChanged(changes: KeyValueChanges<string, any>): void {
+    changes.forEachChangedItem((record) => {
+      console.log(record.key + ' = ' + record.currentValue);
+    });
   }
 
   animation(): void {
@@ -199,4 +229,11 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
     this.windowService.newWindow(windowConfig);
   }
 
+  planMode(ribbonItem): void {
+    this.setPlanMode(ribbonItem.args);
+  }
+
+  setPlanMode(id): void {
+    this.systemService.set({planMode: id});
+  }
 }

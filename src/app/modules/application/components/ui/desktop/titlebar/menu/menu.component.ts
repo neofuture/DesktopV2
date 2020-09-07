@@ -14,16 +14,20 @@ export class MenuComponent implements OnInit {
   menuItems = [
     {
       label: 'menu1',
-      value: 1
+      value: 1,
+      subValue: 1,
     }, {
       label: 'menu2',
-      value: 2
+      value: 2,
+      subValue: 4
     }, {
       label: 'menu3',
-      value: 3
+      value: 3,
+      subValue: null
     }, {
       label: 'menu4',
-      value: 4
+      value: 4,
+      subValue: null
     },
   ];
   private runState: {};
@@ -45,12 +49,18 @@ export class MenuComponent implements OnInit {
     });
 
     setTimeout(() => {
-      this.selectMenu(1);
+      this.selectMenu(1, null);
     });
   }
 
-  selectMenu(id): void {
+  selectMenu(id, subId): void {
+    if (this.selectedMenu === id) {
+      return;
+    }
     this.selectedMenu = id;
     this.systemService.set({mode: id});
+    if (subId) {
+      this.systemService.set({planMode: subId});
+    }
   }
 }

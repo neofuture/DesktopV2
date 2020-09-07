@@ -11,6 +11,10 @@ export const langDe: LanguageModel = {
       catalogues: 'Kataloge',
       multiSelect: 'Mehrfachauswahl',
       ghost: 'Geist',
+      planMode1: 'Planungsmodus 1',
+      planMode2: 'Planungsmodus 2',
+      planMode3: 'Planungsmodus 3',
+      planMode4: 'Planungsmodus 4',
     },
     menu: {
       menu1: 'Menü 1',

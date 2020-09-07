@@ -129,3 +129,8 @@ pre {
   vertical-align: middle;
   text-align: center;
 }
+.version {
+  right:8px;
+  bottom:8px;
+  position:absolute;
+}

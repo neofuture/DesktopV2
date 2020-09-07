@@ -6,7 +6,7 @@
        *ngFor="let item of menuItems"
        [innerHTML]="locale[item.label]"
        [ngClass]="{'active': item.value==selectedMenu}"
-       (click)="selectMenu(item.value)"></div>
+       (click)="selectMenu(item.value, item.subValue)"></div>
   <div class="language">
     <app-language-selector [type]="'full'"></app-language-selector>
   </div>

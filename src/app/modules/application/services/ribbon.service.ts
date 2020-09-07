@@ -41,12 +41,42 @@ export class RibbonService {
 
   mode1(): void {
     this.newButton('63b63e8f-2005-4324-957b-7bb37e3da5d2', 0, {
+      label: 'planMode1',
+      icon: 'icon-contacts',
+      iconOver: 'icon-contacts_over',
+      click: 'component.planMode',
+      args: 1,
+      active: this.runState.planMode === 1
+    });
+    this.newButton('63b63e8f-2005-4324-957b-7bb37e3da5d2', 0, {
+      label: 'planMode2',
+      icon: 'icon-contacts',
+      iconOver: 'icon-contacts_over',
+      click: 'component.planMode',
+      args: 2,
+      active: this.runState.planMode === 2
+    });
+    this.newButton('63b63e8f-2005-4324-957b-7bb37e3da5d2', 0, {
+      label: 'planMode3',
+      icon: 'icon-contacts',
+      iconOver: 'icon-contacts_over',
+      click: 'component.planMode',
+      args: 3,
+      active: this.runState.planMode === 3
+    });
+
+    this.newButton('63b63e8f-2005-4324-957b-7bb37e3da5d2', 0, {
+      label: 'sep'
+    });
+
+    this.newButton('63b63e8f-2005-4324-957b-7bb37e3da5d2', 0, {
       label: 'settings',
       icon: 'icon-cog',
       iconOver: 'icon-cog_over',
       click: 'settings',
       active: true
     });
+
     this.newButton('63b63e8f-2005-4324-957b-7bb37e3da5d2', 0, {
       label: 'contacts',
       icon: 'icon-contacts',
@@ -113,6 +143,17 @@ export class RibbonService {
   }
 
   mode2(): void {
+    this.newButton('63b63e8f-2005-4324-957b-7bb37e3da5d2', 0, {
+      label: 'planMode4',
+      icon: 'icon-contacts',
+      iconOver: 'icon-contacts_over',
+      click: 'component.planMode',
+      args: 4,
+      active: this.runState.planMode === 4
+    });
+    this.newButton('63b63e8f-2005-4324-957b-7bb37e3da5d2', 0, {
+      label: 'sep'
+    });
     this.newButton('63b63e8f-2005-4324-957b-7bb37e3da5d2', 0, {
       label: 'contacts',
       icon: 'icon-contacts',
@@ -181,4 +222,5 @@ export class RibbonService {
     }
     this.systemService.tick();
   }
+
 }

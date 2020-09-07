@@ -11,6 +11,10 @@ export const langDa: LanguageModel = {
       catalogues: 'Kataloger',
       multiSelect: 'Multi Select',
       ghost: 'Spøgelse',
+      planMode1: 'Plantilstand 1',
+      planMode2: 'Plantilstand 2',
+      planMode3: 'Plantilstand 3',
+      planMode4: 'Plantilstand 4',
     },
     menu: {
       menu1: 'Menu 1',

@@ -11,6 +11,10 @@ export const langFi: LanguageModel = {
       catalogues: 'luettelot',
       multiSelect: 'Monivalinta',
       ghost: 'Aave',
+      planMode1: 'Suunnittelutila 1',
+      planMode2: 'Suunnittelutila 2',
+      planMode3: 'Suunnittelutila 3',
+      planMode4: 'Suunnittelutila 4',
     },
     menu: {
       menu1: 'Valikko 1',

@@ -11,6 +11,10 @@ export const langSv: LanguageModel = {
       catalogues: 'kataloger',
       multiSelect: 'Flera val',
       ghost: 'Spöke',
+      planMode1: 'Planläge 1',
+      planMode2: 'Planläge 2',
+      planMode3: 'Planläge 3',
+      planMode4: 'Planläge 4',
     },
     menu: {
       menu1: 'Meny 1',
