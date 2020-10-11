@@ -27,7 +27,9 @@ import {ExternalComponent} from './components/core/external/external.component';
 import {PanelComponent} from './components/ui/desktop/panel/panel.component';
 import {SettingsComponent} from './components/core/settings/settings.component';
 import {ScrollToModule} from '@nicky-lenaers/ngx-scroll-to';
-import {ButtonModule} from 'primeng';
+import {DoublePanelComponent} from './components/ui/double-panel/double-panel.component';
+import {LocaleReplacePipe} from './pipes/locale-replace.pipe';
+import { LocalePipe } from './pipes/locale.pipe';
 
 @NgModule({
   declarations: [
@@ -52,24 +54,29 @@ import {ButtonModule} from 'primeng';
     SearchBoxComponent,
     ExternalComponent,
     PanelComponent,
-    SettingsComponent
+    SettingsComponent,
+    DoublePanelComponent,
+    LocaleReplacePipe,
+    LocalePipe
   ],
-  exports: [
-    ApplicationComponent,
-    LoaderComponent,
-    VersionComponent,
-    LanguageSelectorComponent,
-    TooltipDirective,
-    RibbonComponent
-  ],
-    imports: [
-        CommonModule,
-        ApplicationRoutingModule,
-        FormsModule,
-        HttpClientModule,
-        ScrollToModule.forRoot(),
-        ButtonModule
+    exports: [
+        ApplicationComponent,
+        LoaderComponent,
+        VersionComponent,
+        LanguageSelectorComponent,
+        TooltipDirective,
+        RibbonComponent,
+        DoublePanelComponent,
+        LocaleReplacePipe,
+        LocalePipe
     ],
+  imports: [
+    CommonModule,
+    ApplicationRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    ScrollToModule.forRoot()
+  ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

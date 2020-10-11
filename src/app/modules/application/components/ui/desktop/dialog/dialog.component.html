@@ -14,15 +14,15 @@
       </div>
       <div class="footer">
         <ng-container *ngFor="let buttonItem of dialogItem.buttons">
-          <button pButton type="button" class="p-button-sm {{ buttonItem.class }}"
+          <button type="button" class="p-button-sm {{ buttonItem.class }}"
             *ngIf="buttonItem.focus"
             (click)="clickAction(buttonItem)"
-            [label]="locale[buttonItem.label] || buttonItem.label" appAutoFocus></button>
+            [innerHTML]="locale[buttonItem.label] || buttonItem.label" appAutoFocus></button>
 
-          <button pButton type="button" class="p-button-sm {{ buttonItem.class }}"
+          <button type="button" class="p-button-sm {{ buttonItem.class }}"
             *ngIf="!buttonItem.focus"
             (click)="clickAction(buttonItem)"
-            [label]="locale[buttonItem.label] || buttonItem.label"></button>
+            [innerHTML]="locale[buttonItem.label] || buttonItem.label"></button>
         </ng-container>
 
       </div>

@@ -15,6 +15,13 @@ export const langZh: LanguageModel = {
       planMode2: '计划模式2',
       planMode3: '计划模式3',
       planMode4: '计划模式4',
+      deleteRecord: '删除记录',
+      saveRecord: '保存记录',
+      addRecord: '添加记录',
+      sendEmail: '发送电子邮件',
+      editSettings: '编辑设置',
+      cancelAddingRecord: '取消添加新记录',
+      discardChanges: '放弃更改',
     },
     menu: {
       menu1: '菜单1',
@@ -56,6 +63,7 @@ export const langZh: LanguageModel = {
       demo2: '演示二',
       demo3: '示范三',
       demo4: '演示四',
+      contactManager: '联系人经理',
     },
     panel: {
       close: '关',
@@ -108,8 +116,14 @@ export const langZh: LanguageModel = {
       doYouWantToCloseTheWindows: '您要关闭窗户吗？',
       keepWindows: '保持Windows',
       closeWindows: '关闭视窗',
+      discardChanges: '放弃更改',
+      areYouSureYouWishToDiscardYourChanges: '您确定要放弃所做的更改吗？',
+      discard: '丢弃',
+      deleteRecord: '删除记录',
+      areYouSureYouWishToDeleteThisRecord: '您确定要删除该记录吗？',
+      delete: '删除',
     },
-    tabBar : {
+    tabBar: {
       autoHide: '自动隐藏',
     },
     newWindow: '新窗户',
@@ -196,5 +210,361 @@ export const langZh: LanguageModel = {
     about: {
       close: '关',
     }
+  },
+  contactManager: {
+    recordChanged: '***记录已更改***',
+    addingNewRecord: '*** 新纪录 ***',
+    ofCount: '的[COUNT]',
+    staff: '员工',
+    customers: '顾客',
+    contacts: '联络人',
+    suppliers: '供应商',
+    editSettings: '编辑设置',
+    pleaseSelect: '请选择',
+    advancedSearch: '高级搜索',
+    switchView: '切换检视',
+    title: '标题',
+    forename: '姓氏',
+    surname: '姓',
+    address: '地址',
+    town: '城镇/城市',
+    county: '县',
+    postcode: '邮编',
+    lookup: '抬头',
+    country: '国家',
+    notes: '笔记',
+    jobTitle: '职称',
+    department: '部门',
+    work: '工作',
+    fax: '传真',
+    mobile: '移动',
+    email: '电子邮件',
+    group: '组',
+    category: '类别',
+    updateRecord: '更新记录',
+    newRecord: '新纪录',
+    deleteRecord: '删除记录',
+    created: '已建立',
+    updated: '更新',
+    lastUpdatedBy: '最后更新者',
+    lastLogin: '上次登录',
+    start: '第一记录',
+    previous50: '返回50条记录',
+    previous: '之前的纪录',
+    next: '下一条记录',
+    next50: '转发50条记录',
+    end: '最后记录',
+    categories: '分类目录',
+    accountNumber: '户口号码',
+    company: '公司',
+    division: '师',
+    type: '类型',
+    status: '状态',
+    website: '网站',
+    contactAssociations: '联系协会',
+    general: '一般',
+    authentication: '认证方式',
+    otherInfo: '其他资讯',
+    companySettings: '公司设定',
+    access: '访问',
+    username: '用户名',
+    password: '密码',
+    allowLogin: '允许登录',
+    notesAndHistory: '笔记和历史',
+    accounts: '帐目',
+    contactProfile: '联络资料',
+    documentsAndFiles: '文件及档案',
+    searching: '正在搜寻...',
+    selectAddress: '选择地址',
+    addressNotListed: '地址未列出',
+    pleaseWaitLoading: '请稍候。载入中...',
+    Administrator: '管理员',
+    Moderator: '主持人',
+    Manager: '管理',
+    Supervisor: '主管',
+    User: '用户',
+    'No Status': '无状态',
+    Opportunity: '机会',
+    Prospect: '展望',
+    'Not Contacted': '未联系',
+    'Appointment Booked': '预约',
+    '2nd Appointment Booked': '预约第二次',
+    'Awaiting Decision': '等待决定',
+    Customer: '顾客',
+    Live: '生活',
+    Lead: '死',
+  },
+  countries: {
+    AF: 'Afghanistan', // safe
+    AL: 'Albania', // safe
+    DZ: 'Algeria', // safe
+    AS: 'American Samoa', // safe
+    AD: 'Andorra', // safe
+    AO: 'Angola', // safe
+    AI: 'Anguilla', // safe
+    AQ: 'Antarctica', // safe
+    AG: 'Antigua and Barbuda', // safe
+    AR: 'Argentina', // safe
+    AM: 'Armenia', // safe
+    AW: 'Aruba', // safe
+    AU: 'Australia', // safe
+    AT: 'Austria', // safe
+    AZ: 'Azerbaijan', // safe
+    BS: 'Bahamas', // safe
+    BH: 'Bahrain', // safe
+    BD: 'Bangladesh', // safe
+    BB: 'Barbados', // safe
+    BY: 'Belarus', // safe
+    BE: 'Belgium', // safe
+    BZ: 'Belize', // safe
+    BJ: 'Benin', // safe
+    BM: 'Bermuda', // safe
+    BT: 'Bhutan', // safe
+    BO: 'Bolivia (Plurinational State of)', // safe
+    BQ: 'Bonaire, Sint Eustatius and Saba', // safe
+    BA: 'Bosnia and Herzegovina', // safe
+    BW: 'Botswana', // safe
+    BV: 'Bouvet Island', // safe
+    BR: 'Brazil', // safe
+    IO: 'British Indian Ocean Territory', // safe
+    BN: 'Brunei Darussalam', // safe
+    BG: 'Bulgaria', // safe
+    BF: 'Burkina Faso', // safe
+    BI: 'Burundi', // safe
+    CV: 'Cabo Verde', // safe
+    KH: 'Cambodia', // safe
+    CM: 'Cameroon', // safe
+    CA: 'Canada', // safe
+    KY: 'Cayman Islands', // safe
+    CF: 'Central African Republic', // safe
+    TD: 'Chad', // safe
+    CL: 'Chile', // safe
+    CN: 'China', // safe
+    CX: 'Christmas Island', // safe
+    CC: 'Cocos (Keeling) Islands', // safe
+    CO: 'Colombia', // safe
+    KM: 'Comoros', // safe
+    CD: 'Congo (the Democratic Republic of the)', // safe
+    CG: 'Congo', // safe
+    CK: 'Cook Islands', // safe
+    CR: 'Costa Rica', // safe
+    HR: 'Croatia', // safe
+    CU: 'Cuba', // safe
+    CW: 'Curaçao', // safe
+    CY: 'Cyprus', // safe
+    CZ: 'Czechia', // safe
+    CI: 'Côte d\'Ivoire', // safe
+    DK: 'Denmark', // safe
+    DJ: 'Djibouti', // safe
+    DM: 'Dominica', // safe
+    DO: 'Dominican Republic', // safe
+    EC: 'Ecuador', // safe
+    EG: 'Egypt', // safe
+    SV: 'El Salvador', // safe
+    GQ: 'Equatorial Guinea', // safe
+    ER: 'Eritrea', // safe
+    EE: 'Estonia', // safe
+    SZ: 'Eswatini', // safe
+    ET: 'Ethiopia', // safe
+    FK: 'Falkland Islands [Malvinas]', // safe
+    FO: 'Faroe Islands', // safe
+    FJ: 'Fiji', // safe
+    FI: 'Finland', // safe
+    FR: 'France', // safe
+    GF: 'French Guiana', // safe
+    PF: 'French Polynesia', // safe
+    TF: 'French Southern Territories', // safe
+    GA: 'Gabon', // safe
+    GM: 'Gambia', // safe
+    GE: 'Georgia', // safe
+    DE: 'Germany', // safe
+    GH: 'Ghana', // safe
+    GI: 'Gibraltar', // safe
+    GR: 'Greece', // safe
+    GL: 'Greenland', // safe
+    GD: 'Grenada', // safe
+    GP: 'Guadeloupe', // safe
+    GU: 'Guam', // safe
+    GT: 'Guatemala', // safe
+    GG: 'Guernsey', // safe
+    GN: 'Guinea', // safe
+    GW: 'Guinea-Bissau', // safe
+    GY: 'Guyana', // safe
+    HT: 'Haiti', // safe
+    HM: 'Heard Island and McDonald Islands', // safe
+    VA: 'Holy See', // safe
+    HN: 'Honduras', // safe
+    HK: 'Hong Kong', // safe
+    HU: 'Hungary', // safe
+    IS: 'Iceland', // safe
+    IN: 'India', // safe
+    ID: 'Indonesia', // safe
+    IR: 'Iran (Islamic Republic of)', // safe
+    IQ: 'Iraq', // safe
+    IE: 'Ireland', // safe
+    IM: 'Isle of Man', // safe
+    IL: 'Israel', // safe
+    IT: 'Italy', // safe
+    JM: 'Jamaica', // safe
+    JP: 'Japan', // safe
+    JE: 'Jersey', // safe
+    JO: 'Jordan', // safe
+    KZ: 'Kazakhstan', // safe
+    KE: 'Kenya', // safe
+    KI: 'Kiribati', // safe
+    KP: 'Korea (the Democratic People\'s Republic of)', // safe
+    KR: 'Korea (the Republic of)', // safe
+    KW: 'Kuwait', // safe
+    KG: 'Kyrgyzstan', // safe
+    LA: 'Lao People\'s Democratic Republic', // safe
+    LV: 'Latvia', // safe
+    LB: 'Lebanon', // safe
+    LS: 'Lesotho', // safe
+    LR: 'Liberia', // safe
+    LY: 'Libya', // safe
+    LI: 'Liechtenstein', // safe
+    LT: 'Lithuania', // safe
+    LU: 'Luxembourg', // safe
+    MO: 'Macao', // safe
+    MG: 'Madagascar', // safe
+    MW: 'Malawi', // safe
+    MY: 'Malaysia', // safe
+    MV: 'Maldives', // safe
+    ML: 'Mali', // safe
+    MT: 'Malta', // safe
+    MH: 'Marshall Islands', // safe
+    MQ: 'Martinique', // safe
+    MR: 'Mauritania', // safe
+    MU: 'Mauritius', // safe
+    YT: 'Mayotte', // safe
+    MX: 'Mexico', // safe
+    FM: 'Micronesia (Federated States of)', // safe
+    MD: 'Moldova (the Republic of)', // safe
+    MC: 'Monaco', // safe
+    MN: 'Mongolia', // safe
+    ME: 'Montenegro', // safe
+    MS: 'Montserrat', // safe
+    MA: 'Morocco', // safe
+    MZ: 'Mozambique', // safe
+    MM: 'Myanmar', // safe
+    NA: 'Namibia', // safe
+    NR: 'Nauru', // safe
+    NP: 'Nepal', // safe
+    NL: 'Netherlands', // safe
+    NC: 'New Caledonia', // safe
+    NZ: 'New Zealand', // safe
+    NI: 'Nicaragua', // safe
+    NE: 'Niger', // safe
+    NG: 'Nigeria', // safe
+    NU: 'Niue', // safe
+    NF: 'Norfolk Island', // safe
+    MK: 'North Macedonia', // safe
+    MP: 'Northern Mariana Islands', // safe
+    NO: 'Norway', // safe
+    OM: 'Oman', // safe
+    PK: 'Pakistan', // safe
+    PW: 'Palau', // safe
+    PS: 'Palestine, State of', // safe
+    PA: 'Panama', // safe
+    PG: 'Papua New Guinea', // safe
+    PY: 'Paraguay', // safe
+    PE: 'Peru', // safe
+    PH: 'Philippines', // safe
+    PN: 'Pitcairn', // safe
+    PL: 'Poland', // safe
+    PT: 'Portugal', // safe
+    PR: 'Puerto Rico', // safe
+    QA: 'Qatar', // safe
+    RO: 'Romania', // safe
+    RU: 'Russian Federation', // safe
+    RW: 'Rwanda', // safe
+    RE: 'Réunion', // safe
+    BL: 'Saint Barthélemy', // safe
+    SH: 'Saint Helena, Ascension and Tristan da Cunha', // safe
+    KN: 'Saint Kitts and Nevis', // safe
+    LC: 'Saint Lucia', // safe
+    MF: 'Saint Martin (French part)', // safe
+    PM: 'Saint Pierre and Miquelon', // safe
+    VC: 'Saint Vincent and the Grenadines', // safe
+    WS: 'Samoa', // safe
+    SM: 'San Marino', // safe
+    ST: 'Sao Tome and Principe', // safe
+    SA: 'Saudi Arabia', // safe
+    SN: 'Senegal', // safe
+    RS: 'Serbia', // safe
+    SC: 'Seychelles', // safe
+    SL: 'Sierra Leone', // safe
+    SG: 'Singapore', // safe
+    SX: 'Sint Maarten (Dutch part)', // safe
+    SK: 'Slovakia', // safe
+    SI: 'Slovenia', // safe
+    SB: 'Solomon Islands', // safe
+    SO: 'Somalia', // safe
+    ZA: 'South Africa', // safe
+    GS: 'South Georgia and the South Sandwich Islands', // safe
+    SS: 'South Sudan', // safe
+    ES: 'Spain', // safe
+    LK: 'Sri Lanka', // safe
+    SD: 'Sudan', // safe
+    SR: 'Suriname', // safe
+    SJ: 'Svalbard and Jan Mayen', // safe
+    SE: 'Sweden', // safe
+    CH: 'Switzerland', // safe
+    SY: 'Syrian Arab Republic', // safe
+    TW: 'Taiwan (Province of China)', // safe
+    TJ: 'Tajikistan', // safe
+    TZ: 'Tanzania, the United Republic of', // safe
+    TH: 'Thailand', // safe
+    TL: 'Timor-Leste', // safe
+    TG: 'Togo', // safe
+    TK: 'Tokelau', // safe
+    TO: 'Tonga', // safe
+    TT: 'Trinidad and Tobago', // safe
+    TN: 'Tunisia', // safe
+    TR: 'Turkey', // safe
+    TM: 'Turkmenistan', // safe
+    TC: 'Turks and Caicos Islands', // safe
+    TV: 'Tuvalu', // safe
+    UG: 'Uganda', // safe
+    UA: 'Ukraine', // safe
+    AE: 'United Arab Emirates', // safe
+    GB: 'United Kingdom', // safe
+    UM: 'United States Minor Outlying Islands', // safe
+    US: 'United States of America', // safe
+    UY: 'Uruguay', // safe
+    UZ: 'Uzbekistan', // safe
+    VU: 'Vanuatu', // safe
+    VE: 'Venezuela (Bolivarian Republic of)', // safe
+    VN: 'Viet Nam', // safe
+    VG: 'Virgin Islands (British)', // safe
+    VI: 'Virgin Islands (U.S.)', // safe
+    WF: 'Wallis and Futuna', // safe
+    EH: 'Western Sahara*', // safe
+    YE: 'Yemen', // safe
+    ZM: 'Zambia', // safe
+    ZW: 'Zimbabwe', // safe
+    AX: 'Åland Islands' // safe
+  },
+  honorifics: {
+    mr: '先生',
+    ms: '多发性硬化症',
+    miss: '小姐',
+    mrs: '太太',
+    mx: 'MX',
+    master: '主',
+    dir: '先生',
+    madam: '夫人',
+    dame: '贵妇人',
+    lord: '主',
+    lady: '淑女',
+    viscount: '子爵',
+    dr: '博士',
+    prof: '教授',
+    br: '溴',
+    sr: 'r',
+    fr: 'r',
+    rev: '转速',
+    pr: '镨',
+    elder: '长老',
   }
 };

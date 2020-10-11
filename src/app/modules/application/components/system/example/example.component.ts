@@ -16,7 +16,6 @@ import {LanguageService} from '../../../services/language.service';
 import {WindowService} from '../../../services/window.service';
 import {Subscription} from 'rxjs';
 import {ApplicationModule} from '../../../application.module';
-import {ButtonModule} from 'primeng';
 import {RibbonService} from '../../../services/ribbon.service';
 import {SystemService} from '../../../services/system.service';
 
@@ -185,8 +184,7 @@ export class ExampleComponent implements OnInit, OnDestroy {
   imports: [
     FormsModule,
     CommonModule,
-    ApplicationModule,
-    ButtonModule
+    ApplicationModule
   ],
   declarations: [ExampleComponent]
 })

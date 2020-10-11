@@ -1,64 +1,64 @@
 <div class="container">
   <h1>Demo</h1>
-  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="plannerWindow()" [label]="'Planner Window'"></button>
+  <button (click)="plannerWindow()">Planner Window</button>
 
-  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="demo1()" [label]="'Demo One'"></button>
-  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="demo2()" [label]="'Demo Two'"></button>
-  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="demo3()" [label]="'Demo Three'"></button>
-  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="demo4()" [label]="'Demo Four'"></button>
+  <button (click)="demo1()">Demo One</button>
+  <button (click)="demo2()">Demo Two</button>
+  <button (click)="demo3()">Demo Three</button>
+  <button (click)="demo4()">Demo Four</button>
   <h1>Mode Locked</h1>
-  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="demo1Hide()" [label]="'Demo One (hide on mode change)'"></button>
-  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="demo1Delete()" [label]="'Demo One (delete on mode change)'"></button>
+  <button (click)="demo1Hide()">Demo One (hide on mode change)</button>
+  <button (click)="demo1Delete()">Demo One (delete on mode change)</button>
 
   <h1>Ribbons</h1>
-  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="newWindow(false, false)" [label]="'New Window + Ribbon priority'"></button>
-  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="newWindowDoubleRibbon(false, false)" [label]="'New Window Double Ribbon'"></button>
-  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="newWindowRibbonTop(false, false)" [label]="'New Window - Ribbon Fixed Top'"></button>
-  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="newWindowRibbonLeft(false, false)" [label]="'New Window - Ribbon Fixed Left'"></button>
+  <button (click)="newWindow(false, false)">New Window + Ribbon priority</button>
+  <button (click)="newWindowDoubleRibbon(false, false)">New Window Double Ribbon</button>
+  <button (click)="newWindowRibbonTop(false, false)">New Window - Ribbon Fixed Top</button>
+  <button (click)="newWindowRibbonLeft(false, false)">New Window - Ribbon Fixed Left</button>
   <h1>Window Customisations</h1>
-  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="newWindowNoControls(false, false)" [label]="'New Window' + ' - No Controls'"></button>
-  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="newWindowNoBar(false, false)" [label]="'New Window' + ' - No Title Bar + No Panel'"></button>
-  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="newWindowNoBarRibbon()" [label]="'New Window' + ' - No Title Bar + ribbon + content priority'"></button>
-  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="newWindow3d()" [label]="'New Window' + ' - Different Component'"></button>
-  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="noTab()" [label]="'New Window' + ' - No Tab'"></button>
-  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="noFeatures()" [label]="'New Window' + ' - No Features'"></button>
+  <button (click)="newWindowNoControls(false, false)">New Window' + ' - No Controls</button>
+  <button (click)="newWindowNoBar(false, false)">New Window' + ' - No Title Bar + No Panel</button>
+  <button (click)="newWindowNoBarRibbon()">New Window' + ' - No Title Bar + ribbon + content priority</button>
+  <button (click)="newWindow3d()">New Window' + ' - Different Component</button>
+  <button (click)="noTab()">New Window' + ' - No Tab</button>
+  <button (click)="noFeatures()">New Window' + ' - No Features</button>
   <h1>Auto Close</h1>
-  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="autoClose(9000)" [label]="'New Window' + ' - Auto Close'"></button>
+  <button (click)="autoClose(9000)">New Window' + ' - Auto Close</button>
   <h1>Docking</h1>
-  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="newWindowDockLeft()" [label]="'New Window' + ' - Dock Left (40%, 100%)'"></button>
+  <button (click)="newWindowDockLeft()">New Window' + ' - Dock Left (40%, 100%)</button>
 
   <h1>On top/bottom</h1>
-  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="newWindow(true, false)" [label]="'New Window' + ' - Always on top'"></button>
-  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="newWindow(false, true)" [label]="'New Window' + ' - Always on bottom'"></button>
+  <button (click)="newWindow(true, false)">New Window' + ' - Always on top</button>
+  <button (click)="newWindow(false, true)">New Window' + ' - Always on bottom</button>
 
   <h1>Toast Notification</h1>
-  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="newToast('success')" [label]="'New Toast Success'"></button>
-  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="newToast('info')" [label]="'New Toast Info'"></button>
-  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="newToast('warn')" [label]="'New Toast Warn'"></button>
-  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="newToast('error')" [label]="'New Toast Error'"></button>
+  <button (click)="newToast('success')">New Toast Success</button>
+  <button (click)="newToast('info')">New Toast Info</button>
+  <button (click)="newToast('warn')">New Toast Warn</button>
+  <button (click)="newToast('error')">New Toast Error</button>
   <hr>
-  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="newToastSticky('success')" [label]="'New Toast Success Sticky'"></button>
-  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="newToastSticky('info')" [label]="'New Toast Info Sticky'"></button>
-  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="newToastSticky('warn')" [label]="'New Toast Warn Sticky'"></button>
-  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="newToastSticky('error')" [label]="'New Toast Error Sticky'"></button>
+  <button (click)="newToastSticky('success')">New Toast Success Sticky</button>
+  <button (click)="newToastSticky('info')">New Toast Info Sticky</button>
+  <button (click)="newToastSticky('warn')">New Toast Warn Sticky</button>
+  <button (click)="newToastSticky('error')">New Toast Error Sticky</button>
   <h1>Dialogs</h1>
-  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="newDialog()" [label]="'New Dialog'"></button>
-  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="newDialogForm()" [label]="'New Dialog (Form)'"></button>
+  <button (click)="newDialog()">New Dialog</button>
+  <button (click)="newDialogForm()">New Dialog (Form)</button>
   <h1>Custom Windows</h1>
-  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="splash()" [label]="'New Splash'"></button>
-  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="about()" [label]="'About'"></button>
+  <button (click)="splash()">New Splash</button>
+  <button (click)="about()">About</button>
   <h1>Panels</h1>
-  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="newPanelLeft()" [label]="'New Panel Left'"></button>
-  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="newPanelRight()" [label]="'New Panel (right dock 75%, 100%)'"></button>
+  <button (click)="newPanelLeft()">New Panel Left</button>
+  <button (click)="newPanelRight()">New Panel (right dock 75%, 100%)</button>
 
-  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="newPanel()" [label]="'New Panel (with ribbon)'"></button>
-  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="newPanelUuid()" [label]="'New Panel (with ribbon) + uuid 10acbeb6-0bff-41bd-8b49-57e4718c0f95'"></button>
-  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="newPanelNoClose()" [label]="'New Panel (with ribbon - No Close)'"></button>
+  <button (click)="newPanel()">New Panel (with ribbon)</button>
+  <button (click)="newPanelUuid()">New Panel (with ribbon) + uuid 10acbeb6-0bff-41bd-8b49-57e4718c0f95</button>
+  <button (click)="newPanelNoClose()">New Panel (with ribbon - No Close)</button>
   <hr>
-  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="demo1InPanel()" [label]="'Demo One in Panel'"></button>
-  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="demo2InPanel()" [label]="'Demo Two in Panel'"></button>
-  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="demo3InPanel()" [label]="'Demo Three in panel'"></button>
-  <button icon="cs-S-CSlogo" pButton type="button" class="ui-button" (click)="demo4InPanel()" [label]="'Demo Four in Panel'"></button>
+  <button (click)="demo1InPanel()">Demo One in Panel</button>
+  <button (click)="demo2InPanel()">Demo Two in Panel</button>
+  <button (click)="demo3InPanel()">Demo Three in panel</button>
+  <button (click)="demo4InPanel()">Demo Four in Panel</button>
 
   <h1>Run State</h1>
   <button (click)="setItem({thing: {demo: 'demo', test: 'testing'}})">Set Item</button>

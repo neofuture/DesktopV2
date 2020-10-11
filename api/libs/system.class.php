@@ -22,6 +22,26 @@ class system
     return $pdo;
   }
 
+  public static function connectUserDataset($userDb)
+  {
+    $opt = [
+      PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+      PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+      PDO::ATTR_EMULATE_PREPARES => false,
+    ];
+
+    include("config.php");
+
+
+    $db = "api";
+    $dsn = "mysql:host=$host;dbname=$userDb;";
+    $pdo = new PDO($dsn, $user, $pass, $opt);
+
+    return $pdo;
+  }
+
+
+
   public static function processHeaders()
   {
     if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {

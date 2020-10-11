@@ -12,6 +12,7 @@ export class TooltipDirective {
   offset = 10;
   mouseDown = false;
   timer;
+  private event: any;
 
   constructor(
     private el: ElementRef,
@@ -30,32 +31,37 @@ export class TooltipDirective {
     }
   }
 
-  @HostListener('mouseenter') onMouseEnter(): void {
+  @HostListener('mouseenter', ['$event']) onMouseEnter(event): void {
     if (this.mouseDown) {
       return;
     }
     if (!this.tooltip) {
+      this.event = event.target;
       this.show();
     }
   }
 
-  @HostListener('mouseleave') onMouseLeave(): void {
+  @HostListener('mouseleave', ['$event']) onMouseLeave(event): void {
     if (this.mouseDown) {
       return;
     }
 
     if (this.tooltip) {
-      this.hide();
+      if(this.event === event.target){
+        this.hide();
+      }
     }
   }
 
-  @HostListener('mouseout') onMouseOut(): void {
+  @HostListener('mouseout', ['$event']) onMouseOut(event): void {
     if (this.mouseDown) {
       return;
     }
 
     if (this.tooltip) {
-      this.hide();
+      if(this.event === event.target){
+        this.hide();
+      }
     }
   }
 

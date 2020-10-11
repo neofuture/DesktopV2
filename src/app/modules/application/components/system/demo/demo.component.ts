@@ -10,7 +10,6 @@ import {LanguageService} from '../../../services/language.service';
 import {Subscription} from 'rxjs';
 import {HelperService} from '../../../services/helper.service';
 import {SystemService} from '../../../services/system.service';
-import {ButtonModule} from 'primeng';
 
 @Component({
   selector: 'app-demo',
@@ -356,10 +355,15 @@ export class DemoComponent implements OnInit {
     const windowConfig = {
       icon: 'icon-contacts',
       iconLarge: 'icon-contacts_over',
-      width: 400,
-      height: 200,
+      width: 1000,
+      height: 800,
+      left: 30,
+      top: 30,
       component: 'system/demo3',
-      title: 'demo3'
+      title: 'demo3',
+      hasStatusBar: true,
+      hasRibbon: true,
+      ribbonHasPriority: true
     };
     this.windowService.newWindow(windowConfig);
   }
@@ -732,8 +736,7 @@ export class DemoComponent implements OnInit {
 @NgModule({
   imports: [
     FormsModule,
-    CommonModule,
-    ButtonModule
+    CommonModule
   ],
   declarations: [DemoComponent]
 })

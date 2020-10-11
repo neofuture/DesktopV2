@@ -26,15 +26,18 @@ export class Demo4Component implements OnInit {
 }
 
 @NgModule({
-  imports: [
-    FormsModule,
-    CommonModule,
-    ApplicationModule
-  ],
-  declarations: [
-    Demo4Component,
-    VideoPlayerComponent
-  ]
+    imports: [
+        FormsModule,
+        CommonModule,
+        ApplicationModule
+    ],
+    exports: [
+        VideoPlayerComponent
+    ],
+    declarations: [
+        Demo4Component,
+        VideoPlayerComponent
+    ]
 })
 
 export class Demo4Module {

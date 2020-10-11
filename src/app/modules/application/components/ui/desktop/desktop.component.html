@@ -1,7 +1,4 @@
 <div class="desktop" #desktop [ngClass]="{'on' : user !== null}">
-  <pre>{{ runState | json }}</pre>
-  <pre>{{ appState | json }}</pre>
-
   <ng-container *ngFor="let windowItem of objectValues(windowList)">
     <app-window *ngIf="!windowItem.systemWindow && !windowItem.panel" [windowItem]="windowItem" [desktopDimensions]="dimensions"></app-window>
   </ng-container>

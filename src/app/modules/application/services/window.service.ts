@@ -313,6 +313,14 @@ export class WindowService {
     windowItem.hasStatusBar = false;
   }
 
+  setStatus(windowItem, str): void {
+    windowItem.status = str;
+  }
+
+  setExtendedTitle(windowItem, title): void {
+    windowItem.extendedTitle = title;
+  }
+
   setSize(): void {
     for (const windowItem of Object.keys(this.windowList)) {
       if (this.windowList[windowItem].state.isMaximised === false) {

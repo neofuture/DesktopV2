@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, NgModule, OnInit, Output} from '@angular
 import {FormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {WindowService} from '../../../services/window.service';
+import {ApplicationModule} from '../../../application.module';
 
 @Component({
   selector: 'app-demo3',
@@ -11,9 +12,11 @@ import {WindowService} from '../../../services/window.service';
 export class Demo3Component implements OnInit {
   @Input() windowItem;
   @Output() update = new EventEmitter();
+
   constructor(
     private windowService: WindowService
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.windowService.setLoaded(this.windowItem.uuid);
@@ -24,7 +27,8 @@ export class Demo3Component implements OnInit {
 @NgModule({
   imports: [
     FormsModule,
-    CommonModule
+    CommonModule,
+    ApplicationModule
   ],
   declarations: [Demo3Component]
 })

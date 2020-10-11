@@ -178,6 +178,23 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
           this.loginWindow();
         }
       }, 310);
+
+
+      const windowConfig = {
+        icon: 'icon-contacts',
+        iconLarge: 'icon-contacts_over',
+        width: 1000,
+        height: 800,
+        left: 30,
+        top: 30,
+        component: 'system/contact-manager',
+        title: 'contactManager',
+        hasStatusBar: true,
+        hasRibbon: true,
+        ribbonHasPriority: true
+      };
+      this.windowService.newWindow(windowConfig);
+
     });
   }
 

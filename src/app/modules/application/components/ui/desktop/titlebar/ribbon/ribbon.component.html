@@ -21,7 +21,7 @@
   </div>
 </div>
 
-<button pButton type="button" icon="pi icon-downArrow" *ngIf="ribbonSize == 'small' && hasToggle"
-        class="p-button-rounded p-button-secondary p-button-sm toggleButton" (click)="toggleRibbon()"></button>
-<button pButton type="button" icon="pi icon-upArrow" *ngIf="ribbonSize != 'small' && hasToggle"
-        class="p-button-rounded p-button-secondary p-button-sm toggleButton" (click)="toggleRibbon()"></button>
+<button *ngIf="ribbonSize == 'small' && hasToggle"
+        class="toggleButton" (click)="toggleRibbon()"><i class="icon-downArrow"></i></button>
+<button *ngIf="ribbonSize != 'small' && hasToggle"
+        class="toggleButton" (click)="toggleRibbon()"><i class="icon-upArrow"></i></button>

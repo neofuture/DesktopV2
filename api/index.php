@@ -26,6 +26,9 @@ if($uri[0] === 'v1'){
 
   include("./libs/v1/user.class.php");
   include("./libs/v1/example.class.php");
+  include("./libs/v1/postcodes.class.php");
+
+  include("./libs/v1/contact-manager.class.php");
 
   if(!$uri[1]) {
     $status['error'] = "Empty Request";
