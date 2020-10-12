@@ -64,6 +64,9 @@ export const langSv: LanguageModel = {
       demo3: 'Demo tre',
       demo4: 'Demo Four',
       contactManager: 'Kontakta chef',
+      addHistory: 'Lägg till historik',
+      addSupportTicket: 'Lägg till supportbiljett',
+      editSettings: 'Ändra inställningar',
     },
     panel: {
       close: 'Stänga',
@@ -212,6 +215,7 @@ export const langSv: LanguageModel = {
     }
   },
   contactManager: {
+    noRecordsFound: 'Inga uppgifter funna',
     recordChanged: '*** Record Changed ***',
     addingNewRecord: '*** Nytt rekord ***',
     ofCount: 'av [COUNT]',
@@ -271,6 +275,7 @@ export const langSv: LanguageModel = {
     password: 'Lösenord',
     allowLogin: 'Tillåt inloggning',
     notesAndHistory: 'Anteckningar och historia',
+    supportTickets: 'Supportbiljetter',
     accounts: 'Konton',
     contactProfile: 'Kontakta profil',
     documentsAndFiles: 'Dokument och filer',
@@ -293,6 +298,10 @@ export const langSv: LanguageModel = {
     Customer: 'Kund',
     Live: 'leva',
     Lead: 'Död',
+    notesHistory: {
+      addNotesOrHistory: 'Lägg till anteckningar eller historik',
+      addSupportTicket: 'Lägg till supportbiljett',
+    }
   },
   countries: {
     AF: 'Afghanistan', // safe

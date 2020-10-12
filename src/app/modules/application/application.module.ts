@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import {CommonModule, registerLocaleData} from '@angular/common';
 import {DesktopComponent} from './components/ui/desktop/desktop.component';
 import {LoaderComponent} from './components/ui/loader/loader.component';
 import {TooltipDirective} from './directives/tooltip.directive';
@@ -30,7 +30,30 @@ import {ScrollToModule} from '@nicky-lenaers/ngx-scroll-to';
 import {DoublePanelComponent} from './components/ui/double-panel/double-panel.component';
 import {LocaleReplacePipe} from './pipes/locale-replace.pipe';
 import { LocalePipe } from './pipes/locale.pipe';
+import localeFr from '@angular/common/locales/fr';
+import localeDe from '@angular/common/locales/de';
+import localeDa from '@angular/common/locales/da';
+import localeEs from '@angular/common/locales/es';
+import localeFi from '@angular/common/locales/fi';
+import localeIt from '@angular/common/locales/it';
+import localeNl from '@angular/common/locales/nl';
+import localeNo from '@angular/common/locales/nb';
+import localePt from '@angular/common/locales/pt';
+import localeSe from '@angular/common/locales/se';
+import localeRu from '@angular/common/locales/ru';
+import { DatePipe } from '@angular/common';
 
+registerLocaleData(localeFr, 'fr');
+registerLocaleData(localeDe, 'de');
+registerLocaleData(localeDa, 'da');
+registerLocaleData(localeEs, 'es');
+registerLocaleData(localeFi, 'fi');
+registerLocaleData(localeIt, 'it');
+registerLocaleData(localeNl, 'nl');
+registerLocaleData(localeNo, 'no');
+registerLocaleData(localePt, 'pt');
+registerLocaleData(localeSe, 'se');
+registerLocaleData(localeRu, 'ru');
 @NgModule({
   declarations: [
     DesktopComponent,
@@ -82,7 +105,8 @@ import { LocalePipe } from './pipes/locale.pipe';
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
-    }
+    },
+    DatePipe
   ]
 })
 // @ts-ignore

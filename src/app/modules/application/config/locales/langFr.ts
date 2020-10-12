@@ -64,6 +64,9 @@ export const langFr: LanguageModel = {
       demo3: 'Démo trois',
       demo4: 'Démo quatre',
       contactManager: 'Gestionnaire de contacts',
+      addHistory: 'Ajouter un historique',
+      addSupportTicket: 'Ajouter un ticket de support',
+      editSettings: 'Modifier les paramètres',
     },
     panel: {
       close: 'Fermer',
@@ -212,6 +215,7 @@ export const langFr: LanguageModel = {
     }
   },
   contactManager: {
+    noRecordsFound: 'Aucun enregistrement trouvé',
     recordChanged: '*** Enregistrement changé ***',
     addingNewRecord: '*** Nouvel enregistrement ***',
     ofCount: 'sur [COUNT]',
@@ -271,6 +275,7 @@ export const langFr: LanguageModel = {
     password: 'Mot de passe',
     allowLogin: 'Autoriser la connexion',
     notesAndHistory: 'Notes et histoire',
+    supportTickets: 'Billets d&#39;assistance',
     accounts: 'Comptes',
     contactProfile: 'Profil de contact',
     documentsAndFiles: 'Documents et fichiers',
@@ -293,6 +298,10 @@ export const langFr: LanguageModel = {
     Customer: 'Client',
     Live: 'Vivre',
     Lead: 'Morte',
+    notesHistory: {
+      addNotesOrHistory: 'Ajouter des notes ou un historique',
+      addSupportTicket: 'Ajouter un ticket de support',
+    }
   },
   countries: {
     AF: 'Afghanistan', // safe

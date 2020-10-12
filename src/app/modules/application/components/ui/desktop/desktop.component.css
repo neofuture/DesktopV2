@@ -57,6 +57,7 @@
   height: calc(100% - (var(--menu-height) + var(--ribbon-height)) - var(--tab-bar-height) - var(--electron-height));
   top: calc(var(--menu-height) + var(--ribbon-height) + var(--electron-height));
   transition: all 300ms;
+  overflow:hidden;
 }
 
 pre {

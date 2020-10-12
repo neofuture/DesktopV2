@@ -3,7 +3,6 @@
 class contactManager
 {
   public static function init($pdo, $jsonStr, $session) {
-
     $pdo = system::connectUserDataset('api_crm_dev');
 
     $token = system::getBearerToken();
@@ -17,6 +16,12 @@ class contactManager
 
       foreach($categories as $cat=>$catVal){
         $categories[$cat]['colours'] = json_decode($categories[$cat]['colours']);
+
+        $sql = "SELECT count(*) as count FROM contactManagerRecords WHERE category = ?";
+        $stmt= $pdo->prepare($sql);
+        $stmt->execute([$categories[$cat]['id']]);
+        $count = $stmt->fetch();
+        $categories[$cat]['count'] = $count['count'];
       }
 
       $stmt = $pdo->prepare("SELECT * FROM contactManagerGroups ORDER by sortOrder");
@@ -39,7 +44,7 @@ class contactManager
     return $return;
   }
 
-  public static function record($pdo, $jsonStr, $session) {
+  public static function setRecord($pdo, $jsonStr, $session) {
     $pdo = system::connectUserDataset('api_crm_dev');
 
     $token = system::getBearerToken();
@@ -47,20 +52,46 @@ class contactManager
     $token = system::validateJwt($token);
     if($token['expired'] === false && $token['signatureValid'] === true){
 
-      $sql = "INSERT INTO contactManagerRecords (title, forename, surname, address, address2, town, county, postcode, country, notes, jobTitle, department, work, fax, mobile, email, groupId, categoryId, statusId, typeId, website, division, company, accountNumber, username, password, allowLogin, added, updated) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())";
+      $sql = "INSERT INTO contactManagerRecords (title, forename, surname, address, address2, town, county, postcode, country, notes, jobTitle, department, work, fax, mobile, email, `group`, category, status, type, website, division, company, accountNumber, username, password, allowLogin, added, updated) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())";
       $stmt= $pdo->prepare($sql);
       $stmt->execute([$jsonStr->title, $jsonStr->forename, $jsonStr->surname, $jsonStr->address, $jsonStr->address2, $jsonStr->town, $jsonStr->county, $jsonStr->postcode, $jsonStr->country, $jsonStr->notes, $jsonStr->jobTitle, $jsonStr->department, $jsonStr->work, $jsonStr->fax, $jsonStr->mobile, $jsonStr->email, $jsonStr->group,$jsonStr->category, $jsonStr->status, $jsonStr->type, $jsonStr->website, $jsonStr->division, $jsonStr->company, $jsonStr->accountNumber, $jsonStr->username, $jsonStr->password, $jsonStr->allowLogin]);
-
-
-      //        title, forename, surname, address, address2, town, county, postcode, country, notes, jobTitle, department, work, fax, mobile, email, group, category, status, type, website, division, company, accountNumber, username, password, allowLogin
-
-
-      //$jsonStr->title, $jsonStr->forename, $jsonStr->surname, $jsonStr->address, $jsonStr->address2, $jsonStr->town, $jsonStr->county, $jsonStr->postcode, $jsonStr->country, $jsonStr->notes, $jsonStr->jobTitle, $jsonStr->department, $jsonStr->work, $jsonStr->fax, $jsonStr->mobile, $jsonStr->email, $jsonStr->group,$jsonStr->category, $jsonStr->status, $jsonStr->type, $jsonStr->website, $jsonStr->division, $jsonStr->company, $jsonStr->accountNumber, $jsonStr->username, $jsonStr->password, $jsonStr->allowLogin
-
 
       $status['method'] = $_SERVER['REQUEST_METHOD'];
       $status['json'] = $jsonStr;
       return $status;
+    }
+  }
+
+  public static function getRecord($pdo, $jsonStr, $session) {
+    $pdo = system::connectUserDataset('api_crm_dev');
+
+    $token = system::getBearerToken();
+
+    $token = system::validateJwt($token);
+    if($token['expired'] === false && $token['signatureValid'] === true){
+      $sql = "SELECT count(*) as count FROM contactManagerRecords WHERE category = ?";
+      $stmt= $pdo->prepare($sql);
+      $stmt->execute([$jsonStr->category]);
+      $count = $stmt->fetch();
+
+      $return['totalRecords'] = $count['count'];
+      $return['id'] = 0;
+      if($count>0){
+        $sql = "SELECT id, title, forename, surname, address, address2, town, county, postcode, country, notes, jobTitle, department, work, fax, mobile, email, `group`, category, status, type, website, division, company, accountNumber, username, allowLogin, added, updated FROM contactManagerRecords WHERE category = ? ORDER BY company, surname, forename LIMIT ?, 1";
+        $stmt= $pdo->prepare($sql);
+        $stmt->execute([$jsonStr->category, $jsonStr->recordIndex - 1, ]);
+        $record = $stmt->fetch();
+
+        if($record){
+          $record['added'] = date(DATE_ATOM, strtotime($record['added']));
+          $record['updated'] = date(DATE_ATOM, strtotime($record['updated']));
+        }
+
+        $return['record'] = $record;
+        $return['id'] = $record['id'];
+      }
+
+      return $return;
     }
   }
 }

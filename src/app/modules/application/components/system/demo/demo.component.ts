@@ -24,6 +24,7 @@ export class DemoComponent implements OnInit {
   private product: string;
   runState: any;
   appState: any;
+  test = false;
 
   constructor(
     private windowService: WindowService,
@@ -49,7 +50,6 @@ export class DemoComponent implements OnInit {
 
     this.windowService.setLoaded(this.windowItem.uuid);
     this.langSub$ = this.languageService.language.subscribe(locale => {
-      // this.locale = locale.desktop;
       this.company = locale.company;
       this.product = locale.product;
     });
@@ -334,7 +334,8 @@ export class DemoComponent implements OnInit {
       width: 400,
       height: 200,
       component: 'system/demo1',
-      title: 'demo1'
+      title: 'demo1',
+      parentComponent: this
     };
     this.windowService.newWindow(windowConfig);
   }

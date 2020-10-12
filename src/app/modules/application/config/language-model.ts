@@ -62,6 +62,9 @@ export interface LanguageModel {
       demo3: string;
       demo4: string;
       contactManager: string;
+      addHistory: string;
+      addSupportTicket: string;
+      editSettings: string;
     };
     panel: {
       close: string;
@@ -210,6 +213,7 @@ export interface LanguageModel {
     }
   };
   contactManager: {
+    noRecordsFound: string;
     recordChanged: string;
     addingNewRecord: string;
     ofCount: string;
@@ -269,6 +273,7 @@ export interface LanguageModel {
     password: string;
     allowLogin: string;
     notesAndHistory: string;
+    supportTickets: string;
     accounts: string;
     contactProfile: string;
     documentsAndFiles: string;
@@ -291,6 +296,10 @@ export interface LanguageModel {
     Customer: string;
     Live: string;
     Lead: string;
+    notesHistory: {
+      addNotesOrHistory: string;
+      addSupportTicket: string;
+    }
   };
   countries: {
     AF: string;

@@ -64,6 +64,9 @@ export const langDa: LanguageModel = {
       demo3: 'Demo tre',
       demo4: 'Demo Fire',
       contactManager: 'Kontakt manager',
+      addHistory: 'Tilføj historik',
+      addSupportTicket: 'Tilføj supportbillet',
+      editSettings: 'Rediger indstillinger',
     },
     panel: {
       close: 'Tæt',
@@ -212,6 +215,7 @@ export const langDa: LanguageModel = {
     }
   },
   contactManager: {
+    noRecordsFound: 'Ingen registreringer fundet',
     recordChanged: '*** Record Changed ***',
     addingNewRecord: '*** Ny rekord ***',
     ofCount: 'af [COUNT]',
@@ -271,6 +275,7 @@ export const langDa: LanguageModel = {
     password: 'Adgangskode',
     allowLogin: 'Tillad login',
     notesAndHistory: 'Noter og historie',
+    supportTickets: 'Supportbilletter',
     accounts: 'Konti',
     contactProfile: 'Kontaktprofil',
     documentsAndFiles: 'Dokumenter og filer',
@@ -293,6 +298,10 @@ export const langDa: LanguageModel = {
     Customer: 'Kunde',
     Live: 'Direkte',
     Lead: 'Død',
+    notesHistory: {
+      addNotesOrHistory: 'Tilføj noter eller historik',
+      addSupportTicket: 'Tilføj supportbillet',
+    }
   },
   countries: {
     AF: 'Afghanistan', // safe

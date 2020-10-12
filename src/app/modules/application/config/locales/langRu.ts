@@ -64,6 +64,9 @@ export const langRu: LanguageModel = {
       demo3: 'Демо Третья',
       demo4: 'Демо четвертая',
       contactManager: 'Связаться с менеджером',
+      addHistory: 'Добавить историю',
+      addSupportTicket: 'Добавить заявку в службу поддержки',
+      editSettings: 'Изменить настройки',
     },
     panel: {
       close: 'близко',
@@ -212,6 +215,7 @@ export const langRu: LanguageModel = {
     }
   },
   contactManager: {
+    noRecordsFound: 'Записей не найдено',
     recordChanged: '*** Запись изменена ***',
     addingNewRecord: '*** Новый рекорд ***',
     ofCount: 'из [COUNT]',
@@ -271,6 +275,7 @@ export const langRu: LanguageModel = {
     password: 'пароль',
     allowLogin: 'Разрешить вход',
     notesAndHistory: 'Заметки и история',
+    supportTickets: 'Тикеты поддержки',
     accounts: 'учетные записи',
     contactProfile: 'Контактный профиль',
     documentsAndFiles: 'Документы и файлы',
@@ -293,6 +298,10 @@ export const langRu: LanguageModel = {
     Customer: 'Клиент',
     Live: 'Жить',
     Lead: 'мертв',
+    notesHistory: {
+      addNotesOrHistory: 'Добавить заметки или историю',
+      addSupportTicket: 'Добавить заявку в службу поддержки',
+    }
   },
   countries: {
     AF: 'Afghanistan', // safe

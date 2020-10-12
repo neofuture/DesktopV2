@@ -8,6 +8,12 @@ import {BehaviorSubject} from 'rxjs';
 export class ContactManagerService {
 
 
+  private recordObject = new BehaviorSubject({
+    record: undefined,
+    totalRecords: 0,
+    id: undefined
+  });
+  record = this.recordObject.asObservable();
 
   private initDataObject = new BehaviorSubject({
     types: {id: 0, name: 'Please wait'},
@@ -28,11 +34,22 @@ export class ContactManagerService {
       this.initDataObject.next(data);
     });
   }
-  record(record): void {
+
+  setRecord(record): void {
     const type = record.id === null ? 'post' : 'put';
 
-    this.apiService.call('contactManager/record', type, record).subscribe(data => {
+    this.apiService.call('contactManager/setRecord', type, record).subscribe(data => {
       console.log(data);
+    });
+  }
+
+  getRecord(category, recordIndex): void {
+    const requestBody = {
+      category,
+      recordIndex
+    };
+    this.apiService.call('contactManager/getRecord', 'post', requestBody).subscribe(record => {
+      this.recordObject.next(record);
     });
   }
 }

@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'vertinero';
-  src:  url('fonts/vertinero.eot?q4y3lz');
-  src:  url('fonts/vertinero.eot?q4y3lz#iefix') format('embedded-opentype'),
-  url('fonts/vertinero.ttf?q4y3lz') format('truetype'),
-  url('fonts/vertinero.woff?q4y3lz') format('woff'),
-  url('fonts/vertinero.svg?q4y3lz#vertinero') format('svg');
+  src:  url('fonts/vertinero.eot?49jt1y');
+  src:  url('fonts/vertinero.eot?49jt1y#iefix') format('embedded-opentype'),
+  url('fonts/vertinero.ttf?49jt1y') format('truetype'),
+  url('fonts/vertinero.woff?49jt1y') format('woff'),
+  url('fonts/vertinero.svg?49jt1y#vertinero') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,6 +25,15 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-notesHistory:before {
+  content: "\e986";
+}
+.icon-ticket_over:before {
+  content: "\e984";
+}
+.icon-ticket:before {
+  content: "\e985";
+}
 .icon-contactsAdd:before {
   content: "\e982";
 }

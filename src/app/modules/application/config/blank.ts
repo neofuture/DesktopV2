@@ -65,6 +65,9 @@ export const blank: LanguageModel = {
       demo3: 'Demo Three',
       demo4: 'Demo Four',
       contactManager: 'Contact Manager',
+      addHistory: 'Add History',
+      addSupportTicket: 'Add Support Ticket',
+      editSettings: 'Edit Settings',
     },
     panel: {
       close: 'Close',
@@ -213,6 +216,7 @@ export const blank: LanguageModel = {
     }
   },
   contactManager: {
+    noRecordsFound: 'No Records Found',
     recordChanged: '*** Record Changed ***',
     addingNewRecord: '*** New Record ***',
     ofCount: 'of [COUNT]',
@@ -272,6 +276,7 @@ export const blank: LanguageModel = {
     password: 'Password',
     allowLogin: 'Allow Login',
     notesAndHistory: 'Notes &amp; History',
+    supportTickets: 'Support Tickets',
     accounts: 'Accounts',
     contactProfile: 'Contact Profile',
     documentsAndFiles: 'Documents &amp; Files',
@@ -294,6 +299,10 @@ export const blank: LanguageModel = {
     Customer: 'Customer',
     Live: 'Live',
     Lead: 'Dead',
+    notesHistory: {
+      addNotesOrHistory: 'Add Notes or History',
+      addSupportTicket: 'Add Support Ticket',
+    }
   },
   countries: {
     AF: 'Afghanistan', // safe',

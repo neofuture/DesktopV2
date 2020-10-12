@@ -64,6 +64,9 @@ export const langZh: LanguageModel = {
       demo3: '示范三',
       demo4: '演示四',
       contactManager: '联系人经理',
+      addHistory: '添加历史',
+      addSupportTicket: '添加支持票',
+      editSettings: '编辑设置',
     },
     panel: {
       close: '关',
@@ -212,6 +215,7 @@ export const langZh: LanguageModel = {
     }
   },
   contactManager: {
+    noRecordsFound: '没有找到记录',
     recordChanged: '***记录已更改***',
     addingNewRecord: '*** 新纪录 ***',
     ofCount: '的[COUNT]',
@@ -271,6 +275,7 @@ export const langZh: LanguageModel = {
     password: '密码',
     allowLogin: '允许登录',
     notesAndHistory: '笔记和历史',
+    supportTickets: '支持票',
     accounts: '帐目',
     contactProfile: '联络资料',
     documentsAndFiles: '文件及档案',
@@ -293,6 +298,10 @@ export const langZh: LanguageModel = {
     Customer: '顾客',
     Live: '生活',
     Lead: '死',
+    notesHistory: {
+      addNotesOrHistory: '添加注释或历史记录',
+      addSupportTicket: '添加支持票',
+    }
   },
   countries: {
     AF: 'Afghanistan', // safe

@@ -36,6 +36,8 @@ export class Demo1Component implements OnInit, DoCheck {
     this.memory = this.windowItem.memory;
     this.memoryDiffer = this.differs.find(this.memory).create();
     this.windowService.setLoaded(this.windowItem.uuid);
+
+    console.log(this.windowItem.parentComponent);
   }
 
   ngDoCheck(): void {
@@ -51,6 +53,10 @@ export class Demo1Component implements OnInit, DoCheck {
 
   setMemory(): void {
     this.memory.field = 'TESTING';
+  }
+
+  updateParentComponent(val): void {
+    this.windowItem.parentComponent.test = val;
   }
 }
 

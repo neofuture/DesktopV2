@@ -64,6 +64,9 @@ export const langNl: LanguageModel = {
       demo3: 'Demo drie',
       demo4: 'Demo vier',
       contactManager: 'Neem contact op met Manager',
+      addHistory: 'Voeg geschiedenis toe',
+      addSupportTicket: 'Voeg ondersteuningsticket toe',
+      editSettings: 'Instellingen bewerken',
     },
     panel: {
       close: 'Dichtbij',
@@ -212,6 +215,7 @@ export const langNl: LanguageModel = {
     }
   },
   contactManager: {
+    noRecordsFound: 'Geen verslagen gevonden',
     recordChanged: '*** Record gewijzigd ***',
     addingNewRecord: '*** Nieuw record ***',
     ofCount: 'van [COUNT]',
@@ -271,6 +275,7 @@ export const langNl: LanguageModel = {
     password: 'Wachtwoord',
     allowLogin: 'Sta Inloggen toe',
     notesAndHistory: 'Aantekeningen en geschiedenis',
+    supportTickets: 'Ondersteuningstickets',
     accounts: 'Accounts',
     contactProfile: 'Contact Profiel',
     documentsAndFiles: 'Documenten en bestanden',
@@ -293,6 +298,10 @@ export const langNl: LanguageModel = {
     Customer: 'Klant',
     Live: 'Leven',
     Lead: 'Dood',
+    notesHistory: {
+      addNotesOrHistory: 'Voeg notities of geschiedenis toe',
+      addSupportTicket: 'Voeg ondersteuningsticket toe',
+    }
   },
   countries: {
     AF: 'Afghanistan', // safe

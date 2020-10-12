@@ -22,19 +22,24 @@
            [position]="'bottom'"></i>
         <i class="icon-leftArrow" (click)="recordPrev()" [tooltip]="locale.previous" [position]="'bottom'"></i>
         <div class="counter">
-          <input type="number" [(ngModel)]="thisRecord" id="input" min="{{ minRecords }}" max="{{ records }}" [disabled]="changed">
+          <input type="number" [(ngModel)]="thisRecord" id="input" min="{{ minRecords }}" max="{{ records }}"
+                 [disabled]="changed" (change)="getRecord()">
           <label for="input">{{ locale.ofCount | localeReplace:['[COUNT]']:[records | number] }}</label>
         </div>
         <i class="icon-rightArrow" (click)="recordNext()" [tooltip]="locale.next" [position]="'bottom'"></i>
         <i class="icon-rightArrowDouble" (click)="recordNextMore()" [tooltip]="locale.next50" [position]="'bottom'"></i>
         <i class="icon-rightArrowEnd" (click)="recordEnd()" [tooltip]="locale.end" [position]="'bottom'"></i>
+        {{ test }}
       </div>
       <div class="categories">
         <label for="categorySelect" [innerHTML]="locale.category"></label>
-        <select id="categorySelect" [(ngModel)]="category" (change)="setCategory()" [disabled]="changed && mode === 'edit'">
+        <select id="categorySelect" [(ngModel)]="category" (change)="setCategory()"
+                [disabled]="changed && mode === 'edit'">
           <option *ngFor="let item of objectKeys(categories)"
                   [value]="categories[item].id"
-                  [innerHTML]="categories[item].name | locale:'contactManager'"></option>
+                  [innerHTML]="(categories[item].name | locale:'contactManager') +
+                  (categories[item].count > 0 ? ' ('+ categories[item].count +')' : '')
+          "></option>
         </select>
       </div>
 
@@ -44,354 +49,341 @@
                         [windowWidth]="windowItem.width" [windowHeight]="windowItem.height">
         <ng-container top>
           <div class="contact" #contact *ngIf="contactType == 1">
-            <div class="tabBar">
-              <button
-                [ngStyle]="{'backgroundImage': (activeContactTab == 'general' ? buttonBackground : '')}"
-                [ngClass]="{'active': activeContactTab == 'general'}"
-                [innerHTML]="locale.general" (click)="activeContactTab = 'general'"></button>
-              <button
-                [ngStyle]="{'backgroundImage': (activeContactTab == 'authentication' ? buttonBackground : '')}"
-                [ngClass]="{'active': activeContactTab == 'authentication'}"
-                [innerHTML]="locale.authentication" (click)="activeContactTab = 'authentication'"></button>
-              <button
-                [ngStyle]="{'backgroundImage': (activeContactTab == 'otherInfo' ? buttonBackground : '')}"
-                [ngClass]="{'active': activeContactTab == 'otherInfo'}" [innerHTML]="locale.otherInfo"
-                (click)="activeContactTab = 'otherInfo'"></button>
-            </div>
-
-            <div class="grid-container" *ngIf="activeContactTab == 'authentication'">
-              <div class="left">
-                <label for="username" [innerHTML]="locale.username"></label>
-                <div><input id="username" type="text" class="fullWidth" [(ngModel)]="record.username"></div>
-                <label for="allowLogin" [innerHTML]="locale.allowLogin"></label>
-                <div><input id="allowLogin" type="checkbox" [(ngModel)]="record.allowLogin" value="true"></div>
-
+            <ng-container *ngIf="records > 0 || (mode == 'new') else noRecords">
+              <div class="tabBar">
+                <button
+                  [ngStyle]="{'backgroundImage': (activeContactTab == 'general' ? buttonBackground : '')}"
+                  [ngClass]="{'active': activeContactTab == 'general'}"
+                  [innerHTML]="locale.general" (click)="activeContactTab = 'general'"></button>
+                <button
+                  [ngStyle]="{'backgroundImage': (activeContactTab == 'authentication' ? buttonBackground : '')}"
+                  [ngClass]="{'active': activeContactTab == 'authentication'}"
+                  [innerHTML]="locale.authentication" (click)="activeContactTab = 'authentication'"></button>
+                <button
+                  [ngStyle]="{'backgroundImage': (activeContactTab == 'otherInfo' ? buttonBackground : '')}"
+                  [ngClass]="{'active': activeContactTab == 'otherInfo'}" [innerHTML]="locale.otherInfo"
+                  (click)="activeContactTab = 'otherInfo'"></button>
               </div>
-              <div class="right">
-                <label for="password" [innerHTML]="locale.password"></label>
-                <div><input id="password" type="password" class="fullWidth" [(ngModel)]="record.password"></div>
-              </div>
-            </div>
 
-            <div class="grid-container" *ngIf="activeContactTab == 'otherInfo'">
-              <div class="left">
-                other info left
-              </div>
-              <div class="right">
-                other info right
-              </div>
-            </div>
+              <div class="grid-container" *ngIf="activeContactTab == 'authentication'">
+                <div class="left">
+                  <label for="username" [innerHTML]="locale.username"></label>
+                  <div><input id="username" type="text" class="fullWidth" [(ngModel)]="record.username"></div>
+                  <label for="allowLogin" [innerHTML]="locale.allowLogin"></label>
+                  <div><input id="allowLogin" type="checkbox" [(ngModel)]="record.allowLogin" value="true"></div>
 
-            <div class="grid-container" *ngIf="activeContactTab == 'general'">
-              <div class="left">
-                <label for="view" [innerHTML]="locale.switchView"></label>
-                <div *ngIf="mode == 'edit' && !changed">
-                  <select id="view" class="fullWidth" (change)="switchView()" [(ngModel)]="view"
-                          [disabled]="objectKeys(switchViewOptions).length < 1">
-                    <option *ngFor="let view of objectKeys(switchViewOptions)"
-                            [value]="switchViewOptions[view].id"
-                            [innerHTML]="switchViewOptions[view].name"></option>
-                  </select>
                 </div>
-                <div class="emptyField" *ngIf="mode == 'new'" [innerHTML]="locale.addingNewRecord"></div>
-                <div class="emptyField" *ngIf="mode == 'edit' && changed" [innerHTML]="locale.recordChanged"></div>
-                <label for="title" [innerHTML]="locale.title"></label>
-                <div>
-                  <select id="title" [(ngModel)]="record.title">
-                    <option value="" [innerHTML]="locale.pleaseSelect"></option>
-                    <option *ngFor="let item of objectKeys(honorifics)"
-                            [value]="item"
-                            [innerHTML]="honorifics[item]"></option>
-                  </select>
+                <div class="right">
+                  <label for="password" [innerHTML]="locale.password"></label>
+                  <div><input id="password" type="password" class="fullWidth" [(ngModel)]="record.password"></div>
                 </div>
-                <label for="forename" [innerHTML]="locale.forename"></label>
-                <div><input id="forename" type="text" class="fullWidth" [(ngModel)]="record.forename"></div>
-                <label for="surname" [innerHTML]="locale.surname"></label>
-                <div><input id="surname" type="text" class="fullWidth" [(ngModel)]="record.surname"></div>
-                <label for="address1" [innerHTML]="locale.address"></label>
-                <div><input id="address1" type="text" class="fullWidth" [(ngModel)]="record.address"></div>
-                <label for="address2" [innerHTML]=""></label>
-                <div><input id="address2" type="text" class="fullWidth" [(ngModel)]="record.address2"></div>
-                <label for="town" [innerHTML]="locale.town"></label>
-                <div><input id="town" type="text" class="fullWidth" [(ngModel)]="record.town"></div>
-                <label for="county" [innerHTML]="locale.county"></label>
-                <div><input id="county" type="text" class="fullWidth" [(ngModel)]="record.county"></div>
-                <label for="postcode" [innerHTML]="locale.postcode"></label>
-                <div *ngIf="!pcSearching"><input *ngIf="objectKeys(lookupResults).length < 1" id="postcode" type="text"
-                                                 class="postcode" [(ngModel)]="record.postcode"
-                                                 (keypress)="postcodeKeyCheck($event)">
-                  <button [innerHTML]="locale.lookup" (click)="postcodeLookup()"></button>
-                  <div class="postcodeLookup" *ngIf="objectKeys(lookupResults).length > 0">
-                    <select (change)="setAddress($event)" class='fullWidth'>
-                      <option value="0" [innerHTML]="locale.selectAddress"></option>
-                      <option *ngFor="let address of objectKeys(lookupResults)"
-                              [value]="address"
-                              [innerHTML]="
+              </div>
+
+              <div class="grid-container" *ngIf="activeContactTab == 'otherInfo'">
+                <div class="left">
+                  other info left
+                </div>
+                <div class="right">
+                  other info right
+                </div>
+              </div>
+
+              <div class="grid-container" *ngIf="activeContactTab == 'general'">
+                <div class="left">
+                  <label for="view" [innerHTML]="locale.switchView"></label>
+                  <div *ngIf="mode == 'edit' && !changed">
+                    <select id="view" class="fullWidth" (change)="switchView()" [(ngModel)]="view"
+                            [disabled]="objectKeys(switchViewOptions).length < 1">
+                      <option *ngFor="let view of objectKeys(switchViewOptions)"
+                              [value]="switchViewOptions[view].id"
+                              [innerHTML]="switchViewOptions[view].name"></option>
+                    </select>
+                  </div>
+                  <div class="emptyField" *ngIf="mode == 'new'" [innerHTML]="locale.addingNewRecord"></div>
+                  <div class="emptyField" *ngIf="mode == 'edit' && changed" [innerHTML]="locale.recordChanged"></div>
+                  <label for="title" [innerHTML]="locale.title"></label>
+                  <div>
+                    <select id="title" [(ngModel)]="record.title">
+                      <option value="" [innerHTML]="locale.pleaseSelect"></option>
+                      <option *ngFor="let item of objectKeys(honorifics)"
+                              [value]="item"
+                              [innerHTML]="honorifics[item]"></option>
+                    </select>
+                  </div>
+                  <label for="forename" [innerHTML]="locale.forename"></label>
+                  <div><input id="forename" type="text" class="fullWidth" [(ngModel)]="record.forename"></div>
+                  <label for="surname" [innerHTML]="locale.surname"></label>
+                  <div><input id="surname" type="text" class="fullWidth" [(ngModel)]="record.surname"></div>
+                  <label for="address1" [innerHTML]="locale.address"></label>
+                  <div><input id="address1" type="text" class="fullWidth" [(ngModel)]="record.address"></div>
+                  <label for="address2" [innerHTML]=""></label>
+                  <div><input id="address2" type="text" class="fullWidth" [(ngModel)]="record.address2"></div>
+                  <label for="town" [innerHTML]="locale.town"></label>
+                  <div><input id="town" type="text" class="fullWidth" [(ngModel)]="record.town"></div>
+                  <label for="county" [innerHTML]="locale.county"></label>
+                  <div><input id="county" type="text" class="fullWidth" [(ngModel)]="record.county"></div>
+                  <label for="postcode" [innerHTML]="locale.postcode"></label>
+                  <div *ngIf="!pcSearching"><input *ngIf="objectKeys(lookupResults).length < 1" id="postcode"
+                                                   type="text"
+                                                   class="postcode" [(ngModel)]="record.postcode"
+                                                   (keypress)="postcodeKeyCheck($event)">
+                    <button [innerHTML]="locale.lookup" (click)="postcodeLookup()"></button>
+                    <div class="postcodeLookup" *ngIf="objectKeys(lookupResults).length > 0">
+                      <select (change)="setAddress($event)" class='fullWidth'>
+                        <option value="0" [innerHTML]="locale.selectAddress"></option>
+                        <option *ngFor="let address of objectKeys(lookupResults)"
+                                [value]="address"
+                                [innerHTML]="
                                (lookupResults[address]['Company'] ? lookupResults[address]['Company'] + ' - ' : '') +
                               lookupResults[address]['Line1'] +
                               (lookupResults[address]['Line2'] ? ', ' + lookupResults[address]['Line2'] : '') + ', ' +
                               lookupResults[address]['Postcode']"
-                      ></option>
-                      <option value="0" [innerHTML]="locale.addressNotListed"></option>
+                        ></option>
+                        <option value="0" [innerHTML]="locale.addressNotListed"></option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="searching" *ngIf="pcSearching" [innerHTML]="locale.searching"></div>
+                  <label for="country" [innerHTML]="locale.country"></label>
+                  <div>
+                    <select id="country" class="fullWidth" [(ngModel)]="record.country">
+                      <option value="" [innerHTML]="locale.pleaseSelect"></option>
+                      <option *ngFor="let country of objectKeys(countries)"
+                              [value]="country"
+                              [innerHTML]="countries[country]"></option>
                     </select>
                   </div>
                 </div>
-                <div class="searching" *ngIf="pcSearching" [innerHTML]="locale.searching"></div>
-                <label for="country" [innerHTML]="locale.country"></label>
-                <div>
-                  <select id="country" class="fullWidth" [(ngModel)]="record.country">
-                    <option value="" [innerHTML]="locale.pleaseSelect"></option>
-                    <option *ngFor="let country of objectKeys(countries)"
-                            [value]="country"
-                            [innerHTML]="countries[country]"></option>
-                  </select>
+                <div class="right">
+                  <label for="notes" [innerHTML]="locale.notes"></label>
+                  <div><textarea id="notes" class="fullWidth" rows="3" [(ngModel)]="record.notes"></textarea></div>
+                  <label for="jobTitle" [innerHTML]="locale.jobTitle"></label>
+                  <div><input id="jobTitle" type="text" class="fullWidth" [(ngModel)]="record.jobTitle"></div>
+                  <label for="department" [innerHTML]="locale.department"></label>
+                  <div><input id="department" type="text" class="fullWidth" [(ngModel)]="record.department"></div>
+                  <label for="work" [innerHTML]="locale.work"></label>
+                  <div><input id="work" type="text" class="fullWidth" [(ngModel)]="record.work"></div>
+                  <label for="fax" [innerHTML]="locale.fax"></label>
+                  <div><input id="fax" type="text" class="fullWidth" [(ngModel)]="record.fax"></div>
+                  <label for="mobile" [innerHTML]="locale.mobile"></label>
+                  <div><input id="mobile" type="text" class="fullWidth" [(ngModel)]="record.mobile"></div>
+                  <label for="email" [innerHTML]="locale.email"></label>
+                  <div><input id="email" type="text" class="fullWidth" [(ngModel)]="record.email"></div>
+                  <label for="group" [innerHTML]="locale.group"></label>
+                  <div>
+                    <select id="group" class="fullWidth" [(ngModel)]="record.group">
+                      <option *ngFor="let group of objectKeys(groups)"
+                              [ngValue]="groups[group].id"
+                              [innerHTML]="groups[group].name | locale:'contactManager'"></option>
+                    </select>
+                  </div>
+                  <label for="category" [innerHTML]="locale.category"></label>
+                  <div>
+                    <select id="category" class="fullWidth" [(ngModel)]="record.category"
+                            (change)="recordChangeCategory()">
+                      <ng-container *ngFor="let category of objectKeys(categories)">
+                        <option *ngIf="contactType == categories[category].typeId || mode === 'new'"
+                                [ngValue]="categories[category].id"
+                                [innerHTML]="categories[category].name | locale:'contactManager'"></option>
+                      </ng-container>
+                    </select>
+                  </div>
                 </div>
               </div>
-              <div class="right">
-                <label for="notes" [innerHTML]="locale.notes"></label>
-                <div><textarea id="notes" class="fullWidth" rows="3" [(ngModel)]="record.notes"></textarea></div>
-                <label for="jobTitle" [innerHTML]="locale.jobTitle"></label>
-                <div><input id="jobTitle" type="text" class="fullWidth" [(ngModel)]="record.jobTitle"></div>
-                <label for="department" [innerHTML]="locale.department"></label>
-                <div><input id="department" type="text" class="fullWidth" [(ngModel)]="record.department"></div>
-                <label for="work" [innerHTML]="locale.work"></label>
-                <div><input id="work" type="text" class="fullWidth" [(ngModel)]="record.work"></div>
-                <label for="fax" [innerHTML]="locale.fax"></label>
-                <div><input id="fax" type="text" class="fullWidth" [(ngModel)]="record.fax"></div>
-                <label for="mobile" [innerHTML]="locale.mobile"></label>
-                <div><input id="mobile" type="text" class="fullWidth" [(ngModel)]="record.mobile"></div>
-                <label for="email" [innerHTML]="locale.email"></label>
-                <div><input id="email" type="text" class="fullWidth" [(ngModel)]="record.email"></div>
-                <label for="group" [innerHTML]="locale.group"></label>
-                <div>
-                  <select id="group" class="fullWidth" [(ngModel)]="record.group">
-                    <option *ngFor="let group of objectKeys(groups)"
-                            [ngValue]="groups[group].id"
-                            [innerHTML]="groups[group].name | locale:'contactManager'"></option>
-                  </select>
-                </div>
-                <label for="category" [innerHTML]="locale.category"></label>
-                <div>
-                  <select id="category" class="fullWidth" [(ngModel)]="record.category" (change)="recordChangeCategory()">
-                    <ng-container *ngFor="let category of objectKeys(categories)">
-                      <option *ngIf="contactType == categories[category].typeId || mode === 'new'"
-                              [ngValue]="categories[category].id"
-                              [innerHTML]="categories[category].name | locale:'contactManager'"></option>
-                    </ng-container>
-                  </select>
-                </div>
-              </div>
-            </div>
+            </ng-container>
           </div>
 
 
           <div class="contact" #contact *ngIf="contactType == 2">
+            <ng-container *ngIf="records > 0 || (mode == 'new') else noRecords">
 
-            <div class="tabBar">
-              <button
-                [ngStyle]="{'backgroundImage': (activeCompanyTab == 'general' ? buttonBackground : '')}"
-                [ngClass]="{'active': activeCompanyTab == 'general'}"
-                [innerHTML]="locale.general" (click)="activeCompanyTab = 'general'"></button>
-              <button
-                [ngStyle]="{'backgroundImage': (activeCompanyTab == 'companySettings' ? buttonBackground : '')}"
-                [ngClass]="{'active': activeCompanyTab == 'companySettings'}"
-                [innerHTML]="locale.companySettings" (click)="activeCompanyTab = 'companySettings'"></button>
-              <button
-                [ngStyle]="{'backgroundImage': (activeCompanyTab == 'access' ? buttonBackground : '')}"
-                [ngClass]="{'active': activeCompanyTab == 'access'}" [innerHTML]="locale.access"
-                (click)="activeCompanyTab = 'access'"></button>
-            </div>
-
-            <div class="grid-container" *ngIf="activeCompanyTab == 'companySettings'">
-              <div class="left">
-                companySettings Left
+              <div class="tabBar">
+                <button
+                  [ngStyle]="{'backgroundImage': (activeCompanyTab == 'general' ? buttonBackground : '')}"
+                  [ngClass]="{'active': activeCompanyTab == 'general'}"
+                  [innerHTML]="locale.general" (click)="activeCompanyTab = 'general'"></button>
+                <button
+                  [ngStyle]="{'backgroundImage': (activeCompanyTab == 'companySettings' ? buttonBackground : '')}"
+                  [ngClass]="{'active': activeCompanyTab == 'companySettings'}"
+                  [innerHTML]="locale.companySettings" (click)="activeCompanyTab = 'companySettings'"></button>
+                <button
+                  [ngStyle]="{'backgroundImage': (activeCompanyTab == 'access' ? buttonBackground : '')}"
+                  [ngClass]="{'active': activeCompanyTab == 'access'}" [innerHTML]="locale.access"
+                  (click)="activeCompanyTab = 'access'"></button>
               </div>
-              <div class="right">
-                companySettings Right
-              </div>
-            </div>
 
-            <div class="grid-container" *ngIf="activeCompanyTab == 'access'">
-              <div class="left">
-                access left
-              </div>
-              <div class="right">
-                access right
-              </div>
-            </div>
-
-            <div class="grid-container" *ngIf="activeCompanyTab == 'general'">
-              <div class="left">
-                <label for="view2" [innerHTML]="locale.switchView"></label>
-<!--                <div *ngIf="mode == 'edit'">-->
-<!--                  <select id="view2" class="fullWidth" (change)="switchView()" [(ngModel)]="view"-->
-<!--                          [disabled]="objectKeys(switchViewOptions).length < 1">-->
-<!--                    <option *ngFor="let view of objectKeys(switchViewOptions)"-->
-<!--                            [value]="switchViewOptions[view].id"-->
-<!--                            [innerHTML]="switchViewOptions[view].name"></option>-->
-<!--                  </select>-->
-<!--                </div>-->
-<!--                <div class="emptyField" *ngIf="mode == 'new'" [innerHTML]="locale.addingNewRecord"></div>-->
-
-
-
-                <div *ngIf="mode == 'edit' && !changed">
-                  <select id="view2" class="fullWidth" (change)="switchView()" [(ngModel)]="view"
-                          [disabled]="objectKeys(switchViewOptions).length < 1">
-                    <option *ngFor="let view of objectKeys(switchViewOptions)"
-                            [value]="switchViewOptions[view].id"
-                            [innerHTML]="switchViewOptions[view].name"></option>
-                  </select>
+              <div class="grid-container" *ngIf="activeCompanyTab == 'companySettings'">
+                <div class="left">
+                  companySettings Left
                 </div>
-                <div class="emptyField" *ngIf="mode == 'new'" [innerHTML]="locale.addingNewRecord"></div>
-                <div class="emptyField" *ngIf="mode == 'edit' && changed" [innerHTML]="locale.recordChanged"></div>
+                <div class="right">
+                  companySettings Right
+                </div>
+              </div>
+
+              <div class="grid-container" *ngIf="activeCompanyTab == 'access'">
+                <div class="left">
+                  access left
+                </div>
+                <div class="right">
+                  access right
+                </div>
+              </div>
+
+              <div class="grid-container" *ngIf="activeCompanyTab == 'general'">
+                <div class="left">
+                  <label for="view2" [innerHTML]="locale.switchView"></label>
+                  <!--                <div *ngIf="mode == 'edit'">-->
+                  <!--                  <select id="view2" class="fullWidth" (change)="switchView()" [(ngModel)]="view"-->
+                  <!--                          [disabled]="objectKeys(switchViewOptions).length < 1">-->
+                  <!--                    <option *ngFor="let view of objectKeys(switchViewOptions)"-->
+                  <!--                            [value]="switchViewOptions[view].id"-->
+                  <!--                            [innerHTML]="switchViewOptions[view].name"></option>-->
+                  <!--                  </select>-->
+                  <!--                </div>-->
+                  <!--                <div class="emptyField" *ngIf="mode == 'new'" [innerHTML]="locale.addingNewRecord"></div>-->
 
 
-                <label for="accountNumber" [innerHTML]="locale.accountNumber"></label>
-                <div><input id="accountNumber" type="text" class="fullWidth" [(ngModel)]="record.accountNumber"></div>
-                <label for="company" [innerHTML]="locale.company"></label>
-                <div><input id="company" type="text" class="fullWidth" [(ngModel)]="record.company"></div>
-                <label for="division" [innerHTML]="locale.division"></label>
-                <div><input id="division" type="text" class="fullWidth" [(ngModel)]="record.division"></div>
-                <label for="address12" [innerHTML]="locale.address"></label>
-                <div><input id="address12" type="text" class="fullWidth" [(ngModel)]="record.address"></div>
-                <label for="address22" [innerHTML]=""></label>
-                <div><input id="address22" type="text" class="fullWidth" [(ngModel)]="record.address2"></div>
-                <label for="town2" [innerHTML]="locale.town"></label>
-                <div><input id="town2" type="text" class="fullWidth" [(ngModel)]="record.town"></div>
-                <label for="county2" [innerHTML]="locale.county"></label>
-                <div><input id="county2" type="text" class="fullWidth" [(ngModel)]="record.county"></div>
-                <label for="postcode2" [innerHTML]="locale.postcode"></label>
-                <div *ngIf="!pcSearching"><input *ngIf="objectKeys(lookupResults).length < 1" id="postcode2" type="text"
-                                                 class="postcode" [(ngModel)]="record.postcode"
-                                                 (keypress)="postcodeKeyCheck($event)">
-                  <button [innerHTML]="locale.lookup" (click)="postcodeLookup()"></button>
-                  <div class="postcodeLookup" *ngIf="objectKeys(lookupResults).length > 0">
-                    <select (change)="setAddress($event)" class='fullWidth'>
-                      <option value="0" [innerHTML]="locale.selectAddress"></option>
-                      <option *ngFor="let address of objectKeys(lookupResults)"
-                              [value]="address"
-                              [innerHTML]="
+                  <div *ngIf="mode == 'edit' && !changed">
+                    <select id="view2" class="fullWidth" (change)="switchView()" [(ngModel)]="view"
+                            [disabled]="objectKeys(switchViewOptions).length < 1">
+                      <option *ngFor="let view of objectKeys(switchViewOptions)"
+                              [value]="switchViewOptions[view].id"
+                              [innerHTML]="switchViewOptions[view].name"></option>
+                    </select>
+                  </div>
+                  <div class="emptyField" *ngIf="mode == 'new'" [innerHTML]="locale.addingNewRecord"></div>
+                  <div class="emptyField" *ngIf="mode == 'edit' && changed" [innerHTML]="locale.recordChanged"></div>
+
+
+                  <label for="accountNumber" [innerHTML]="locale.accountNumber"></label>
+                  <div><input id="accountNumber" type="text" class="fullWidth" [(ngModel)]="record.accountNumber"></div>
+                  <label for="company" [innerHTML]="locale.company"></label>
+                  <div><input id="company" type="text" class="fullWidth" [(ngModel)]="record.company"></div>
+                  <label for="division" [innerHTML]="locale.division"></label>
+                  <div><input id="division" type="text" class="fullWidth" [(ngModel)]="record.division"></div>
+                  <label for="address12" [innerHTML]="locale.address"></label>
+                  <div><input id="address12" type="text" class="fullWidth" [(ngModel)]="record.address"></div>
+                  <label for="address22" [innerHTML]=""></label>
+                  <div><input id="address22" type="text" class="fullWidth" [(ngModel)]="record.address2"></div>
+                  <label for="town2" [innerHTML]="locale.town"></label>
+                  <div><input id="town2" type="text" class="fullWidth" [(ngModel)]="record.town"></div>
+                  <label for="county2" [innerHTML]="locale.county"></label>
+                  <div><input id="county2" type="text" class="fullWidth" [(ngModel)]="record.county"></div>
+                  <label for="postcode2" [innerHTML]="locale.postcode"></label>
+                  <div *ngIf="!pcSearching"><input *ngIf="objectKeys(lookupResults).length < 1" id="postcode2"
+                                                   type="text"
+                                                   class="postcode" [(ngModel)]="record.postcode"
+                                                   (keypress)="postcodeKeyCheck($event)">
+                    <button [innerHTML]="locale.lookup" (click)="postcodeLookup()"></button>
+                    <div class="postcodeLookup" *ngIf="objectKeys(lookupResults).length > 0">
+                      <select (change)="setAddress($event)" class='fullWidth'>
+                        <option value="0" [innerHTML]="locale.selectAddress"></option>
+                        <option *ngFor="let address of objectKeys(lookupResults)"
+                                [value]="address"
+                                [innerHTML]="
                                (lookupResults[address]['Company'] ? lookupResults[address]['Company'] + ' - ' : '') +
                               lookupResults[address]['Line1'] +
                               (lookupResults[address]['Line2'] ? ', ' + lookupResults[address]['Line2'] : '') + ', ' +
                               lookupResults[address]['Postcode']"
-                      ></option>
-                      <option value="0" [innerHTML]="locale.addressNotListed"></option>
+                        ></option>
+                        <option value="0" [innerHTML]="locale.addressNotListed"></option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="searching" *ngIf="pcSearching" [innerHTML]="locale.searching"></div>
+                  <label for="country2" [innerHTML]="locale.country"></label>
+                  <div>
+                    <select id="country2" class="fullWidth" [(ngModel)]="record.country">
+                      <option value="" [innerHTML]="locale.pleaseSelect"></option>
+                      <option *ngFor="let country of objectKeys(countries)"
+                              [value]="country"
+                              [innerHTML]="countries[country]"></option>
                     </select>
                   </div>
                 </div>
-                <div class="searching" *ngIf="pcSearching" [innerHTML]="locale.searching"></div>
-                <label for="country2" [innerHTML]="locale.country"></label>
-                <div>
-                  <select id="country2" class="fullWidth" [(ngModel)]="record.country">
-                    <option value="" [innerHTML]="locale.pleaseSelect"></option>
-                    <option *ngFor="let country of objectKeys(countries)"
-                            [value]="country"
-                            [innerHTML]="countries[country]"></option>
-                  </select>
-                </div>
-              </div>
-              <div class="right">
-                <label for="notes2" [innerHTML]="locale.notes"></label>
-                <div><textarea id="notes2" class="fullWidth" rows="3" [(ngModel)]="record.notes"></textarea></div>
-                <label for="work2" [innerHTML]="locale.work"></label>
-                <div><input id="work2" type="text" class="fullWidth" [(ngModel)]="record.work"></div>
-                <label for="fax2" [innerHTML]="locale.fax"></label>
-                <div><input id="fax2" type="text" class="fullWidth" [(ngModel)]="record.fax"></div>
-                <label for="website" [innerHTML]="locale.website"></label>
-                <div><input id="website" type="text" class="fullWidth" [(ngModel)]="record.website"></div>
-                <label for="email2" [innerHTML]="locale.email"></label>
-                <div><input id="email2" type="text" class="fullWidth" [(ngModel)]="record.email"></div>
-                <label for="type" [innerHTML]="locale.type"></label>
-                <div>
-                  <select id="type" class="fullWidth" [(ngModel)]="record.type">
-                    <option *ngFor="let type of objectKeys(types)"
-                            [ngValue]="types[type].id"
-                            [innerHTML]="types[type].name | locale:'contactManager'"></option>
-                  </select>
-                </div>
-                <label for="status" [innerHTML]="locale.status"></label>
-                <div>
-                  <select id="status" class="fullWidth" [(ngModel)]="record.status">
-                    <option *ngFor="let state of objectKeys(status)"
-                            [ngValue]="status[state].id"
-                            [innerHTML]="status[state].name | locale:'contactManager'"></option>
-                  </select>
-                </div>
-                <label for="category2" [innerHTML]="locale.category"></label>
-                <div>
-                  <select id="category2" class="fullWidth" [(ngModel)]="record.category" (change)="recordChangeCategory()">
-                    <ng-container *ngFor="let category of objectKeys(categories)">
-                      <option *ngIf="contactType == categories[category].typeId || mode === 'new'"
-                              [ngValue]="categories[category].id"
-                              [innerHTML]="categories[category].name | locale:'contactManager'"></option>
-                    </ng-container>
-                  </select>
-                </div>
-                <label for="contactAssociations" [innerHTML]="locale.contactAssociations"></label>
-                <div *ngIf="mode == 'edit' && !changed">
-                  <select id="contactAssociations" class="fullWidth">
-                    <option value="Carl Fearby">Carl Fearby</option>
-                    <option value="1">Contacts</option>
-                  </select>
-                </div>
-                <div class="emptyField" *ngIf="mode == 'new' || changed" [innerHTML]="'-'"></div>
+                <div class="right">
+                  <label for="notes2" [innerHTML]="locale.notes"></label>
+                  <div><textarea id="notes2" class="fullWidth" rows="3" [(ngModel)]="record.notes"></textarea></div>
+                  <label for="work2" [innerHTML]="locale.work"></label>
+                  <div><input id="work2" type="text" class="fullWidth" [(ngModel)]="record.work"></div>
+                  <label for="fax2" [innerHTML]="locale.fax"></label>
+                  <div><input id="fax2" type="text" class="fullWidth" [(ngModel)]="record.fax"></div>
+                  <label for="website" [innerHTML]="locale.website"></label>
+                  <div><input id="website" type="text" class="fullWidth" [(ngModel)]="record.website"></div>
+                  <label for="email2" [innerHTML]="locale.email"></label>
+                  <div><input id="email2" type="text" class="fullWidth" [(ngModel)]="record.email"></div>
+                  <label for="type" [innerHTML]="locale.type"></label>
+                  <div>
+                    <select id="type" class="fullWidth" [(ngModel)]="record.type">
+                      <option *ngFor="let type of objectKeys(types)"
+                              [ngValue]="types[type].id"
+                              [innerHTML]="types[type].name | locale:'contactManager'"></option>
+                    </select>
+                  </div>
+                  <label for="status" [innerHTML]="locale.status"></label>
+                  <div>
+                    <select id="status" class="fullWidth" [(ngModel)]="record.status">
+                      <option *ngFor="let state of objectKeys(status)"
+                              [ngValue]="status[state].id"
+                              [innerHTML]="status[state].name | locale:'contactManager'"></option>
+                    </select>
+                  </div>
+                  <label for="category2" [innerHTML]="locale.category"></label>
+                  <div>
+                    <select id="category2" class="fullWidth" [(ngModel)]="record.category"
+                            (change)="recordChangeCategory()">
+                      <ng-container *ngFor="let category of objectKeys(categories)">
+                        <option *ngIf="contactType == categories[category].typeId || mode === 'new'"
+                                [ngValue]="categories[category].id"
+                                [innerHTML]="categories[category].name | locale:'contactManager'"></option>
+                      </ng-container>
+                    </select>
+                  </div>
+                  <label for="contactAssociations" [innerHTML]="locale.contactAssociations"></label>
+                  <div *ngIf="mode == 'edit' && !changed">
+                    <select id="contactAssociations" class="fullWidth">
+                      <option value="Carl Fearby">Carl Fearby</option>
+                      <option value="1">Contacts</option>
+                    </select>
+                  </div>
+                  <div class="emptyField" *ngIf="mode == 'new' || changed" [innerHTML]="'-'"></div>
 
+                </div>
               </div>
-            </div>
+            </ng-container>
           </div>
 
 
         </ng-container>
         <ng-container bottom>
-          <div class="editing" *ngIf="mode === 'new'">
+          <div class="editing" *ngIf="mode === 'new' || records < 1">
           </div>
-          <div class="action-grid-container" *ngIf="mode === 'edit'">
+          <div class="action-grid-container" *ngIf="mode === 'edit' &&  records > 0">
             <div class="actions">
-              <button class="fullWidth" [innerHTML]="locale.notesAndHistory"></button>
-              <button class="fullWidth" [innerHTML]="locale.accounts"></button>
-              <button class="fullWidth" [innerHTML]="locale.contactProfile"></button>
-              <button class="fullWidth" [innerHTML]="locale.documentsAndFiles"></button>
+              <button class="fullWidth subSelect">
+                <i class='icon-notesHistory'></i>
+                <span [innerHTML]="locale.notesAndHistory"></span>
+              </button>
+              <button class="fullWidth subSelect">
+                <i class='icon-ticket'></i>
+                <span [innerHTML]="locale.supportTickets"></span>
+              </button>
+              <button class="fullWidth subSelect">
+                <i class='icon-users'></i>
+                <span [innerHTML]="locale.accounts"></span>
+              </button>
+              <button class="fullWidth subSelect">
+                <i class='icon-user'></i>
+                <span [innerHTML]="locale.contactProfile"></span>
+              </button>
+              <button class="fullWidth subSelect">
+                <i class='icon-folder'></i>
+                <span [innerHTML]="locale.documentsAndFiles"></span>
+              </button>
             </div>
             <div class="list">
-              <p>Bacon ipsum dolor amet fatback ribeye rump doner meatloaf landjaeger short ribs. Ribeye pancetta
-                frankfurter
-                kielbasa chicken pastrami. Strip steak spare ribs chuck t-bone drumstick frankfurter venison. Spare ribs
-                short
-                ribs shankle filet mignon tail pig pancetta brisket sausage landjaeger prosciutto kevin.</p>
-
-              <p>Brisket shankle pork belly beef, cow pork chop shoulder sausage t-bone meatball. Chicken brisket short
-                loin,
-                sirloin rump kielbasa ball tip buffalo picanha beef capicola jerky tri-tip. Burgdoggen bresaola doner
-                meatloaf
-                ground round corned beef turducken. Tail hamburger meatball kielbasa ham tri-tip.</p>
-
-              <p>Biltong prosciutto drumstick andouille tail. Bresaola ball tip alcatra pig doner turducken ribeye
-                prosciutto
-                spare ribs boudin. Jerky pork cupim shoulder meatloaf. Pancetta frankfurter sirloin jowl kevin. Kevin
-                biltong
-                pork belly alcatra meatball jowl tri-tip kielbasa. Strip steak spare ribs tri-tip brisket pancetta cow.
-                Flank
-                sirloin ham hock bacon leberkas, alcatra filet mignon salami.</p>
-
-              <p>Bacon chuck turducken swine jowl pork loin. Pork loin tongue salami, ground round turducken kielbasa
-                capicola
-                fatback chicken turkey. Jowl leberkas pork loin strip steak brisket cow short ribs tail capicola. Tail
-                ball
-                tip
-                boudin brisket sirloin pastrami ground round. Short ribs doner andouille shankle fatback beef. Sausage
-                chicken
-                swine, buffalo pastrami venison burgdoggen biltong turkey.</p>
-
-              <p>Cupim andouille turkey, capicola ham hock rump pork. Pork chop meatball frankfurter, bacon ball tip
-                sirloin
-                strip steak shankle andouille alcatra rump ham hock. Fatback tri-tip short loin chislic ham hock beef
-                leberkas
-                t-bone spare ribs cupim porchetta corned beef meatloaf. Corned beef ball tip turkey chuck. Porchetta
-                short
-                ribs
-                strip steak jowl pastrami ham buffalo.</p>
+              <app-notes-history [parentComponent]="this"></app-notes-history>
             </div>
           </div>
         </ng-container>
@@ -401,3 +393,9 @@
   </div>
 
 </div>
+
+<ng-template #noRecords>
+  <div class="noRecContainer">
+    <div [innerHTML]="locale.noRecordsFound"></div>
+  </div>
+</ng-template>

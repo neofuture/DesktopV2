@@ -64,6 +64,9 @@ export const langFi: LanguageModel = {
       demo3: 'Esittelykolmi',
       demo4: 'Demo Neljä',
       contactManager: 'Ota yhteyttä johtajaan',
+      addHistory: 'Lisää historia',
+      addSupportTicket: 'Lisää tukilippu',
+      editSettings: 'Muokkaa asetuksia',
     },
     panel: {
       close: 'kiinni',
@@ -212,6 +215,7 @@ export const langFi: LanguageModel = {
     }
   },
   contactManager: {
+    noRecordsFound: 'Merkintöjä ei löydy',
     recordChanged: '*** Tietue muutettu ***',
     addingNewRecord: '*** Uusi ennätys ***',
     ofCount: '/ [COUNT]',
@@ -271,6 +275,7 @@ export const langFi: LanguageModel = {
     password: 'Salasana',
     allowLogin: 'Salli sisäänkirjautuminen',
     notesAndHistory: 'Muistiinpanot ja historia',
+    supportTickets: 'Tukiliput',
     accounts: 'Tilit',
     contactProfile: 'Yhteysprofiili',
     documentsAndFiles: 'Asiakirjat ja tiedostot',
@@ -293,6 +298,10 @@ export const langFi: LanguageModel = {
     Customer: 'Asiakas',
     Live: 'Elää',
     Lead: 'Kuollut',
+    notesHistory: {
+      addNotesOrHistory: 'Lisää muistiinpanoja tai historiaa',
+      addSupportTicket: 'Lisää tukilippu',
+    }
   },
   countries: {
     AF: 'Afghanistan', // safe

@@ -7,7 +7,7 @@ import {
   Output, ViewChild
 } from '@angular/core';
 import {FormsModule} from '@angular/forms';
-import {CommonModule} from '@angular/common';
+import {CommonModule, DatePipe} from '@angular/common';
 import {WindowService} from '../../../services/window.service';
 import {ApplicationModule} from '../../../application.module';
 import {LanguageService} from '../../../services/language.service';
@@ -16,6 +16,8 @@ import {RibbonService} from '../../../services/ribbon.service';
 import {ApiService} from '../../../services/api.service';
 import {ContactManagerService} from '../../../services/contact-manager.service';
 import {DialogService} from '../../../services/dialog.service';
+import {Subscription} from 'rxjs';
+import {NotesHistoryModule} from './modules/notes-history/notes-history.component';
 
 @Component({
   selector: 'app-contact-manager',
@@ -27,11 +29,13 @@ export class ContactManagerComponent implements OnInit, DoCheck {
   @Output() update = new EventEmitter();
   @ViewChild('contact', {read: ElementRef, static: false}) contact: ElementRef;
 
+  test = false;
+
   objectKeys = Object.keys;
   mode = 'edit';
   locale;
 
-  records = 2976;
+  records = 0;
   thisRecord = 1;
   minRecords = 1;
   background: any;
@@ -42,35 +46,36 @@ export class ContactManagerComponent implements OnInit, DoCheck {
   private recordDiffer: KeyValueDiffer<string, any>;
 
   record = {
-    id: 2067,
-    title: 'mr',
-    forename: 'a',
-    surname: 'a',
-    address: 'a',
-    address2: 'a',
-    town: 'a',
-    county: 'a',
-    postcode: 'a',
-    country: 'GB',
-    notes: 'a',
-    jobTitle: 'a',
-    department: 'a',
-    work: 'a',
-    fax: 'a',
-    mobile: 'a',
-    email: 'a',
-    group: 100,
-    category: 1,
-    status: 1,
-    type: 1,
-    website: 'a',
-    division: 'a',
-    company: 'a',
-    accountNumber: 'a',
-    username: 'a',
-    password: 'a',
-    allowLogin: false
-
+    id: null,
+    title: '',
+    forename: '',
+    surname: '',
+    address: '',
+    address2: '',
+    town: '',
+    county: '',
+    postcode: '',
+    country: '',
+    notes: '',
+    jobTitle: '',
+    department: '',
+    work: '',
+    fax: '',
+    mobile: '',
+    email: '',
+    group: 0,
+    category: 0,
+    status: 0,
+    type: 0,
+    website: '',
+    division: '',
+    company: '',
+    accountNumber: '',
+    username: '',
+    password: '',
+    allowLogin: false,
+    added: '',
+    updated: ''
   };
   countries;
   private windowAreaSub$: any;
@@ -113,6 +118,10 @@ export class ContactManagerComponent implements OnInit, DoCheck {
   saveBuffer;
   changed: boolean;
   buffer;
+  tz = new Date().toString().match(/([-\+][0-9]+)\s/)[1];
+  private recordSub$: Subscription;
+  private languageSub$: Subscription;
+  private contactManagerSub$: Subscription;
 
   constructor(
     private windowService: WindowService,
@@ -121,21 +130,41 @@ export class ContactManagerComponent implements OnInit, DoCheck {
     private apiService: ApiService,
     private contactManagerService: ContactManagerService,
     private differs: KeyValueDiffers,
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    private datePipe: DatePipe
   ) {
   }
 
   ngOnInit(): void {
 
     this.recordDiffer = this.differs.find(this.record).create();
-    this.windowService.setLoaded(this.windowItem.uuid);
-    this.languageService.language.subscribe(locale => {
+
+    this.languageSub$ = this.languageService.language.subscribe(locale => {
       this.locale = locale.contactManager;
       this.countries = locale.countries;
       this.honorifics = locale.honorifics;
+
+      this.recordSub$ = this.contactManagerService.record.subscribe(record => {
+        this.record = record.record;
+        this.buffer = {...this.record};
+        this.records = record.totalRecords;
+        setTimeout(() => {
+          if (this.record) {
+            const status = '<b>' + this.locale.created + '</b> - ' + this.datePipe.transform(this.record.added, 'medium', this.tz) +
+              '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +
+              '<b>' + this.locale.updated + '</b> - ' + this.datePipe.transform(this.record.updated, 'medium', this.tz);
+
+            this.windowService.setExtendedTitle(this.windowItem, this.record.company || this.record.forename + ', ' + this.record.surname);
+            this.windowService.setStatus(this.windowItem, status);
+          } else {
+            this.windowService.setExtendedTitle(this.windowItem, null);
+            this.windowService.setStatus(this.windowItem, null);
+          }
+        });
+      });
     });
 
-    this.contactManagerService.initData.subscribe(data => {
+    this.contactManagerSub$ = this.contactManagerService.initData.subscribe(data => {
       this.types = data.types;
       this.categories = data.categories;
       this.groups = data.groups;
@@ -164,25 +193,6 @@ export class ContactManagerComponent implements OnInit, DoCheck {
           this.defaultStatus = (this.status[item].id);
         }
       }
-
-    });
-
-    this.windowAreaSub$ = this.windowItem.area.subscribe(data => {
-      this.componentArea = this.windowService.checkResize(this.resizeEvent, data);
-    });
-
-    this.buffer = {...this.record};
-
-    setTimeout(() => {
-      this.topSize = this.maxTopSize = (this.contact.nativeElement.offsetHeight);
-
-      const status = '<b>' + this.locale.created + ':</b> Unknown &nbsp;&nbsp;&nbsp;&nbsp;' +
-        '| <b>' + this.locale.updated + ':</b> Unknown &nbsp;&nbsp;&nbsp;&nbsp;' +
-        '| <b>' + this.locale.lastUpdatedBy + ':</b> Unknown &nbsp;&nbsp;&nbsp;&nbsp;' +
-        '| <b>' + this.locale.lastLogin + ':</b> Unknown ';
-
-      this.windowService.setStatus(this.windowItem, status);
-
       for (const category in this.categories) {
         if (this.categories[category].defaultCategory === 1) {
           this.category = parseInt(category, 10);
@@ -191,7 +201,19 @@ export class ContactManagerComponent implements OnInit, DoCheck {
       }
       this.changed = false;
       this.setRibbonBar();
-    }, 100);
+      if(this.types.length > 0){
+        setTimeout(() => {
+          this.windowService.setLoaded(this.windowItem.uuid);
+        }, 200);
+      }
+    });
+
+    this.windowAreaSub$ = this.windowItem.area.subscribe(data => {
+      this.componentArea = this.windowService.checkResize(this.resizeEvent, data);
+    });
+
+
+    this.topSize = this.maxTopSize = 410;
 
 
   }
@@ -228,10 +250,15 @@ export class ContactManagerComponent implements OnInit, DoCheck {
       }
     }
     if (this.mode === 'edit') {
-      console.log('load records for ' + this.category);
+      this.thisRecord = 1;
+      this.getRecord();
     } else {
       this.record.category = this.category;
     }
+  }
+
+  getRecord(): void {
+    this.contactManagerService.getRecord(this.category, this.thisRecord);
   }
 
   newRecord(): void {
@@ -267,7 +294,9 @@ export class ContactManagerComponent implements OnInit, DoCheck {
       accountNumber: '',
       username: '',
       password: '',
-      allowLogin: false
+      allowLogin: false,
+      added: '',
+      updated: ''
     };
     this.changed = false;
   }
@@ -288,50 +317,66 @@ export class ContactManagerComponent implements OnInit, DoCheck {
 
   recordStart(): void {
     if (!this.changed) {
-      this.thisRecord = 1;
+      if (this.thisRecord > 1) {
+        this.thisRecord = 1;
+        this.getRecord();
+      }
     }
-
   }
 
   recordPrevMore(): void {
     if (!this.changed) {
-      this.thisRecord -= 50;
-      if (this.thisRecord < 1) {
-        this.thisRecord = 1;
+      if (this.thisRecord > 1) {
+        this.thisRecord -= 50;
+        if (this.thisRecord < 1) {
+          this.thisRecord = 1;
+        }
+        this.getRecord();
       }
     }
   }
 
   recordPrev(): void {
     if (!this.changed) {
-      this.thisRecord--;
-      if (this.thisRecord < 1) {
-        this.thisRecord = 1;
+      if (this.thisRecord > 1) {
+        this.thisRecord--;
+        if (this.thisRecord < 1) {
+          this.thisRecord = 1;
+        }
+        this.getRecord();
       }
     }
   }
 
   recordNext(): void {
     if (!this.changed) {
-      this.thisRecord++;
-      if (this.thisRecord > this.records) {
-        this.thisRecord = this.records;
+
+      if (this.thisRecord < this.records) {
+        this.thisRecord++;
+        this.getRecord();
       }
     }
   }
 
   recordNextMore(): void {
     if (!this.changed) {
-      this.thisRecord += 50;
-      if (this.thisRecord > this.records) {
-        this.thisRecord = this.records;
+
+      if (this.thisRecord < this.records) {
+        this.thisRecord += 50;
+        if (this.thisRecord > this.records) {
+          this.thisRecord = this.records;
+        }
+        this.getRecord();
       }
     }
   }
 
   recordEnd(): void {
     if (!this.changed) {
-      this.thisRecord = this.records;
+      if (this.thisRecord < this.records) {
+        this.thisRecord = this.records;
+        this.getRecord();
+      }
     }
   }
 
@@ -362,7 +407,7 @@ export class ContactManagerComponent implements OnInit, DoCheck {
         click: 'component.newRecord'
       });
     }
-    if (this.changed) {
+    if (this.changed || this.mode === 'new') {
       this.ribbonService.newButton(this.windowItem.uuid, 0, {
         label: 'saveRecord',
         icon: 'icon-save',
@@ -398,17 +443,27 @@ export class ContactManagerComponent implements OnInit, DoCheck {
     }
   }
 
-  deleteRecord(...args): void {
-    console.log('delete record', args[1][0]);
+  deleteRecord(service, component): void {
+    console.log('delete record', component);
   }
 
   saveRecord(...args): void {
     console.log('save record', args, this.record);
-    this.contactManagerService.record(this.record);
+    this.contactManagerService.setRecord(this.record);
   }
 
   editSettings(...args): void {
-    console.log('edit settings', args);
+    const windowConfig = {
+      icon: 'icon-editCategories',
+      iconLarge: 'icon-editCategories',
+      width: 600,
+      height: 300,
+      component: 'system/contact-manager/modules/settings/edit-settings',
+      title: 'editSettings',
+      parentComponent: this,
+      singleInstance: 'contactManagerEditSettings'
+    };
+    this.windowService.newWindow(windowConfig);
   }
 
   sendEmail(...args): void {
@@ -470,7 +525,7 @@ export class ContactManagerComponent implements OnInit, DoCheck {
           class: 'danger',
           action: 'cancel',
           callBack: this.cancelEditing,
-          args: [this]
+          args: this
         }
       ]
     };
@@ -492,18 +547,18 @@ export class ContactManagerComponent implements OnInit, DoCheck {
           class: 'danger',
           action: 'cancel',
           callBack: this.deleteRecord,
-          args: [this]
+          args: this
         }
       ]
     };
     this.dialogService.newDialog(dialogConfig);
   }
 
-  cancelEditing(...args): void {
-    args[1][0].record = {...args[1][0].buffer};
+  cancelEditing(service, component): void {
+    component.record = {...component.buffer};
     setTimeout(() => {
-      args[1][0].changed = false;
-      args[1][0].setRibbonBar();
+      component.changed = false;
+      component.setRibbonBar();
     });
   }
 }
@@ -513,7 +568,8 @@ export class ContactManagerComponent implements OnInit, DoCheck {
     FormsModule,
     CommonModule,
     ApplicationModule,
-    Demo4Module
+    Demo4Module,
+    NotesHistoryModule
   ],
   declarations: [ContactManagerComponent]
 })
