@@ -183,15 +183,17 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
       const windowConfig = {
         icon: 'icon-contacts',
         iconLarge: 'icon-contacts_over',
-        width: 1000,
-        height: 800,
+        width: 950,
+        height: 850,
+        minimumHeight: 734,
+        minimumWidth: 750,
         left: 30,
         top: 30,
         component: 'system/contact-manager',
         title: 'contactManager',
         hasStatusBar: true,
         hasRibbon: true,
-        ribbonHasPriority: true
+        ribbonFixedPosition: 'top'
       };
       this.windowService.newWindow(windowConfig);
 

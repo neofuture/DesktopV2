@@ -20,6 +20,11 @@ export interface LanguageModel {
       editSettings: string;
       cancelAddingRecord: string;
       discardChanges: string;
+      notesAndHistory: string;
+      supportTickets: string;
+      accounts: string;
+      contactProfile: string;
+      documentsAndFiles: string;
     };
     menu: {
       menu1: string;
@@ -65,6 +70,15 @@ export interface LanguageModel {
       addHistory: string;
       addSupportTicket: string;
       editSettings: string;
+      search: string;
+      editCategoryItem: string;
+      editGroupItem: string;
+      editStatusItem: string;
+      editTypeItem: string;
+      addCategoryItem: string;
+      addGroupItem: string;
+      addStatusItem: string;
+      addTypeItem: string;
     };
     panel: {
       close: string;
@@ -217,15 +231,11 @@ export interface LanguageModel {
     recordChanged: string;
     addingNewRecord: string;
     ofCount: string;
-    staff: string;
-    customers: string;
-    contacts: string;
-    suppliers: string;
     editSettings: string;
     pleaseSelect: string;
     advancedSearch: string;
     switchView: string;
-    title: string;
+    name: string;
     forename: string;
     surname: string;
     address: string;
@@ -234,7 +244,6 @@ export interface LanguageModel {
     postcode: string;
     lookup: string;
     country: string;
-    notes: string;
     jobTitle: string;
     department: string;
     work: string;
@@ -259,7 +268,6 @@ export interface LanguageModel {
     categories: string;
     accountNumber: string;
     company: string;
-    division: string;
     type: string;
     status: string;
     website: string;
@@ -281,12 +289,17 @@ export interface LanguageModel {
     selectAddress: string;
     addressNotListed: string;
     pleaseWaitLoading: string;
+    readOnly: string;
+    public: string;
+    private: string;
+    addedBy: string;
+    updatedBy: string;
     Administrator: string;
     Moderator: string;
     Manager: string;
     Supervisor: string;
     User: string;
-    'No Status': string;
+    None: string;
     Opportunity: string;
     Prospect: string;
     'Not Contacted': string;
@@ -294,12 +307,58 @@ export interface LanguageModel {
     '2nd Appointment Booked': string;
     'Awaiting Decision': string;
     Customer: string;
+    Staff: string;
+    Contacts: string;
+    Suppliers: string;
     Live: string;
     Lead: string;
-    notesHistory: {
+    contactRecords: string;
+    companyRecords: string;
+    yourRecordHasBeenSaved: string;
+    pleaseEnterALongerSurname: string;
+    pleaseEnterALongerCompanyName: string;
+    pleaseSpecifyUserAuthDetails: string;
+    yourRecordHasBeenDeleted: string;
+    notesAndHistoryTab: {
       addNotesOrHistory: string;
       addSupportTicket: string;
-    }
+    };
+    accountsTab: {
+      ok: string;
+    };
+    contactProfileTab: {
+      ok: string;
+    };
+    documentsAndFilesTab: {
+      ok: string;
+    };
+    settings: {
+      categories: string;
+      types: string;
+      groups: string;
+      status: string;
+      addNewCategory: string;
+      addNewContactCategory: string;
+      addNewCompanyCategory: string;
+      contactCategories: string;
+      companyCategories: string;
+      addNewStatus: string;
+      addNewGroup: string;
+      addNewType: string;
+      setDefault: string;
+      item: {
+        cancel: string;
+        save: string;
+        CategoryName: string;
+        GroupName: string;
+        StatusName: string;
+        TypeName: string;
+        backgroundGradientTopColour: string;
+        backgroundGradientBottomColour: string;
+        textColour: string;
+        fieldTooShort: string;
+      }
+    };
   };
   countries: {
     AF: string;

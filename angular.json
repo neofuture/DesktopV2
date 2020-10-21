@@ -61,8 +61,8 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "10kb",
-                  "maximumError": "20kb"
+                  "maximumWarning": "50kb",
+                  "maximumError": "200kb"
                 }
               ]
             }
@@ -101,9 +101,7 @@
               "src/styles.css",
               "src/assets/style.css",
               "src/assets/font.css",
-              "src/assets/tooltip.css",
-              "node_modules/primeng/resources/primeng.min.css",
-              "node_modules/primeng/resources/themes/nova/theme.css"
+              "src/assets/tooltip.css"
             ],
             "scripts": [
               "src/assets/js/external.js"

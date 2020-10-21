@@ -19,7 +19,7 @@ export class ApiService {
     let data;
 
 
-    if (requestType === 'get') {
+    if (requestType === 'get' || requestType === 'delete') {
       const params = new URLSearchParams(body).toString();
       data = this.http[requestType](environment.api + url + (params ? '/?' + params : ''), httpOptions);
     } else {

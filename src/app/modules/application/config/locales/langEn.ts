@@ -21,7 +21,12 @@ export const langEn: LanguageModel = {
       sendEmail: 'Send Email',
       editSettings: 'Edit Settings',
       cancelAddingRecord: 'Cancel Adding New Record',
-      discardChanges: 'Discard Changes'
+      discardChanges: 'Discard Changes',
+      notesAndHistory: 'Notes &amp; History',
+      supportTickets: 'Support Tickets',
+      accounts: 'Accounts',
+      contactProfile: 'Contact Profile',
+      documentsAndFiles: 'Documents &amp; Files',
     },
     menu: {
       menu1: 'Menu 1',
@@ -66,7 +71,16 @@ export const langEn: LanguageModel = {
       contactManager: 'Contact Manager',
       addHistory: 'Add History',
       addSupportTicket: 'Add Support Ticket',
-      editSettings: 'Edit Settings'
+      editSettings: 'Edit Settings',
+      search: 'Search',
+      editCategoryItem: 'Edit Category Item',
+      editGroupItem: 'Edit Group Item',
+      editStatusItem: 'Edit Status Item',
+      editTypeItem: 'Edit Type Item',
+      addCategoryItem: 'Add Category Item',
+      addGroupItem: 'Add Group Item',
+      addStatusItem: 'Add Status Item',
+      addTypeItem: 'Add Type Item'
     },
     panel: {
       close: 'Close',
@@ -221,15 +235,11 @@ export const langEn: LanguageModel = {
     recordChanged: '*** Record Changed ***',
     addingNewRecord: '*** New Record ***',
     ofCount: 'of [COUNT]',
-    staff: 'Staff',
-    customers: 'Customers',
-    contacts: 'Contacts',
-    suppliers: 'Suppliers',
     editSettings: 'Edit Settings',
     pleaseSelect: 'Please Select',
     advancedSearch: 'Advanced Search',
     switchView: 'Switch View',
-    title: 'Title',
+    name: 'Name',
     forename: 'Forname',
     surname: 'Surname',
     address: 'Address',
@@ -238,7 +248,6 @@ export const langEn: LanguageModel = {
     postcode: 'Postcode',
     lookup: 'Lookup',
     country: 'Country',
-    notes: 'Notes',
     jobTitle: 'Job Title',
     department: 'Department',
     work: 'Work',
@@ -263,7 +272,6 @@ export const langEn: LanguageModel = {
     categories: 'Categories',
     accountNumber: 'Account No',
     company: 'Company',
-    division: 'Division',
     type: 'Type',
     status: 'Status',
     website: 'Website',
@@ -285,13 +293,17 @@ export const langEn: LanguageModel = {
     selectAddress: 'Select Address',
     addressNotListed: 'Address Not Listed',
     pleaseWaitLoading: 'Please Wait. Loading...',
-
+    readOnly: '*** Read Only ***',
+    public: 'Public',
+    private: 'Private',
+    addedBy: 'Added By',
+    updatedBy: 'Updated By',
     Administrator: 'Administrator',
     Moderator: 'Moderator',
     Manager: 'Managed',
     Supervisor: 'Supervisor',
     User: 'User',
-    'No Status': 'No Status',
+    None: 'None',
     Opportunity: 'Opportunity',
     Prospect: 'Prospect',
     'Not Contacted': 'Not Contacted',
@@ -299,12 +311,58 @@ export const langEn: LanguageModel = {
     '2nd Appointment Booked': '2nd Appointment Booked',
     'Awaiting Decision': 'Awaiting Decision',
     Customer: 'Customer',
+    Staff: 'Staff',
+    Contacts: 'Contacts',
+    Suppliers: 'Suppliers',
     Live: 'Live',
     Lead: 'Dead',
-    notesHistory: {
+    contactRecords: 'Contact Records',
+    companyRecords: 'Company Records',
+    yourRecordHasBeenSaved: 'Your record has been saved',
+    pleaseEnterALongerSurname: 'Please enter a longer surname',
+    pleaseEnterALongerCompanyName: 'Please enter a longer company name',
+    pleaseSpecifyUserAuthDetails: 'Please specify user authentication details',
+    yourRecordHasBeenDeleted: 'Your record has been deleted',
+    notesAndHistoryTab: {
       addNotesOrHistory: 'Add Notes or History',
       addSupportTicket: 'Add Support Ticket'
-    }
+    },
+    accountsTab: {
+      ok: 'OK'
+    },
+    contactProfileTab: {
+      ok: 'OK'
+    },
+    documentsAndFilesTab: {
+      ok: 'OK'
+    },
+    settings: {
+      categories: 'Categories',
+      types: 'Types',
+      groups: 'Groups',
+      status: 'Status',
+      addNewCategory: 'Add New Category',
+      addNewContactCategory: 'Add New Contact Category',
+      addNewCompanyCategory: 'Add New Company Category',
+      contactCategories: 'Contact Categories',
+      companyCategories: 'Company Categories',
+      addNewStatus: 'Add New Status',
+      addNewGroup: 'Add New Group',
+      addNewType: 'Add New Type',
+      setDefault: 'Set Default',
+      item: {
+        cancel: 'Cancel',
+        save: 'Save',
+        CategoryName: 'Category Name',
+        GroupName: 'Group Name',
+        StatusName: 'Status Name',
+        TypeName: 'Type Name',
+        backgroundGradientTopColour: 'Background Gradient Top Colour',
+        backgroundGradientBottomColour: 'Background Gradient Bottom Colour',
+        textColour: 'Text Colour',
+        fieldTooShort: 'your [FIELD] is too short, Please specify something longer than [LENGTH] characters'
+      }
+    },
   },
   countries: {
     AF: 'Afghanistan', // safe

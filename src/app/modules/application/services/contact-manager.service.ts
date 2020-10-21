@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {ApiService} from './api.service';
-import {BehaviorSubject} from 'rxjs';
+import {BehaviorSubject, Subscribable} from 'rxjs';
+import {Md5} from 'ts-md5';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,8 @@ export class ContactManagerService {
   private recordObject = new BehaviorSubject({
     record: undefined,
     totalRecords: 0,
-    id: undefined
+    id: undefined,
+    recordType: undefined
   });
   record = this.recordObject.asObservable();
 
@@ -26,30 +28,89 @@ export class ContactManagerService {
   constructor(
     private apiService: ApiService
   ) {
-    this.init();
+    this.init(1);
   }
 
-  init(): void {
-    this.apiService.call('contactManager/init', 'post', null).subscribe(data => {
+  init(recordType): void {
+    const requestBody = {
+      recordType: parseInt(recordType, 10)
+    };
+    this.apiService.call('contactManager/init', 'post', requestBody).subscribe(data => {
       this.initDataObject.next(data);
     });
   }
 
-  setRecord(record): void {
-    const type = record.id === null ? 'post' : 'put';
-
-    this.apiService.call('contactManager/setRecord', type, record).subscribe(data => {
-      console.log(data);
-    });
+  setRecord(record, recordType): Subscribable<any> {
+    const type = typeof record.id === 'undefined' || record.id === null ? 'post' : 'put';
+    record.recordType = parseInt(recordType, 10);
+    const saveRecord = JSON.parse(JSON.stringify(record));
+    const md5 = new Md5();
+    saveRecord.password = md5.appendStr(saveRecord.password).end();
+    return this.apiService.call('contactManager/setRecord', type, saveRecord);
   }
 
-  getRecord(category, recordIndex): void {
+  getRecord(category, recordIndex, recordType): void {
     const requestBody = {
       category,
-      recordIndex
+      recordIndex,
+      recordType: parseInt(recordType, 10)
     };
     this.apiService.call('contactManager/getRecord', 'post', requestBody).subscribe(record => {
       this.recordObject.next(record);
     });
+  }
+
+  getSettings(): any {
+    return this.apiService.call('contactManager/getSettings', 'post', null);
+  }
+
+  saveObject(requestBody): Subscribable<any> {
+    const type = typeof requestBody.id === 'undefined' ? 'post' : 'put';
+    return this.apiService.call('contactManager/saveObject', type, requestBody);
+  }
+
+  deleteObject(item, object): void {
+
+    const requestBody = {
+      id: item.id,
+      object
+    };
+
+    return this.apiService.call('contactManager/deleteObject', 'delete', requestBody);
+  }
+
+  setObjectOrder(order: any[], object): Subscribable<any> {
+    const requestBody = {
+      order,
+      object
+    };
+    return this.apiService.call('contactManager/setObjectOrder', 'post', requestBody);
+  }
+
+  deleteRecord(object): Subscribable<any> {
+    const requestBody = {
+      id: object.id
+    };
+
+    return this.apiService.call('contactManager/deleteRecord', 'post', requestBody);
+
+  }
+
+  realTimeResults(term, recordType): Subscribable<any> {
+    const requestBody = {
+      term,
+      recordType: parseInt(recordType, 10)
+    };
+
+    return this.apiService.call('contactManager/realTimeSearch', 'post', requestBody);
+  }
+
+  setDefault(id, object): Subscribable<any> {
+    const requestBody = {
+      id,
+      object
+    };
+    return this.apiService.call('contactManager/setDefault', 'post', requestBody);
+
   }
 }

@@ -152,6 +152,7 @@ export class WindowService {
       status: this.helperService.createRandomWord(this.randomIntFromInterval(3, 10)),
       entities: {},
       memory: {},
+      data: windowConfig.data || null,
       state: {
         isMaximised: false,
         isMinimised: false

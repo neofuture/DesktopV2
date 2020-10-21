@@ -5,20 +5,21 @@ class user
 
   public static function login($pdo, $jsonStr, $session)
   {
-
+    $pdo = system::connectUserDataset($session);
     $stmt = $pdo->prepare("SELECT id,
                                   forename,
-                                  surname,
-                                  dateCreated,
-                                  dateUpdated,
-                                  lastLogin
-                             FROM users WHERE emailAddress = ? AND password = PASSWORD(?) AND activated = 1 LIMIT 1");
-    $stmt->execute([$jsonStr->username, $jsonStr->password]);
+                                  surname
+                             FROM contactManagerRecords WHERE (email = ? OR username =?) AND password = PASSWORD(?) AND allowLogin = 1 LIMIT 1");
+    $stmt->execute([$jsonStr->username, $jsonStr->username, $jsonStr->password]);
     $result = $stmt->fetch();
 
     if(!$result){
       $status['status'] = '404 not found';
     } else {
+
+      $stmt = $pdo->prepare("UPDATE contactManagerRecords SET lastLogin = NOW() WHERE id = ?");
+      $stmt->execute([$result['id']]);
+
       $payload = $result;
       $payload['exp'] = time() + (60 * 60 * 24 * 30);
       $status['token'] = system::jwt($payload);

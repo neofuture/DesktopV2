@@ -9,7 +9,6 @@ export class DoublePanelComponent implements OnInit, AfterContentInit, OnChanges
   @Input() size;
   @Input() maxSize;
   @Input() background;
-  @Input() fontColour;
   @Input() windowHeight;
   @Input() windowWidth;
 

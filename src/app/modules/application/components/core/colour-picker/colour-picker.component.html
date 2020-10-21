@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="item" style="width:30px;display:inline-block;top: -13px;position: relative;">
+    <div class="preview" style="display:inline-block" [ngStyle]="{'background-color': 'rgb(' + red +', ' + green + ', ' + blue + ')'}">&nbsp;</div>
+  </div>
+
+  <div class="item" style="width:calc(100% / 3 - 2px - 11px);display:inline-block;margin-left:3px">
+    <canvas #canvasHue height="30px" width='256px' class="canvas"></canvas>
+    <div class="track"  (mousedown)="setStart($event, 'hue')">
+      <div class="handle" [ngStyle]="{'left': 'calc(' + hue / 256  * 100 + '% - 9px)'}">&nbsp;</div>
+    </div>
+  </div>
+
+  <div class="item" style="width:calc(100% / 3 - 2px - 11px);display:inline-block;margin-left:3px">
+    <canvas #canvasSaturation height="30px" width='256px' class="canvas"></canvas>
+    <div class="track" (mousedown)="setStart($event, 'saturation')">
+      <div class="handle" [ngStyle]="{'left': 'calc(' + saturation/ 256  * 100 + '% - 9px)'}">&nbsp;</div>
+    </div>
+  </div>
+
+  <div class="item" style="width:calc(100% / 3 - 2px - 11px);display:inline-block;margin-left:3px;">
+    <canvas #canvasLightness height="30px" width='256px' class="canvas"></canvas>
+    <div class="track" (mousedown)="setStart($event, 'lightness')">
+      <div class="handle" [ngStyle]="{'left': 'calc(' + lightness / 256  * 100 + '% - 9px)'}">&nbsp;</div>
+    </div>
+  </div>
+
+
+
+
+
+</div>

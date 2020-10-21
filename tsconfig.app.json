@@ -25,7 +25,12 @@
     "src/app/modules/application/components/system/contact-manager/contact-manager.component.ts",
     "src/app/modules/application/components/system/contact-manager/modules/notes-history/notes-history.component.ts",
     "src/app/modules/application/components/system/contact-manager/modules/notes-history/add-history/add-history.component.ts",
-    "src/app/modules/application/components/system/contact-manager/modules/settings/edit-settings/edit-settings.component.ts"
+    "src/app/modules/application/components/system/contact-manager/modules/settings/edit-settings/edit-settings.component.ts",
+    "src/app/modules/application/components/system/contact-manager/modules/settings/edit-item/edit-item.component.ts",
+    "src/app/modules/application/components/system/contact-manager/modules/search/search.component.ts",
+    "src/app/modules/application/components/system/contact-manager/modules/accounts/accounts.component.ts",
+    "src/app/modules/application/components/system/contact-manager/modules/contact-profile/contact-profile.component.ts",
+    "src/app/modules/application/components/system/contact-manager/modules/documents-and-files/documents-and-files.component.ts"
   ],
   "include": [
     "src/**/*.d.ts",

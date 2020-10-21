@@ -22,6 +22,10 @@ $pdo = system::connectDataset();
 $jsonStr = json_decode(file_get_contents('php://input'));
 $uri = explode("/", trim(explode("?", $_SERVER['REQUEST_URI'])[0], '/'));
 
+$userDatabase = system::getUserDb($pdo);
+
+$session = $userDatabase;
+
 if($uri[0] === 'v1'){
 
   include("./libs/v1/user.class.php");

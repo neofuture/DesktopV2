@@ -18,6 +18,10 @@ import {ContactManagerService} from '../../../services/contact-manager.service';
 import {DialogService} from '../../../services/dialog.service';
 import {Subscription} from 'rxjs';
 import {NotesHistoryModule} from './modules/notes-history/notes-history.component';
+import {AccountsModule} from './modules/accounts/accounts.component';
+import {ContactProfileModule} from './modules/contact-profile/contact-profile.component';
+import {DocumentsAndFilesModule} from './modules/documents-and-files/documents-and-files.component';
+import {ToastService} from '../../../services/toast.service';
 
 @Component({
   selector: 'app-contact-manager',
@@ -28,8 +32,7 @@ export class ContactManagerComponent implements OnInit, DoCheck {
   @Input() windowItem;
   @Output() update = new EventEmitter();
   @ViewChild('contact', {read: ElementRef, static: false}) contact: ElementRef;
-
-  test = false;
+  @ViewChild('searchBox', {read: ElementRef, static: false}) searchBox: ElementRef;
 
   objectKeys = Object.keys;
   mode = 'edit';
@@ -42,7 +45,6 @@ export class ContactManagerComponent implements OnInit, DoCheck {
   buttonBackground: any;
   topSize = 370;
   maxTopSize = 370;
-  fontColour = 'black';
   private recordDiffer: KeyValueDiffer<string, any>;
 
   record = {
@@ -56,7 +58,6 @@ export class ContactManagerComponent implements OnInit, DoCheck {
     county: '',
     postcode: '',
     country: '',
-    notes: '',
     jobTitle: '',
     department: '',
     work: '',
@@ -68,14 +69,18 @@ export class ContactManagerComponent implements OnInit, DoCheck {
     status: 0,
     type: 0,
     website: '',
-    division: '',
     company: '',
     accountNumber: '',
     username: '',
     password: '',
     allowLogin: false,
     added: '',
-    updated: ''
+    updated: '',
+    lastLogin: '',
+    addedBy: '',
+    updatedBy: '',
+    addedByName: '',
+    updatedByName: ''
   };
   countries;
   private windowAreaSub$: any;
@@ -123,6 +128,15 @@ export class ContactManagerComponent implements OnInit, DoCheck {
   private languageSub$: Subscription;
   private contactManagerSub$: Subscription;
 
+  searchResults: any;
+  searchTerm = '';
+  searchHits = [];
+  private debounceTimer: NodeJS.Timeout;
+  searchHitIndex = -1;
+  readOnly = false;
+  recordType = '1';
+  tab = 'notes';
+
   constructor(
     private windowService: WindowService,
     private languageService: LanguageService,
@@ -131,7 +145,8 @@ export class ContactManagerComponent implements OnInit, DoCheck {
     private contactManagerService: ContactManagerService,
     private differs: KeyValueDiffers,
     private dialogService: DialogService,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private toastService: ToastService
   ) {
   }
 
@@ -148,11 +163,33 @@ export class ContactManagerComponent implements OnInit, DoCheck {
         this.record = record.record;
         this.buffer = {...this.record};
         this.records = record.totalRecords;
+        if (this.records === 0) {
+          this.thisRecord = 0;
+        }
         setTimeout(() => {
           if (this.record) {
-            const status = '<b>' + this.locale.created + '</b> - ' + this.datePipe.transform(this.record.added, 'medium', this.tz) +
+            const status =
+              '<b>' + this.locale.created + '</b>: ' +
+              this.datePipe.transform(this.record.added, 'shortDate', this.tz) + ' - ' +
+              this.datePipe.transform(this.record.added, 'shortTime', this.tz) +
               '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +
-              '<b>' + this.locale.updated + '</b> - ' + this.datePipe.transform(this.record.updated, 'medium', this.tz);
+              '<b>' + this.locale.updated + '</b>: ' +
+              this.datePipe.transform(this.record.updated, 'shortDate', this.tz) + ' - ' +
+              this.datePipe.transform(this.record.updated, 'shortTime', this.tz) +
+              '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +
+              '<b>' + this.locale.addedBy + '</b>: ' + this.record.addedByName +
+              '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +
+              '<b>' + this.locale.updatedBy + '</b>: ' + this.record.updatedByName +
+              '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +
+              '<b>' + this.locale.lastLogin + '</b>:  ' +
+              (this.record.lastLogin.indexOf('1970') === -1 ?
+
+                  this.datePipe.transform(this.record.lastLogin, 'shortDate', this.tz) + ' - ' +
+                  this.datePipe.transform(this.record.lastLogin, 'shortTime', this.tz)
+                  :
+                  ' - '
+              )
+            ;
 
             this.windowService.setExtendedTitle(this.windowItem, this.record.company || this.record.forename + ', ' + this.record.surname);
             this.windowService.setStatus(this.windowItem, status);
@@ -177,44 +214,46 @@ export class ContactManagerComponent implements OnInit, DoCheck {
       }
 
       for (const item in this.categories) {
-        if (this.categories[item].defaultCategory === 1) {
+        if (this.categories[item].defaultOption === 1) {
           this.defaultCategory = (this.categories[item].id);
         }
       }
 
       for (const item in this.groups) {
-        if (this.groups[item].defaultGroup === 1) {
+        if (this.groups[item].defaultOption === 1) {
           this.defaultGroup = (this.groups[item].id);
         }
       }
 
       for (const item in this.status) {
-        if (this.status[item].defaultStatus === 1) {
+        if (this.status[item].defaultOption === 1) {
           this.defaultStatus = (this.status[item].id);
         }
       }
       for (const category in this.categories) {
-        if (this.categories[category].defaultCategory === 1) {
-          this.category = parseInt(category, 10);
-          this.setCategory();
+        if (this.categories[category].defaultOption === 1) {
+          if (typeof this.category === 'undefined') {
+            this.category = parseInt(this.categories[category].id, 10);
+            this.setCategory();
+          } else {
+            this.thisRecord = 1;
+            this.getRecord();
+          }
         }
       }
       this.changed = false;
-      this.setRibbonBar();
-      if(this.types.length > 0){
-        setTimeout(() => {
-          this.windowService.setLoaded(this.windowItem.uuid);
-        }, 200);
-      }
+      setTimeout(() => {
+        this.windowService.setLoaded(this.windowItem.uuid);
+      }, 200);
     });
 
     this.windowAreaSub$ = this.windowItem.area.subscribe(data => {
       this.componentArea = this.windowService.checkResize(this.resizeEvent, data);
+      this.setRibbonBar();
     });
 
 
-    this.topSize = this.maxTopSize = 410;
-
+    this.topSize = this.maxTopSize = 302;
 
   }
 
@@ -245,8 +284,20 @@ export class ContactManagerComponent implements OnInit, DoCheck {
     for (const category in this.categories) {
       if (this.categories[category].id === this.category) {
         this.contactType = this.categories[category].typeId;
-        this.background = 'linear-gradient(' + this.categories[category].colours[0] + ', ' + this.categories[category].colours[1] + ')';
-        this.buttonBackground = 'linear-gradient(' + this.categories[category].colours[0] + ', ' + this.categories[category].colours[0] + ')';
+        this.background = 'linear-gradient(rgb(' +
+          this.categories[category].colours[0][0] + ', ' +
+          this.categories[category].colours[0][1] + ', ' +
+          this.categories[category].colours[0][2] +
+          '), rgb(' +
+          this.categories[category].colours[1][0] + ', ' +
+          this.categories[category].colours[1][1] + ', ' +
+          this.categories[category].colours[1][2] +
+          '))';
+        this.buttonBackground = 'rgb(' +
+          this.categories[category].colours[0][0] + ', ' +
+          this.categories[category].colours[0][1] + ', ' +
+          this.categories[category].colours[0][2] +
+          ')';
       }
     }
     if (this.mode === 'edit') {
@@ -258,7 +309,7 @@ export class ContactManagerComponent implements OnInit, DoCheck {
   }
 
   getRecord(): void {
-    this.contactManagerService.getRecord(this.category, this.thisRecord);
+    this.contactManagerService.getRecord(this.category, this.thisRecord, this.recordType);
   }
 
   newRecord(): void {
@@ -277,7 +328,6 @@ export class ContactManagerComponent implements OnInit, DoCheck {
       county: '',
       postcode: '',
       country: '',
-      notes: '',
       jobTitle: '',
       department: '',
       work: '',
@@ -289,14 +339,18 @@ export class ContactManagerComponent implements OnInit, DoCheck {
       status: this.defaultStatus,
       type: this.defaultType,
       website: '',
-      division: '',
       company: '',
       accountNumber: '',
       username: '',
       password: '',
       allowLogin: false,
       added: '',
-      updated: ''
+      updated: '',
+      lastLogin: '',
+      addedBy: '',
+      updatedBy: '',
+      addedByName: '',
+      updatedByName: ''
     };
     this.changed = false;
   }
@@ -397,15 +451,19 @@ export class ContactManagerComponent implements OnInit, DoCheck {
         iconOver: 'icon-email',
         click: 'component.sendEmail'
       });
-      this.ribbonService.newButton(this.windowItem.uuid, 0, {
-        label: 'sep'
-      });
-      this.ribbonService.newButton(this.windowItem.uuid, 0, {
-        label: 'addRecord',
-        icon: 'icon-contactsAdd',
-        iconOver: 'icon-contactsAdd_over',
-        click: 'component.newRecord'
-      });
+
+      if (!this.readOnly) {
+        this.ribbonService.newButton(this.windowItem.uuid, 0, {
+          label: 'sep'
+        });
+        this.ribbonService.newButton(this.windowItem.uuid, 0, {
+          label: 'addRecord',
+          icon: 'icon-contactsAdd',
+          iconOver: 'icon-contactsAdd_over',
+          click: 'component.newRecord'
+        });
+      }
+
     }
     if (this.changed || this.mode === 'new') {
       this.ribbonService.newButton(this.windowItem.uuid, 0, {
@@ -416,7 +474,7 @@ export class ContactManagerComponent implements OnInit, DoCheck {
       });
     }
 
-    if (this.mode === 'edit' && !this.changed) {
+    if (this.mode === 'edit' && !this.changed && !this.readOnly) {
       this.ribbonService.newButton(this.windowItem.uuid, 0, {
         label: 'deleteRecord',
         icon: 'icon-bin',
@@ -441,15 +499,86 @@ export class ContactManagerComponent implements OnInit, DoCheck {
         click: 'component.cancelAddingRecord'
       });
     }
+
   }
 
   deleteRecord(service, component): void {
-    console.log('delete record', component);
+    component.contactManagerService.deleteRecord(component.record).subscribe(data => {
+      component.setCategory();
+      const toastConfig = {
+        title: 'success',
+        body: component.locale.yourRecordHasBeenDeleted,
+        autoClose: 4000,
+        type: 'success'
+      };
+      component.toastService.newToast(toastConfig);
+      component.init();
+    });
   }
 
   saveRecord(...args): void {
-    console.log('save record', args, this.record);
-    this.contactManagerService.setRecord(this.record);
+    if (this.contactType === 1) {
+      if (this.record.surname.length < 2){
+        const toastConfig = {
+          title: 'error',
+          body: this.locale.pleaseEnterALongerSurname,
+          autoClose: 4000,
+          type: 'error'
+        };
+        this.toastService.newToast(toastConfig);
+        return;
+      }
+      if (this.record.allowLogin === true && (this.record.username.length < 1 || this.record.password.length < 1 )){
+        const toastConfig = {
+          title: 'error',
+          body: this.locale.pleaseSpecifyUserAuthDetails,
+          autoClose: 4000,
+          type: 'error'
+        };
+        this.toastService.newToast(toastConfig);
+        return;
+      }
+    }
+    if (this.contactType === 2) {
+      if (this.record.company.length < 2){
+        const toastConfig = {
+          title: 'error',
+          body: this.locale.pleaseEnterALongerCompanyName,
+          autoClose: 4000,
+          type: 'error'
+        };
+        this.toastService.newToast(toastConfig);
+        return;
+      }
+    }
+
+    this.contactManagerService.setRecord(this.record, this.recordType).subscribe(data => {
+      if (data.category !== this.category) {
+        this.category = data.category;
+        this.setCategory();
+      }
+      if (this.contactType === 1) {
+        this.windowService.setExtendedTitle(this.windowItem, data.title1);
+      }
+      if (this.contactType === 2) {
+        this.windowService.setExtendedTitle(this.windowItem, data.title2);
+      }
+      setTimeout(() => {
+        this.thisRecord = data.index;
+        this.records = data.totalRecords;
+        this.changed = false;
+        this.mode = 'edit';
+        this.setRibbonBar();
+      });
+      const toastConfig = {
+        title: 'success',
+        body: this.locale.yourRecordHasBeenSaved,
+        autoClose: 4000,
+        type: 'success'
+      };
+      this.toastService.newToast(toastConfig);
+      this.init();
+    });
   }
 
   editSettings(...args): void {
@@ -457,11 +586,11 @@ export class ContactManagerComponent implements OnInit, DoCheck {
       icon: 'icon-editCategories',
       iconLarge: 'icon-editCategories',
       width: 600,
-      height: 300,
+      height: 700,
       component: 'system/contact-manager/modules/settings/edit-settings',
       title: 'editSettings',
       parentComponent: this,
-      singleInstance: 'contactManagerEditSettings'
+      singleInstance: 'contactManagerEditSettings' + this.windowItem.uuid
     };
     this.windowService.newWindow(windowConfig);
   }
@@ -500,7 +629,7 @@ export class ContactManagerComponent implements OnInit, DoCheck {
   }
 
   init(): void {
-    this.contactManagerService.init();
+    this.contactManagerService.init(this.recordType);
   }
 
   recordChangeCategory(): void {
@@ -561,6 +690,124 @@ export class ContactManagerComponent implements OnInit, DoCheck {
       component.setRibbonBar();
     });
   }
+
+  checkKeys(event): any {
+    if (event.key === 'ArrowUp' && this.searchHitIndex > -1) {
+      this.searchHitIndex--;
+      this.scrollIntoView();
+    }
+
+    if (event.key === 'ArrowDown' && this.searchHitIndex < Object.keys(this.searchHits).length - 1) {
+      this.searchHitIndex++;
+      this.scrollIntoView();
+    }
+
+    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+      return false;
+    }
+
+    if (event.key === 'Enter') {
+      if (this.searchHitIndex === -1) {
+
+        this.search(event.target.value.replace(/^\s+|\s+$/g, ''));
+
+      } else {
+        this.loadRecord(this.searchHits[this.searchHitIndex]);
+      }
+      this.closeSearchResults();
+      return false;
+    }
+
+    if (event.key === 'Escape') {
+      this.closeSearchResults();
+    } else {
+      this.updateDropdown(event);
+    }
+  }
+
+  searchBoxItem(item): void {
+    this.loadRecord(this.searchHits[item]);
+    this.closeSearchResults();
+  }
+
+  loadRecord(record): void {
+    console.log('load record', record);
+    this.searchTerm = '';
+    this.searchHits = [];
+    this.searchHitIndex = -1;
+  }
+
+  updateDropdown(event): any {
+    const term = event.target.value
+      .replace(/[\u201c\u201d]/g, '"')
+      .replace(/^\s+|\s+$/g, '')
+      .toLocaleLowerCase();
+
+    if (term.length < 2) {
+      this.searchHits = [];
+      return;
+    }
+
+    clearTimeout(this.debounceTimer);
+
+    this.debounceTimer = setTimeout(() => {
+      this.contactManagerService.realTimeResults(term, this.recordType).subscribe(data => {
+        this.searchHits = data;
+      });
+
+    }, 250);
+  }
+
+  closeSearchResults(): void {
+    this.searchHits = [];
+    this.searchHitIndex = -1;
+  }
+
+  scrollIntoView(): void {
+    setTimeout(() => {
+      const elms = document.getElementsByClassName('selectedItem');
+      if (typeof elms[0] !== 'undefined') {
+        elms[0].scrollIntoView({behavior: 'smooth', block: 'end', inline: 'end'});
+      }
+    });
+  }
+
+  preventCursor(event): any {
+    if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
+      event.preventDefault();
+      return false;
+    }
+  }
+
+  focusSearchBox(): void {
+    this.searchBox.nativeElement.focus();
+  }
+
+  search(searchTerm): void {
+    const windowConfig = {
+      icon: 'icon-search_over',
+      iconLarge: 'icon-search_over',
+      width: 600,
+      height: 300,
+      component: 'system/contact-manager/modules/search',
+      title: 'search',
+      data: {searchTerm},
+      parentComponent: this,
+      singleInstance: 'searchContactManager' + this.windowItem.uuid
+    };
+    this.windowService.newWindow(windowConfig);
+  }
+
+  setTab(tab: string): void {
+    this.tab = tab;
+  }
+
+  clearSearchBox(): void {
+    this.searchTerm = '';
+    this.closeSearchResults();
+    this.searchHits.length = 0;
+    this.searchHitIndex = -1;
+  }
 }
 
 @NgModule({
@@ -569,7 +816,10 @@ export class ContactManagerComponent implements OnInit, DoCheck {
     CommonModule,
     ApplicationModule,
     Demo4Module,
-    NotesHistoryModule
+    NotesHistoryModule,
+    AccountsModule,
+    ContactProfileModule,
+    DocumentsAndFilesModule
   ],
   declarations: [ContactManagerComponent]
 })

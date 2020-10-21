@@ -27,6 +27,8 @@ export class RibbonButtonComponent implements OnInit {
   }
 
   ribbonAction(event): void {
+    event.preventDefault();
+    event.stopPropagation();
     this.ribbonService.delegateAction(event, this.button, this.component);
   }
 }

@@ -15,11 +15,14 @@ export class NotesHistoryComponent implements OnInit {
   private recordSub$: any;
   private record: any;
   recordId: any;
+  recordType: any;
+
   test = false;
   locale;
   status = 'done';
   private languageSub$: any;
   @Input() parentComponent;
+  @Input() tab;
 
   constructor(
     private contactManagerService: ContactManagerService,
@@ -29,14 +32,16 @@ export class NotesHistoryComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.recordSub$ = this.contactManagerService.record.subscribe(record => {
-      this.record = record.record;
-      this.recordId = record.id;
+    this.recordSub$ = this.contactManagerService.record.subscribe(data => {
+      this.record = data.record;
+      this.recordId = data.record.id;
+      this.recordType = data.record.recordType;
+
       this.getRecords();
     });
 
     this.languageSub$ = this.languageService.language.subscribe(locale => {
-      this.locale = locale.contactManager.notesHistory;
+      this.locale = locale.contactManager.notesAndHistoryTab;
     });
   }
 

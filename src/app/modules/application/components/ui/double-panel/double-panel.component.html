@@ -1,5 +1,5 @@
 <div class="pane" #pane>
-  <div class="top" #panel1 [ngStyle]="{'backgroundImage': background, 'color': fontColour}" class="panel1">
+  <div class="top" #panel1 [ngStyle]="{'backgroundImage': background}" class="panel1">
     <ng-content select="[top]"></ng-content>
   </div>
   <div class="sep" #sep (mousedown)="mouseDown($event)" (dblclick)="toggleSize()"><i class="icon-upDown"></i></div>

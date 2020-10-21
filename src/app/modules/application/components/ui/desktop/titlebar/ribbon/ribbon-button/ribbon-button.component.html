@@ -5,7 +5,7 @@
         'large': ribbonSize == 'large',
         'right': button.float == 'right' && !direction
      }"
-     (click)="ribbonAction($event)" [tooltip]="locale[button.label] || button.label" [position]="'bottom'">
+     (click)="ribbonAction($event)" [tooltip]="locale[button.label] || button.label" [position]="direction === true ? 'right' : 'bottom'">
 
   <div class="iconContainer">
     <div class="icon">

@@ -1,0 +1,47 @@
+<div class="container"
+     [ngClass]="{
+        'ribbonTop': ((!windowItem.ribbonFixedPosition && componentArea.ratio) && windowItem.hasRibbon) || windowItem.ribbonFixedPosition == 'top',
+        'ribbonLeft': ((!windowItem.ribbonFixedPosition && !componentArea.ratio) && windowItem.hasRibbon) || windowItem.ribbonFixedPosition === 'left',
+        'ribbonDouble': windowItem.ribbonDouble,
+        'hasFooter': windowItem.hasFooter,
+        'small' : componentArea.width < 500,
+        'medium' : componentArea.width > 500 && componentArea.width < 800,
+        'large' : componentArea.width > 800
+     }">
+  <div class="ribbon" *ngIf="windowItem.hasRibbon">
+    <app-ribbon [ident]="windowItem.uuid" [size]="'small'"
+                [direction]="!windowItem.ribbonFixedPosition ? !componentArea.ratio : windowItem.ribbonFixedPosition == 'left'"
+                [component]="this" [double]="windowItem.ribbonDouble"></app-ribbon>
+  </div>
+  <div class="content" [ngClass]="{'noRibbon': !windowItem.hasRibbon}" [ngStyle]="{'backgroundImage':data.label == 'Category' ? 'linear-gradient(' +
+      'rgb(' +
+      data.item.colours[0][0] + ', ' +
+      data.item.colours[0][1] + ', ' +
+      data.item.colours[0][2] +'), ' +
+      'rgb(' +
+      data.item.colours[1][0] + ', ' +
+      data.item.colours[1][1] + ', ' +
+      data.item.colours[1][2] +')' +
+    ')' : '',
+    'color' : data.label == 'Category' ? 'rgb(' +data.item.colours[2][0]+ ', ' +data.item.colours[2][1]+ ', ' + data.item.colours[2][2]+ ')' : '#444444'
+    }" style="border-color:orange;">
+    <input [(ngModel)]="data.item.name" [placeholder]="locale[data.label + 'Name']" #name>
+    <div>&nbsp;</div>
+    <div *ngIf="data.label == 'Category'">
+      <div [innerHTML]="locale.backgroundGradientTopColour"></div>
+      <app-colour-picker [colour]="data.item.colours[0]" (colourChange)="colourChange($event, 0)"></app-colour-picker>
+      <div>&nbsp;</div>
+      <div [innerHTML]="locale.backgroundGradientBottomColour"></div>
+      <app-colour-picker [colour]="data.item.colours[1]" (colourChange)="colourChange($event, 1)"></app-colour-picker>
+      <div>&nbsp;</div>
+      <div [innerHTML]="locale.textColour"></div>
+      <app-colour-picker [colour]="data.item.colours[2]" (colourChange)="colourChange($event, 2)"></app-colour-picker>
+    </div>
+  </div>
+
+</div>
+<div class="footer" *ngIf="windowItem.hasFooter">
+  <button class="secondary" (click)="closeWindow()" [innerHTML]="locale.cancel"></button>
+  <button class="success" (click)="saveRecord()" [innerHTML]="locale.save"></button>
+</div>
+

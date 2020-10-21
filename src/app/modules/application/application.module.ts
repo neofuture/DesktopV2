@@ -42,6 +42,8 @@ import localePt from '@angular/common/locales/pt';
 import localeSe from '@angular/common/locales/se';
 import localeRu from '@angular/common/locales/ru';
 import { DatePipe } from '@angular/common';
+import { ReturnNamePipe } from './pipes/return-name.pipe';
+import { ColourPickerComponent } from './components/core/colour-picker/colour-picker.component';
 
 registerLocaleData(localeFr, 'fr');
 registerLocaleData(localeDe, 'de');
@@ -80,7 +82,9 @@ registerLocaleData(localeRu, 'ru');
     SettingsComponent,
     DoublePanelComponent,
     LocaleReplacePipe,
-    LocalePipe
+    LocalePipe,
+    ReturnNamePipe,
+    ColourPickerComponent
   ],
     exports: [
         ApplicationComponent,
@@ -91,7 +95,9 @@ registerLocaleData(localeRu, 'ru');
         RibbonComponent,
         DoublePanelComponent,
         LocaleReplacePipe,
-        LocalePipe
+        LocalePipe,
+        ReturnNamePipe,
+        ColourPickerComponent
     ],
   imports: [
     CommonModule,

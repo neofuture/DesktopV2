@@ -1,0 +1,5 @@
+<div class="container">
+  {{ windowItem.data | json }}
+  <button (click)="windowItem.parentComponent.recordPrev()"> < </button>
+  <button (click)="windowItem.parentComponent.recordNext()"> > </button>
+</div>

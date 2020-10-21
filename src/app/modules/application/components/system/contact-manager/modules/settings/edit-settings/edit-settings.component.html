@@ -1,6 +1,115 @@
 <div class="container">
-  <p>edit-settings works!</p>
+  <div class="left">
+    <button [innerHTML]="locale.categories" (click)="active = 'categories'"
+            [ngClass]="{'active': active == 'categories'}"></button>
+    <button [innerHTML]="locale.types" (click)="active = 'types'" [ngClass]="{'active': active == 'types'}"></button>
+    <button [innerHTML]="locale.groups" (click)="active = 'groups'" [ngClass]="{'active': active == 'groups'}"></button>
+    <button [innerHTML]="locale.status" (click)="active = 'status'" [ngClass]="{'active': active == 'status'}"></button>
+  </div>
+  <div class="right">
+    <div class="topBar">
+      <button *ngIf="active == 'categories'" (click)="addNewRecord($event, 'Category', 1)" [innerHTML]="locale.addNewContactCategory"></button>
+      <button *ngIf="active == 'categories'" (click)="addNewRecord($event, 'Category', 2)" [innerHTML]="locale.addNewCompanyCategory"></button>
+      <button *ngIf="active == 'status'" (click)="addNewRecord($event, 'Status', 0)" [innerHTML]="locale.addNewStatus"></button>
+      <button *ngIf="active == 'groups'" (click)="addNewRecord($event, 'Group', 0)" [innerHTML]="locale.addNewGroup"></button>
+      <button *ngIf="active == 'types'" (click)="addNewRecord($event, 'Type', 0)" [innerHTML]="locale.addNewType"></button>
+    </div>
+    <div class="list">
+      <div cdkDropList *ngIf="active == 'categories'" (cdkDropListDropped)="drop($event, categories1, 'Category')">
+        <h3 [innerHTML]="locale.contactCategories"></h3>
+        <ng-container *ngFor="let item of categories1">
+          <div cdkDrag class='item' *ngIf="item.typeId == 1"
+               [ngStyle]="{'backgroundImage': 'linear-gradient(rgb(' +
+                                          item.colours[0][0] + ', ' +
+                                          item.colours[0][1] + ', ' +
+                                          item.colours[0][2] +
+                                          '), rgb(' +
+                                          item.colours[1][0] + ', ' +
+                                          item.colours[1][1] + ', ' +
+                                          item.colours[1][2] +
+                                          '))'}">
 
-  <button (click)="updateParentComponent(true)">Update Parent Component True</button>
-  <button (click)="updateParentComponent(false)">Update Parent Component False</button>
+            <div style="position:absolute;top:8px;left:8px;"><input type="radio" [tooltip]="locale.setDefault" [position]="'right'" (change)="setDefault(item.id, 'Category')" name="categories" [value]="item.id" [checked]="item.defaultOption == 1"></div>
+            <span class="label" [innerHTML]="item.name"></span>
+            <div class="floatRight">
+              <i class="control icon-pencil" *ngIf="item.editable" (click)="edit($event, item, 'Category')"></i>
+              <i class="control icon-pencil disabled" *ngIf="!item.editable"></i>
+              <i class="control icon-bin" *ngIf="item.editable && item.count < 1" (click)="delete($event, item, 'Category')"></i>
+              <i class="control icon-bin disabled" *ngIf="!item.editable || item.count > 0"></i>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+      <div cdkDropList *ngIf="active == 'categories'" (cdkDropListDropped)="drop($event, categories2, 'Category')">
+        <h3 [innerHTML]="locale.companyCategories"></h3>
+        <ng-container *ngFor="let item of categories2">
+          <div cdkDrag class='item' *ngIf="item.typeId == 2"
+               [ngStyle]="{'backgroundImage': 'linear-gradient(rgb(' +
+                                          item.colours[0][0] + ', ' +
+                                          item.colours[0][1] + ', ' +
+                                          item.colours[0][2] +
+                                          '), rgb(' +
+                                          item.colours[1][0] + ', ' +
+                                          item.colours[1][1] + ', ' +
+                                          item.colours[1][2] +
+                                          '))'}">
+
+            <div style="position:absolute;top:8px;left:8px;"><input type="radio" [tooltip]="locale.setDefault" [position]="'right'" (change)="setDefault(item.id, 'Category')" name="categories" [value]="item.id" [checked]="item.defaultOption == 1"></div>
+            <span class="label" [innerHTML]="item.name"></span>
+            <div class="floatRight">
+              <i class="control icon-pencil" *ngIf="item.editable" (click)="edit($event, item, 'Category')"></i>
+              <i class="control icon-pencil disabled" *ngIf="!item.editable"></i>
+              <i class="control icon-bin" *ngIf="item.editable && item.count < 1" (click)="delete($event, item, 'Category')"></i>
+              <i class="control icon-bin disabled" *ngIf="!item.editable || item.count > 0"></i>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+
+      <div cdkDropList *ngIf="active == 'types'" (cdkDropListDropped)="drop($event, types, 'Type')">
+        <h3 [innerHTML]="locale.types"></h3>
+        <div cdkDrag class='item' *ngFor="let item of types">
+          <div style="position:absolute;top:8px;left:8px;"><input type="radio" [tooltip]="locale.setDefault" [position]="'right'" (change)="setDefault(item.id, 'Type')" name="types" [value]="item.id" [checked]="item.defaultOption == 1"></div>
+          <span class="label" [innerHTML]="item.name"></span>
+          <div class="floatRight">
+            <i class="control icon-pencil" *ngIf="item.editable" (click)="edit($event, item, 'Type')"></i>
+            <i class="control icon-pencil disabled" *ngIf="!item.editable"></i>
+            <i class="control icon-bin" *ngIf="item.editable && item.count < 1" (click)="delete($event, item, 'Type')"></i>
+            <i class="control icon-bin disabled" *ngIf="!item.editable || item.count > 0"></i>
+          </div>
+        </div>
+      </div>
+
+      <div cdkDropList *ngIf="active == 'groups'" (cdkDropListDropped)="drop($event, groups, 'Group')">
+        <h3 [innerHTML]="locale.groups"></h3>
+        <div cdkDrag class='item' *ngFor="let item of groups">
+          <div style="position:absolute;top:8px;left:8px;"><input type="radio" [tooltip]="locale.setDefault" [position]="'right'" (change)="setDefault(item.id, 'Group')" name="groups" [value]="item.id" [checked]="item.defaultOption == 1"></div>
+          <span class="label" [innerHTML]="item.name"></span>
+          <div class="floatRight">
+            <i class="control icon-pencil" *ngIf="item.editable" (click)="edit($event, item, 'Group')"></i>
+            <i class="control icon-pencil disabled" *ngIf="!item.editable"></i>
+            <i class="control icon-bin" *ngIf="item.editable && item.count < 1" (click)="delete($event, item, 'Group')"></i>
+            <i class="control icon-bin disabled" *ngIf="!item.editable || item.count > 0"></i>
+          </div>
+        </div>
+      </div>
+
+      <div cdkDropList *ngIf="active == 'status'" (cdkDropListDropped)="drop($event, status, 'Status')">
+        <h3 [innerHTML]="locale.status"></h3>
+        <div cdkDrag class='item' *ngFor="let item of status">
+          <div style="position:absolute;top:8px;left:8px;"><input type="radio" [tooltip]="locale.setDefault" [position]="'right'" (change)="setDefault(item.id, 'Status')" name="status" [value]="item.id" [checked]="item.defaultOption == 1"></div>
+          <span class="label" [innerHTML]="item.name"></span>
+          <div class="floatRight">
+            <i class="control icon-pencil" *ngIf="item.editable" (click)="edit($event, item, 'Status')"></i>
+            <i class="control icon-pencil disabled" *ngIf="!item.editable"></i>
+            <i class="control icon-bin" *ngIf="item.editable && item.count < 1" (click)="delete($event, item, 'Status')"></i>
+            <i class="control icon-bin disabled" *ngIf="!item.editable || item.count > 0"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
 </div>

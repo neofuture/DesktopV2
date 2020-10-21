@@ -139,5 +139,19 @@ class system
     }
     return null;
   }
+  public static function getUserDb($pdo) {
+    $origin = $_SERVER['HTTP_ORIGIN'];
+    $origin = str_replace("https://", '', $origin);
+    $origin = str_replace("http://", '', $origin);
+    $origin = explode(":", $origin);
+    $origin = explode(".", $origin[0]);
+    $origin = $origin[0];
+
+    $stmt = $pdo->prepare("SELECT `database` FROM `registrations` WHERE `hostname` = ? LIMIT 1");
+    $stmt->execute([$origin]);
+    $result = $stmt->fetch();
+
+    return $result['database'];
+  }
 }
 
