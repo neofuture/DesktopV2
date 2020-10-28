@@ -2,7 +2,6 @@ import {NgModule} from '@angular/core';
 import {CommonModule, registerLocaleData} from '@angular/common';
 import {DesktopComponent} from './components/ui/desktop/desktop.component';
 import {LoaderComponent} from './components/ui/loader/loader.component';
-import {TooltipDirective} from './directives/tooltip.directive';
 import {AutoFocusDirective} from './directives/auto-focus.directive';
 import {LanguageSelectorComponent} from './components/core/language-selector/language-selector.component';
 import {RibbonSeparatorComponent} from './components/ui/desktop/titlebar/ribbon/ribbon-separator/ribbon-separator.component';
@@ -44,6 +43,8 @@ import localeRu from '@angular/common/locales/ru';
 import { DatePipe } from '@angular/common';
 import { ReturnNamePipe } from './pipes/return-name.pipe';
 import { ColourPickerComponent } from './components/core/colour-picker/colour-picker.component';
+import {TooltipModule, TooltipOptions} from 'ng2-tooltip-directive';
+import {DefaultTooltipOptions} from './defaultTooltipOptions';
 
 registerLocaleData(localeFr, 'fr');
 registerLocaleData(localeDe, 'de');
@@ -68,7 +69,6 @@ registerLocaleData(localeRu, 'ru');
     TabComponent,
     RibbonSeparatorComponent,
     LanguageSelectorComponent,
-    TooltipDirective,
     LoaderComponent,
     ApplicationComponent,
     VersionComponent,
@@ -91,7 +91,6 @@ registerLocaleData(localeRu, 'ru');
         LoaderComponent,
         VersionComponent,
         LanguageSelectorComponent,
-        TooltipDirective,
         RibbonComponent,
         DoublePanelComponent,
         LocaleReplacePipe,
@@ -104,7 +103,8 @@ registerLocaleData(localeRu, 'ru');
     ApplicationRoutingModule,
     FormsModule,
     HttpClientModule,
-    ScrollToModule.forRoot()
+    ScrollToModule.forRoot(),
+    TooltipModule.forRoot(DefaultTooltipOptions as TooltipOptions)
   ],
   providers: [
     {

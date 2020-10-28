@@ -81,6 +81,8 @@ export const langNo: LanguageModel = {
       addGroupItem: 'Legg til gruppeelement',
       addStatusItem: 'Legg til statuselement',
       addTypeItem: 'Legg til typeelement',
+      notesHistory: 'Notater og historie',
+      supportTickets: 'Støttebilletter',
     },
     panel: {
       close: 'Lukk',
@@ -324,6 +326,18 @@ export const langNo: LanguageModel = {
     notesAndHistoryTab: {
       addNotesOrHistory: 'Legg til notater eller historie',
       addSupportTicket: 'Legg til supportbillett',
+      type: 'Type',
+      date: 'Dato',
+      time: 'Tid',
+      contact: 'Ta kontakt med',
+      agent: 'Middel',
+      popOut: 'Gå ut i et nytt vindu',
+      noteComponent: {
+        notes: 'Merknader',
+        supportCall: 'Støtteanrop',
+        openNote: 'Åpne notat',
+        openSupportTicket: 'Åpne Support Ticket',
+      }
     },
     accountsTab: {
       ok: 'OK',

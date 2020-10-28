@@ -25,6 +25,8 @@
     "src/app/modules/application/components/system/contact-manager/contact-manager.component.ts",
     "src/app/modules/application/components/system/contact-manager/modules/notes-history/notes-history.component.ts",
     "src/app/modules/application/components/system/contact-manager/modules/notes-history/add-history/add-history.component.ts",
+    "src/app/modules/application/components/system/contact-manager/modules/notes-history/note/note.component.ts",
+    "src/app/modules/application/components/system/contact-manager/modules/notes-history/notes-popout/notes-popout.component.ts",
     "src/app/modules/application/components/system/contact-manager/modules/settings/edit-settings/edit-settings.component.ts",
     "src/app/modules/application/components/system/contact-manager/modules/settings/edit-item/edit-item.component.ts",
     "src/app/modules/application/components/system/contact-manager/modules/search/search.component.ts",

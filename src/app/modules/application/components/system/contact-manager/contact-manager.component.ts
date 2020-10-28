@@ -6,6 +6,7 @@ import {
   OnInit,
   Output, ViewChild
 } from '@angular/core';
+
 import {FormsModule} from '@angular/forms';
 import {CommonModule, DatePipe} from '@angular/common';
 import {WindowService} from '../../../services/window.service';
@@ -22,6 +23,7 @@ import {AccountsModule} from './modules/accounts/accounts.component';
 import {ContactProfileModule} from './modules/contact-profile/contact-profile.component';
 import {DocumentsAndFilesModule} from './modules/documents-and-files/documents-and-files.component';
 import {ToastService} from '../../../services/toast.service';
+import {TooltipModule} from 'ng2-tooltip-directive';
 
 @Component({
   selector: 'app-contact-manager',
@@ -136,6 +138,7 @@ export class ContactManagerComponent implements OnInit, DoCheck {
   readOnly = false;
   recordType = '1';
   tab = 'notes';
+  resize = 0;
 
   constructor(
     private windowService: WindowService,
@@ -367,6 +370,7 @@ export class ContactManagerComponent implements OnInit, DoCheck {
 
   resizeEvent(): void {
     console.log('finished resizing');
+    this.resize++;
   }
 
   recordStart(): void {
@@ -811,16 +815,17 @@ export class ContactManagerComponent implements OnInit, DoCheck {
 }
 
 @NgModule({
-  imports: [
-    FormsModule,
-    CommonModule,
-    ApplicationModule,
-    Demo4Module,
-    NotesHistoryModule,
-    AccountsModule,
-    ContactProfileModule,
-    DocumentsAndFilesModule
-  ],
+    imports: [
+        FormsModule,
+        CommonModule,
+        ApplicationModule,
+        Demo4Module,
+        NotesHistoryModule,
+        AccountsModule,
+        ContactProfileModule,
+        DocumentsAndFilesModule,
+        TooltipModule
+    ],
   declarations: [ContactManagerComponent]
 })
 

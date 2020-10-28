@@ -81,6 +81,8 @@ export const langNl: LanguageModel = {
       addGroupItem: 'Groepsitem toevoegen',
       addStatusItem: 'Statusitem toevoegen',
       addTypeItem: 'Type-item toevoegen',
+      notesHistory: 'Aantekeningen en geschiedenis',
+      supportTickets: 'Ondersteuningstickets',
     },
     panel: {
       close: 'Dichtbij',
@@ -324,6 +326,18 @@ export const langNl: LanguageModel = {
     notesAndHistoryTab: {
       addNotesOrHistory: 'Voeg notities of geschiedenis toe',
       addSupportTicket: 'Voeg ondersteuningsticket toe',
+      type: 'Type',
+      date: 'Datum',
+      time: 'Tijd',
+      contact: 'Contact',
+      agent: 'Agent',
+      popOut: 'Spring in een nieuw venster',
+      noteComponent: {
+        notes: 'Opmerkingen',
+        supportCall: 'Ondersteuningsoproep',
+        openNote: 'Open notitie',
+        openSupportTicket: 'Open ondersteuningsticket',
+      }
     },
     accountsTab: {
       ok: 'OK',

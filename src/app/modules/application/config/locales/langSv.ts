@@ -81,6 +81,8 @@ export const langSv: LanguageModel = {
       addGroupItem: 'Lägg till gruppobjekt',
       addStatusItem: 'Lägg till statusobjekt',
       addTypeItem: 'Lägg till typobjekt',
+      notesHistory: 'Anteckningar och historia',
+      supportTickets: 'Supportbiljetter',
     },
     panel: {
       close: 'Stänga',
@@ -324,6 +326,18 @@ export const langSv: LanguageModel = {
     notesAndHistoryTab: {
       addNotesOrHistory: 'Lägg till anteckningar eller historik',
       addSupportTicket: 'Lägg till supportbiljett',
+      type: 'Typ',
+      date: 'Datum',
+      time: 'Tid',
+      contact: 'Kontakt',
+      agent: 'Ombud',
+      popOut: 'Pop ut i ett nytt fönster',
+      noteComponent: {
+        notes: 'Anteckningar',
+        supportCall: 'Support samtal',
+        openNote: 'Öppna anteckningen',
+        openSupportTicket: 'Öppna supportbiljett',
+      }
     },
     accountsTab: {
       ok: 'OK',

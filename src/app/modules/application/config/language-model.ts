@@ -79,6 +79,8 @@ export interface LanguageModel {
       addGroupItem: string;
       addStatusItem: string;
       addTypeItem: string;
+      notesHistory: string;
+      supportTickets: string;
     };
     panel: {
       close: string;
@@ -322,6 +324,18 @@ export interface LanguageModel {
     notesAndHistoryTab: {
       addNotesOrHistory: string;
       addSupportTicket: string;
+      type: string;
+      date: string;
+      time: string;
+      contact: string;
+      agent: string;
+      popOut: string;
+      noteComponent: {
+        notes: string;
+        supportCall: string;
+        openNote: string;
+        openSupportTicket: string;
+      }
     };
     accountsTab: {
       ok: string;

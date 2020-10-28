@@ -81,6 +81,8 @@ export const langFi: LanguageModel = {
       addGroupItem: 'Lisää ryhmäkohde',
       addStatusItem: 'Lisää tilakohde',
       addTypeItem: 'Lisää tyypin kohde',
+      notesHistory: 'Muistiinpanot ja historia',
+      supportTickets: 'Tukiliput',
     },
     panel: {
       close: 'kiinni',
@@ -324,6 +326,18 @@ export const langFi: LanguageModel = {
     notesAndHistoryTab: {
       addNotesOrHistory: 'Lisää muistiinpanoja tai historiaa',
       addSupportTicket: 'Lisää tukilippu',
+      type: 'Tyyppi',
+      date: 'Päivämäärä',
+      time: 'Aika',
+      contact: 'Ottaa yhteyttä',
+      agent: 'Agentti',
+      popOut: 'Ponnahdusikkuna uuteen ikkunaan',
+      noteComponent: {
+        notes: 'Huomautuksia',
+        supportCall: 'Tukipuhelu',
+        openNote: 'Avaa Note',
+        openSupportTicket: 'Avaa tukilippu',
+      }
     },
     accountsTab: {
       ok: 'kunnossa',

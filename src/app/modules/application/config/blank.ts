@@ -82,6 +82,8 @@ export const blank: LanguageModel = {
       addGroupItem: 'Add Group Item',
       addStatusItem: 'Add Status Item',
       addTypeItem: 'Add Type Item',
+      notesHistory: 'Notes &amp; History',
+      supportTickets: 'Support Tickets',
     },
     panel: {
       close: 'Close',
@@ -325,6 +327,18 @@ export const blank: LanguageModel = {
     notesAndHistoryTab: {
       addNotesOrHistory: 'Add Notes or History',
       addSupportTicket: 'Add Support Ticket',
+      type: 'Type',
+      date: 'Date',
+      time: 'Time',
+      contact: 'Contact',
+      agent: 'Agent',
+      popOut: 'Pop out into a new window',
+      noteComponent: {
+        notes: 'Notes',
+        supportCall: 'Support Call',
+        openNote: 'Open Note',
+        openSupportTicket: 'Open Support Ticket',
+      }
     },
     accountsTab: {
       ok: 'OK',

@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'vertinero';
-  src:  url('fonts/vertinero.eot?49jt1y');
-  src:  url('fonts/vertinero.eot?49jt1y#iefix') format('embedded-opentype'),
-  url('fonts/vertinero.ttf?49jt1y') format('truetype'),
-  url('fonts/vertinero.woff?49jt1y') format('woff'),
-  url('fonts/vertinero.svg?49jt1y#vertinero') format('svg');
+  src:  url('fonts/vertinero.eot?kr4tvl');
+  src:  url('fonts/vertinero.eot?kr4tvl#iefix') format('embedded-opentype'),
+  url('fonts/vertinero.ttf?kr4tvl') format('truetype'),
+  url('fonts/vertinero.woff?kr4tvl') format('woff'),
+  url('fonts/vertinero.svg?kr4tvl#vertinero') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,6 +25,24 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-swipeArrow:before {
+  content: "\e98c";
+}
+.icon-popOut:before {
+  content: "\e98b";
+}
+.icon-emailOutbound:before {
+  content: "\e987";
+}
+.icon-emailInbound:before {
+  content: "\e988";
+}
+.icon-callInbound:before {
+  content: "\e989";
+}
+.icon-callOutbound:before {
+  content: "\e98a";
+}
 .icon-notesHistory:before {
   content: "\e986";
 }

@@ -81,6 +81,8 @@ export const langPl: LanguageModel = {
       addGroupItem: 'Dodaj element grupy',
       addStatusItem: 'Dodaj pozycję statusu',
       addTypeItem: 'Dodaj element typu',
+      notesHistory: 'Notatki i historia',
+      supportTickets: 'Bilety pomocy technicznej',
     },
     panel: {
       close: 'Blisko',
@@ -324,6 +326,18 @@ export const langPl: LanguageModel = {
     notesAndHistoryTab: {
       addNotesOrHistory: 'Dodaj notatki lub historię',
       addSupportTicket: 'Dodaj bilet pomocy technicznej',
+      type: 'Rodzaj',
+      date: 'Data',
+      time: 'Czas',
+      contact: 'Kontakt',
+      agent: 'Agent',
+      popOut: 'Wyskocz w nowym oknie',
+      noteComponent: {
+        notes: 'Uwagi',
+        supportCall: 'Połączenie z pomocą techniczną',
+        openNote: 'Otwórz notatkę',
+        openSupportTicket: 'Otwórz zgłoszenie do pomocy technicznej',
+      }
     },
     accountsTab: {
       ok: 'dobrze',

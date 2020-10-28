@@ -6,6 +6,7 @@ import {UserLoginComponent} from '../user/user-login/user-login.component';
 import {WindowService} from '../../../services/window.service';
 import {LanguageService} from '../../../services/language.service';
 import {Subscription} from 'rxjs';
+import {TooltipModule} from 'ng2-tooltip-directive';
 
 @Component({
   selector: 'app-splash',
@@ -61,10 +62,11 @@ export class SplashComponent implements OnInit, OnDestroy {
 }
 
 @NgModule({
-  imports: [
-    CommonModule,
-    ApplicationModule
-  ],
+    imports: [
+        CommonModule,
+        ApplicationModule,
+        TooltipModule
+    ],
   exports: [],
   declarations: [
     SplashComponent

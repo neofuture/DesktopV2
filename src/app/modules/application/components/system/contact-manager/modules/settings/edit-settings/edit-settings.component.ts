@@ -7,6 +7,7 @@ import {ContactManagerService} from '../../../../../../services/contact-manager.
 import {LanguageService} from '../../../../../../services/language.service';
 import {CdkDragDrop, DragDropModule, moveItemInArray} from '@angular/cdk/drag-drop';
 import {DialogService} from '../../../../../../services/dialog.service';
+import {TooltipModule} from 'ng2-tooltip-directive';
 
 @Component({
   selector: 'app-edit-settings',
@@ -168,6 +169,7 @@ export class EditSettingsComponent implements OnInit {
     CommonModule,
     ApplicationModule,
     DragDropModule,
+    TooltipModule,
   ],
   exports: [
     EditSettingsComponent

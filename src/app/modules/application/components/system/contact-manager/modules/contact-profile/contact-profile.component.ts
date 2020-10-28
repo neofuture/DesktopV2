@@ -33,7 +33,6 @@ export class ContactProfileComponent implements OnInit {
       this.record = data.record;
       this.recordId = data.record.id;
       this.recordType = data.record.recordType;
-
     });
 
     this.languageSub$ = this.languageService.language.subscribe(locale => {

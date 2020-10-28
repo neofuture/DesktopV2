@@ -13,15 +13,15 @@
   overflow: auto;
   background-color: var(--light-grey);
   border-right: 1px solid var(--mid-grey);
-  padding: 3px 8px 3px 8px;
 }
 
 .left button {
-  width: 100%;
+  width: calc(100% - 10px);
   text-align: left;
   background-color: var(--mid-grey);
   color: var(--black);
   transition: all 300ms;
+  margin:5px 5px 3px 5px;
 }
 
 .left button.active {
@@ -53,6 +53,8 @@
   overflow-y:hidden;
   overflow-x:auto;
   white-space: nowrap;
+  background-color: var(--very-light-grey);
+
 }
 
 .list {

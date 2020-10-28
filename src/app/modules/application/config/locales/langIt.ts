@@ -81,6 +81,8 @@ export const langIt: LanguageModel = {
       addGroupItem: 'Aggiungi elemento del gruppo',
       addStatusItem: 'Aggiungi elemento di stato',
       addTypeItem: 'Aggiungi elemento tipo',
+      notesHistory: 'Note e storia',
+      supportTickets: 'Biglietti di supporto',
     },
     panel: {
       close: 'Vicino',
@@ -324,6 +326,18 @@ export const langIt: LanguageModel = {
     notesAndHistoryTab: {
       addNotesOrHistory: 'Aggiungi note o cronologia',
       addSupportTicket: 'Aggiungi ticket di supporto',
+      type: 'genere',
+      date: 'Data',
+      time: 'Tempo',
+      contact: 'Contatto',
+      agent: 'Agente',
+      popOut: 'Apri in una nuova finestra',
+      noteComponent: {
+        notes: 'Appunti',
+        supportCall: 'Chiamata di supporto',
+        openNote: 'Apri nota',
+        openSupportTicket: 'Apri ticket di supporto',
+      }
     },
     accountsTab: {
       ok: 'ok',

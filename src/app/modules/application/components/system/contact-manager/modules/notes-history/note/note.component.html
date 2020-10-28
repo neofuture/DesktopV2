@@ -1,0 +1,81 @@
+<ng-container>
+  <div class="noteContainer">
+    <div class="fullRow1 green" [ngClass]="{'red': id == 0, 'orange': id == 1}">
+      <i class="icon-callInbound supportIcon"></i> 00000033 - Customer struggles with install
+      <div class="actionButtons">
+        <button>
+          <i class="icon-plus"></i>
+        </button>
+        <button>
+          <i class="icon-popOut"></i>
+        </button>
+      </div>
+
+    </div>
+    <div class="fullRow2">
+      <div class="typeCell" [innerHTML]="locale['supportCall']"></div>
+      <div class="dateCell">23/09/2020</div>
+      <div class="timeCell">9:30am</div>
+      <div class="contactCell">Roger Smith (ABCO Express Ltd)</div>
+      <div class="agentCell">Carl Fearby</div>
+    </div>
+    <div class="fullRow3" [ngClass]="{'radius': threads === 0}">
+        <div class="noteContents"
+             [ngClass]="{'multiline': notesScrollHeight > 36, 'fade': notesScrollHeight > 36 && !open}"
+             [ngStyle]="{'height': (open ? (notesScrollHeight + 8 )+ 'px' : '36px')}" (dblclick)="toggleNotes()"
+             #noteContents>
+          Customer was trying to run our xyz app but it keeps crashing, customer was advised to try and reboot
+          system and also to think about the meaning of live and maybe how good bacon is, customer refused to agree bacon is
+          good as prefers beef and chicken
+        </div>
+        <i *ngIf="notesScrollHeight > 36" class="notesButton" (click)="toggleNotes()"
+           [ngClass]="{'icon-downArrow': open == false, 'icon-upArrow': open == true}"></i>
+    </div>
+    <div class="fullRow4" *ngIf="threads > 0">
+      <div class="thread">
+        <div class="threadNote outbound"><i class="icon-callOutbound"></i> Carl Fearby logged an outbound call
+          <div class="dateTime">23/09/2020 - 9:30am</div>
+        </div>
+        <div style="padding:8px;position:relative;padding-left:44px;padding-bottom:8px;padding-top:0;">
+          <i class="icon-swipeArrow" style="position:absolute;top:0;left:20px;"></i>
+          <div>
+            This is the notes history for a follow up call, called the customer to explain how to reboot thr router so that it can pass the fireall, asked customer to call back when they have more issues or if IT can not resolve the firewall issue
+          </div>
+        </div>
+        <div class="threadNote inbound"><i class="icon-callInbound"></i> Carl Fearby logged an inbound call
+          <div class="dateTime">23/09/2020 - 9:30am</div>
+        </div>
+        <div style="padding:8px;position:relative;padding-left:44px;padding-bottom:8px;padding-top:0;">
+          <i class="icon-swipeArrow" style="position:absolute;top:0;left:20px;"></i>
+          <div>
+            Still has issues
+          </div>
+        </div>
+        <div class="threadNote inbound"><i class="icon-emailInbound"></i> Customer emailed in
+          <div class="dateTime">23/09/2020 - 9:30am</div>
+        </div>
+        <div style="padding:8px;position:relative;padding-left:44px;padding-bottom:8px;padding-top:0;">
+          <i class="icon-swipeArrow" style="position:absolute;top:0;left:20px;"></i>
+          <div>
+            Customer has emailed his credentials
+          </div>
+        </div>
+        <div class="threadNote static"><i class="icon-notesHistory"></i> Carl Fearby Added notes
+          <div class="dateTime">23/09/2020 - 9:30am</div>
+        </div>
+        <div style="padding:8px;position:relative;padding-left:44px;padding-bottom:8px;padding-top:0;">
+          <i class="icon-swipeArrow" style="position:absolute;top:0;left:20px;"></i>
+          <div>
+            Customer still has ongoing issues
+          </div>
+        </div>
+        <div class="threadNote outbound"><i class="icon-emailOutbound"></i> Carl Fearby Sent an email
+          <div class="dateTime">23/09/2020 - 9:30am</div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+
+</ng-container>

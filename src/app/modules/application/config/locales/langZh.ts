@@ -81,6 +81,8 @@ export const langZh: LanguageModel = {
       addGroupItem: '添加组项目',
       addStatusItem: '添加状态项',
       addTypeItem: '添加类型项',
+      notesHistory: '笔记和历史',
+      supportTickets: '支持票',
     },
     panel: {
       close: '关',
@@ -324,6 +326,18 @@ export const langZh: LanguageModel = {
     notesAndHistoryTab: {
       addNotesOrHistory: '添加注释或历史记录',
       addSupportTicket: '添加支持票',
+      type: '类型',
+      date: '日期',
+      time: '时间',
+      contact: '联系',
+      agent: '代理商',
+      popOut: '弹出一个新窗口',
+      noteComponent: {
+        notes: '笔记',
+        supportCall: '支持电话',
+        openNote: '打开笔记',
+        openSupportTicket: '公开支持票',
+      }
     },
     accountsTab: {
       ok: '好',

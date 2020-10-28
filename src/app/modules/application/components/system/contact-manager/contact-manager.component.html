@@ -21,20 +21,20 @@
         <table class="controls">
           <tr>
             <td>
-              <i class="icon-leftArrowStart" (click)="recordStart()" [tooltip]="locale.start" [position]="'bottom'"></i>
+              <i class="icon-leftArrowStart" (click)="recordStart()" [tooltip]="locale.start" [placement]="'bottom'"></i>
               <i class="icon-leftArrowDouble" (click)="recordPrevMore()" [tooltip]="locale.previous50"
-                 [position]="'bottom'"></i>
-              <i class="icon-leftArrow" (click)="recordPrev()" [tooltip]="locale.previous" [position]="'bottom'"></i>
+                 [placement]="'bottom'"></i>
+              <i class="icon-leftArrow" (click)="recordPrev()" [tooltip]="locale.previous" [placement]="'bottom'"></i>
               <div class="counter">
                 <input type="number" [(ngModel)]="thisRecord" id="input" min="{{ minRecords }}" max="{{ records }}"
                        [disabled]="changed" (change)="getRecord()">
                 <label for="input"
                        class="of">{{ locale.ofCount | localeReplace:['[COUNT]']:[records | number] }}</label>
               </div>
-              <i class="icon-rightArrow" (click)="recordNext()" [tooltip]="locale.next" [position]="'bottom'"></i>
+              <i class="icon-rightArrow" (click)="recordNext()" [tooltip]="locale.next" [placement]="'bottom'"></i>
               <i class="icon-rightArrowDouble" (click)="recordNextMore()" [tooltip]="locale.next50"
-                 [position]="'bottom'"></i>
-              <i class="icon-rightArrowEnd" (click)="recordEnd()" [tooltip]="locale.end" [position]="'bottom'"></i>
+                 [placement]="'bottom'"></i>
+              <i class="icon-rightArrowEnd" (click)="recordEnd()" [tooltip]="locale.end" [placement]="'bottom'"></i>
             </td>
             <td class="radio">
               <input type="radio" id="a" name="recordType" [(ngModel)]="recordType" value="1" (change)="init()"
@@ -529,23 +529,28 @@
           <div class="action-grid-container" *ngIf="mode === 'edit' &&  records > 0">
             <div class="actions">
               <i class='icon-notesHistory subSelect' (click)="setTab('notes')" [tooltip]="locale.notesAndHistory"
-                 [position]="'right'" [ngClass]="{'selectedTab': tab === 'notes'}"></i>
+                 [placement]="'right'" [ngClass]="{'selectedTab': tab === 'notes'}"></i>
               <i class='icon-ticket subSelect' (click)="setTab('tickets')" [tooltip]="locale.supportTickets"
-                 [position]="'right'" [ngClass]="{'selectedTab': tab === 'tickets'}"></i>
+                 [placement]="'right'" [ngClass]="{'selectedTab': tab === 'tickets'}"></i>
               <i class='icon-users subSelect' (click)="setTab('accounts')" [tooltip]="locale.accounts"
-                 [position]="'right'" [ngClass]="{'selectedTab': tab === 'accounts'}"></i>
+                 [placement]="'right'" [ngClass]="{'selectedTab': tab === 'accounts'}"></i>
               <i class='icon-user subSelect' (click)="setTab('contactProfile')" [tooltip]="locale.contactProfile"
-                 [position]="'right'" [ngClass]="{'selectedTab': tab === 'contactProfile'}"></i>
+                 [placement]="'right'" [ngClass]="{'selectedTab': tab === 'contactProfile'}"></i>
               <i class='icon-folder subSelect' (click)="setTab('documents')" [tooltip]="locale.documentsAndFiles"
-                 [position]="'right'" [ngClass]="{'selectedTab': tab === 'documents'}"></i>
+                 [placement]="'right'" [ngClass]="{'selectedTab': tab === 'documents'}"></i>
             </div>
             <div class="list">
-              <app-notes-history *ngIf="tab == 'notes' || tab == 'tickets'" [tab]="tab"
-                                 [parentComponent]="this"></app-notes-history>
-              <app-accounts *ngIf="tab == 'accounts'" [tab]="tab" [parentComponent]="this"></app-accounts>
-              <app-contact-profile *ngIf="tab == 'contactProfile'" [tab]="tab"
+              <app-notes-history *ngIf="tab == 'notes' || tab == 'tickets'"
+                                 [tab]="tab"
+                                 [parentComponent]="this" [inline]="true"></app-notes-history>
+              <app-accounts *ngIf="tab == 'accounts'"
+                            [tab]="tab"
+                            [parentComponent]="this"></app-accounts>
+              <app-contact-profile *ngIf="tab == 'contactProfile'"
+                                   [tab]="tab"
                                    [parentComponent]="this"></app-contact-profile>
-              <app-documents-and-files *ngIf="tab == 'documents'" [tab]="tab"
+              <app-documents-and-files *ngIf="tab == 'documents'"
+                                       [tab]="tab"
                                        [parentComponent]="this"></app-documents-and-files>
             </div>
           </div>

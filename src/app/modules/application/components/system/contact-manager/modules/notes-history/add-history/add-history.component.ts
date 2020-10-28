@@ -3,7 +3,6 @@ import {FormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {ApplicationModule} from '../../../../../../application.module';
 import {WindowService} from '../../../../../../services/window.service';
-import {ContactManagerService} from '../../../../../../services/contact-manager.service';
 
 @Component({
   selector: 'app-add-history',
@@ -15,31 +14,22 @@ export class AddHistoryComponent implements OnInit {
   @Output() update = new EventEmitter();
   record;
   recordId;
-  oldRecordId = 0;
-  private recordSub$: any;
 
   constructor(
-    private windowService: WindowService,
-    private contactManagerService: ContactManagerService
+    private windowService: WindowService
   ) {
   }
 
   ngOnInit(): void {
-    this.recordSub$ = this.contactManagerService.record.subscribe(record => {
-      this.record = record.record;
-      this.recordId = record.id;
 
-      // close if record changed
-      if (this.recordId !== this.oldRecordId && this.oldRecordId !== 0) {
-        this.windowService.closeWindow(this.windowItem.uuid);
-      }
-      this.oldRecordId = this.recordId;
-      // end
+    this.record = this.windowItem.data.record;
+    this.recordId = this.windowItem.data.record.id;
 
-      setTimeout(() => {
-        this.windowService.setExtendedTitle(this.windowItem, this.record.company || this.record.forename + ', ' + this.record.surname);
-      });
+
+    setTimeout(() => {
+      this.windowService.setExtendedTitle(this.windowItem, this.record.company || this.record.forename + ', ' + this.record.surname);
     });
+
     this.windowService.setLoaded(this.windowItem.uuid);
   }
 

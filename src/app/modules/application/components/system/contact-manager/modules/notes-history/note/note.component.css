@@ -1,0 +1,224 @@
+
+.noteContainer {
+  border-radius: 12px;
+  background-color: var(--very-light-grey);
+  border: 1px solid var(--mid-grey);
+  overflow: hidden;
+}
+
+.fullRow1 {
+  padding: 10px;
+  font-weight: 600;
+  position: relative;
+  padding-left: 40px;
+}
+
+.green {
+  background-color: #d0fcd0;
+}
+
+.red {
+  background-color: #fcd0d0;
+}
+
+.orange {
+  background-color: #fcded0;
+}
+
+.green button {
+  background-color: #5fc751;
+}
+
+.green button:hover {
+  background-color: #51ac45;
+}
+
+.red button {
+  background-color: #d64853;
+}
+
+.red button:hover {
+  background-color: #b83e48;
+}
+
+.orange button {
+  background-color: #eb8f3e;
+}
+
+.orange button:hover {
+  background-color: #c87a35;
+}
+
+.fullRow2 {
+  display: grid;
+  grid-template-columns: 130px 90px 70px 1fr 130px;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    "typeCell dateCell timeCell contactCell agentCell";
+}
+
+.typeCell {
+  grid-area: typeCell;
+  /*background-color: var(--very-light-grey);*/
+  padding: 8px;
+}
+
+.dateCell {
+  grid-area: dateCell;
+  /*background-color: var(--very-light-grey);*/
+  padding: 8px;
+}
+
+.timeCell {
+  grid-area: timeCell;
+  /*background-color: var(--very-light-grey);*/
+  padding: 8px;
+}
+
+.contactCell {
+  grid-area: contactCell;
+  /*background-color: var(--very-light-grey);*/
+  padding: 8px;
+}
+
+.agentCell {
+  grid-area: agentCell;
+  /*background-color: var(--very-light-grey);*/
+  padding: 8px;
+}
+
+.fullRow3 {
+  padding: 8px;
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 0;
+}
+
+/*.notesHeading {*/
+/*  grid-area: notesHeading;*/
+/*  !*background-color: var(--very-light-grey);*!*/
+/*  padding: 15px 8px 8px 8px;*/
+/*}*/
+
+/*.notesCell {*/
+/*  grid-area: notesCell;*/
+/*  !*background-color: var(--very-light-grey);*!*/
+/*  padding: 8px;*/
+/*}*/
+
+.noteContents {
+  background-color: #fcf5e7;
+  border: 2px solid #fde7d1;
+  border-radius: 16px;
+  padding: 8px;
+  transition: all 300ms;
+  padding-top: 6px;
+}
+
+.noteContents.multiline {
+  overflow: hidden;
+  transition: all 300ms;
+  padding-left: 32px;
+}
+
+.noteContents.fade:after {
+  content: '';
+  text-align: right;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 33%;
+  height: 30px;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0), #fcf5e7 50%);
+  border-radius: 16px;
+}
+
+.notesButton {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  margin: 6px;
+  font-size: 22px;
+}
+
+.actionButtons {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}
+
+
+.fullRow4 {
+  /*background-color: var(--very-light-grey);*/
+  padding: 8px;
+  position: relative;
+}
+
+.thread {
+  /*background-color: var(--white);*/
+  /*border: 2px solid var(--light-grey);*/
+  /*border-radius: 6px;*/
+  /*padding: 8px;*/
+}
+
+.supportIcon {
+  font-size: 23px;
+  position: absolute;
+  left: 7px;
+  top: 7px;
+}
+
+.threadNote {
+  padding: 6px;
+  border: 1px solid var(--light-grey);
+  border-radius: 16px;
+  padding-left: 40px;
+  display: block;
+  position: relative;
+  margin-bottom: 6px;
+  font-size: 14px;
+  background-color: var(--white);
+  padding-right: 12px;
+}
+
+.threadNote:last-child {
+  margin-bottom: 0;
+}
+
+.threadNote i {
+  font-size: 20px;
+  position: absolute;
+  top: 5px;
+  left: 9px;
+}
+
+a {
+  background-color: var(--primary-mid);
+  border-radius: 10px;
+  padding: 0 8px 0 8px;
+  color: white;
+
+  display: inline-block;
+}
+
+.threadNote .dateTime {
+  display: inline-block;
+  float: right;
+}
+
+.radius {
+  padding-bottom: 8px;
+}
+
+.inbound {
+  color: #ee4352;
+}
+
+.outbound {
+  color: #5da513;
+}
+
+.static {
+  color: #0f62c9;
+}

@@ -29,7 +29,7 @@
                                           item.colours[1][2] +
                                           '))'}">
 
-            <div style="position:absolute;top:8px;left:8px;"><input type="radio" [tooltip]="locale.setDefault" [position]="'right'" (change)="setDefault(item.id, 'Category')" name="categories" [value]="item.id" [checked]="item.defaultOption == 1"></div>
+            <div style="position:absolute;top:8px;left:8px;"><input type="radio" [tooltip]="locale.setDefault" [placement]="'right'" (change)="setDefault(item.id, 'Category')" name="categories" [value]="item.id" [checked]="item.defaultOption == 1"></div>
             <span class="label" [innerHTML]="item.name"></span>
             <div class="floatRight">
               <i class="control icon-pencil" *ngIf="item.editable" (click)="edit($event, item, 'Category')"></i>

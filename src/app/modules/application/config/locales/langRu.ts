@@ -81,6 +81,8 @@ export const langRu: LanguageModel = {
       addGroupItem: 'Добавить элемент группы',
       addStatusItem: 'Добавить статусный элемент',
       addTypeItem: 'Добавить тип элемента',
+      notesHistory: 'Заметки и история',
+      supportTickets: 'Тикеты поддержки',
     },
     panel: {
       close: 'близко',
@@ -324,6 +326,18 @@ export const langRu: LanguageModel = {
     notesAndHistoryTab: {
       addNotesOrHistory: 'Добавить заметки или историю',
       addSupportTicket: 'Добавить заявку в службу поддержки',
+      type: 'Тип',
+      date: 'Дата',
+      time: 'Время',
+      contact: 'Связаться с нами',
+      agent: 'Агент',
+      popOut: 'Выскочить в новое окно',
+      noteComponent: {
+        notes: 'Заметки',
+        supportCall: 'Звонок в службу поддержки',
+        openNote: 'Открыть заметку',
+        openSupportTicket: 'Открыть заявку в службу поддержки',
+      }
     },
     accountsTab: {
       ok: 'хорошо',

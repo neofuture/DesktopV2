@@ -1,27 +1,128 @@
-button {
-  margin:0 2px 0 2px;
-}
-
-button i {
-  font-size: 16px;
-  margin-right: 6px;
-}
-
-button span {
-  position: relative;
-  top: -2px;
-}
-
 .buttonBar {
   height: 40px;
-  width:100%;
-  padding:4px;
+  width: 100%;
+  padding: 4px;
   border-bottom: 1px solid var(--mid-grey);
+  background-color: var(--light-grey);
+}
+
+.notesView {
+  height: calc(100% - 40px);
+  position: relative;
 }
 
 .content {
-  height:calc(100% - 40px);
-  width:100%;
-  overflow:auto;
-  padding:4px
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  position: absolute;
+  top: 0;
+  padding-top: 46px;
+}
+
+.heading {
+  padding: 8px;
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  transition: all 300ms;
+  overflow: hidden;
+  width: 100%;
+}
+
+.on {
+  opacity: 1;
+  transition: all 300ms;
+  height: 48px;
+}
+
+.off {
+  opacity: 0;
+  transition: all 1000ms;
+  height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.headingRow {
+  display: grid;
+  grid-template-columns: 130px 90px 70px 1fr 130px;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    "typeHeading dateHeading timeHeading contactHeading agentHeading";
+}
+
+.typeHeading {
+  grid-area: typeHeading;
+  padding: 8px;
+  font-weight: 600;
+  border:1px solid var(--mid-grey);
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  background-color: rgba(0,0,0, 0.05);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-right:none;
+}
+
+.dateHeading {
+  grid-area: dateHeading;
+  padding: 8px;
+  font-weight: 600;
+  border:1px solid var(--mid-grey);
+  background-color: rgba(0,0,0, 0.05);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-right:none;
+}
+
+.timeHeading {
+  grid-area: timeHeading;
+  padding: 8px;
+  font-weight: 600;
+  border:1px solid var(--mid-grey);
+  background-color: rgba(0,0,0, 0.05);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-right:none;
+}
+
+.contactHeading {
+  grid-area: contactHeading;
+  padding: 8px;
+  font-weight: 600;
+  border:1px solid var(--mid-grey);
+  background-color: rgba(0,0,0, 0.05);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-right:none;
+}
+
+.agentHeading {
+  grid-area: agentHeading;
+  padding: 8px;
+  font-weight: 600;
+  border:1px solid var(--mid-grey);
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  background-color: rgba(0,0,0, 0.05);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.note {
+  padding: 8px;
+}
+
+.right {
+  float: right;
+}
+
+.sep {
+  height:1px;
+  background-color:var(--mid-grey);
+  margin-top:15px;
 }

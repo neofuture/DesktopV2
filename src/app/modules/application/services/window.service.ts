@@ -420,7 +420,7 @@ export class WindowService {
     }
   }
 
-  checkResize(callBack, componentArea): any {
+  checkResize(callBack, componentArea, component): any {
 
     if (componentArea.width !== this.oldWidth || componentArea.height !== this.oldHeight) {
       this.oldWidth = componentArea.width;
@@ -428,7 +428,7 @@ export class WindowService {
 
       clearTimeout(this.debounce);
       this.debounce = setTimeout(() => {
-        callBack();
+        callBack(component);
       }, 60);
 
     }
