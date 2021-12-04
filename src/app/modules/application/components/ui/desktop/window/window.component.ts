@@ -227,6 +227,10 @@ export class WindowComponent implements OnInit, AfterViewInit, OnDestroy {
       this.iconCount++; // minimise
     }
 
+    if (this.windowItem.winChanged) {
+      this.iconCount++;
+    }
+
     if (!this.windowItem.hasControls) {
       this.iconCount = 0;
     }
@@ -460,7 +464,7 @@ export class WindowComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.resizeDirection === 'e' || this.resizeDirection === 'w') {
       document.body.style.cursor = 'ew-resize';
     }
-
+    this.resizeWindowItem.winChanged = true;
     this.countIcons();
     this.setComponentSize();
   }
@@ -599,6 +603,7 @@ export class WindowComponent implements OnInit, AfterViewInit, OnDestroy {
       this.dragWindowItem.left = parseInt(xOff, 10);
       this.dragWindowItem.top = parseInt(yOff, 10);
     }
+    this.dragWindowItem.winChanged = true;
     this.countIcons();
   }
 
@@ -640,7 +645,7 @@ export class WindowComponent implements OnInit, AfterViewInit, OnDestroy {
     }
     this.windowItem.top = top;
     this.windowItem.left = left;
-
+    this.dragWindowItem.winChanged = true;
     this.countIcons();
   }
 
@@ -733,5 +738,17 @@ export class WindowComponent implements OnInit, AfterViewInit, OnDestroy {
 
   removeFromPanel(): void {
     this.windowService.removeFromPanel(this.windowItem);
+  }
+
+  resetWindowPosition(): void {
+    console.log(this.windowItem);
+    this.windowItem.left = this.windowItem.winOrigin.left;
+    this.windowItem.top = this.windowItem.winOrigin.top;
+    this.windowItem.width = this.windowItem.winOrigin.width;
+    this.windowItem.height = this.windowItem.winOrigin.height;
+    this.windowItem.dock = this.windowItem.winOrigin.dock;
+    this.windowItem.dockPosition = this.windowItem.winOrigin.dockPosition;
+
+    this.windowItem.winChanged = false;
   }
 }

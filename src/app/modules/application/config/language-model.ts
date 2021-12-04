@@ -53,6 +53,7 @@ export interface LanguageModel {
       width: string;
       left: string;
       height: string;
+      resetWindowPosition: string;
       login: string;
       newWindow: string;
       profile: string;

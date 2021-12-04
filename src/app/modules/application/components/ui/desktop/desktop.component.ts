@@ -180,24 +180,43 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
       }, 310);
 
 
-      const windowConfig = {
-        icon: 'icon-contacts',
-        iconLarge: 'icon-contacts_over',
-        width: 950,
-        height: 850,
-        minimumHeight: 734,
-        minimumWidth: 750,
-        left: 30,
-        top: 30,
-        component: 'system/contact-manager',
-        title: 'contactManager',
-        hasStatusBar: true,
-        hasRibbon: true,
-        ribbonFixedPosition: 'top'
-      };
-      this.windowService.newWindow(windowConfig);
+      // const windowConfig = {
+      //   icon: 'icon-contacts',
+      //   iconLarge: 'icon-contacts_over',
+      //   width: 950,
+      //   height: 850,
+      //   minimumHeight: 734,
+      //   minimumWidth: 750,
+      //   left: 30,
+      //   top: 30,
+      //   component: 'system/contact-manager',
+      //   title: 'contactManager',
+      //   hasStatusBar: true,
+      //   hasRibbon: true,
+      //   ribbonFixedPosition: 'top'
+      // };
+      // this.windowService.newWindow(windowConfig);
 
     });
+  }
+
+  contactManager(): void {
+    const windowConfig = {
+      icon: 'icon-contacts',
+      iconLarge: 'icon-contacts_over',
+      width: 950,
+      height: 850,
+      minimumHeight: 734,
+      minimumWidth: 750,
+      left: 30,
+      top: 30,
+      component: 'system/contact-manager',
+      title: 'contactManager',
+      hasStatusBar: true,
+      hasRibbon: true,
+      ribbonFixedPosition: 'top'
+    };
+    this.windowService.newWindow(windowConfig);
   }
 
   private resize(): void {

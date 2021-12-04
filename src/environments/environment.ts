@@ -5,8 +5,8 @@
 export const environment = {
   appVersion: require('../../package.json').version + '-dev',
   production: false,
-  api: 'https://api.owuk.co.uk/v1/',
-  videoHost: 'https://cs.neofuture.co.uk/assets/',
+  api: 'https://api.carlfearby.co.uk/v1/',
+  videoHost: 'https://videos.carlfearby.co.uk/assets/'
 };
 
 /*

@@ -44,12 +44,12 @@ input, textarea, pre {
 
 
 :root {
-  --primary: #0073bb;
-  --primary-mid: #37a4e7;
-  --primary-light: #97d3f8;
-  --primary-dark: #015386;
+  --primary: #f69b2b;
+  --primary-mid: #fca90b;
+  --primary-light: #ec9404;
+  --primary-dark: #ce7b01;
 
-  --analogous-primary: #80c1fe;
+  --analogous-primary: #fed280;
   --analogous-primary-op: #ececec;
 
   --dark-grey: #a7a7a7;
@@ -94,7 +94,7 @@ input, textarea, pre {
 }
 
 body.darkMode {
-  --primary-light: #0f62c9;
+  --primary-light: #c9780f;
 
   --dark-grey: #3b3a3a;
   --mid-grey: #535252;

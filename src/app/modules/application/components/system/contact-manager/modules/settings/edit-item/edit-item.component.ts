@@ -48,7 +48,7 @@ export class EditItemComponent implements OnInit {
 
     this.windowService.setLoaded(this.windowItem.uuid);
     this.windowAreaSub$ = this.windowItem.area.subscribe(data => {
-      this.componentArea = this.windowService.checkResize(this.resizeEvent, data);
+      this.componentArea = this.windowService.checkResize(this.resizeEvent, data, null);
     });
 
     setTimeout(() => {

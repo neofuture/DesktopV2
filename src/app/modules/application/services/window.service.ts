@@ -187,7 +187,16 @@ export class WindowService {
       hasFooter: typeof windowConfig.hasFooter === 'undefined' ? false : windowConfig.hasFooter,
       dockInPanel: typeof windowConfig.dockInPanel === 'undefined' ? true : windowConfig.dockInPanel,
       parentComponent: windowConfig.parentComponent || null,
-      parentParentComponent: windowConfig.parentParentComponent || null
+      parentParentComponent: windowConfig.parentParentComponent || null,
+      winOrigin : {
+        top,
+        left,
+        width,
+        height,
+        dock: typeof windowConfig.dock === 'undefined' ? null : windowConfig.dock,
+        dockPosition: typeof windowConfig.dockPosition === 'undefined' ? null : windowConfig.dockPosition,
+      },
+      winChanged: false
     };
 
     if (windowConfig.autoClose) {
@@ -200,7 +209,6 @@ export class WindowService {
       this.windowList[uuid].open = true;
       this.setActive(null, uuid);
     }, 100);
-
   }
 
   setLoaded(uuid): void {
@@ -359,10 +367,8 @@ export class WindowService {
           if (typeof this.windowList[windowItem] !== 'undefined') {
             delete this.windowList[windowItem].noTransition;
           }
-
         }, 300);
       }
-
     }
   }
 

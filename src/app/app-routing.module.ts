@@ -9,10 +9,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(
-    routes
-    // , { useHash: true }  <==- for Electron refresh to work
-    )
+  imports: [RouterModule.forRoot(routes
+// , { useHash: true }  <==- for Electron refresh to work
+, { relativeLinkResolution: 'legacy' })
   ],
   exports: [RouterModule]
 })

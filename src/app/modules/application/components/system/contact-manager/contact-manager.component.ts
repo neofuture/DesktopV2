@@ -251,7 +251,7 @@ export class ContactManagerComponent implements OnInit, DoCheck {
     });
 
     this.windowAreaSub$ = this.windowItem.area.subscribe(data => {
-      this.componentArea = this.windowService.checkResize(this.resizeEvent, data);
+      this.componentArea = this.windowService.checkResize(this.resizeEvent, data, null);
       this.setRibbonBar();
     });
 

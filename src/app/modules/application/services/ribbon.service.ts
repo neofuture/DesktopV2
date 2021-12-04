@@ -81,7 +81,7 @@ export class RibbonService {
       label: 'contacts',
       icon: 'icon-contacts',
       iconOver: 'icon-contacts_over',
-      click: 'settings',
+      click: 'component.contactManager',
       itemCount: 3
     });
 

@@ -76,7 +76,7 @@ export class ExampleComponent implements OnInit, OnDestroy {
 
     this.windowAreaSub$ = this.windowItem.area.subscribe(
       data => {
-        this.componentArea = this.windowService.checkResize(this.resizeEvent, data);
+        this.componentArea = this.windowService.checkResize(this.resizeEvent, data, null);
       });
 
   }

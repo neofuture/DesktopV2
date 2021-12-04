@@ -56,6 +56,10 @@
               [innerHTML]="' - ' + windowItem.extendedTitle"></span>
         <span *ngIf="windowItem.unsaved" [innerHTML]="' [' + locale.unsaved + ']'"></span>
       </div>
+      <i class="icon-restart actionIcon" (click)="resetWindowPosition()"
+         *ngIf="windowItem.winChanged"
+         [tooltip]="locale.resetWindowPosition" position="bottom"
+      ></i>
       <i class="icon-centered actionIcon" (click)="centreWindow()"
          *ngIf="!windowItem.centered && !windowItem.state.isMaximised && !windowItem.dock && windowItem.hasControls && !windowItem.panel"
          [tooltip]="locale.centre" position="bottom"
@@ -86,7 +90,10 @@
          (touchstart)="moveStart($event)"
          (dblclick)="maximiseWindow()"
          [tooltip]="locale.moveWindow" position="bottom" *ngIf="!windowItem.dock && !windowItem.state.isMaximised && !windowItem.panel"></i>
-
+      <i class="icon-restart actionIcon" (click)="resetWindowPosition()"
+         *ngIf="windowItem.winChanged"
+         [tooltip]="locale.resetWindowPosition" position="bottom"
+      ></i>
       <i class="icon-centered actionIcon" (click)="centreWindow()"
          *ngIf="!windowItem.centered && !windowItem.state.isMaximised && !windowItem.dock && !windowItem.panel"
          [tooltip]="locale.centre" position="bottom"

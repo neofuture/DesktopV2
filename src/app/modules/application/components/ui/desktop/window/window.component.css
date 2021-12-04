@@ -114,6 +114,10 @@
   grid-template-columns: 26px auto 26px 26px 26px 26px;
 }
 
+.icons5 {
+  grid-template-columns: 26px auto 26px 26px 26px 26px 26px;
+}
+
 .titleBar .icon {
   text-align: center;
   font-size: 19px;

@@ -55,6 +55,7 @@ export const langEn: LanguageModel = {
       width: 'Width',
       left: 'Left',
       height: 'Height',
+      resetWindowPosition: 'Reset Window Position',
       login: 'Login',
       newWindow: 'New Window',
       profile: 'Profile',
