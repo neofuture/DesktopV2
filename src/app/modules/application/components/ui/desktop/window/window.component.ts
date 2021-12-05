@@ -748,7 +748,7 @@ export class WindowComponent implements OnInit, AfterViewInit, OnDestroy {
     this.windowItem.height = this.windowItem.winOrigin.height;
     this.windowItem.dock = this.windowItem.winOrigin.dock;
     this.windowItem.dockPosition = this.windowItem.winOrigin.dockPosition;
-
+    this.setComponentSize();
     this.windowItem.winChanged = false;
   }
 }
