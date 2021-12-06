@@ -85,15 +85,15 @@
     </div>
 
     <div class="microTitleBar titleBarMove" [ngClass]="{'contained': windowItem.dock || windowItem.state.isMaximised || windowItem.top < 12 || windowItem.panel, 'on': dragWindowItem != null}" *ngIf="!windowItem.hasTitleBar && windowItem.hasControls">
+      <i class="icon-restart actionIcon" (click)="resetWindowPosition()"
+         *ngIf="windowItem.winChanged"
+         [tooltip]="locale.resetWindowPosition" position="bottom"
+      ></i>
       <i class="icon-reposition actionIcon"
          (mousedown)="moveStart($event)"
          (touchstart)="moveStart($event)"
          (dblclick)="maximiseWindow()"
          [tooltip]="locale.moveWindow" position="bottom" *ngIf="!windowItem.dock && !windowItem.state.isMaximised && !windowItem.panel"></i>
-      <i class="icon-restart actionIcon" (click)="resetWindowPosition()"
-         *ngIf="windowItem.winChanged"
-         [tooltip]="locale.resetWindowPosition" position="bottom"
-      ></i>
       <i class="icon-centered actionIcon" (click)="centreWindow()"
          *ngIf="!windowItem.centered && !windowItem.state.isMaximised && !windowItem.dock && !windowItem.panel"
          [tooltip]="locale.centre" position="bottom"

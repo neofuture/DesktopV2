@@ -24,7 +24,7 @@
     "@angular/router": "~13.0.3",
     "@auth0/angular-jwt": "^5.0.1",
     "@nicky-lenaers/ngx-scroll-to": "^9.0.0",
-    "ng2-tooltip-directive": "^2.9.22",
+    "ng2-tooltip-directive": "^2.10.3",
     "rxjs": "~6.5.5",
     "ts-md5": "^1.2.7",
     "tslib": "^2.0.0",

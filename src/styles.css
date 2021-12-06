@@ -44,12 +44,12 @@ input, textarea, pre {
 
 
 :root {
-  --primary: #f69b2b;
-  --primary-mid: #fca90b;
-  --primary-light: #ec9404;
-  --primary-dark: #ce7b01;
+  --primary: #4285f4;
+  --primary-mid: #5f99fa;
+  --primary-light: #85b1fa;
+  --primary-dark: #3163b4;
 
-  --analogous-primary: #fed280;
+  --analogous-primary: #c8dbfc;
   --analogous-primary-op: #ececec;
 
   --dark-grey: #a7a7a7;
