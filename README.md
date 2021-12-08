@@ -128,4 +128,4 @@ Bugs
 Wishlist
 
 1.	Component schematic so when creating a new window component a boiler plate can be reused.
-# DesktopV2
+# Tailwind
