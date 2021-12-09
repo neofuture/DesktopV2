@@ -85,7 +85,7 @@
       ></i>
     </div>
 
-    <div class="microTitleBar titleBarMove" [ngClass]="{'contained': windowItem.dock || windowItem.state.isMaximised || windowItem.top < 12 || windowItem.panel, 'on': dragWindowItem != null}" *ngIf="!windowItem.hasTitleBar && windowItem.hasControls">
+    <div class="microTitleBar titleBarMove" [ngClass]="{'contained': windowItem.dock || windowItem.state.isMaximised || windowItem.top < 28 || windowItem.panel, 'on': dragWindowItem != null}" *ngIf="!windowItem.hasTitleBar && windowItem.hasControls">
       <i class="icon-restart actionIcon" (click)="resetWindowPosition()"
          *ngIf="windowItem.winChanged"
          [tooltip]="locale.resetWindowPosition"
@@ -252,8 +252,7 @@
         <span [innerHTML]="locale.close"></span>
       </div>
     </ng-container>
-
-
+    
   </div>
   <div class="languageSelector" *ngIf="windowItem.hasLanguageSelector">
     <app-language-selector></app-language-selector>
