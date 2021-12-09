@@ -17,14 +17,6 @@ import {SystemService} from '../../../services/system.service';
   styleUrls: ['./demo.component.css']
 })
 export class DemoComponent implements OnInit {
-  @Input() windowItem;
-  @Output() update = new EventEmitter();
-  private langSub$: Subscription;
-  private company: string;
-  private product: string;
-  runState: any;
-  appState: any;
-  test = false;
 
   constructor(
     private windowService: WindowService,
@@ -37,6 +29,15 @@ export class DemoComponent implements OnInit {
     private systemService: SystemService
   ) {
   }
+  @Input() windowItem;
+  @Output() update = new EventEmitter();
+  private langSub$: Subscription;
+  private company: string;
+  private product: string;
+  runState: any;
+  appState: any;
+  test = false;
+  statusBarText = 'Dynamic Status Bar';
 
   ngOnInit(): void {
 
@@ -71,11 +72,6 @@ export class DemoComponent implements OnInit {
     };
     this.windowService.newWindow(windowConfig);
   }
-
-
-
-
-  // Demo
   newPanelLeft(): void {
     const panelConfig = {
       title: 'Panel'
@@ -734,7 +730,7 @@ export class DemoComponent implements OnInit {
 
   addStatusBar(): void {
     this.windowService.addStatusBar(this.windowItem);
-    this.windowService.setStatus(this.windowItem, 'Dynamic Status Bar');
+    this.windowService.setStatus(this.windowItem, this.statusBarText);
     this.update.emit('');
   }
 

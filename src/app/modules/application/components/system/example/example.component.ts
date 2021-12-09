@@ -40,6 +40,7 @@ export class ExampleComponent implements OnInit, OnDestroy {
   private runState: any;
   private settings: boolean;
   componentArea: any;
+  statusBarText = 'Dynanmic Status Bar';
 
 
   constructor(
@@ -178,7 +179,7 @@ export class ExampleComponent implements OnInit, OnDestroy {
 
   addStatusBar(): void {
     this.windowService.addStatusBar(this.windowItem);
-    this.windowService.setStatus(this.windowItem, 'Dynamic Status Bar');
+    this.windowService.setStatus(this.windowItem, this.statusBarText);
     this.update.emit('');
   }
 

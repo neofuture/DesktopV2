@@ -227,7 +227,7 @@ export class WindowComponent implements OnInit, AfterViewInit, OnDestroy {
       this.iconCount++; // minimise
     }
 
-    if (this.windowItem.winChanged) {
+    if (this.windowItem.winChanged && !this.windowItem.panel) {
       this.iconCount++;
     }
 

@@ -58,7 +58,7 @@
         <span *ngIf="windowItem.unsaved" [innerHTML]="' [' + locale.unsaved + ']'"></span>
       </div>
       <i class="icon-restart actionIcon" (click)="resetWindowPosition()"
-         *ngIf="windowItem.winChanged"
+         *ngIf="windowItem.winChanged && !windowItem.panel"
          [tooltip]="locale.resetWindowPosition"
       ></i>
       <i class="icon-centered actionIcon" (click)="centreWindow()"
@@ -87,7 +87,7 @@
 
     <div class="microTitleBar titleBarMove" [ngClass]="{'contained': windowItem.dock || windowItem.state.isMaximised || windowItem.top < 28 || windowItem.panel, 'on': dragWindowItem != null}" *ngIf="!windowItem.hasTitleBar && windowItem.hasControls">
       <i class="icon-restart actionIcon" (click)="resetWindowPosition()"
-         *ngIf="windowItem.winChanged"
+         *ngIf="windowItem.winChanged && !windowItem.panel"
          [tooltip]="locale.resetWindowPosition"
       ></i>
       <i class="icon-reposition actionIcon"
@@ -252,7 +252,7 @@
         <span [innerHTML]="locale.close"></span>
       </div>
     </ng-container>
-    
+
   </div>
   <div class="languageSelector" *ngIf="windowItem.hasLanguageSelector">
     <app-language-selector></app-language-selector>

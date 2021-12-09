@@ -15,7 +15,7 @@
   </div>
   <div class="content" [ngClass]="{'noRibbon': !windowItem.hasRibbon}">
 
-    <div style="position:absolute;background-color: var(--analogous-primary);"
+    <div style="position:absolute;"
          [ngStyle]="{
     width: componentArea.width + 'px',
     height: componentArea.height + 'px',
@@ -46,6 +46,7 @@
     <pre>{{ testFunctionValue | json }}</pre>
     <hr>
     <button (click)="addStatusBar()">Add Status Bar</button>
+    <input type="text" [(ngModel)]="statusBarText">
     <button (click)="removeStatusBar()">Remove Status Bar</button>
     <hr>
     <button (click)="addFooter()">Add Footer</button>
