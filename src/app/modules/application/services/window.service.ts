@@ -5,6 +5,7 @@ import {HelperService} from './helper.service';
 import {ScrollToConfigOptions, ScrollToService} from '@nicky-lenaers/ngx-scroll-to';
 import {SystemService} from './system.service';
 import {PanelService} from './panel.service';
+import {BehaviorSubject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,7 @@ export class WindowService {
   private oldWidth;
   private oldHeight;
   private debounce;
+  // private areaSource = new BehaviorSubject({});
 
   constructor(
     private desktopService: DesktopService,

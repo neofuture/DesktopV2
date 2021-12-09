@@ -1,36 +1,42 @@
-<div class="container">
+<div class="container" [ngClass]="{'hasFooter': windowItem.hasFooter}">
   {{ test }}
   <h1>Demo</h1>
+  <button (click)="addStatusBar()">Add Status Bar</button>
+  <button (click)="removeStatusBar()">Remove Status Bar</button>
+  <hr>
+  <button (click)="addFooter()">Add Footer</button>
+  <button (click)="removeFooter()">Remove Footer</button>
+  <hr>
   <button (click)="plannerWindow()">Responsive Component Window</button>
 
   <button (click)="demo1()">Demo One</button>
   <button (click)="demo2()">Demo Two</button>
   <button (click)="demo3()">Demo Three</button>
   <button (click)="demo4()">Demo Four</button>
-  <h1>Mode Locked</h1>
-  <button (click)="demo1Hide()">Demo One (hide on mode change)</button>
-  <button (click)="demo1Delete()">Demo One (delete on mode change)</button>
+  <h1>Menu Locked</h1>
+  <button (click)="demo1Hide()">Demo One (hide on menu change)</button>
+  <button (click)="demo1Delete()">Demo One (delete on menu change)</button>
 
   <h1>Ribbons</h1>
-  <button (click)="newWindow(false, false)">New Window + Ribbon priority</button>
+  <button (click)="newWindow(false, false)">New Window + Ribbon (biggest space priority)</button>
   <button (click)="newWindowDoubleRibbon(false, false)">New Window Double Ribbon</button>
   <button (click)="newWindowRibbonTop(false, false)">New Window - Ribbon Fixed Top</button>
   <button (click)="newWindowRibbonLeft(false, false)">New Window - Ribbon Fixed Left</button>
   <h1>Window Customisations</h1>
-  <button (click)="newWindowNoControls(false, false)">New Window' + ' - No Controls</button>
-  <button (click)="newWindowNoBar(false, false)">New Window' + ' - No Title Bar + No Panel</button>
-  <button (click)="newWindowNoBarRibbon()">New Window' + ' - No Title Bar + ribbon + content priority</button>
-  <button (click)="newWindow3d()">New Window' + ' - Different Component</button>
-  <button (click)="noTab()">New Window' + ' - No Tab</button>
-  <button (click)="noFeatures()">New Window' + ' - No Features</button>
+  <button (click)="newWindowNoControls(false, false)">New Window - No Controls</button>
+  <button (click)="newWindowNoBar(false, false)">New Window - No Title Bar + No Panel</button>
+  <button (click)="newWindowNoBarRibbon()">New Window - No Title Bar + ribbon + content priority</button>
+  <button (click)="newWindow3d()">New Window - Different Component</button>
+  <button (click)="noTab()">New Window - No Tab</button>
+  <button (click)="noFeatures()">New Window - No Features</button>
   <h1>Auto Close</h1>
-  <button (click)="autoClose(9000)">New Window' + ' - Auto Close</button>
+  <button (click)="autoClose(9000)">New Window - Auto Close</button>
   <h1>Docking</h1>
-  <button (click)="newWindowDockLeft()">New Window' + ' - Dock Left (40%, 100%)</button>
+  <button (click)="newWindowDockLeft()">New Window - Dock Left (40%, 100%)</button>
 
   <h1>On top/bottom</h1>
-  <button (click)="newWindow(true, false)">New Window' + ' - Always on top</button>
-  <button (click)="newWindow(false, true)">New Window' + ' - Always on bottom</button>
+  <button (click)="newWindow(true, false)">New Window - Always on top</button>
+  <button (click)="newWindow(false, true)">New Window - Always on bottom</button>
 
   <h1>Toast Notification</h1>
   <button (click)="newToast('success')">New Toast Success</button>
@@ -75,4 +81,8 @@
   <button (click)="deleteItemApp('thing')">Delete Item</button>
   <button (click)="deleteItemApp('thing2')">Delete Second Item</button>
   <pre>{{ appState | json}}</pre>
+</div>
+<div class="footer" *ngIf="windowItem.hasFooter">
+  <button class="p-button-secondary p-button-sm" [innerHTML]="'Click'"></button>
+  <button class="p-button-success p-button-sm" (click)="closeWindow()" [innerHTML]="'Close'"></button>
 </div>

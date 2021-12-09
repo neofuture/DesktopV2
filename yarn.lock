@@ -4640,10 +4640,10 @@
   "resolved" "https://registry.npmjs.org/neo-async/-/neo-async-2.6.2.tgz"
   "version" "2.6.2"
 
-"ng2-tooltip-directive@^2.9.22":
-  "integrity" "sha512-y54rP/AHKkcS/+lZPGil9uirbfWrbhS8vE1GWswB08sVfT4ztu2h6SmIf7cJM1YenTaWYvYfKth9oZQJljXV5Q=="
-  "resolved" "https://registry.npmjs.org/ng2-tooltip-directive/-/ng2-tooltip-directive-2.9.22.tgz"
-  "version" "2.9.22"
+"ng2-tooltip-directive@^2.10.3":
+  "integrity" "sha512-BNFxE/s9sNqkD3LTua/MtbM2n2lKycNIC8zG8XVyHtO9sJ+s2jj7g8dDuOxmX+izQGG+EBosPRCK1wTZL8NbVw=="
+  "resolved" "https://registry.npmjs.org/ng2-tooltip-directive/-/ng2-tooltip-directive-2.10.3.tgz"
+  "version" "2.10.3"
   dependencies:
     "tslib" "^2.0.0"
 

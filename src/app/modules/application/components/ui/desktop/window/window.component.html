@@ -38,7 +38,8 @@
        [ngClass]="{
       'type1': !windowItem.hasTitleBar && !windowItem.hasStatusBar,
       'type2':  windowItem.hasTitleBar,
-      'type3':  windowItem.hasTitleBar && windowItem.hasStatusBar
+      'type3':  windowItem.hasTitleBar && windowItem.hasStatusBar,
+      'type4':  windowItem.hasStatusBar && !windowItem.hasTitleBar
     }">
 
     <div class="titleBar icons{{ iconCount }} titleBarMove" *ngIf="windowItem.hasTitleBar">
@@ -58,64 +59,64 @@
       </div>
       <i class="icon-restart actionIcon" (click)="resetWindowPosition()"
          *ngIf="windowItem.winChanged"
-         [tooltip]="locale.resetWindowPosition" position="bottom"
+         [tooltip]="locale.resetWindowPosition"
       ></i>
       <i class="icon-centered actionIcon" (click)="centreWindow()"
          *ngIf="!windowItem.centered && !windowItem.state.isMaximised && !windowItem.dock && windowItem.hasControls && !windowItem.panel"
-         [tooltip]="locale.centre" position="bottom"
+         [tooltip]="locale.centre"
       ></i>
       <i class="icon-unDock actionIcon" (click)="removeFromPanel()"
          *ngIf="windowItem.panel"
-         [tooltip]="locale.removeFromPanel" position="bottom"
+         [tooltip]="locale.removeFromPanel"
       ></i>
       <i class="icon-minimise actionIcon" (click)="minimiseWindow($event)" *ngIf="windowItem.hasControls && !windowItem.panel"
-         [tooltip]="locale.minimise" position="bottom"
+         [tooltip]="locale.minimise"
       ></i>
       <i class="icon-restore actionIcon" (click)="maximiseWindow()"
          *ngIf="windowItem.state.isMaximised && windowItem.resizable && windowItem.hasControls"
-         [tooltip]="locale.restore" position="bottom"
+         [tooltip]="locale.restore"
       ></i>
       <i class="icon-maximise actionIcon" (click)="maximiseWindow()"
          *ngIf="!windowItem.state.isMaximised && windowItem.resizable && windowItem.hasControls"
-         [tooltip]="locale.maximise" position="bottom"
+         [tooltip]="locale.maximise"
       ></i>
       <i class="icon-close actionIcon" (click)="closeWindow($event)" *ngIf="windowItem.closable && windowItem.hasControls"
-         [tooltip]="locale.close" position="bottom"
+         [tooltip]="locale.close"
       ></i>
     </div>
 
     <div class="microTitleBar titleBarMove" [ngClass]="{'contained': windowItem.dock || windowItem.state.isMaximised || windowItem.top < 12 || windowItem.panel, 'on': dragWindowItem != null}" *ngIf="!windowItem.hasTitleBar && windowItem.hasControls">
       <i class="icon-restart actionIcon" (click)="resetWindowPosition()"
          *ngIf="windowItem.winChanged"
-         [tooltip]="locale.resetWindowPosition" position="bottom"
+         [tooltip]="locale.resetWindowPosition"
       ></i>
       <i class="icon-reposition actionIcon"
          (mousedown)="moveStart($event)"
          (touchstart)="moveStart($event)"
          (dblclick)="maximiseWindow()"
-         [tooltip]="locale.moveWindow" position="bottom" *ngIf="!windowItem.dock && !windowItem.state.isMaximised && !windowItem.panel"></i>
+         [tooltip]="locale.moveWindow" *ngIf="!windowItem.dock && !windowItem.state.isMaximised && !windowItem.panel"></i>
       <i class="icon-centered actionIcon" (click)="centreWindow()"
          *ngIf="!windowItem.centered && !windowItem.state.isMaximised && !windowItem.dock && !windowItem.panel"
-         [tooltip]="locale.centre" position="bottom"
+         [tooltip]="locale.centre"
       ></i>
       <i class="icon-unDock actionIcon" (click)="removeFromPanel()"
          *ngIf="windowItem.panel"
-         [tooltip]="locale.removeFromPanel" position="bottom"
+         [tooltip]="locale.removeFromPanel"
       ></i>
       <i class="icon-minimise actionIcon" (click)="minimiseWindow($event)"
          *ngIf="!windowItem.panel"
-         [tooltip]="locale.minimise" position="bottom"
+         [tooltip]="locale.minimise"
       ></i>
       <i class="icon-restore actionIcon" (click)="maximiseWindow()"
          *ngIf="windowItem.state.isMaximised && windowItem.resizable"
-         [tooltip]="locale.restore" position="bottom"
+         [tooltip]="locale.restore"
       ></i>
       <i class="icon-maximise actionIcon" (click)="maximiseWindow()"
          *ngIf="!windowItem.state.isMaximised && windowItem.resizable"
-         [tooltip]="locale.maximise" position="bottom"
+         [tooltip]="locale.maximise"
       ></i>
       <i class="icon-close actionIcon" (click)="closeWindow($event)" *ngIf="windowItem.closable"
-         [tooltip]="locale.close" position="bottom"
+         [tooltip]="locale.close"
       ></i>
     </div>
 

@@ -87,7 +87,6 @@ export class ExampleComponent implements OnInit, OnDestroy {
   }
 
   resizeEvent(): void {
-    console.log('finished resizing');
   }
 
   setRibbonBar(): void {
@@ -174,10 +173,29 @@ export class ExampleComponent implements OnInit, OnDestroy {
   }
 
   testFunction2(button): void {
-    console.log(button);
     this.settings = !this.settings;
   }
 
+  addStatusBar(): void {
+    this.windowService.addStatusBar(this.windowItem);
+    this.windowService.setStatus(this.windowItem, 'Dynamic Status Bar');
+    this.update.emit('');
+  }
+
+  removeStatusBar(): void {
+    this.windowService.removeStatusBar(this.windowItem);
+    this.update.emit('');
+  }
+
+  addFooter(): void {
+    this.windowService.addFooter(this.windowItem);
+    this.update.emit('');
+  }
+
+  removeFooter(): void {
+    this.windowService.removeFooter(this.windowItem);
+    this.update.emit('');
+  }
 }
 
 @NgModule({

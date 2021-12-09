@@ -731,6 +731,31 @@ export class DemoComponent implements OnInit {
   deleteItemApp(key): void {
     this.systemService.deleteApp(key);
   }
+
+  addStatusBar(): void {
+    this.windowService.addStatusBar(this.windowItem);
+    this.windowService.setStatus(this.windowItem, 'Dynamic Status Bar');
+    this.update.emit('');
+  }
+
+  removeStatusBar(): void {
+    this.windowService.removeStatusBar(this.windowItem);
+    this.update.emit('');
+  }
+
+  addFooter(): void {
+    this.windowService.addFooter(this.windowItem);
+    this.update.emit('');
+  }
+
+  removeFooter(): void {
+    this.windowService.removeFooter(this.windowItem);
+    this.update.emit('');
+  }
+
+  closeWindow(): void {
+    this.windowService.closeWindow(this.windowItem.uuid);
+  }
 }
 
 

@@ -44,6 +44,12 @@
     </div>
 
     <pre>{{ testFunctionValue | json }}</pre>
+    <hr>
+    <button (click)="addStatusBar()">Add Status Bar</button>
+    <button (click)="removeStatusBar()">Remove Status Bar</button>
+    <hr>
+    <button (click)="addFooter()">Add Footer</button>
+    <button (click)="removeFooter()">Remove Footer</button>
   </div>
 </div>
 <div class="footer" *ngIf="windowItem.hasFooter">

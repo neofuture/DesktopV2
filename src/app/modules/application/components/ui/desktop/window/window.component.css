@@ -44,6 +44,10 @@
   grid-template-rows: 30px auto 18px;
 }
 
+.type4 { /* normal window with a status bar */
+  grid-template-rows: auto 18px;
+}
+
 
 
 .windowItem.active .container {

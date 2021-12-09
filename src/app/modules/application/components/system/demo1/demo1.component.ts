@@ -36,8 +36,6 @@ export class Demo1Component implements OnInit, DoCheck {
     this.memory = this.windowItem.memory;
     this.memoryDiffer = this.differs.find(this.memory).create();
     this.windowService.setLoaded(this.windowItem.uuid);
-
-    console.log(this.windowItem.parentComponent);
   }
 
   ngDoCheck(): void {
@@ -57,6 +55,27 @@ export class Demo1Component implements OnInit, DoCheck {
 
   updateParentComponent(val): void {
     this.windowItem.parentComponent.test = val;
+  }
+
+  addStatusBar(): void {
+    this.windowService.addStatusBar(this.windowItem);
+    this.windowService.setStatus(this.windowItem, 'Dynamic Status Bar');
+    this.update.emit('');
+  }
+
+  removeStatusBar(): void {
+    this.windowService.removeStatusBar(this.windowItem);
+    this.update.emit('');
+  }
+
+  addFooter(): void {
+    this.windowService.addFooter(this.windowItem);
+    this.update.emit('');
+  }
+
+  removeFooter(): void {
+    this.windowService.removeFooter(this.windowItem);
+    this.update.emit('');
   }
 }
 

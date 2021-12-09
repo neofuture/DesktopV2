@@ -741,7 +741,6 @@ export class WindowComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   resetWindowPosition(): void {
-    console.log(this.windowItem);
     this.windowItem.left = this.windowItem.winOrigin.left;
     this.windowItem.top = this.windowItem.winOrigin.top;
     this.windowItem.width = this.windowItem.winOrigin.width;
