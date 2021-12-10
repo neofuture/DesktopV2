@@ -1,7 +1,7 @@
 import {LanguageModel} from '../language-model';
 
 export const langSv: LanguageModel = {
-  product: 'Desktop V2', // safe
+  product: 'Tailwind', // safe
   company: 'Oceanworks', // safe
   desktop: {
     ribbon: {
