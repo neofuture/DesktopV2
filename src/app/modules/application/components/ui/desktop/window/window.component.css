@@ -94,6 +94,18 @@
   transition: all 300ms;
 }
 
+.microTitleBar:hover:after, .microTitleBar.on:after {
+  content: '';
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 8px 8px 0;
+  border-color: transparent var(--primary-mid) transparent transparent;
+  position:absolute;
+  top:26px;
+  right:0px;
+}
+
 .windowItem.active .microTitleBar {
   background-color: var(--primary-mid);
   color: var(--white);
