@@ -10,6 +10,8 @@
   background-color: var(--white);
   display: grid;
   color: var(--black);
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
 .container.ribbonTop {

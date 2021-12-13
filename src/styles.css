@@ -72,6 +72,7 @@ input, textarea, pre {
 
   --black: #555555;
   --white: #ffffff;
+  --white-opacity: 255,255,255,0.7;
 
   --electron-height: 0px;
 

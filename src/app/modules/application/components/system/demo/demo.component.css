@@ -4,6 +4,8 @@
   position: relative;
   background-color: var(--white);
   overflow: auto;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
 .container.hasFooter {
@@ -16,7 +18,7 @@
   padding: 8px;
   position: absolute;
   bottom: 0;
-  background-color: var(--mid-grey);
+  background-color: var(--white);
   text-align: right;
   border-top:1px solid var(--primary-mid)
 }
