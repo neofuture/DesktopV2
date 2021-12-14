@@ -21,6 +21,12 @@
 
 .windowItem.active {
   background-color: rgba(var(--white-opacity));
+  border: 1px solid var(--light-grey);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.windowItem.active:hover, .windowItem.active:active {
+  background-color: var(--light-grey);
   border: 1px dashed var(--mid-grey);
 }
 
@@ -254,6 +260,7 @@
   border: none;
   box-shadow: none;
   transform: translate(0, 0) !important;
+  border:0 !important;
 }
 
 .windowItem.maximised .container {

@@ -71,8 +71,6 @@ export class WindowComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit(): void {
 
     this.windowItem.area = this.areaSource.asObservable();
-
-
     this.windowList = this.windowService.windowList;
     this.panelList = this.panelService.panelList;
     this.langSub$ = this.languageService.language.subscribe(locale => {
