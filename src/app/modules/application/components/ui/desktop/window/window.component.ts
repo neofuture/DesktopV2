@@ -633,11 +633,11 @@ export class WindowComponent implements OnInit, AfterViewInit, OnDestroy {
 
   centreWindow(): void {
     this.windowItem.centered = true;
-    let top = this.desktopDimensions.height / 2 - this.windowItem.height / 2;
+    let top = Math.floor(this.desktopDimensions.height / 2 - this.windowItem.height / 2);
     if (top < 0) {
       top = 0;
     }
-    let left = this.desktopDimensions.width / 2 - this.windowItem.width / 2;
+    let left = Math.floor(this.desktopDimensions.width / 2 - this.windowItem.width / 2);
     if (left < 0) {
       left = 0;
     }

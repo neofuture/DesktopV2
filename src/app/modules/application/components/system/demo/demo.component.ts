@@ -327,8 +327,8 @@ export class DemoComponent implements OnInit {
     const windowConfig = {
       icon: 'icon-alarm',
       iconLarge: 'icon-alarm',
-      width: 400,
-      height: 200,
+      width: 600,
+      height: 400,
       component: 'system/demo1',
       title: 'demo1',
       parentComponent: this
@@ -340,8 +340,8 @@ export class DemoComponent implements OnInit {
     const windowConfig = {
       icon: 'icon-catalogues',
       iconLarge: 'icon-catalogues_over',
-      width: 400,
-      height: 200,
+      width: 600,
+      height: 400,
       component: 'system/demo2',
       title: 'demo2'
     };

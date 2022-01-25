@@ -2,7 +2,7 @@ import {LanguageModel} from '../language-model';
 
 export const langDe: LanguageModel = {
   product: 'Tailwind', // safe
-  company: 'Oceanworks', // safe
+  company: 'Carl Fearby', // safe
   desktop: {
     ribbon: {
       contacts: 'Kontakte',

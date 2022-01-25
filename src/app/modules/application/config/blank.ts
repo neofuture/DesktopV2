@@ -3,7 +3,7 @@ import {LanguageModel} from './language-model';
 // tslint:disable-next-line:variable-name
 export const blank: LanguageModel = {
   product: 'Tailwind', // safe',
-  company: 'Oceanworks', // safe',
+  company: 'Carl Fearby', // safe',
   desktop: {
     ribbon: {
       contacts: 'Contacts',

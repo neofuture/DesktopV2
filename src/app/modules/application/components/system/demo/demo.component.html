@@ -1,6 +1,7 @@
 <div class="container" [ngClass]="{'hasFooter': windowItem.hasFooter}">
   Status: {{ test }}
-  <h1>Demo </h1>
+
+  <h1>Demo <button (click)="about()">About Tailwind</button></h1>
     <p><b>Written in Native Angular 10-13/Vanilla JavaScript, with minimal libraries</b></p>
   <p>
     You can use the contacts ribbon button to open the demo contact manager, this is just a work in progress demo which has some functions that work, test at own peril. The contact manager utilises my own PHP API which is also used for login/session control, and authentication token issue.

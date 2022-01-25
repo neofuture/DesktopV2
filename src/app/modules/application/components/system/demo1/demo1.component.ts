@@ -77,6 +77,10 @@ export class Demo1Component implements OnInit, DoCheck {
     this.windowService.removeFooter(this.windowItem);
     this.update.emit('');
   }
+
+  setUnsaved(val: boolean): void {
+    this.windowService.setUnSaved(this.windowItem.uuid, val);
+  }
 }
 
 @NgModule({

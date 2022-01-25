@@ -116,11 +116,11 @@ export class WindowService {
     }
 
     if (windowConfig.centered) {
-      top = h / 2 - height / 2;
+      top = Math.floor(h / 2 - height / 2);
       if (top < 0) {
         top = 0;
       }
-      left = w / 2 - width / 2;
+      left = Math.floor(w / 2 - width / 2);
       if (left < 0) {
         left = 0;
       }

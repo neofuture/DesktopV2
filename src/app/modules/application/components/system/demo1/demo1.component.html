@@ -1,5 +1,10 @@
 <div class="container">
   <div>Demo 1 - Memory</div>
+  Saved {{ windowItem.unsaved }}
+  <hr>
+  <button (click)="setUnsaved(true)">Set Unsaved</button>
+  <button (click)="setUnsaved(false)">Set Saved</button>
+  <hr>
   <label>
     <input type="text" [(ngModel)]="memory.field">
   </label>
