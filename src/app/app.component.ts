@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {RouteConfigLoadEnd, RouteConfigLoadStart, Router, RouterEvent} from '@angular/router';
+import {ApiService} from './modules/application/services/api.service';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,8 @@ export class AppComponent implements OnInit {
   public isShowingRouteLoadIndicator: boolean;
 
   constructor(
-    private router: Router
+    private router: Router,
+    private apiService: ApiService
   ) {
     this.isShowingRouteLoadIndicator = false;
     let asyncLoadCount = 0;
@@ -27,6 +29,10 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.apiService.call('user/access', 'get', []).subscribe(
+      d => {
+        console.log(d);
+      }
+      );
   }
 }
