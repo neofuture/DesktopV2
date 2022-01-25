@@ -3,6 +3,6 @@ import { TooltipOptions } from 'ng2-tooltip-directive';
 export const DefaultTooltipOptions: TooltipOptions = {
   'show-delay': 500,
   placement: 'bottom',
-  theme: 'light',
+  theme: 'dark',
   shadow: true
 };

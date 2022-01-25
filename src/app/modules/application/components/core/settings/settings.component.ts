@@ -19,6 +19,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
   ribbonSize: string;
   autoHide: boolean;
   locale: any;
+  theme = true;
 
   constructor(
     private ribbonService: RibbonService,
@@ -76,5 +77,9 @@ export class SettingsComponent implements OnInit, OnDestroy {
 
   loadDesktopFile(event: Event): void {
     this.fileService.loadDesktop(event);
+  }
+
+  checkValue($event): void {
+    this.theme = $event;
   }
 }

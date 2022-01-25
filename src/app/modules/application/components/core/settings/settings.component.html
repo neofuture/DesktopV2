@@ -18,13 +18,25 @@
     </div>
 
     <hr>
-    <button (click)="openDemo()" [innerHTML]="'open demo'"></button>
+    <button (click)="openDemo()" [innerHTML]="'Open Demo'"></button>
+    <hr>
     <button (click)="saveDesktop()" [innerHTML]="'Save Desktop'"></button>
     <input
       style="display: none"
       type="file" (change)="loadDesktopFile($event)"
       #fileInput>
     <button (click)="fileInput.click()" [innerHTML]="'Load Desktop'"></button>
+    <hr>
+    <table>
+      <tr>
+        <td>
+          Dark Mode (WIP)
+        </td>
+        <td>
+          <app-toggle-switch class="toggleSwitch" [name]="'theme'" [checked]="theme" (value)="checkValue($event)" [class]="'round'"></app-toggle-switch>
+        </td>
+      </tr>
+    </table>
 
   </div>
 </div>

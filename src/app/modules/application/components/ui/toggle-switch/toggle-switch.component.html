@@ -1,0 +1,4 @@
+<label class="switch">
+  <input type="checkbox" [name]="name" [checked]="checked == true ? 'checked' : ''" (change)="setChecked($event)">
+  <div class="slider" [ngClass]="class"></div>
+</label>

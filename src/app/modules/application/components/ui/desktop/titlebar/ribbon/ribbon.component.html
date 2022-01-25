@@ -20,8 +20,9 @@
     </ng-container>
   </div>
 </div>
+<button *ngIf="hasToggle"
+        class="toggleButton"
+        (click)="toggleRibbon()">
+  <i [class]="ribbonSize == 'small' ? 'icon-downArrow' : 'icon-upArrow'"></i>
+</button>
 
-<button *ngIf="ribbonSize == 'small' && hasToggle"
-        class="toggleButton" (click)="toggleRibbon()"><i class="icon-downArrow"></i></button>
-<button *ngIf="ribbonSize != 'small' && hasToggle"
-        class="toggleButton" (click)="toggleRibbon()"><i class="icon-upArrow"></i></button>

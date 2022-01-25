@@ -176,9 +176,45 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
         this.resize();
         if (token === null) {
           this.loginWindow();
+        } else {
+
+          const windowConfigGame = {
+            icon: 'icon-contacts',
+            iconLarge: 'icon-contacts_over',
+            width: 400,
+            height: 800,
+            left: 30,
+            top: 30,
+            component: 'system/demo3',
+            title: 'demo3',
+            hasStatusBar: true,
+            hasRibbon: true,
+            ribbonHasPriority: true
+          };
+          this.windowService.newWindow(windowConfigGame);
+
+          const windowConfigVideo = {
+            icon: 'icon-cog',
+            iconLarge: 'icon-cog_over',
+            width: 960,
+            height: 570,
+            top: 300,
+            left: 300,
+            component: 'system/demo4',
+            title: 'MESH - Half the world away'
+          };
+          this.windowService.newWindow(windowConfigVideo);
+
+          const windowConfig = {
+            width: 900,
+            height: 500,
+            component: 'system/demo',
+            title: 'demo'
+          };
+
+          this.windowService.newWindow(windowConfig);
         }
       }, 310);
-
 
       // const windowConfig = {
       //   icon: 'icon-contacts',

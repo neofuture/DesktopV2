@@ -45,6 +45,7 @@ import { ReturnNamePipe } from './pipes/return-name.pipe';
 import { ColourPickerComponent } from './components/core/colour-picker/colour-picker.component';
 import {TooltipModule, TooltipOptions} from 'ng2-tooltip-directive';
 import {DefaultTooltipOptions} from './defaultTooltipOptions';
+import { ToggleSwitchComponent } from './components/ui/toggle-switch/toggle-switch.component';
 
 registerLocaleData(localeFr, 'fr');
 registerLocaleData(localeDe, 'de');
@@ -84,7 +85,8 @@ registerLocaleData(localeRu, 'ru');
     LocaleReplacePipe,
     LocalePipe,
     ReturnNamePipe,
-    ColourPickerComponent
+    ColourPickerComponent,
+    ToggleSwitchComponent
   ],
     exports: [
         ApplicationComponent,

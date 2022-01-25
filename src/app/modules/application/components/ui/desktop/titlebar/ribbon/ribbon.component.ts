@@ -76,5 +76,4 @@ export class RibbonComponent implements OnInit {
     }, 310);
   }
 
-
 }

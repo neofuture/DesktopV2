@@ -16,6 +16,14 @@
   right: 0;
 }
 
+/*.toggleSwitch {*/
+/*  float: right;*/
+/*  position: absolute;*/
+/*  top: 0;*/
+/*  right: 40px;*/
+/*  margin:10px;*/
+/*}*/
+
 .row {
   display: block !important;
   width: 100% !important;
