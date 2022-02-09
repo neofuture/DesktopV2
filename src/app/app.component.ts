@@ -29,10 +29,10 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.apiService.call('user/access', 'get', []).subscribe(
-      d => {
-        console.log(d);
-      }
-      );
+    // this.apiService.call('user/access', 'get', []).subscribe(
+    //   d => {
+    //     console.log(d);
+    //   }
+    //   );
   }
 }

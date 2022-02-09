@@ -22,6 +22,7 @@
     "src/app/modules/application/components/system/demo2/demo2.component.ts",
     "src/app/modules/application/components/system/demo3/demo3.component.ts",
     "src/app/modules/application/components/system/demo4/demo4.component.ts",
+    "src/app/modules/application/components/system/planner/planner.component.ts",
     "src/app/modules/application/components/system/contact-manager/contact-manager.component.ts",
     "src/app/modules/application/components/system/contact-manager/modules/notes-history/notes-history.component.ts",
     "src/app/modules/application/components/system/contact-manager/modules/notes-history/add-history/add-history.component.ts",

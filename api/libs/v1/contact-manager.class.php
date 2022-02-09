@@ -4,11 +4,12 @@ class contactManager
 {
   public static function init($pdo, $jsonStr, $session)
   {
-    $pdo = system::connectUserDataset($session);
 
+    $pdo = system::connectUserDataset($session);
     $token = system::getBearerToken();
 
     $token = system::validateJwt($token);
+
     if ($token['expired'] === false && $token['signatureValid'] === true) {
 
       $stmt = $pdo->prepare("SELECT * FROM contactManagerCategories ORDER by sortOrder");

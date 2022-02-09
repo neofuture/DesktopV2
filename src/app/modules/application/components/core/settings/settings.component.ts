@@ -1,10 +1,11 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {RibbonService} from '../../../services/ribbon.service';
 import {TabbarService} from '../../../services/tabbar.service';
-import {Subscription} from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 import {LanguageService} from '../../../services/language.service';
 import {WindowService} from '../../../services/window.service';
 import {FileService} from '../../../services/file.service';
+import {ThemeService} from '../../../services/theme.service';
 
 @Component({
   selector: 'app-settings',
@@ -19,14 +20,15 @@ export class SettingsComponent implements OnInit, OnDestroy {
   ribbonSize: string;
   autoHide: boolean;
   locale: any;
-  theme = true;
+  theme;
 
   constructor(
     private ribbonService: RibbonService,
     private tabBarService: TabbarService,
     private languageService: LanguageService,
     private windowService: WindowService,
-    private fileService: FileService
+    private fileService: FileService,
+    private themeService: ThemeService
   ) { }
 
   ngOnInit(): void {
@@ -40,6 +42,13 @@ export class SettingsComponent implements OnInit, OnDestroy {
     this.tabSub$ = this.tabBarService.autoHideList.subscribe(data => {
       this.autoHide = data;
     });
+
+    this.themeService.theme.subscribe(
+      theme => {
+        this.theme = theme;
+      }
+    );
+    console.log(typeof this.theme, this.theme);
   }
 
   ngOnDestroy(): void {
@@ -79,7 +88,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
     this.fileService.loadDesktop(event);
   }
 
-  checkValue($event): void {
-    this.theme = $event;
+  checkValue(event): void {
+    this.theme = this.themeService.setTheme(event);
   }
 }

@@ -370,7 +370,6 @@ export class ContactManagerComponent implements OnInit, DoCheck {
 
   resizeEvent(): void {
     console.log('finished resizing');
-    this.resize++;
   }
 
   recordStart(): void {

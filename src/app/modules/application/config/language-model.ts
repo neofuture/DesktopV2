@@ -82,6 +82,7 @@ export interface LanguageModel {
       addTypeItem: string;
       notesHistory: string;
       supportTickets: string;
+      planner: string;
     };
     panel: {
       close: string;

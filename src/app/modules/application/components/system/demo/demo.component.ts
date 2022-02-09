@@ -10,6 +10,7 @@ import {LanguageService} from '../../../services/language.service';
 import {Subscription} from 'rxjs';
 import {HelperService} from '../../../services/helper.service';
 import {SystemService} from '../../../services/system.service';
+import {ApiService} from "../../../services/api.service";
 
 @Component({
   selector: 'app-demo',
@@ -26,9 +27,11 @@ export class DemoComponent implements OnInit {
     private toastService: ToastService,
     private languageService: LanguageService,
     private helperService: HelperService,
-    private systemService: SystemService
+    private systemService: SystemService,
+    private apiService: ApiService
   ) {
   }
+
   @Input() windowItem;
   @Output() update = new EventEmitter();
   private langSub$: Subscription;
@@ -72,6 +75,7 @@ export class DemoComponent implements OnInit {
     };
     this.windowService.newWindow(windowConfig);
   }
+
   newPanelLeft(): void {
     const panelConfig = {
       title: 'Panel'
@@ -376,6 +380,7 @@ export class DemoComponent implements OnInit {
     };
     this.windowService.newWindow(windowConfig);
   }
+
   demo1InPanel(): void {
     const windowConfig = {
       icon: 'icon-alarm',
@@ -751,6 +756,48 @@ export class DemoComponent implements OnInit {
 
   closeWindow(): void {
     this.windowService.closeWindow(this.windowItem.uuid);
+  }
+
+  stressTest(): void {
+    for (let i = 0; i < 20; i++) {
+      setTimeout(() => {
+        this.demo1();
+      }, 100 * i);
+    }
+  }
+
+  apiError(url): void {
+    this.apiService.call(url, 'get', {}).subscribe(
+      result => {
+        /* we got an error */
+        if (typeof result.error === 'string') {
+          if (result.status === 400) {
+            const toastConfig = {
+              title: result.error,
+              body: result.statusText,
+              type: 'error'
+            };
+            this.toastService.newToast(toastConfig);
+          }
+
+          if (result.status === 404) {
+            const toastConfig = {
+              title: result.error,
+              body: result.statusText,
+              type: 'info'
+            };
+            this.toastService.newToast(toastConfig);
+          }
+        } else {
+          const toastConfig = {
+            title: result.status,
+            body: result.response,
+            type: 'success'
+          };
+          this.toastService.newToast(toastConfig);
+        }
+      }
+    );
   }
 }
 

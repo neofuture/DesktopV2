@@ -182,11 +182,28 @@ input:focus {
 }
 
 .danger {
-  background-color: #fa8282;
+  background-color: #e15555;
 }
 
 .danger:hover {
-  background-color: #e26666;
+  background-color: #b73535;
+}
+
+.advice {
+  background-color: #fa913d;
+}
+
+.advice:hover {
+  background-color: #d77631;
+}
+
+.warning {
+  background-color: #f6d364;
+  color:#333333;
+}
+
+.warning:hover {
+  background-color: #eec447;
 }
 
 button {
@@ -201,4 +218,46 @@ button span {
   position: relative;
   top: -2px;
   margin-left: 6px;
+}
+
+select, input {
+  background-color: var(--white);
+}
+
+
+.dark {
+  --white: #333333;
+  --black: #a9a8a8;
+
+  --dark-grey: #c0c0c0;
+  --darker-grey: #a8a8a8;
+  --mid-grey: #676767;
+  --light-grey: #3f3f3f;
+  --very-light-grey: #a7a7a7;
+
+  --primary: #4285f4;
+  --primary-mid: #5f99fa;
+  --primary-light: #3163b4;
+  --primary-dark:  #85b1fa;
+
+  --analogous-primary: #606060;
+  --analogous-primary-op: #ececec;
+
+}
+
+.dark select, .dark input {
+  background-color: var(--light-grey);
+  color:var(--black);
+  border-color: var(--mid-grey)
+}
+
+hr {
+  border: 0px;
+  border-bottom: 1px solid var(--light-grey);
+}
+
+.dark hr {
+  border:0px;
+  border-bottom: 1px solid var(--light-grey);
+  background-color: transparent;
 }

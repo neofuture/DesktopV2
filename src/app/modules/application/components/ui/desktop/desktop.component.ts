@@ -20,6 +20,7 @@ import {RibbonService} from '../../../services/ribbon.service';
 import {PanelService} from '../../../services/panel.service';
 import {TabbarService} from '../../../services/tabbar.service';
 import {SystemService} from '../../../services/system.service';
+import {ThemeService} from '../../../services/theme.service';
 
 @Component({
   selector: 'app-desktop',
@@ -90,7 +91,8 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
     private ribbonService: RibbonService,
     private tabBarService: TabbarService,
     private systemService: SystemService,
-    private differs: KeyValueDiffers
+    private differs: KeyValueDiffers,
+    private themeService: ThemeService
   ) {
   }
 
@@ -136,6 +138,17 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
       this.autoHide = data;
     });
 
+    this.themeService.theme.subscribe(
+      theme => {
+        if (theme === true) {
+          this.themeService.setDarkMode();
+        } else {
+          this.themeService.setLightMode();
+        }
+      }
+    );
+
+
     setTimeout(() => {
       this.loadDesktop();
     }, 1000);
@@ -177,63 +190,28 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
         if (token === null) {
           this.loginWindow();
         } else {
-
-          const windowConfigGame = {
-            icon: 'icon-contacts',
-            iconLarge: 'icon-contacts_over',
-            width: 400,
-            height: 800,
-            left: 30,
-            top: 30,
-            component: 'system/demo3',
-            title: 'demo3',
-            hasStatusBar: true,
-            hasRibbon: true,
-            ribbonHasPriority: true
-          };
-          this.windowService.newWindow(windowConfigGame);
-
-          const windowConfigVideo = {
-            icon: 'icon-cog',
-            iconLarge: 'icon-cog_over',
-            width: 960,
-            height: 570,
-            top: 300,
-            left: 300,
-            component: 'system/demo4',
-            title: 'MESH - Half the world away'
-          };
-          this.windowService.newWindow(windowConfigVideo);
-
-          const windowConfig = {
-            width: 900,
-            height: 500,
-            component: 'system/demo',
-            title: 'demo'
-          };
-
-          this.windowService.newWindow(windowConfig);
+          this.loadPlanner();
+          this.contactManager();
+          this.openDemo();
         }
       }, 310);
 
-      // const windowConfig = {
-      //   icon: 'icon-contacts',
-      //   iconLarge: 'icon-contacts_over',
-      //   width: 950,
-      //   height: 850,
-      //   minimumHeight: 734,
-      //   minimumWidth: 750,
-      //   left: 30,
-      //   top: 30,
-      //   component: 'system/contact-manager',
-      //   title: 'contactManager',
-      //   hasStatusBar: true,
-      //   hasRibbon: true,
-      //   ribbonFixedPosition: 'top'
-      // };
-      // this.windowService.newWindow(windowConfig);
-
     });
+  }
+
+  loadPlanner(): void {
+    const windowConfig = {
+      icon: 'icon-cog',
+      iconLarge: 'icon-cog',
+      width: 600,
+      height: 400,
+      top: 100,
+      left: 100,
+      component: 'system/planner',
+      title: 'planner',
+      parentComponent: this
+    };
+    this.windowService.newWindow(windowConfig);
   }
 
   contactManager(): void {
@@ -309,5 +287,16 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
 
   setPlanMode(id): void {
     this.systemService.set({planMode: id});
+  }
+
+  openDemo(): void {
+    const windowConfig = {
+      width: 900,
+      height: 500,
+      component: 'system/demo',
+      title: 'demo'
+    };
+
+    this.windowService.newWindow(windowConfig);
   }
 }

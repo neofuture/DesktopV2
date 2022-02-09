@@ -62,22 +62,24 @@ export class UserLoginComponent implements OnInit {
     };
     this.loggingIn = true;
     this.userService.login(request).subscribe((status) => {
-      if (status.status === '200 ok') {
-        this.userService.setToken(status.token);
-        const toastConfig = {
-          title: 'success',
-          body: 'loginSuccessful',
-          autoClose: 2000,
-          type: 'success'
-        };
-        this.toastService.newToast(toastConfig);
-      } else {
+      console.log(status);
+      if (status.status === 404) {
         this.loggingIn = false;
         const toastConfig = {
           title: 'error',
           body: 'loginFailed',
           autoClose: 2000,
           type: 'error'
+        };
+        this.toastService.newToast(toastConfig);
+      } else {
+        console.log(status.token);
+        this.userService.setToken(status.token);
+        const toastConfig = {
+          title: 'success',
+          body: 'loginSuccessful',
+          autoClose: 2000,
+          type: 'success'
         };
         this.toastService.newToast(toastConfig);
       }

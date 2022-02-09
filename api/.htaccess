@@ -8,3 +8,4 @@ RewriteRule . /index.php [L]
      ForceType application/x-httpd-php
 </Files>
 SetEnv APPLICATION_ENV "development"
+RewriteRule .* - [e=HTTP_AUTHORIZATION:%{HTTP:Authorization}]

@@ -140,6 +140,8 @@ function translate($sourceLang, $targetLang, $sourceText)
     'key' => $apiKey
   ];
 
+  print_r($fields);
+
   $fields_string = http_build_query($fields);
 
   $ch = curl_init();
@@ -154,6 +156,8 @@ function translate($sourceLang, $targetLang, $sourceText)
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
   $result = curl_exec($ch);
+
+  print_r($result);
 
   echo "\nTranslated: " . $sourceText . " To " . json_decode($result)->data->translations[0]->translatedText . "\n";
   return json_decode($result)->data->translations[0]->translatedText;

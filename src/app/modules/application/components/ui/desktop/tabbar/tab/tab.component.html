@@ -22,11 +22,11 @@
             [innerHTML]="' - ' + windowItem.extendedTitle"></span>
     </div>
     <i class="icon-restore actionIcon" (click)="maximiseWindow()"
-       *ngIf="windowItem.state.isMaximised && windowItem.resizable"
+       *ngIf="windowItem.state.isMaximised && windowItem.resizable && calculateTabWidth() > 64"
        [tooltip]="locale.restore"
     ></i>
     <i class="icon-maximise actionIcon" (click)="maximiseWindow()"
-       *ngIf="!windowItem.state.isMaximised && windowItem.resizable"
+       *ngIf="!windowItem.state.isMaximised && windowItem.resizable && calculateTabWidth() > 64"
        [tooltip]="locale.maximise"
     ></i></div>
 </div>

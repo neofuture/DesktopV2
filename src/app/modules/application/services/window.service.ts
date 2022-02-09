@@ -21,6 +21,7 @@ export class WindowService {
   private oldWidth;
   private oldHeight;
   private debounce;
+
   // private areaSource = new BehaviorSubject({});
 
   constructor(
@@ -73,9 +74,7 @@ export class WindowService {
             }
           }
         }
-
       }
-
     }
   }
 
@@ -91,8 +90,10 @@ export class WindowService {
     const width = typeof windowConfig.width === 'undefined' ? this.randomIntFromInterval(400, 800) : windowConfig.width;
     const height = typeof windowConfig.height === 'undefined' ? this.randomIntFromInterval(200, 400) : windowConfig.height;
 
-    let top = typeof windowConfig.top === 'undefined' ? this.randomIntFromInterval(10, 300) : windowConfig.top;
-    let left = typeof windowConfig.left === 'undefined' ? this.randomIntFromInterval(10, 300) : windowConfig.left;
+    let top = typeof windowConfig.top === 'undefined' ?
+      this.randomIntFromInterval(10, this.desktopDimensions.height - 500) : windowConfig.top;
+    let left = typeof windowConfig.left === 'undefined' ?
+      this.randomIntFromInterval(10, this.desktopDimensions.width - 500) : windowConfig.left;
 
     let uuid = this.helperService.uuidV4();
 
@@ -144,10 +145,8 @@ export class WindowService {
       top,
       zIndex: 2,
       active: false,
-
       resizable: typeof windowConfig.resizable === 'undefined' ? true : windowConfig.resizable,
       closable: typeof windowConfig.closable === 'undefined' ? true : windowConfig.closable,
-
       centered: windowConfig.centered || false,
       title: windowConfig.title || ' - ',
       extendedTitle: windowConfig.extendedTitle || '',
@@ -190,7 +189,7 @@ export class WindowService {
       dockInPanel: typeof windowConfig.dockInPanel === 'undefined' ? true : windowConfig.dockInPanel,
       parentComponent: windowConfig.parentComponent || null,
       parentParentComponent: windowConfig.parentParentComponent || null,
-      winOrigin : {
+      winOrigin: {
         top,
         left,
         width,

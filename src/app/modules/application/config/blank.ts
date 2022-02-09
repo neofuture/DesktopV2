@@ -85,6 +85,7 @@ export const blank: LanguageModel = {
       addTypeItem: 'Add Type Item',
       notesHistory: 'Notes &amp; History',
       supportTickets: 'Support Tickets',
+      planner: 'Planner',
     },
     panel: {
       close: 'Close',

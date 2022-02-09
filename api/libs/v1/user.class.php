@@ -14,7 +14,9 @@ class user
     $result = $stmt->fetch();
 
     if(!$result){
-      $status['status'] = '404 not found';
+      http_response_code(404);
+      $status['error'] = '404 not found';
+      $status['statusText'] = 'No such user/password combination';
     } else {
 
       $stmt = $pdo->prepare("UPDATE contactManagerRecords SET lastLogin = NOW() WHERE id = ?");
@@ -23,15 +25,13 @@ class user
       $payload = $result;
       $payload['exp'] = time() + (60 * 60 * 24 * 30);
       $status['token'] = system::jwt($payload);
-      $status['status'] = '200 ok';
     }
 
-    $status['method'] = 'login';
 
 
     // Create the Transport
-    $transport = (new Swift_SmtpTransport('mail.oceanworksuk.net', 25))
-      ->setUsername('support@oceanworksuk.net')
+    $transport = (new Swift_SmtpTransport('mail.carlfearby.co.uk', 25))
+      ->setUsername('me@carlfearby.co.uk')
       ->setPassword('Vertinero2835!');
 
     // Create the Mailer using your created Transport
@@ -43,13 +43,11 @@ class user
     $messageContent = "<pre>".print_r($_SERVER, true)."</pre>";
 
     $message->setBody($messageContent, 'text/html')
-      ->setFrom('support@oceanworksuk.net')
-      ->setTo($jsonStr->username);
+      ->setFrom('me@carlfearby.co.uk')
+      ->setTo("carlfearby@me.com");
 
     // Send the message
-    $result = $mailer->send($message);
-
-    file_put_contents("log.txt", $result);
+    $mailer->send($message);
 
     return $status;
   }

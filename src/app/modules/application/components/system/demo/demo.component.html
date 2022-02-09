@@ -31,6 +31,14 @@
     "tslib": "^2.0.0",
     "zone.js": "~0.11.4"
   </pre>
+  <h1>API Error Handling</h1>
+  500 errors are managed by the api service, other errors are transported to the callee<br>
+  <button (click)="apiError('example/success')" class="success">Api 200 Error Test</button>
+  <button (click)="apiError('example/badRequestError')" class="danger">Api 400 Error Test</button>
+  <button (click)="apiError('example/abcdef')" class="advice">Api 405 Error Test</button>
+  <button (click)="apiError('example/notFoundError')">Api 404 Error Test</button>
+  <button (click)="apiError('example/serverError')" class="danger">Api 500 Error Test</button>
+  <hr>
   <button (click)="addStatusBar()">Add Status Bar</button>
   <input type="text" [(ngModel)]="statusBarText">
   <button (click)="removeStatusBar()">Remove Status Bar</button>
@@ -39,7 +47,8 @@
   <button (click)="removeFooter()">Remove Footer</button>
   <hr>
   <button (click)="plannerWindow()">Responsive Component Window</button>
-
+  <button (click)="stressTest()">Stress Test</button>
+  <hr>
   <button (click)="demo1()">Demo One</button>
   <button (click)="demo2()">Demo Two</button>
   <button (click)="demo3()">Demo Three</button>

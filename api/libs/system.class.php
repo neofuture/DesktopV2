@@ -14,7 +14,6 @@ class system
 
     include("config.php");
 
-
     $db = "api";
     $dsn = "mysql:host=$host;dbname=$db;";
     $pdo = new PDO($dsn, $user, $pass, $opt);
@@ -29,18 +28,14 @@ class system
       PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
       PDO::ATTR_EMULATE_PREPARES => false,
     ];
-
     include("config.php");
 
-
-    $db = "api";
-    $dsn = "mysql:host=$host;dbname=$userDb;";
+    $db = "api_crm_dev";
+    $dsn = "mysql:host=$host;dbname=$db;";
     $pdo = new PDO($dsn, $user, $pass, $opt);
 
     return $pdo;
   }
-
-
 
   public static function processHeaders()
   {

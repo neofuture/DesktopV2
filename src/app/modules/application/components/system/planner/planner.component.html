@@ -1,0 +1,18 @@
+<div class="container">
+  <div> {{ componentArea.width }} x {{ componentArea.height }} </div>
+  Testing
+  <hr>
+  <button (click)="addStatusBar()">Add Status Bar</button>
+  <input type="text" [(ngModel)]="statusBarText">
+  <button (click)="removeStatusBar()">Remove Status Bar</button>
+  <hr>
+  <button (click)="addFooter()">Add Footer</button>
+  <button (click)="removeFooter()">Remove Footer</button>
+  <hr>
+  <input type="text" [(ngModel)]="memory.field">
+  <pre *ngIf="windowItem">{{ windowItem.memory | json }}</pre>
+</div>
+<div class="footer" *ngIf="windowItem.hasFooter">
+  <button class="p-button-secondary p-button-sm" [innerHTML]="'Click'"></button>
+  <button class="p-button-success p-button-sm" (click)="closeWindow()" [innerHTML]="'Close'"></button>
+</div>

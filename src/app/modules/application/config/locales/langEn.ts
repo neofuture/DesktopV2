@@ -83,7 +83,8 @@ export const langEn: LanguageModel = {
       addStatusItem: 'Add Status Item',
       addTypeItem: 'Add Type Item',
       notesHistory: 'Notes &amp; History',
-      supportTickets: 'Support Tickets'
+      supportTickets: 'Support Tickets',
+      planner: 'Planner'
     },
     panel: {
       close: 'Close',
