@@ -50,7 +50,7 @@ if($uri[0] === 'v1'){
 
   if (!method_exists($uri[1], $uri[2])) {
     $status['error'] = '405 method not found';
-    $status['statusText'] = 'The class requested does not exist';
+    $status['statusText'] = 'The method requested does not exist';
     http_response_code(405);
     echo json_encode($status);
     exit;

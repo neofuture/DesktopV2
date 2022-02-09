@@ -2,6 +2,7 @@
 
 class contactManager
 {
+
   public static function init($pdo, $jsonStr, $session)
   {
 

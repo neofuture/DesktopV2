@@ -1,5 +1,12 @@
 <div class="container" [ngClass]="{'hasFooter': windowItem.hasFooter}">
   Status: {{ test }}
+  <h4>API Error Handling</h4>
+  500 errors are managed by the api service, other errors are transported to the callee<br>
+  <button (click)="apiError('example/success')" class="success">Api 200 Error Test</button>
+  <button (click)="apiError('example/badRequestError')" class="danger">Api 400 Error Test</button>
+  <button (click)="apiError('example/abcdef')" class="advice">Api 405 Error Test</button>
+  <button (click)="apiError('example/notFoundError')">Api 404 Error Test</button>
+  <button (click)="apiError('example/serverError')" class="danger">Api 500 Error Test</button>
 
   <h1>Demo <button (click)="about()">About Tailwind</button></h1>
     <p><b>Written in Native Angular 10-13/Vanilla JavaScript, with minimal libraries</b></p>
@@ -8,6 +15,9 @@
   </p>
   <p>
     The frame work uses full lazy loading of components so please be sure to watch the Network Activity monitor in the console as you navigate some of the demo items. All icons an assets are created by me, except for the demo video which is courtesy of Mesh <a href="http://www.mesh.co.uk" target="_new">More Info</a>
+  </p>
+  <p>
+    The back end API is written in PHP and utilises JWT's
   </p>
   <p>
     Please scroll down this window to see the demo window and panel options/controls/methods.
@@ -31,14 +41,7 @@
     "tslib": "^2.0.0",
     "zone.js": "~0.11.4"
   </pre>
-  <h1>API Error Handling</h1>
-  500 errors are managed by the api service, other errors are transported to the callee<br>
-  <button (click)="apiError('example/success')" class="success">Api 200 Error Test</button>
-  <button (click)="apiError('example/badRequestError')" class="danger">Api 400 Error Test</button>
-  <button (click)="apiError('example/abcdef')" class="advice">Api 405 Error Test</button>
-  <button (click)="apiError('example/notFoundError')">Api 404 Error Test</button>
-  <button (click)="apiError('example/serverError')" class="danger">Api 500 Error Test</button>
-  <hr>
+
   <button (click)="addStatusBar()">Add Status Bar</button>
   <input type="text" [(ngModel)]="statusBarText">
   <button (click)="removeStatusBar()">Remove Status Bar</button>
