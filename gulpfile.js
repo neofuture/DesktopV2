@@ -31,7 +31,8 @@ const git = require('gulp-git');
 const bump = require('gulp-bump');
 const filter = require('gulp-filter');
 const tagVersion = require('gulp-tag-version');
-
+const {exec} = require("child_process");
+let running = false;
 function inc(importance) {
   // get all the files to bump version in
   return gulp.src(['./package.json'])
@@ -60,15 +61,20 @@ function api(cb) {
 function tailwind(cb) {
   const exec = require('child_process').exec;
   inc('patch');
-  exec('ng build --configuration production', function (err, stdout, stderr) {
-    console.log(stdout);
-    console.log(stderr);
+  if(running === false) {
+    running = true;
+    exec('ng build --configuration production', function (err, stdout, stderr) {
+      console.log(stdout);
+      console.log(stderr);
 
-    const conn = getFtpConnection();
-    return gulp.src('./dist/Tailwind/**/*', {base: './dist/Tailwind', buffer: false})
-      .pipe(conn.newer('tailwind.carlfearby.co.uk'))
-      .pipe(conn.dest('tailwind.carlfearby.co.uk'))
-  });
+      const conn = getFtpConnection();
+      return gulp.src('./dist/Tailwind/**/*', {base: './dist/Tailwind', buffer: false})
+        .pipe(conn.newer('tailwind.carlfearby.co.uk'))
+        .pipe(conn.dest('tailwind.carlfearby.co.uk'))
+      running = false;
+    });
+  }
+
   cb();
 }
 

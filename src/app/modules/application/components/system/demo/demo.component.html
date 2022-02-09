@@ -1,6 +1,6 @@
 <div class="container" [ngClass]="{'hasFooter': windowItem.hasFooter}">
   Status: {{ test }}
-  
+
   <h4>API Error Handling</h4>
   500 errors are managed by the api service, other errors are transported to the callee<br>
   <button (click)="apiError('example/success')" class="success">Api 200 Error Test</button>
