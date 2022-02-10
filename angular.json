@@ -30,7 +30,8 @@
               "src/assets/tooltip.css"
             ],
             "scripts": [
-              "src/assets/js/external.js"
+              "src/assets/js/external.js",
+              "src/assets/js/version.js"
             ],
             "allowedCommonJsDependencies": [
               "chart.js"
@@ -110,7 +111,8 @@
               "src/assets/tooltip.css"
             ],
             "scripts": [
-              "src/assets/js/external.js"
+              "src/assets/js/external.js",
+              "src/assets/js/version.js"
             ]
           }
         },

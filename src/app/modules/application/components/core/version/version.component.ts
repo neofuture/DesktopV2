@@ -8,7 +8,8 @@ import {environment} from '../../../../../../environments/environment';
 })
 export class VersionComponent implements OnInit {
 
-  currentApplicationVersion = environment.appVersion;
+  // @ts-ignore
+  currentApplicationVersion = window.version;
   constructor() { }
 
   ngOnInit(): void {

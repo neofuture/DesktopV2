@@ -25,57 +25,32 @@ const {watch, series} = require('gulp');
 const ftp = require('vinyl-ftp');
 const gutil = require('gulp-util');
 const gulp = require("gulp");
-const localFiles = ['./api/**/*', '!./api/vendor/**/*'];
-const localTailwind = ['./src/**/*'];
-const git = require('gulp-git');
-const bump = require('gulp-bump');
-const filter = require('gulp-filter');
-const tagVersion = require('gulp-tag-version');
 const {exec} = require("child_process");
-let running = false;
-function inc(importance) {
-  // get all the files to bump version in
-  return gulp.src(['./package.json'])
-    // bump the version number in those files
-    .pipe(bump({type: importance}))
-    // save it back to filesystem
-    .pipe(gulp.dest('./'))
-    // commit the changed version number
-    .pipe(git.commit('Bumps package version'))
-    // read only one file to get the version number
-    .pipe(filter('package.json'))
-    // **tag it in the repository**
-    .pipe(tagVersion({
-      prefix: ''
-    }));
+const localFiles = ['./api/**/*', '!./api/vendor/**/*'];
+const localTailwind = ['./src/**/*', '!./src/assets/js/version.js'];
+
+function inc() {
+  const docString = require('fs').readFileSync('version.js', 'utf8');
+  const versionParts = docString.split('.');
+  const vArray = {
+    win: versionParts[0],
+    vMajor: versionParts[1],
+    vMinor: versionParts[2],
+    vPatch: versionParts[3]
+  };
+  vArray.vPatch = parseFloat(vArray.vPatch) + 1;
+  const periodString = ".";
+  const newVersionNumber = vArray.win + '.' + vArray.vMajor + periodString + vArray.vMinor + periodString + vArray.vPatch;
+  require('fs').writeFileSync('version.js', newVersionNumber + "';");
+  return gulp.src(['version.js'])
+    .pipe(gulp.dest('src/assets/js'));
 }
 
-function api(cb) {
+function api() {
   const conn = getFtpConnection();
   return gulp.src(localFiles, {base: './api', buffer: false})
     .pipe(conn.newer('api.carlfearby.co.uk'))
     .pipe(conn.dest('api.carlfearby.co.uk'))
-  cb();
-}
-
-function tailwind(cb) {
-  const exec = require('child_process').exec;
-  inc('patch');
-  if(running === false) {
-    running = true;
-    exec('ng build --configuration production', function (err, stdout, stderr) {
-      console.log(stdout);
-      console.log(stderr);
-
-      const conn = getFtpConnection();
-      return gulp.src('./dist/Tailwind/**/*', {base: './dist/Tailwind', buffer: false})
-        .pipe(conn.newer('tailwind.carlfearby.co.uk'))
-        .pipe(conn.dest('tailwind.carlfearby.co.uk'))
-      running = false;
-    });
-  }
-
-  cb();
 }
 
 function getFtpConnection() {
@@ -90,7 +65,19 @@ function getFtpConnection() {
 }
 
 exports.default = function () {
-  // You can use a single task
   watch(localFiles, api);
-  watch(localTailwind, tailwind);
 };
+
+gulp.task('deploy', async function() {
+  const exec = require('child_process').exec;
+  inc();
+  exec('ng build --configuration production', function (err, stdout, stderr) {
+    console.log(stdout);
+    console.log(stderr);
+
+    const conn = getFtpConnection();
+    gulp.src('./dist/Tailwind/**/*', {base: './dist/Tailwind', buffer: false})
+      .pipe(conn.newer('tailwind.carlfearby.co.uk'))
+      .pipe(conn.dest('tailwind.carlfearby.co.uk'))
+  });
+});

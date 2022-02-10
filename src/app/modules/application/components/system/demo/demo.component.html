@@ -1,6 +1,5 @@
 <div class="container" [ngClass]="{'hasFooter': windowItem.hasFooter}">
   Status: {{ test }}
-
   <h4>API Error Handling</h4>
   500 errors are managed by the api service, other errors are transported to the callee<br>
   <button (click)="apiError('example/success')" class="success">Api 200 Error Test</button>
@@ -8,7 +7,6 @@
   <button (click)="apiError('example/abcdef')" class="advice">Api 405 Error Test</button>
   <button (click)="apiError('example/notFoundError')">Api 404 Error Test</button>
   <button (click)="apiError('example/serverError')" class="danger">Api 500 Error Test</button>
-
   <h1>Demo <button (click)="about()">About Tailwind</button></h1>
     <p><b>Written in Native Angular 10-13/Vanilla JavaScript, with minimal libraries</b></p>
   <p>
@@ -19,6 +17,9 @@
   </p>
   <p>
     The back end API is written in PHP and utilises JWT's
+  </p>
+  <p>
+    This also has real time deployment to the api and app server, with build version increment on each build.
   </p>
   <p>
     Please scroll down this window to see the demo window and panel options/controls/methods.
@@ -91,12 +92,15 @@
   <button (click)="newToastSticky('info')">New Toast Info Sticky</button>
   <button (click)="newToastSticky('warn')">New Toast Warn Sticky</button>
   <button (click)="newToastSticky('error')">New Toast Error Sticky</button>
+
   <h1>Dialogs</h1>
   <button (click)="newDialog()">New Dialog</button>
   <button (click)="newDialogForm()">New Dialog (Form)</button>
+
   <h1>Custom Windows</h1>
   <button (click)="splash()">New Splash</button>
   <button (click)="about()">About</button>
+
   <h1>Panels</h1>
   <button (click)="newPanelLeft()">New Panel Left</button>
   <button (click)="newPanelRight()">New Panel (right dock 75%, 100%)</button>
@@ -117,6 +121,7 @@
   <button (click)="deleteItem('thing')">Delete Item</button>
   <button (click)="deleteItem('thing2')">Delete Second Item</button>
   <pre>{{ runState | json}}</pre>
+
   <h1>App State</h1>
   <button (click)="setItemApp({thing: {demo: 'demo', test: 'testing'}})">Set Item</button>
   <button (click)="setItemApp({thing: {sortBy: 4,thingy: 'item 4', ddd: {sortBy: 3,thingy: 'item 3'}}})">Set Item (different)</button>
