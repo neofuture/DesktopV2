@@ -1,26 +1,3 @@
-// var gulp = require("gulp"),
-//   gutil = require('gulp-util'),
-//   ftp = require('vinyl-ftp');
-//
-// gulp.task('upload', function () {
-//
-//   // var conn = ftp.create({
-//   //   host: 'api.carlfearby.co.uk',
-//   //   user: 'carlfearby',
-//   //   password: 'Vertinero2835!',
-//   //   parallel: 10,
-//   //   log: gutil.log
-//   // });
-//   //
-//   // return gulp.src(['./api/*', './api/index.php'], {base: './', buffer: false})
-//   //   .pipe(conn.newer('/api.carlfearby.co.uk/'))
-//   //   .pipe(conn.dest('/api.carlfearby.co.uk/'));
-// });
-//
-// gulp.task("default", function () {
-//   gulp.watch("./api/*", ['upload']);
-//   gulp.watch("./api/index.php", ['upload']);
-// });
 const {watch, series} = require('gulp');
 const ftp = require('vinyl-ftp');
 const gutil = require('gulp-util');
