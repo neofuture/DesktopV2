@@ -71,6 +71,12 @@
 
 .icon-close {
   cursor: pointer;
+  opacity:0;
+  transition: opacity 0.3s;
+}
+
+.toast:hover .icon-close {
+  opacity: 1;
 }
 
 .timeBar {

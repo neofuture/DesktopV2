@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpEvent, HttpHeaders} from '@angular/common/http';
 import {environment} from '../../../../environments/environment';
 import {catchError} from 'rxjs/operators';
 import {ToastService} from './toast.service';
-import {throwError} from "rxjs";
+import {Observable, throwError} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,7 @@ export class ApiService {
   ) {
   }
 
-  call(url, requestType, body): any {
+  call(url, requestType, body): Observable<any> {
     const httpOptions = this.headers();
     let data;
     if (requestType === 'get' || requestType === 'delete') {

@@ -61,7 +61,11 @@ export class ContactManagerService {
   }
 
   getSettings(): any {
-    return this.apiService.call('contactManager/getSettings', 'post', null);
+    return this.apiService.call('contactManager/getSettings', 'post', null).subscribe(
+      data => {
+        console.log(data);
+      }
+    );
   }
 
   saveObject(requestBody): Subscribable<any> {
@@ -69,48 +73,68 @@ export class ContactManagerService {
     return this.apiService.call('contactManager/saveObject', type, requestBody);
   }
 
-  deleteObject(item, object): void {
+  deleteObject(item, object): any{
 
     const requestBody = {
       id: item.id,
       object
     };
 
-    return this.apiService.call('contactManager/deleteObject', 'delete', requestBody);
+    return this.apiService.call('contactManager/deleteObject', 'delete', requestBody).subscribe(
+      data => {
+        console.log(data);
+      }
+    );
   }
 
-  setObjectOrder(order: any[], object): Subscribable<any> {
+  setObjectOrder(order: any[], object): any {
     const requestBody = {
       order,
       object
     };
-    return this.apiService.call('contactManager/setObjectOrder', 'post', requestBody);
+    return this.apiService.call('contactManager/setObjectOrder', 'post', requestBody).subscribe(
+      data => {
+        console.log(data);
+      }
+    );
   }
 
-  deleteRecord(object): Subscribable<any> {
+  deleteRecord(object): any {
     const requestBody = {
       id: object.id
     };
 
-    return this.apiService.call('contactManager/deleteRecord', 'post', requestBody);
+    return this.apiService.call('contactManager/deleteRecord', 'post', requestBody).subscribe(
+      data => {
+        console.log(data);
+      }
+    );
 
   }
 
-  realTimeResults(term, recordType): Subscribable<any> {
+  realTimeResults(term, recordType): any {
     const requestBody = {
       term,
       recordType: parseInt(recordType, 10)
     };
 
-    return this.apiService.call('contactManager/realTimeSearch', 'post', requestBody);
+    return this.apiService.call('contactManager/realTimeSearch', 'post', requestBody).subscribe(
+      data => {
+        console.log(data);
+      }
+    );
   }
 
-  setDefault(id, object): Subscribable<any> {
+  setDefault(id, object): any {
     const requestBody = {
       id,
       object
     };
-    return this.apiService.call('contactManager/setDefault', 'post', requestBody);
+    return this.apiService.call('contactManager/setDefault', 'post', requestBody).subscribe(
+      data => {
+        console.log(data);
+      }
+    );
 
   }
 }
