@@ -1,9 +1,10 @@
-Windows UI V2
+Tailwind
+--------
 
 
 Complete re-write from the ground up
 
-Problem - The desktop UI framework has been altered and changed in some ways that have caused performance issues, being a learning experience in building DWP the need for optimisations is not always possible 
+Problem - The desktop UI framework has been altered and changed in some ways that have caused performance issues, being a learning experience in building this the need for optimisations is not always possible 
 
 Case Study
 
@@ -128,4 +129,4 @@ Bugs
 Wishlist
 
 1.	Component schematic so when creating a new window component a boiler plate can be reused.
-# Tailwind
+
