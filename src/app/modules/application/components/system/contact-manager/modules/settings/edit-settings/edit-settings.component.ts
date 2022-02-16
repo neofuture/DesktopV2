@@ -42,9 +42,7 @@ export class EditSettingsComponent implements OnInit {
     });
 
     this.getSettings();
-
     this.windowService.setLoaded(this.windowItem.uuid);
-
   }
 
   getSettings(): void {

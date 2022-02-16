@@ -10,7 +10,7 @@ import {LanguageService} from '../../../services/language.service';
 import {Subscription} from 'rxjs';
 import {HelperService} from '../../../services/helper.service';
 import {SystemService} from '../../../services/system.service';
-import {ApiService} from "../../../services/api.service";
+import {ApiService} from '../../../services/api.service';
 
 @Component({
   selector: 'app-demo',

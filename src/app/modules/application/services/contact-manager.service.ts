@@ -61,11 +61,7 @@ export class ContactManagerService {
   }
 
   getSettings(): any {
-    return this.apiService.call('contactManager/getSettings', 'post', null).subscribe(
-      data => {
-        console.log(data);
-      }
-    );
+    return this.apiService.call('contactManager/getSettings', 'post', null);
   }
 
   saveObject(requestBody): Subscribable<any> {
