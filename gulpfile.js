@@ -24,10 +24,10 @@ function inc() {
 }
 
 function api() {
-  const conn = getFtpConnection();
-  return gulp.src(localFiles, {base: './api', buffer: false})
-    .pipe(conn.newer('api.carlfearby.co.uk'))
-    .pipe(conn.dest('api.carlfearby.co.uk'))
+  // const conn = getFtpConnection();
+  // return gulp.src(localFiles, {base: './api', buffer: false})
+  //   .pipe(conn.newer('api.carlfearby.co.uk'))
+  //   .pipe(conn.dest('api.carlfearby.co.uk'))
 }
 
 function getFtpConnection() {
@@ -52,9 +52,9 @@ gulp.task('deploy', async function() {
     console.log(stdout);
     console.log(stderr);
 
-    const conn = getFtpConnection();
-    gulp.src('./dist/Tailwind/**/*', {base: './dist/Tailwind', buffer: false})
-      .pipe(conn.newer('tailwind.carlfearby.co.uk'))
-      .pipe(conn.dest('tailwind.carlfearby.co.uk'))
+    // const conn = getFtpConnection();
+    // gulp.src('./dist/Tailwind/**/*', {base: './dist/Tailwind', buffer: false})
+    //   .pipe(conn.newer('tailwind.carlfearby.co.uk'))
+    //   .pipe(conn.dest('tailwind.carlfearby.co.uk'))
   });
 });
