@@ -41,6 +41,7 @@
   height: 100%;
   display: grid;
   padding: 2px;
+  background-color: var(--mid-grey);
 
 }
 
