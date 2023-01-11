@@ -3,8 +3,8 @@ import {
   Compiler,
   Component,
   ElementRef,
-  HostListener,
-  Input,
+  HostListener, Injector,
+  Input, NgModuleRef,
   OnDestroy,
   OnInit,
   ViewChild,
@@ -54,6 +54,7 @@ export class WindowComponent implements OnInit, AfterViewInit, OnDestroy {
   private element: any;
   private langSub$: Subscription;
   private view: any;
+  private readonly moduleRef: NgModuleRef<any>;
 
   constructor(
     private languageService: LanguageService,
@@ -61,10 +62,13 @@ export class WindowComponent implements OnInit, AfterViewInit, OnDestroy {
     private compiler: Compiler,
     private desktopService: DesktopService,
     private panelService: PanelService,
-    element: ElementRef
+    private injector: Injector,
+    element: ElementRef,
   ) {
     this.view = element.nativeElement;
+    this.moduleRef = this.injector.get(NgModuleRef);
   }
+
 
   private areaSource = new BehaviorSubject({});
 
@@ -278,7 +282,6 @@ export class WindowComponent implements OnInit, AfterViewInit, OnDestroy {
     setTimeout(() => {
       clearInterval(interval);
     }, 510);
-
   }
 
   resizeCursorSet(event): void {

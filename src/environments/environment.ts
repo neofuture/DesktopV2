@@ -5,7 +5,7 @@
 export const environment = {
   appVersion: require('../../package.json').version + '-dev',
   production: false,
-  api: 'https://dev-api.carlfearby.co.uk/v1/',
+  api: 'https://tailwindapi/v1/',
   videoHost: 'https://videos.carlfearby.co.uk/assets/'
 };
 

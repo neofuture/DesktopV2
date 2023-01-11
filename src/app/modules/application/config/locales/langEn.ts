@@ -1,8 +1,8 @@
 import {LanguageModel} from '../language-model';
 
 export const langEn: LanguageModel = {
-  product: 'Tailwind', // safe
-  company: 'Carl Fearby', // safe
+  product: 'Xectra', // safe
+  company: 'Xectra Digital', // safe
   desktop: {
     ribbon: {
       contacts: 'Contacts',

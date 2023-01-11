@@ -29,25 +29,25 @@ class user
 
 
 
-    // Create the Transport
-    $transport = (new Swift_SmtpTransport('mail.carlfearby.co.uk', 25))
-      ->setUsername('me@carlfearby.co.uk')
-      ->setPassword('Vertinero2835!');
-
-    // Create the Mailer using your created Transport
-    $mailer = new Swift_Mailer($transport);
-
-    // Create a message
-    $message = new Swift_Message('Login Attempt');
-
-    $messageContent = "<pre>".print_r($_SERVER, true)."</pre>";
-
-    $message->setBody($messageContent, 'text/html')
-      ->setFrom('me@carlfearby.co.uk')
-      ->setTo("carlfearby@me.com");
-
-    // Send the message
-    $mailer->send($message);
+//    // Create the Transport
+//    $transport = (new Swift_SmtpTransport('mail.carlfearby.co.uk', 25))
+//      ->setUsername('me@carlfearby.co.uk')
+//      ->setPassword('Vertinero2835!');
+//
+//    // Create the Mailer using your created Transport
+//    $mailer = new Swift_Mailer($transport);
+//
+//    // Create a message
+//    $message = new Swift_Message('Login Attempt');
+//
+//    $messageContent = "<pre>".print_r($_SERVER, true)."</pre>";
+//
+//    $message->setBody($messageContent, 'text/html')
+//      ->setFrom('me@carlfearby.co.uk')
+//      ->setTo("carlfearby@me.com");
+//
+//    // Send the message
+//    $mailer->send($message);
 
     return $status;
   }
