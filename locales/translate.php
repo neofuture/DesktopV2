@@ -132,33 +132,25 @@ function translate($sourceLang, $targetLang, $sourceText)
 {
   include("config.php");
 
-  $url = "https://translation.googleapis.com/language/translate/v2";
-  $fields = [
-    'source' => $sourceLang,
-    'target' => $targetLang,
-    'q' => $sourceText,
-    'key' => $apiKey
-  ];
+  $url = "https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&to=" . $targetLang;
 
-  print_r($fields);
-
-  $fields_string = http_build_query($fields);
 
   $ch = curl_init();
-
+  curl_setopt($ch, CURLOPT_POSTFIELDS, "[".json_encode(array("Text"=>$sourceText))."]");
   curl_setopt($ch, CURLOPT_URL, $url);
   curl_setopt($ch, CURLOPT_POST, true);
   curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-      'Content-Length: ' . strlen($fields_string),)
+      "Content-Type: application/json",
+      "Ocp-Apim-Subscription-Key:616b4d52b38548a7808c91ba7870c2f9",
+      "Ocp-Apim-Subscription-Region:uksouth"
+      )
   );
-  curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_string);
 
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
   $result = curl_exec($ch);
 
-  print_r($result);
-
-  echo "\nTranslated: " . $sourceText . " To " . json_decode($result)->data->translations[0]->translatedText . "\n";
-  return json_decode($result)->data->translations[0]->translatedText;
+  print_r(json_decode($result)[0]->translations[0]->text);
+  echo "\nTranslated: " . $sourceText . " To " . json_decode($result)[0]->translations[0]->text . "\n";
+  return json_decode($result)[0]->translations[0]->text;
 }
