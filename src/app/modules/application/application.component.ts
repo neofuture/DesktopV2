@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {SystemService} from './services/system.service';
+import {LanguageService} from './services/language.service';
 
 @Component({
   selector: 'app-application',
@@ -10,11 +11,13 @@ import {SystemService} from './services/system.service';
 
 export class ApplicationComponent implements OnInit {
   private appState: any;
-
+  private langSub$: any;
+  private locale: any;
   constructor(
     private route: ActivatedRoute,
     private systemService: SystemService,
-    private router: Router
+    private router: Router,
+    private languageService: LanguageService
   ) {
   }
 
@@ -37,6 +40,10 @@ export class ApplicationComponent implements OnInit {
         this.router.navigate(['/']);
       }
 
+    });
+
+    this.langSub$ = this.languageService.language.subscribe(locale => {
+      document.title = locale.product + ' - ' + locale.company;
     });
   }
 

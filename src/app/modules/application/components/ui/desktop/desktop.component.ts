@@ -191,7 +191,7 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
           this.loginWindow();
         } else {
           this.loadPlanner();
-          this.contactManager();
+          // this.contactManager();
           this.openDemo();
         }
       }, 310);

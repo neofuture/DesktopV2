@@ -17,8 +17,7 @@ export class LanguageSelectorComponent implements OnInit {
   private focused: boolean;
 
   constructor(
-    private languageService: LanguageService,
-    private desktopService: DesktopService
+    private languageService: LanguageService
   ) {
   }
 

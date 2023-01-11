@@ -15,6 +15,7 @@ import {LanguageService} from '../../../../services/language.service';
 import {DesktopService} from '../../../../services/desktop.service';
 import {BehaviorSubject, Subscription} from 'rxjs';
 import {PanelService} from '../../../../services/panel.service';
+import {ComponentRefModel} from '../../../../models/component-ref.model';
 
 @Component({
   selector: 'app-window',
@@ -184,18 +185,10 @@ export class WindowComponent implements OnInit, AfterViewInit, OnDestroy {
 
   loadComponent(): void {
     const componentName = this.basename(this.windowItem.component);
-    const compModule = this.camelCase(componentName.charAt(0).toUpperCase() + componentName.slice(1) + 'Module');
-    const compComponent = this.camelCase(componentName.charAt(0).toUpperCase() + componentName.slice(1) + 'Component');
-
+    const compComponent = this.camelCase(componentName[0].toUpperCase() + componentName.slice(1) + 'Component');
     import('../../../../components/' + this.windowItem.component + '/' + componentName + '.component').then(component => {
-      const ngModuleFactory = this.compiler.compileModuleSync(component[compModule]);
-      const ngModule = ngModuleFactory.create(this.viewContainer.injector);
-      const factory = ngModule.componentFactoryResolver.resolveComponentFactory(component[compComponent]);
-      const componentRef = this.viewContainer.createComponent(factory);
-
-      // @ts-ignore
+      const componentRef: ComponentRefModel = this.viewContainer.createComponent(component[compComponent]);
       componentRef.instance.windowItem = this.windowItem;
-      // @ts-ignore
       componentRef.instance.update.subscribe(() => {
         this.setComponentSize();
       });
