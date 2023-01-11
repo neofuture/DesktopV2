@@ -154,7 +154,7 @@ export class EditSettingsComponent implements OnInit {
     this.windowService.newWindow(windowConfig);
   }
 
-  setDefault(id, type):void {
+  setDefault(id, type): void {
     this.contactManagerService.setDefault(id, type).subscribe(data => {
       console.log(data);
     });

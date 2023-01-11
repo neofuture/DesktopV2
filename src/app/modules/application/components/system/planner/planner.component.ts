@@ -58,7 +58,6 @@ export class PlannerComponent implements OnInit, DoCheck {
   }
 
   resizeEvent(): void {
-    console.log('Resize Event Triggered ');
   }
 
   addStatusBar(): void {

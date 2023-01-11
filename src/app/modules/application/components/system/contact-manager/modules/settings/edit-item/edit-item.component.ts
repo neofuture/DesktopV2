@@ -61,7 +61,6 @@ export class EditItemComponent implements OnInit {
   }
 
   resizeEvent(): void {
-    console.log('finished resizing');
   }
 
   colourChange(event: any, which): void {
@@ -83,7 +82,6 @@ export class EditItemComponent implements OnInit {
       return;
     }
     if (this.data.item.id) {
-      console.log('Saving Record ' + this.data.item.id);
     }
     let requestBody = {};
     if (this.data.label === 'Category') {

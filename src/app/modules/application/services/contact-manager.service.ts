@@ -76,11 +76,7 @@ export class ContactManagerService {
       object
     };
 
-    return this.apiService.call('contactManager/deleteObject', 'delete', requestBody).subscribe(
-      data => {
-        console.log(data);
-      }
-    );
+    return this.apiService.call('contactManager/deleteObject', 'delete', requestBody);
   }
 
   setObjectOrder(order: any[], object): any {
@@ -88,11 +84,7 @@ export class ContactManagerService {
       order,
       object
     };
-    return this.apiService.call('contactManager/setObjectOrder', 'post', requestBody).subscribe(
-      data => {
-        console.log(data);
-      }
-    );
+    return this.apiService.call('contactManager/setObjectOrder', 'post', requestBody);
   }
 
   deleteRecord(object): any {
@@ -100,11 +92,7 @@ export class ContactManagerService {
       id: object.id
     };
 
-    return this.apiService.call('contactManager/deleteRecord', 'post', requestBody).subscribe(
-      data => {
-        console.log(data);
-      }
-    );
+    return this.apiService.call('contactManager/deleteRecord', 'post', requestBody);
 
   }
 
@@ -114,11 +102,7 @@ export class ContactManagerService {
       recordType: parseInt(recordType, 10)
     };
 
-    return this.apiService.call('contactManager/realTimeSearch', 'post', requestBody).subscribe(
-      data => {
-        console.log(data);
-      }
-    );
+    return this.apiService.call('contactManager/realTimeSearch', 'post', requestBody);
   }
 
   setDefault(id, object): any {
@@ -126,11 +110,7 @@ export class ContactManagerService {
       id,
       object
     };
-    return this.apiService.call('contactManager/setDefault', 'post', requestBody).subscribe(
-      data => {
-        console.log(data);
-      }
-    );
+    return this.apiService.call('contactManager/setDefault', 'post', requestBody);
 
   }
 }
