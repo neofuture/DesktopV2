@@ -1,7 +1,6 @@
 import {
   AfterViewInit,
-  Compiler,
-  Component,
+  Component, ComponentRef,
   ElementRef,
   HostListener, Injector,
   Input, NgModuleRef,
@@ -13,9 +12,8 @@ import {
 import {WindowService} from '../../../../services/window.service';
 import {LanguageService} from '../../../../services/language.service';
 import {DesktopService} from '../../../../services/desktop.service';
-import {BehaviorSubject, Subscription} from 'rxjs';
+import {BehaviorSubject, Observable, Subscription} from 'rxjs';
 import {PanelService} from '../../../../services/panel.service';
-import {ComponentRefModel} from '../../../../models/component-ref.model';
 
 @Component({
   selector: 'app-window',
@@ -56,11 +54,11 @@ export class WindowComponent implements OnInit, AfterViewInit, OnDestroy {
   private langSub$: Subscription;
   private view: any;
   private readonly moduleRef: NgModuleRef<any>;
+  private componentRef: ComponentRef<unknown>;
 
   constructor(
     private languageService: LanguageService,
     private windowService: WindowService,
-    private compiler: Compiler,
     private desktopService: DesktopService,
     private panelService: PanelService,
     private injector: Injector,
@@ -104,6 +102,7 @@ export class WindowComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.langSub$.unsubscribe();
+    this.componentRef.destroy();
   }
 
   @HostListener('document:mousemove', ['$event']) onMouseMove(event): void {
@@ -186,12 +185,13 @@ export class WindowComponent implements OnInit, AfterViewInit, OnDestroy {
   loadComponent(): void {
     const componentName = this.basename(this.windowItem.component);
     const compComponent = this.camelCase(componentName[0].toUpperCase() + componentName.slice(1) + 'Component');
-    import('../../../../components/' + this.windowItem.component + '/' + componentName + '.component').then(component => {
-      const componentRef: ComponentRefModel = this.viewContainer.createComponent(component[compComponent]);
-      componentRef.instance.windowItem = this.windowItem;
-      componentRef.instance.update.subscribe(() => {
-        this.setComponentSize();
-      });
+    import('../../../' + this.windowItem.component + '/' + componentName + '.component').then(component => {
+      this.componentRef = this.viewContainer.createComponent(component[compComponent]);
+      this.componentRef.setInput('windowItem', this.windowItem);
+      const instance = this.componentRef.instance as { update: Observable<void> };
+      instance.update.subscribe(() =>
+        this.setComponentSize()
+      );
     });
   }
 

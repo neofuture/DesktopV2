@@ -29,11 +29,12 @@ export class ContactProfileComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.recordSub$ = this.contactManagerService.record.subscribe(data => {
-      this.record = data.record;
-      this.recordId = data.record.id;
-      this.recordType = data.record.recordType;
-    });
+    // need a better way to pass in the sub from the parent record
+    // this.recordSub$ = this.contactManagerService.record.subscribe(data => {
+    //   this.record = data.record;
+    //   this.recordId = data.record.id;
+    //   this.recordType = data.record.recordType;
+    // });
 
     this.languageSub$ = this.languageService.language.subscribe(locale => {
       this.locale = locale.contactManager.contactProfileTab;

@@ -30,6 +30,7 @@ import {TooltipModule} from 'ng2-tooltip-directive';
   templateUrl: './contact-manager.component.html',
   styleUrls: ['./contact-manager.component.css']
 })
+
 export class ContactManagerComponent implements OnInit, DoCheck {
   @Input() windowItem;
   @Output() update = new EventEmitter();
@@ -162,46 +163,46 @@ export class ContactManagerComponent implements OnInit, DoCheck {
       this.countries = locale.countries;
       this.honorifics = locale.honorifics;
 
-      this.recordSub$ = this.contactManagerService.record.subscribe(record => {
-        this.record = record.record;
-        this.buffer = {...this.record};
-        this.records = record.totalRecords;
-        if (this.records === 0) {
-          this.thisRecord = 0;
-        }
-        setTimeout(() => {
-          if (this.record) {
-            const status =
-              '<b>' + this.locale.created + '</b>: ' +
-              this.datePipe.transform(this.record.added, 'shortDate', this.tz) + ' - ' +
-              this.datePipe.transform(this.record.added, 'shortTime', this.tz) +
-              '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +
-              '<b>' + this.locale.updated + '</b>: ' +
-              this.datePipe.transform(this.record.updated, 'shortDate', this.tz) + ' - ' +
-              this.datePipe.transform(this.record.updated, 'shortTime', this.tz) +
-              '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +
-              '<b>' + this.locale.addedBy + '</b>: ' + this.record.addedByName +
-              '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +
-              '<b>' + this.locale.updatedBy + '</b>: ' + this.record.updatedByName +
-              '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +
-              '<b>' + this.locale.lastLogin + '</b>:  ' +
-              (this.record.lastLogin.indexOf('1970') === -1 ?
-
-                  this.datePipe.transform(this.record.lastLogin, 'shortDate', this.tz) + ' - ' +
-                  this.datePipe.transform(this.record.lastLogin, 'shortTime', this.tz)
-                  :
-                  ' - '
-              )
-            ;
-
-            this.windowService.setExtendedTitle(this.windowItem, this.record.company || this.record.forename + ', ' + this.record.surname);
-            this.windowService.setStatus(this.windowItem, status);
-          } else {
-            this.windowService.setExtendedTitle(this.windowItem, null);
-            this.windowService.setStatus(this.windowItem, null);
-          }
-        });
-      });
+      // this.recordSub$ = this.contactManagerService.record.subscribe(record => {
+      //   // this.record = record.record;
+      //   this.buffer = {...this.record};
+      //   this.records = record.totalRecords;
+      //   if (this.records === 0) {
+      //     this.thisRecord = 0;
+      //   }
+      //   setTimeout(() => {
+      //     if (this.record) {
+      //       const status =
+      //         '<b>' + this.locale.created + '</b>: ' +
+      //         this.datePipe.transform(this.record.added, 'shortDate', this.tz) + ' - ' +
+      //         this.datePipe.transform(this.record.added, 'shortTime', this.tz) +
+      //         '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +
+      //         '<b>' + this.locale.updated + '</b>: ' +
+      //         this.datePipe.transform(this.record.updated, 'shortDate', this.tz) + ' - ' +
+      //         this.datePipe.transform(this.record.updated, 'shortTime', this.tz) +
+      //         '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +
+      //         '<b>' + this.locale.addedBy + '</b>: ' + this.record.addedByName +
+      //         '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +
+      //         '<b>' + this.locale.updatedBy + '</b>: ' + this.record.updatedByName +
+      //         '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +
+      //         '<b>' + this.locale.lastLogin + '</b>:  ' +
+      //         (this.record.lastLogin.indexOf('1970') === -1 ?
+      //
+      //             this.datePipe.transform(this.record.lastLogin, 'shortDate', this.tz) + ' - ' +
+      //             this.datePipe.transform(this.record.lastLogin, 'shortTime', this.tz)
+      //             :
+      //             ' - '
+      //         )
+      //       ;
+      //
+      //       this.windowService.setExtendedTitle(this.windowItem, this.record.company || this.record.forename + ', ' + this.record.surname);
+      //       this.windowService.setStatus(this.windowItem, status);
+      //     } else {
+      //       this.windowService.setExtendedTitle(this.windowItem, null);
+      //       this.windowService.setStatus(this.windowItem, null);
+      //     }
+      //   });
+      // });
     });
 
     this.contactManagerSub$ = this.contactManagerService.initData.subscribe(data => {
@@ -312,7 +313,46 @@ export class ContactManagerComponent implements OnInit, DoCheck {
   }
 
   getRecord(): void {
-    this.contactManagerService.getRecord(this.category, this.thisRecord, this.recordType);
+    this.contactManagerService.getRecord(this.category, this.thisRecord, this.recordType).subscribe((record) => {
+      this.record = record.record;
+      this.buffer = {...this.record};
+      this.records = record.totalRecords;
+      if (this.records === 0) {
+        this.thisRecord = 0;
+      }
+      setTimeout(() => {
+        if (this.record) {
+          const status =
+            '<b>' + this.locale.created + '</b>: ' +
+            this.datePipe.transform(this.record.added, 'shortDate', this.tz) + ' - ' +
+            this.datePipe.transform(this.record.added, 'shortTime', this.tz) +
+            '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +
+            '<b>' + this.locale.updated + '</b>: ' +
+            this.datePipe.transform(this.record.updated, 'shortDate', this.tz) + ' - ' +
+            this.datePipe.transform(this.record.updated, 'shortTime', this.tz) +
+            '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +
+            '<b>' + this.locale.addedBy + '</b>: ' + this.record.addedByName +
+            '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +
+            '<b>' + this.locale.updatedBy + '</b>: ' + this.record.updatedByName +
+            '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +
+            '<b>' + this.locale.lastLogin + '</b>:  ' +
+            (this.record.lastLogin.indexOf('1970') === -1 ?
+
+                this.datePipe.transform(this.record.lastLogin, 'shortDate', this.tz) + ' - ' +
+                this.datePipe.transform(this.record.lastLogin, 'shortTime', this.tz)
+                :
+                ' - '
+            )
+          ;
+
+          this.windowService.setExtendedTitle(this.windowItem, this.record.company || this.record.forename + ', ' + this.record.surname);
+          this.windowService.setStatus(this.windowItem, status);
+        } else {
+          this.windowService.setExtendedTitle(this.windowItem, null);
+          this.windowService.setStatus(this.windowItem, null);
+        }
+      });
+    });
   }
 
   newRecord(): void {

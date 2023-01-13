@@ -37,12 +37,13 @@ export class NotesHistoryComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.inline){
-      this.recordSub$ = this.contactManagerService.record.subscribe(data => {
-        this.record = data.record;
-        this.recordId = data.record.id;
-        this.recordType = data.record.recordType;
-        this.getRecords();
-      });
+      // need a better way to pass in the sub from the parent record
+      // this.recordSub$ = this.contactManagerService.record.subscribe(data => {
+      //   this.record = data.record;
+      //   this.recordId = data.record.id;
+      //   this.recordType = data.record.recordType;
+      //   this.getRecords();
+      // });
     } else {
       console.log('getting records for', this.recordId);
       console.log('getting records for', this.record);

@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {ApiService} from '../../../../services/api.service';
-import {BehaviorSubject, Subscribable} from 'rxjs';
+import {BehaviorSubject, Observable, Subscribable} from 'rxjs';
 import {Md5} from 'ts-md5';
 
 @Injectable({
@@ -9,13 +9,13 @@ import {Md5} from 'ts-md5';
 export class ContactManagerService {
 
 
-  private recordObject = new BehaviorSubject({
-    record: undefined,
-    totalRecords: 0,
-    id: undefined,
-    recordType: undefined
-  });
-  record = this.recordObject.asObservable();
+  // private recordObject = new BehaviorSubject({
+  //   record: undefined,
+  //   totalRecords: 0,
+  //   id: undefined,
+  //   recordType: undefined
+  // });
+  // record = this.recordObject.asObservable();
 
   private initDataObject = new BehaviorSubject({
     types: {id: 0, name: 'Please wait'},
@@ -49,15 +49,13 @@ export class ContactManagerService {
     return this.apiService.call('contactManager/setRecord', type, saveRecord);
   }
 
-  getRecord(category, recordIndex, recordType): void {
+  getRecord(category, recordIndex, recordType): Observable<any> {
     const requestBody = {
       category,
       recordIndex,
       recordType: parseInt(recordType, 10)
     };
-    this.apiService.call('contactManager/getRecord', 'post', requestBody).subscribe(record => {
-      this.recordObject.next(record);
-    });
+    return this.apiService.call('contactManager/getRecord', 'post', requestBody);
   }
 
   getSettings(): any {
