@@ -21,15 +21,13 @@ export class AddHistoryComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-    this.record = this.windowItem.data.record;
-    this.recordId = this.windowItem.data.record.id;
-
-
-    setTimeout(() => {
-      this.windowService.setExtendedTitle(this.windowItem, this.record.company || this.record.forename + ', ' + this.record.surname);
-    });
-
+    if(this.windowItem.data.record) {
+      this.record = this.windowItem.data.record;
+      this.recordId = this.windowItem.data.record.id;
+      setTimeout(() => {
+        this.windowService.setExtendedTitle(this.windowItem, this.record.company || this.record.forename + ', ' + this.record.surname);
+      });
+    }
     this.windowService.setLoaded(this.windowItem.uuid);
   }
 

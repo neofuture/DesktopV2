@@ -7,16 +7,7 @@ import {Md5} from 'ts-md5';
   providedIn: 'root'
 })
 export class ContactManagerService {
-
-
-  // private recordObject = new BehaviorSubject({
-  //   record: undefined,
-  //   totalRecords: 0,
-  //   id: undefined,
-  //   recordType: undefined
-  // });
-  // record = this.recordObject.asObservable();
-
+  
   private initDataObject = new BehaviorSubject({
     types: {id: 0, name: 'Please wait'},
     categories: {id: 0, name: 'Please wait'},
