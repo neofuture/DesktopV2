@@ -15,7 +15,7 @@ import {LanguageService} from '../../../services/language.service';
 import {Demo4Module} from '../demo4/demo4.component';
 import {RibbonService} from '../../../services/ribbon.service';
 import {ApiService} from '../../../services/api.service';
-import {ContactManagerService} from '../../../services/contact-manager.service';
+import {ContactManagerService} from './services/contact-manager.service';
 import {DialogService} from '../../../services/dialog.service';
 import {Subscription} from 'rxjs';
 import {NotesHistoryModule} from './modules/notes-history/notes-history.component';

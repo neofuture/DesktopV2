@@ -484,8 +484,7 @@ export class WindowComponent implements OnInit, AfterViewInit, OnDestroy {
       return;
     }
     const style = window.getComputedStyle(item);
-    // @ts-ignore
-    const transform = style.transform || style.webkitTransform || style.mozTransform || style.msTransform;
+    const transform = style.transform;
     let mat = transform.match(/^matrix3d\((.+)\)$/);
     if (mat) {
       return parseFloat(mat[1].split(', ')[13]);

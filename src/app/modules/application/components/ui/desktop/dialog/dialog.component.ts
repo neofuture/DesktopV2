@@ -28,7 +28,7 @@ export class DialogComponent implements OnInit {
   }
 
   closeDialog(): void {
-    this.dialogService.closeToast(this.dialogItem.uuid);
+    this.dialogService.closeDialog(this.dialogItem.uuid);
   }
 
   clickAction(buttonItem: any): void {

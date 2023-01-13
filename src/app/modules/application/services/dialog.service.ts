@@ -20,7 +20,7 @@ export class DialogService {
     }, 100);
   }
 
-  closeToast(uuid: any): void {
+  closeDialog(uuid: any): void {
     if (typeof this.dialogList[uuid] === 'undefined') {
       return;
     }

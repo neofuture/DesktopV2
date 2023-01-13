@@ -237,19 +237,11 @@ class contactManager
   }
 
   public static function getRecordIndex($pdo, $jsonStr, $id) {
-    $sql = "SELECT * FROM contactManagerRecords WHERE category = ? AND recordType = ? ORDER BY company, surname, forename";
+    $sql = "SELECT COUNT(*) FROM contactManagerRecords WHERE category = ? AND recordType = ? AND id < ?";
     $stmt = $pdo->prepare($sql);
-    $stmt->execute([$jsonStr->category, $jsonStr->recordType]);
-    $records = $stmt->fetchAll();
-
-    $index = 0;
-    foreach($records as $record){
-      $index++;
-      if($record['id'] === $id){
-        return $index;
-      }
-    }
-    return -1;
+    $stmt->execute([$jsonStr->category, $jsonStr->recordType, $id]);
+    $index = $stmt->fetchColumn();
+    return $index + 1;
   }
 
   public static function saveObject($pdo, $jsonStr, $session)
@@ -261,19 +253,14 @@ class contactManager
     $token = system::validateJwt($token);
     if ($token['expired'] === false && $token['signatureValid'] === true) {
 
+      $table_map = array(
+        'Category' => 'contactManagerCategories',
+        'Type' => 'contactManagerTypes',
+        'Group' => 'contactManagerGroups',
+        'Status' => 'contactManagerStatus'
+      );
 
-      if ($jsonStr->object === 'Category') {
-        $table = 'contactManagerCategories';
-      }
-      if ($jsonStr->object === 'Type') {
-        $table = 'contactManagerTypes';
-      }
-      if ($jsonStr->object === 'Group') {
-        $table = 'contactManagerGroups';
-      }
-      if ($jsonStr->object === 'Status') {
-        $table = 'contactManagerStatus';
-      }
+      $table = $table_map[$jsonStr->object];
 
       if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -321,19 +308,15 @@ class contactManager
       $status['request'] = $_SERVER['REQUEST_METHOD'];
       if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
 
+        $table_map = array(
+          'Category' => 'contactManagerCategories',
+          'Type' => 'contactManagerTypes',
+          'Group' => 'contactManagerGroups',
+          'Status' => 'contactManagerStatus'
+        );
 
-        if ($_GET['object'] === 'Category') {
-          $table = 'contactManagerCategories';
-        }
-        if ($_GET['object']  === 'Type') {
-          $table = 'contactManagerTypes';
-        }
-        if ($_GET['object']  === 'Group') {
-          $table = 'contactManagerGroups';
-        }
-        if ($_GET['object']  === 'Status') {
-          $table = 'contactManagerStatus';
-        }
+        $table = $table_map[$_GET['object']];
+
         $sql =  'DELETE FROM ' . $table . ' WHERE id = ?';
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$_GET['id']]);
@@ -353,18 +336,15 @@ class contactManager
 
     $token = system::validateJwt($token);
     if ($token['expired'] === false && $token['signatureValid'] === true) {
-      if ($jsonStr->object === 'Category') {
-        $table = 'contactManagerCategories';
-      }
-      if ($jsonStr->object === 'Type') {
-        $table = 'contactManagerTypes';
-      }
-      if ($jsonStr->object === 'Group') {
-        $table = 'contactManagerGroups';
-      }
-      if ($jsonStr->object === 'Status') {
-        $table = 'contactManagerStatus';
-      }
+      $table_map = array(
+        'Category' => 'contactManagerCategories',
+        'Type' => 'contactManagerTypes',
+        'Group' => 'contactManagerGroups',
+        'Status' => 'contactManagerStatus'
+      );
+
+      $table = $table_map[$jsonStr->object];
+
       foreach ($jsonStr->order as $key=>$value){
         $sql =  'UPDATE ' . $table . ' SET sortOrder = ?  WHERE id = ?';
         $stmt = $pdo->prepare($sql);
@@ -467,18 +447,14 @@ class contactManager
 
     $token = system::validateJwt($token);
     if ($token['expired'] === false && $token['signatureValid'] === true) {
-      if ($jsonStr->object === 'Category') {
-        $table = 'contactManagerCategories';
-      }
-      if ($jsonStr->object === 'Type') {
-        $table = 'contactManagerTypes';
-      }
-      if ($jsonStr->object === 'Group') {
-        $table = 'contactManagerGroups';
-      }
-      if ($jsonStr->object === 'Status') {
-        $table = 'contactManagerStatus';
-      }
+      $table_map = array(
+        'Category' => 'contactManagerCategories',
+        'Type' => 'contactManagerTypes',
+        'Group' => 'contactManagerGroups',
+        'Status' => 'contactManagerStatus'
+      );
+
+      $table = $table_map[$jsonStr->object];
 
       $sql = "UPDATE " . $table . " SET defaultOption = 0 ";
       $stmt = $pdo->prepare($sql);

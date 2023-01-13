@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {ApiService} from './api.service';
+import {ApiService} from '../../../../services/api.service';
 import {BehaviorSubject, Subscribable} from 'rxjs';
 import {Md5} from 'ts-md5';
 

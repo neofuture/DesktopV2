@@ -3,7 +3,7 @@ import {FormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {ApplicationModule} from '../../../../../../application.module';
 import {WindowService} from '../../../../../../services/window.service';
-import {ContactManagerService} from '../../../../../../services/contact-manager.service';
+import {ContactManagerService} from '../../../services/contact-manager.service';
 import {LanguageService} from '../../../../../../services/language.service';
 import {CdkDragDrop, DragDropModule, moveItemInArray} from '@angular/cdk/drag-drop';
 import {DialogService} from '../../../../../../services/dialog.service';

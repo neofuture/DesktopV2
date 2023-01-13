@@ -2,7 +2,7 @@ import {Component, Input, NgModule, OnInit} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {ApplicationModule} from '../../../../../application.module';
-import {ContactManagerService} from '../../../../../services/contact-manager.service';
+import {ContactManagerService} from '../../services/contact-manager.service';
 import {WindowService} from '../../../../../services/window.service';
 import {LanguageService} from '../../../../../services/language.service';
 

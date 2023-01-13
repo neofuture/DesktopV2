@@ -5,7 +5,7 @@ import {ApplicationModule} from '../../../../../../application.module';
 import {WindowService} from '../../../../../../services/window.service';
 import {LanguageService} from '../../../../../../services/language.service';
 import {ToastService} from '../../../../../../services/toast.service';
-import {ContactManagerService} from '../../../../../../services/contact-manager.service';
+import {ContactManagerService} from '../../../services/contact-manager.service';
 
 @Component({
   selector: 'app-edit-item',
