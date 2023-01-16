@@ -170,7 +170,7 @@ class contactManager
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$jsonStr->recordType, $jsonStr->title, $jsonStr->forename, $jsonStr->surname, $jsonStr->address, $jsonStr->address2, $jsonStr->town, $jsonStr->county, $jsonStr->postcode, $jsonStr->country, $jsonStr->jobTitle, $jsonStr->department, $jsonStr->work, $jsonStr->fax, $jsonStr->mobile, $jsonStr->email, $jsonStr->group, $jsonStr->category, $jsonStr->status, $jsonStr->type, $jsonStr->website, $jsonStr->company, $jsonStr->accountNumber, $jsonStr->username, $jsonStr->password, $jsonStr->allowLogin, $token['payload']->id, $token['payload']->forename . ' ' . $token['payload']->surname, $jsonStr->id]);
 
-        $id=$jsonStr->id;
+        $id = $jsonStr->id;
       }
 
       $index = contactManager::getRecordIndex($pdo, $jsonStr, $id);
@@ -189,7 +189,7 @@ class contactManager
 
       $count = $stmt->fetch();
       $status['category'] = $jsonStr->category;
-      $status['title1'] = $jsonStr->forename . ' ' .$jsonStr->surname;
+      $status['title1'] = $jsonStr->forename . ' ' . $jsonStr->surname;
       $status['title2'] = $jsonStr->company;
       $status['totalRecords'] = $count['count'];
       $status['status'] = 'ok';
@@ -198,7 +198,8 @@ class contactManager
     }
   }
 
-  public static function deleteRecord($pdo, $jsonStr, $session) {
+  public static function deleteRecord($pdo, $jsonStr, $session)
+  {
     $pdo = system::connectUserDataset($session);
 
     $token = system::getBearerToken();
@@ -236,7 +237,8 @@ class contactManager
     }
   }
 
-  public static function getRecordIndex($pdo, $jsonStr, $id) {
+  public static function getRecordIndex($pdo, $jsonStr, $id)
+  {
     $sql = "SELECT COUNT(*) FROM contactManagerRecords WHERE category = ? AND recordType = ? AND id < ?";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$jsonStr->category, $jsonStr->recordType, $id]);
@@ -288,7 +290,7 @@ class contactManager
       }
 
       if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
-        $sql =  'UPDATE ' . $table . ' SET name = ?, colours = ?  WHERE id = ?';
+        $sql = 'UPDATE ' . $table . ' SET name = ?, colours = ?  WHERE id = ?';
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$jsonStr->name, json_encode($jsonStr->colours), $jsonStr->id]);
       }
@@ -298,7 +300,8 @@ class contactManager
     }
   }
 
-  public static function deleteObject($pdo, $jsonStr, $session) {
+  public static function deleteObject($pdo, $jsonStr, $session)
+  {
     $pdo = system::connectUserDataset($session);
 
     $token = system::getBearerToken();
@@ -317,7 +320,7 @@ class contactManager
 
         $table = $table_map[$_GET['object']];
 
-        $sql =  'DELETE FROM ' . $table . ' WHERE id = ?';
+        $sql = 'DELETE FROM ' . $table . ' WHERE id = ?';
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$_GET['id']]);
 
@@ -345,10 +348,10 @@ class contactManager
 
       $table = $table_map[$jsonStr->object];
 
-      foreach ($jsonStr->order as $key=>$value){
-        $sql =  'UPDATE ' . $table . ' SET sortOrder = ?  WHERE id = ?';
+      foreach ($jsonStr->order as $key => $value) {
+        $sql = 'UPDATE ' . $table . ' SET sortOrder = ?  WHERE id = ?';
         $stmt = $pdo->prepare($sql);
-        $stmt->execute([$key+1, $value]);
+        $stmt->execute([$key + 1, $value]);
 
       }
 
@@ -356,6 +359,7 @@ class contactManager
       return $status;
     }
   }
+
   public static function getRecord($pdo, $jsonStr, $session)
   {
     $pdo = system::connectUserDataset($session);
@@ -399,7 +403,7 @@ class contactManager
           $record['added'] = date(DATE_ATOM, strtotime($record['added']));
           $record['updated'] = date(DATE_ATOM, strtotime($record['updated']));
           $record['lastLogin'] = date(DATE_ATOM, strtotime($record['lastLogin']));
-          if ($record['password'] === '*06F9E801FB5F7E5A43762DCC13D994656B962B1A'){
+          if ($record['password'] === '*06F9E801FB5F7E5A43762DCC13D994656B962B1A') {
             $record['password'] = '';
           }
           if (strlen($record['password']) > 0) {
@@ -414,6 +418,7 @@ class contactManager
       return $return;
     }
   }
+
   public static function realTimeSearch($pdo, $jsonStr, $session)
   {
     $pdo = system::connectUserDataset($session);
@@ -425,13 +430,13 @@ class contactManager
       if ($jsonStr->recordType === 1) {
         $sql = "SELECT id, forename, surname, company, category FROM contactManagerRecords WHERE recordType = ? AND (forename LIKE ? OR surname LIKE ? OR company LIKE ? OR address LIKE ? OR address2 LIKE ? OR town LIKE ? OR county LIKE ? OR company LIKE ? OR work LIKE ? OR mobile LIKE ? OR website LIKE ? OR email LIKE ? OR accountNumber LIKE ? OR mobile LIKE ? OR postcode LIKE ?) ORDER BY company, surname, forename LIMIT 10";
         $stmt = $pdo->prepare($sql);
-        $stmt->execute([$jsonStr->recordType, '%' . $jsonStr->term .'%', '%' . $jsonStr->term .'%', '%' . $jsonStr->term .'%', '%' . $jsonStr->term .'%', '%' . $jsonStr->term .'%', '%' . $jsonStr->term .'%', '%' . $jsonStr->term .'%', '%' . $jsonStr->term .'%', '%' . $jsonStr->term .'%', '%' . $jsonStr->term .'%', '%' . $jsonStr->term .'%', '%' . $jsonStr->term .'%', '%' . $jsonStr->term .'%', '%' . $jsonStr->term .'%', '%' . $jsonStr->term .'%']);
+        $stmt->execute([$jsonStr->recordType, '%' . $jsonStr->term . '%', '%' . $jsonStr->term . '%', '%' . $jsonStr->term . '%', '%' . $jsonStr->term . '%', '%' . $jsonStr->term . '%', '%' . $jsonStr->term . '%', '%' . $jsonStr->term . '%', '%' . $jsonStr->term . '%', '%' . $jsonStr->term . '%', '%' . $jsonStr->term . '%', '%' . $jsonStr->term . '%', '%' . $jsonStr->term . '%', '%' . $jsonStr->term . '%', '%' . $jsonStr->term . '%', '%' . $jsonStr->term . '%']);
         $records = $stmt->fetchAll();
       }
       if ($jsonStr->recordType === 2) {
         $sql = "SELECT id, forename, surname, company, category FROM contactManagerRecords WHERE recordType = ? AND (forename LIKE ? OR surname LIKE ? OR company LIKE ? OR address LIKE ? OR address2 LIKE ? OR town LIKE ? OR county LIKE ? OR company LIKE ? OR work LIKE ? OR mobile LIKE ? OR website LIKE ? OR email LIKE ? OR accountNumber LIKE ? OR mobile LIKE ? OR postcode LIKE ?) AND addedBy = ? ORDER BY company, surname, forename LIMIT 10";
         $stmt = $pdo->prepare($sql);
-        $stmt->execute([$jsonStr->recordType, '%' . $jsonStr->term .'%', '%' . $jsonStr->term .'%', '%' . $jsonStr->term .'%', '%' . $jsonStr->term .'%', '%' . $jsonStr->term .'%', '%' . $jsonStr->term .'%', '%' . $jsonStr->term .'%', '%' . $jsonStr->term .'%', '%' . $jsonStr->term .'%', '%' . $jsonStr->term .'%', '%' . $jsonStr->term .'%', '%' . $jsonStr->term .'%', '%' . $jsonStr->term .'%', '%' . $jsonStr->term .'%', '%' . $jsonStr->term .'%', $token['payload']->id]);
+        $stmt->execute([$jsonStr->recordType, '%' . $jsonStr->term . '%', '%' . $jsonStr->term . '%', '%' . $jsonStr->term . '%', '%' . $jsonStr->term . '%', '%' . $jsonStr->term . '%', '%' . $jsonStr->term . '%', '%' . $jsonStr->term . '%', '%' . $jsonStr->term . '%', '%' . $jsonStr->term . '%', '%' . $jsonStr->term . '%', '%' . $jsonStr->term . '%', '%' . $jsonStr->term . '%', '%' . $jsonStr->term . '%', '%' . $jsonStr->term . '%', '%' . $jsonStr->term . '%', $token['payload']->id]);
         $records = $stmt->fetchAll();
       }
 

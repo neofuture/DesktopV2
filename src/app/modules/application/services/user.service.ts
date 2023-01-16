@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 import {WindowService} from './window.service';
 import {ApiService} from './api.service';
-import {Md5} from 'ts-md5';
 import {ToastService} from './toast.service';
 import {JwtHelperService} from '@auth0/angular-jwt';
 
@@ -31,8 +30,6 @@ export class UserService {
   }
 
   login(requestBody): any {
-    const md5 = new Md5();
-    requestBody.password = md5.appendStr(requestBody.password).end();
     return this.apiService.call('user/login', 'post', requestBody);
   }
 

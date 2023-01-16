@@ -1,13 +1,12 @@
 import {Injectable} from '@angular/core';
 import {ApiService} from '../../../../services/api.service';
 import {BehaviorSubject, Observable, Subscribable} from 'rxjs';
-import {Md5} from 'ts-md5';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ContactManagerService {
-  
+
   private initDataObject = new BehaviorSubject({
     types: {id: 0, name: 'Please wait'},
     categories: {id: 0, name: 'Please wait'},
@@ -35,8 +34,6 @@ export class ContactManagerService {
     const type = typeof record.id === 'undefined' || record.id === null ? 'post' : 'put';
     record.recordType = parseInt(recordType, 10);
     const saveRecord = JSON.parse(JSON.stringify(record));
-    const md5 = new Md5();
-    saveRecord.password = md5.appendStr(saveRecord.password).end();
     return this.apiService.call('contactManager/setRecord', type, saveRecord);
   }
 

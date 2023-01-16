@@ -35,6 +35,41 @@ export class HelperService {
     }
     return word;
   }
+  
+  sortOnKey(jsonObject: any, keyToSortBy: any): any {
 
+    if (typeof jsonObject === 'undefined') {
+      return false;
+    }
+    const reA = /[^a-zA-Z]/g;
+    const reN = /[^0-9]/g;
+
+    jsonObject.sort(
+      (a: { [x: string]: string; }, b: { [x: string]: string; }) => {
+        const AInt: any = a[keyToSortBy];
+        const BInt: any = b[keyToSortBy];
+
+        if (typeof a[keyToSortBy] === 'boolean' && typeof b[keyToSortBy] === 'boolean') {
+          return a[keyToSortBy] > b[keyToSortBy] ? 1 : -1;
+        } else if (isNaN(AInt) && isNaN(BInt)) {
+          const aA = a[keyToSortBy].replace(reA, '');
+          const bA = b[keyToSortBy].replace(reA, '');
+          if (aA === bA) {
+            const aN = parseInt(a[keyToSortBy].replace(reN, ''), 10);
+            const bN = parseInt(b[keyToSortBy].replace(reN, ''), 10);
+            return aN === bN ? 0 : aN > bN ? 1 : -1;
+          } else {
+            return aA > bA ? 1 : -1;
+          }
+        } else if (isNaN(AInt)) {
+          return 1;
+        } else if (isNaN(BInt)) {
+          return -1;
+        } else {
+          return AInt > BInt ? 1 : -1;
+        }
+      }
+    );
+  }
 }
 

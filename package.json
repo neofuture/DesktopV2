@@ -24,14 +24,9 @@
     "@angular/router": "^15.1.0",
     "@auth0/angular-jwt": "^5.0.1",
     "@nicky-lenaers/ngx-scroll-to": "^9.0.0",
-    "gulp": "^4.0.2",
-    "gulp-util": "^3.0.8",
     "ng2-tooltip-directive": "^2.10.3",
-    "run-sequence": "^2.2.1",
     "rxjs": "~6.5.5",
-    "ts-md5": "^1.2.7",
     "tslib": "^2.0.0",
-    "vinyl-ftp": "^0.6.1",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
